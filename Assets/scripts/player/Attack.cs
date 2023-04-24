@@ -1,0 +1,103 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class Attack : MonoBehaviour
+{
+    public Animator animador;
+    CharacterController controlador;
+
+    public GameObject chargeimage;
+    public GameObject axe;
+
+    public bool tooclose;
+    public bool canattack;
+    public bool attacking;
+    public bool candamage;
+    public bool axeraised;
+    public bool ispaused;
+
+    public int currentweapon;
+    float chargetimer;
+    void Start()
+    {
+        canattack = true;
+        controlador = GetComponent<CharacterController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        chargeimage.GetComponent<Image>().fillAmount = chargetimer / 1.2f;
+        currentweapon = GetComponent<weapons>().currentmeleeweapon;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false)
+        {
+            animador.SetTrigger("Attack");
+            attacking = true;
+            GetComponent<movement>().canmove = false;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 1 && ispaused == false)
+        {
+            if (axeraised == false)
+            {
+                animador.SetTrigger("Raiseaxe");
+                axeraised = true;
+            }
+            else
+            {
+                animador.SetBool("Axestill", true);
+            }
+            
+            if (chargetimer < 1.2f)
+            {
+                chargetimer += Time.deltaTime;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1) && chargetimer > 0 && ispaused == false)
+        {
+            animador.SetBool("Axestill", false);
+            animador.SetTrigger("Loweraxe");
+            attacking = true;
+            GetComponent<movement>().canmove = false;
+            axe.GetComponent<Sword>().axedamage += chargetimer * 2;
+        }
+
+        //esto mueve al jugador p'alante
+        if (candamage == true)
+        {
+            if (tooclose == false)
+            {
+                controlador.Move(transform.forward * 10 * Time.deltaTime);
+            }
+        }
+        if (attacking == true || axeraised == true)
+        {
+            GetComponent<weapons>().isattacking = true;
+        }
+        else
+        {
+            GetComponent<weapons>().isattacking = false;
+        }
+    }
+    public void Attackend()
+    {
+        axeraised = false;
+        attacking = false;
+        GetComponent<movement>().canmove = true;
+        chargetimer = 0;
+        axe.GetComponent<Sword>().axedamage = 3;
+    }
+    public void Damageend()
+    {
+        candamage = false;
+    }
+
+    public void Attackstart()
+    {
+        candamage = true;
+    }
+
+}
