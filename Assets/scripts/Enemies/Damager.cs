@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Damager : MonoBehaviour
 {
+    //This goes in the arms of the enemies, it deals damage to the player if it collides with the enemy arm when attacking
+
     public GameObject father;
     void Start()
     {
@@ -28,6 +30,7 @@ public class Damager : MonoBehaviour
     }
     public void dealdamage(float damage, string type, string status)
     {
+        //This is for when a bullet collides with the enemy in the arm, it still counts
         father.GetComponent<Enemy>().takedamage(damage, type);
         father.GetComponent<Enemy>().statuseffect(status);
     }

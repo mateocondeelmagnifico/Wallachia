@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
+    //FPS Camera script
+
     public float xsensitivity;
     public float ysensitivity;
 
@@ -41,6 +43,7 @@ public class Camara : MonoBehaviour
 
         Ray rayo = new Ray(transform.position, transform.forward);
 
+        //The gun aims towards the aimpoint gameobject, this script uses a raycast to place the aimpoint gameobject at the end of it
         if (Physics.Raycast(rayo, out hit, 2000,mascara))
         {
             aimpoint.transform.position = hit.point;
@@ -52,6 +55,7 @@ public class Camara : MonoBehaviour
         }
         if (Vector3.Distance(transform.position, aimpoint.transform.position) < 2)
         {
+            //if the enemy is too close then the gun just aims forward, to avoid bugs
             player.GetComponent<Attack>().tooclose = true;
             aimpoint.transform.position = defaultaim.position;
         }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class newsilverimpact : MonoBehaviour
 {
+    //Grenade that leaves a continous poison zone for enemies, also slows them down
+    //Emits smoke VFX
+
     float timer;
     float hurttimer;
     ParticleSystem particles;

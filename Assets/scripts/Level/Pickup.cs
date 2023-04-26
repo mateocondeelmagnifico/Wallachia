@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    //Unlocks different weapons
+    //It rally is unblocking the capacity to change weapons by changing a bool in the weapons script
     public string pickuptype;
     void Start()
     {

@@ -13,14 +13,13 @@ public class Bullet : MonoBehaviour
     public float timer;
     public float damage;
 
-    weapons armas;
+    public weapons armas;
     public bool isriflebullet;
     bool issilver;
     void Start()
     {
         timer = 2.5f;
         cuerporigido = GetComponent<Rigidbody>();
-        armas = GameObject.Find("Player").GetComponent<weapons>();
         if (armas.currentbullet == "Silver")
         {
             issilver = true;

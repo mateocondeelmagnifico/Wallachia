@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Attack : MonoBehaviour
 {
+    //This script controls the melee attack both for the sword and the axe
+    //It's in charge of attacktimers, UI and animations basically
+
     public Animator animador;
     CharacterController controlador;
 
@@ -39,6 +42,7 @@ public class Attack : MonoBehaviour
             GetComponent<movement>().canmove = false;
         }
 
+        //The axe can be charged, so it needs different code than the sword
         if (Input.GetKey(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 1 && ispaused == false)
         {
             if (axeraised == false)

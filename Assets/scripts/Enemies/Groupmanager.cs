@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Groupmanager : MonoBehaviour
 {
+    //Enemies come in groups, this script makes it so that they all attack the player if one is alerted
+    //It also drags the player and hitmarker gameobject to each enemy, so i dont have to drag it to each individual enemy
     // remember dragging the enemies to the group manager
     public string enemytype;
     public bool activated;

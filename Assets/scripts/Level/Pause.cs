@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pause : MonoBehaviour
 {
+    //Pause sets timescale to 0 and sets the bool ispaused to true in all the scripts that can still work with timescale = 0
+
     public bool istrue;
     bool ispaused;
     public GameObject[] exceptions;
@@ -14,7 +16,6 @@ public class Pause : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.timeScale == 0)
@@ -30,36 +31,62 @@ public class Pause : MonoBehaviour
         {
             if (ispaused == false)
             {
-                exceptions[0].GetComponent<Shooting>().ispaused = true;
-                exceptions[1].GetComponent<Shooting>().ispaused = true;
-                exceptions[2].GetComponent<Attack>().ispaused = true;
-                exceptions[3].GetComponent<Throwinggrenade>().ispaused = true;
-
-                if (exceptions[4].GetComponent<AudioSource>().isPlaying == true)
-                {
-                    istrue = true;
-                    exceptions[4].GetComponent<AudioSource>().Pause();
-                }
-                else
-                {
-                    istrue = false;
-                }
-
-                Time.timeScale = 0;
+                pause("Full");
             }
             else
             {
-                exceptions[0].GetComponent<Shooting>().ispaused = false;
-                exceptions[1].GetComponent<Shooting>().ispaused = false;
-                exceptions[2].GetComponent<Attack>().ispaused = false;
-                exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
-
-                if (istrue == true)
-                {
-                    exceptions[4].GetComponent<AudioSource>().Play();
-                }
-                Time.timeScale = 1;
+                unpause();
             }
         }
+    }
+    public void unpause()
+    {
+        exceptions[0].GetComponent<Shooting>().ispaused = false;
+        exceptions[1].GetComponent<Shooting>().ispaused = false;
+        exceptions[2].GetComponent<Attack>().ispaused = false;
+        exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
+
+        if (istrue == true)
+        {
+            exceptions[4].GetComponent<AudioSource>().Play();
+        }
+
+        exceptions[5].SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        Time.timeScale = 1;
+    }
+    public void pause(string howmuch)
+    {
+        exceptions[0].GetComponent<Shooting>().ispaused = true;
+        exceptions[1].GetComponent<Shooting>().ispaused = true;
+        exceptions[2].GetComponent<Attack>().ispaused = true;
+        exceptions[3].GetComponent<Throwinggrenade>().ispaused = true;
+
+        if (exceptions[4].GetComponent<AudioSource>().isPlaying == true)
+        {
+            istrue = true;
+            exceptions[4].GetComponent<AudioSource>().Pause();
+        }
+        else
+        {
+            istrue = false;
+        }
+
+    
+        if (howmuch == "Full")
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            exceptions[5].SetActive(true);
+        }
+      
+
+        Time.timeScale = 0;
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

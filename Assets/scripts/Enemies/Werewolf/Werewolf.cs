@@ -5,6 +5,11 @@ using UnityEngine.AI;
 
 public class Werewolf : MonoBehaviour
 {
+    //This is for the behaviours of the werewolf (Wandering, alert, attacking or encircling)
+    //They are a lot more complicated than zombies
+    // When they come close to a player they start encircling him and attack one at a time
+    //The speed of the werewolf is also modified
+
     Enemymovement movimiento;
     Animator animador;
 
@@ -47,7 +52,8 @@ public class Werewolf : MonoBehaviour
 
         if (Vector3.Distance(player.position, transform.position) < 14 && attacking == false || encircling == true && attacking == false)
         {
-            //se desactiva el movimiento
+            //When they are encricling, instead of following the player they each follow a ball that rotates arounf the player
+            //they each have their own ball
             encircle();
         }
 
@@ -74,6 +80,7 @@ public class Werewolf : MonoBehaviour
         {
             if (circleinplace == false)
             {
+                //This is for claiming a ball to follow when they're encircling the player
                 GameObject.Find("Ball manager").GetComponent<Ballmanger>().assingball(this.gameObject);
                 circleinplace = true;
             }
@@ -170,7 +177,6 @@ public class Werewolf : MonoBehaviour
         encircling = true;
         movimiento.destination = myball.transform.position;
     }
-
     public void alertcheck()
     {
         if (alert == true && encircling == false)

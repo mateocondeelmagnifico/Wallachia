@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Playerfollower : MonoBehaviour
 {
+    //This is the gamobject that the werewolf balls rotate around
     public Transform player;
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;

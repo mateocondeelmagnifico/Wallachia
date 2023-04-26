@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class weapons : MonoBehaviour
 {
+    //This script takes care of weapon switching 
+    //It also keeps track of what weapons you have equipped and which weaponds you have unlocked
+    //It also changes the UI Icon of the bullets 
+
     public int currentmeleeweapon;
     public int currentrangeweapon;
     public int currentgrenade;

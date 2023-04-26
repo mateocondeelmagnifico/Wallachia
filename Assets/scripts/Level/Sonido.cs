@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sonido : MonoBehaviour
 {
+    //Soundmanager script, it is called by different objects in the scene
     AudioSource source;
     public AudioClip[] clip;
     void Start()

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class grenade : MonoBehaviour
 {
+    //The script for the grenade before it explodes
+    //Its the same for garlic and silver grenades
+
     public GameObject[] grenadetype;
     public weapons armas;
     public GameObject[] type;
@@ -13,6 +16,7 @@ public class grenade : MonoBehaviour
     public Sonido sound;
     void Start()
     {
+        //this is so that it doen't drop to your feet when spawned
         cuerporigido = GetComponent<Rigidbody>();
         cuerporigido.AddForce(transform.forward * 450);
         cuerporigido.AddForce(transform.up * 150);
@@ -32,6 +36,7 @@ public class grenade : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        //When it collides with anything the grenade explodeas an instate the explosion that corresponds to the grenade type
         GameObject.Instantiate(grenadetype[armas.currentgrenade], transform.position, transform.rotation);
         if (armas.currentgrenade == 1)
         {

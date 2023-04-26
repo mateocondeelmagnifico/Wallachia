@@ -5,6 +5,10 @@ using UnityEngine.AI;
 
 public class Enemymovement : MonoBehaviour
 {
+    //This script takes care of enemy movement, movement animations and speed
+    //It also makes the enemy attack if it detects it's too close to the player
+    //This script goes on all enemies
+
     public NavMeshAgent navegador;
     public Animator animador;
     Rigidbody cuerporigido;
@@ -71,6 +75,7 @@ public class Enemymovement : MonoBehaviour
         checkattack();
         
     }
+    //If the player is too close, it attacks
     public void checkdistance()
     {
         if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && staggered <= 0)
@@ -100,6 +105,13 @@ public class Enemymovement : MonoBehaviour
             }
         }
     }
+
+    //These three scripts are called by animation events
+    public void Damagestart()
+    {
+        candamage = true;
+        isdamaging = true;
+    }
     public void Endattack()
     {
         isattacking = false;
@@ -110,11 +122,8 @@ public class Enemymovement : MonoBehaviour
         candamage = false;
         isdamaging = false;
     }
-    public void Damagestart()
-    {
-        candamage = true;
-        isdamaging = true;
-    }
+ 
+    //This is so enemies don't drift when they start to attack, it also makes it so that they lunge at the player when the attack starts
     void checkattack()
     {
         if (isattacking == true)

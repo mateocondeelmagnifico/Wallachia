@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Refresh : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Refills HP and Ammo
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

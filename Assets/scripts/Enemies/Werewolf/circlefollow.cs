@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class circlefollow : MonoBehaviour
 {
+    //The script in each ball, this makes them rotate around the player
     Transform player;
     public bool istaken;
     public float speed;

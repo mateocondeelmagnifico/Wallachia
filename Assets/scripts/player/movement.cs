@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
+    // This is for the player movement
+
     public CharacterController controlador;
 
     public Vector3 direction;
@@ -47,6 +49,7 @@ public class movement : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.S))
             {
+                //You go back more slowly to discourage retreating
                 zdirection = -transform.forward;
                 animador.SetBool("Moving", true);
                 speed = 2f;

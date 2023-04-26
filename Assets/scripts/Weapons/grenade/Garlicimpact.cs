@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Garlicimpact : MonoBehaviour
 {
+    //Regular grenade explosion
+    //It also emits explosion VFX
+
     public float timer;
     ParticleSystem particles;
     void Start()

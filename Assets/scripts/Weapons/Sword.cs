@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    //This script makes both the sword and the axe do damage and apply status effects on hit
+
     public GameObject bloodVFX;
     public GameObject player;
 

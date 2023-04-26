@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    //THis Script controls the life and status effects of the enemy, it goes on all enemies
+
     public Animator animador;
     public Enemymovement othersript;
     public Image hitmarker;
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()  
     {
-
+        //this is to enable the hitmarker when you hit an enemy
         if (hitmarker.enabled == false)
         {
             hitmarkertimer = 0;
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        //The more an enemy gets hit, the more stunresistance he builds up
         if (stunresistance > 0)
         {
             stunresistance -= Time.deltaTime * 0.25f;
@@ -60,6 +63,7 @@ public class Enemy : MonoBehaviour
 
         checkdead();
 
+        //this applies the transforming status effect, it affects zombies and werewolves differently
         if (enemytype == "Zombie")
         {
             life -= transforming * Time.deltaTime;

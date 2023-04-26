@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Zombie : MonoBehaviour
 {
     //Estados de la IA
+    // This is for the behaviours of the Zombie (Being alert, wandering, being angry)
+    // It also modifies the zombie's velocity
     public Enemymovement movimiento;
 
     public Transform player;

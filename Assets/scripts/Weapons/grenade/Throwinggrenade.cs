@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Throwinggrenade : MonoBehaviour
 {
+    //This script goes in the camera, it instantiates the grenade in the direction you are looking at
+
     public GameObject player;
     public GameObject grenade;
     public GameObject text;

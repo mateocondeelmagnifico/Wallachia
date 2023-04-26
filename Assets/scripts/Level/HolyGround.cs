@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class HolyGround : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Slows down and harms enemies that get near
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

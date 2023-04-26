@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ballmanger : MonoBehaviour
 {
+    //The ball manager asings a ball to each werewolf that requests it
+
     public GameObject[] balls;
     public Transform player;
 
@@ -42,6 +44,8 @@ public class Ballmanger : MonoBehaviour
     }
     public void distancecheck()
     {
+        //This makes werewolves separate themselves if they are too close
+        //It increases the speed of the rightmost werewolf
         if (activeballs > 0)
         {
             anglecheck(0, 1);

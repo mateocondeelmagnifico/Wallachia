@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour
 {
+    //THis script is in charge of shooting and reloading both for the revolver and the rifle
+    //You can only whoot if you're not reloading, changing weapons or haven't done a melee attack recently
+
     Life vida;
     Sonido sonido;
     public GameObject player;
@@ -20,6 +23,7 @@ public class Shooting : MonoBehaviour
 
     ParticleSystem particles;
     GameObject luz;
+    GameObject mybullet;
 
     Rigidbody cuerporigido;
     weapons armas;
@@ -260,12 +264,14 @@ public class Shooting : MonoBehaviour
         if (isrifle == true)
         {
             shotcooldown = 2;
-            GameObject.Instantiate(riflebullet, cannon.position, transform.rotation);
+            mybullet = GameObject.Instantiate(riflebullet, cannon.position, transform.rotation);
+            mybullet.GetComponent<Bullet>().armas = armas;
         }
         else
         {
             shotcooldown = 0.4f;
-            GameObject.Instantiate(bullet, cannon.position, transform.rotation);
+            mybullet = GameObject.Instantiate(bullet, cannon.position, transform.rotation);
+            mybullet.GetComponent<Bullet>().armas = armas;
         }
         shotcooldown2 = 0.45f;
         sonido.playaudio("shoot");
