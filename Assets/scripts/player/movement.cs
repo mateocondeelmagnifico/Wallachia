@@ -27,11 +27,11 @@ public class movement : MonoBehaviour
     void Update()
     {
         Keycheck();
-        controlador.Move(direction * speed * Time.deltaTime);
-        if (transform.position.y > 7.81f || transform.position.y < 7.81f)
+        if (controlador.isGrounded == false)
         {
-            transform.position = new Vector3(transform.position.x, 7.81f, transform.position.z);
+            direction.y = -3f;
         }
+        controlador.Move(direction * speed * Time.deltaTime);
     }
     public void Keycheck()
     {
