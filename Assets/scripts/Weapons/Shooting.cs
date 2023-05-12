@@ -36,9 +36,11 @@ public class Shooting : MonoBehaviour
     public bool ispaused;
     bool reloading;
     public bool canreload;
+    public bool isrunning;
 
     public Transform cannon;
     public Transform gunposition;
+    public Transform reloadingpoint;
 
     float shotcooldown;
     public float shotcooldown2;
@@ -111,7 +113,7 @@ public class Shooting : MonoBehaviour
             Maxammocounter.GetComponent<Text>().text = maxsilverammo.ToString();
         }
 
-        if (ispaused == false)
+        if (ispaused == false && isrunning == false)
         {
             shoot();
         }
@@ -153,7 +155,7 @@ public class Shooting : MonoBehaviour
                 }               
                 reloading = false;
                 missingammo = false;
-                Reloadingimage.SetActive(false);
+                Reloadingimage.GetComponent<Text>().enabled = false;
             }
         }
 
@@ -167,7 +169,14 @@ public class Shooting : MonoBehaviour
 
         mouseposition += Camera.main.transform.forward * 30;
 
-        transform.LookAt(aimpoint.transform.position);
+        if (reloading == false && isrunning == false)
+        {
+            transform.LookAt(aimpoint.transform.position);
+        }
+        else
+        {
+            transform.LookAt(reloadingpoint.position);
+        }
 
         GameObject.Find("Player").GetComponent<weapons>().isreloading = reloading;
 
@@ -286,14 +295,14 @@ public class Shooting : MonoBehaviour
             if (silvermode == false && maxammo > 0)
             {
                 reloadingmath("Iron");
-                Reloadingimage.SetActive(true);
+                Reloadingimage.GetComponent<Text>().enabled = true;
                 reloading = true;
                 reloadingtimer = 4;
             }
             if (silvermode == true && maxsilverammo > 0)
             {
                 reloadingmath("Silver");
-                Reloadingimage.SetActive(true);
+                Reloadingimage.GetComponent<Text>().enabled = true;
                 reloading = true;
                 reloadingtimer = 4;
             }

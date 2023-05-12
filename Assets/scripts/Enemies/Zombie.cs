@@ -96,13 +96,13 @@ public class Zombie : MonoBehaviour
                 //move
                 movimiento.destination = new Vector3( transform.position.x + Random.Range(-6, 5), transform.position.y, transform.position.z + Random.Range(-6, 5));
                 wandertimer = Random.Range(3,5);
-                animador.SetBool("Moving", true);
+                //animador.SetBool("Moving", true);
             }
             else
             {
                 //don't move
                 wandertimer = Random.Range(3, 5);
-                animador.SetBool("Moving", false);
+                //animador.SetBool("Moving", false);
             }
         }
        

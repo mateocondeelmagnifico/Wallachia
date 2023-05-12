@@ -11,7 +11,6 @@ public class Enemymovement : MonoBehaviour
 
     public NavMeshAgent navegador;
     public Animator animador;
-    Rigidbody cuerporigido;
 
     public GameObject player;
 
@@ -34,7 +33,6 @@ public class Enemymovement : MonoBehaviour
     public Vector3 attackposition;
     void Start()
     {
-        cuerporigido = GetComponent<Rigidbody>();
         destination = this.transform.position;
         animador = GetComponent<Animator>();
         navegador = GetComponent<NavMeshAgent>();
@@ -56,24 +54,33 @@ public class Enemymovement : MonoBehaviour
         {
             if ( staggered <= 0)
             {
-                animador.SetBool("Moving", true);
+                //animador.SetBool("Moving", true);
             }
 
             destination = player.transform.position;
+        }
+
+        if (navegador.velocity != Vector3.zero)
+        {
+            animador.SetBool("Moving", true);
+        }
+        else
+        {
+            animador.SetBool("Moving", false);
         }
 
         navegador.SetDestination(destination);
 
         if (transform.position == destination && playerdetected == false)
         {
-            animador.SetBool("Moving", false);
+            //animador.SetBool("Moving", false);
         }
 
         //Attack
         checkdistance();
         checkstun();
         checkattack();
-        
+
     }
     //If the player is too close, it attacks
     public void checkdistance()

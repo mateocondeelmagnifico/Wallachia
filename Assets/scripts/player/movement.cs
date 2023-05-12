@@ -8,6 +8,9 @@ public class movement : MonoBehaviour
 
     public CharacterController controlador;
 
+    public GameObject[] guns;
+    public Shooting[] gunscripts;
+
     public Vector3 direction;
 
     public Vector3 xdirection;
@@ -15,11 +18,16 @@ public class movement : MonoBehaviour
 
 
     public bool canmove;
+    public bool issprinting;
 
     float speed;
+    float cansprint;
     void Start()
     {
         canmove = true;
+        cansprint = 4;
+        gunscripts[0] = guns[0].GetComponent<Shooting>();
+        gunscripts[1] = guns[1].GetComponent<Shooting>();
     }
 
     // Update is called once per frame
@@ -31,6 +39,11 @@ public class movement : MonoBehaviour
             direction.y = -3f;
         }
         controlador.Move(direction * speed * Time.deltaTime);
+
+        if (cansprint < 4 && issprinting == false)
+        {
+            cansprint += Time.deltaTime/ 1.6f;
+        }
     }
     public void Keycheck()
     {
@@ -40,6 +53,20 @@ public class movement : MonoBehaviour
         zdirection = new Vector3(0, 0, 0);
         if (canmove == true)
         {
+            //Sprinting
+            if (Input.GetKey(KeyCode.LeftShift) && cansprint > 0)
+            {
+                issprinting = true; 
+                speed *= 1.9f;
+                Setrunning(true);
+                cansprint -= Time.deltaTime;
+            }
+            if ((Input.GetKeyUp(KeyCode.LeftShift)))
+            {
+                Setrunning(false);
+                issprinting = false;
+            }
+
             if (Input.GetKey(KeyCode.W))
             {
                 zdirection = transform.forward;
@@ -48,7 +75,7 @@ public class movement : MonoBehaviour
             {
                 //You go back more slowly to discourage retreating
                 zdirection = -transform.forward;
-                speed = 2f;
+                speed /= 2;
             }
             if (Input.GetKey(KeyCode.D))
             {
@@ -58,8 +85,23 @@ public class movement : MonoBehaviour
             {
                 xdirection = -transform.right;
             }
+
+           
             direction = xdirection + zdirection;
             direction = direction.normalized;
+        }
+    }
+    public void Setrunning(bool istrue)
+    {
+      if (istrue == true)
+        {
+            gunscripts[0].isrunning = true;
+            gunscripts[1].isrunning = true;
+        }
+      else
+        {
+            gunscripts[0].isrunning = false;
+            gunscripts[1].isrunning = false;
         }
     }
 }
