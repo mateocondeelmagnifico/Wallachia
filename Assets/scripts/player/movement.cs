@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class movement : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class movement : MonoBehaviour
 
     public GameObject[] guns;
     public Shooting[] gunscripts;
+    public GameObject staminabar;
+
+    Image stamina;
 
     public Vector3 direction;
-
     public Vector3 xdirection;
     public Vector3 zdirection;
 
@@ -28,11 +31,13 @@ public class movement : MonoBehaviour
         cansprint = 4;
         gunscripts[0] = guns[0].GetComponent<Shooting>();
         gunscripts[1] = guns[1].GetComponent<Shooting>();
+        stamina = staminabar.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        stamina.fillAmount = cansprint/4;
         Keycheck();
         if (controlador.isGrounded == false)
         {
@@ -40,9 +45,18 @@ public class movement : MonoBehaviour
         }
         controlador.Move(direction * speed * Time.deltaTime);
 
+        if (issprinting == true || cansprint < 4)
+        {
+            stamina.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            stamina.color = new Color(1, 1, 1, 0);
+        }
+
         if (cansprint < 4 && issprinting == false)
         {
-            cansprint += Time.deltaTime/ 1.6f;
+            cansprint += Time.deltaTime/ 2.8f;
         }
     }
     public void Keycheck()
@@ -59,7 +73,7 @@ public class movement : MonoBehaviour
                 issprinting = true; 
                 speed *= 1.9f;
                 Setrunning(true);
-                cansprint -= Time.deltaTime;
+                cansprint -= Time.deltaTime * 1.3f;
             }
             if ((Input.GetKeyUp(KeyCode.LeftShift)))
             {

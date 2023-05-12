@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8319187485373107149}
   - component: {fileID: 4832905932099806016}
   - component: {fileID: 7122806597471396798}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rifle pickup
   m_TagString: Rifle pickup
   m_Icon: {fileID: 0}
@@ -99,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.1117987, y: 0.72512984, z: 3.9023032}
-  m_Center: {x: -0.000000044703484, y: -0.05515252, z: 0.5829513}
+  m_Size: {x: 1.6355834, y: 2.083544, z: 6.56478}
+  m_Center: {x: 0.06323314, y: -0.036916852, z: 0.2246542}
 --- !u!114 &7122806597471396798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 8302263898666878701}
   - component: {fileID: 8309585158528292783}
   - component: {fileID: 8319782711315805247}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MuzzleSight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8298198454972411067}
   - component: {fileID: 8309238175858742911}
   - component: {fileID: 8319463058890660523}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Shutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 8302117535026971703}
   - component: {fileID: 8309264295397694759}
   - component: {fileID: 8319540187007477271}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 8302077278922468997}
   - component: {fileID: 8309659077118589415}
   - component: {fileID: 8319260584717771485}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8298227361512128929}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2660844874812814512}
   - component: {fileID: 2618661561388235908}
   - component: {fileID: 1968580543886966561}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet pickup
   m_TagString: Bullet Pickup
   m_Icon: {fileID: 0}
@@ -94,8 +94,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02188, y: 0.021879997, z: 0.062388}
-  m_Center: {x: 0, y: -0.000000019092113, z: 0}
+  m_Size: {x: 0.3812194, y: 0.2550005, z: 0.3693384}
+  m_Center: {x: 0.03267474, y: 0.0065035704, z: 0.008407307}
 --- !u!114 &1968580543886966561
 MonoBehaviour:
   m_ObjectHideFlags: 0
