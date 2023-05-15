@@ -22,9 +22,10 @@ public class movement : MonoBehaviour
 
     public bool canmove;
     public bool issprinting;
+    public bool isonhill;
 
-    float speed;
-    float cansprint;
+    public float speed;
+    public float cansprint;
     void Start()
     {
         canmove = true;
@@ -43,7 +44,7 @@ public class movement : MonoBehaviour
         {
             direction.y = -3f;
         }
-        controlador.Move(direction * speed * Time.deltaTime);
+
 
         if (issprinting == true || cansprint < 4)
         {
@@ -56,8 +57,17 @@ public class movement : MonoBehaviour
 
         if (cansprint < 4 && issprinting == false)
         {
-            cansprint += Time.deltaTime/ 2.8f;
+            cansprint += Time.deltaTime/ 3.5f;
+            if (cansprint < 2)
+            {
+                speed /= 2;
+            }
         }
+        if (isonhill == true)
+        {
+            speed /= 2;
+        }
+                controlador.Move(direction * speed * Time.deltaTime);
     }
     public void Keycheck()
     {
@@ -116,6 +126,21 @@ public class movement : MonoBehaviour
         {
             gunscripts[0].isrunning = false;
             gunscripts[1].isrunning = false;
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if (collision.gameObject.tag.Equals("Hill"))
+        {
+            isonhill = true;
+        }      
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Hill"))
+        {
+            isonhill = false;
         }
     }
 }

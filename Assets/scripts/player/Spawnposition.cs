@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class Spawnposition : MonoBehaviour
 {
+    weapons armas;
+    RespawnManager manager;
     void Start()
     {
+        armas = GetComponent<weapons>();
+
         if (FindObjectOfType<RespawnManager>() != null) 
         {
-            transform.position = FindObjectOfType<RespawnManager>().spawnposition;
+            manager = FindObjectOfType<RespawnManager>();
+            transform.position = manager.spawnposition;
+            Debug.Log("yes");
+            Debug.Log("manager");
+            armas.hasaxe = manager.hasaxe;
+            armas.hasrifle = manager.hasrifle;
+            armas.hasbullet = manager.hasbullets;
+            armas.hasgrenade = manager.hasgrenades;
+        }
+        else
+        {
+            Debug.Log("no");
         }
     }
 

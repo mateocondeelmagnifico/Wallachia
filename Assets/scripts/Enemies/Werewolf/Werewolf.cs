@@ -45,6 +45,7 @@ public class Werewolf : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Vector3.Distance(player.position, transform.position) < 15 || movimiento.playerdetected == true)
         {
             alert = true;
@@ -126,15 +127,13 @@ public class Werewolf : MonoBehaviour
             if (decidestomove >= 3)
             {
                 //move
-                movimiento.destination = new Vector3(Random.Range(-8, 7), transform.position.y, Random.Range(-8, 7));
+                movimiento.destination = new Vector3(transform.position.x + Random.Range(-8, 7), transform.position.y,transform.position.z + Random.Range(-8, 7));
                 wandertimer = Random.Range(2.5f, 4);
-                animador.SetBool("Moving", true);
             }
             else
             {
                 //don't move
                 wandertimer = Random.Range(2.5f, 4);
-                animador.SetBool("Moving", false);
             }
         }
     }
@@ -165,7 +164,6 @@ public class Werewolf : MonoBehaviour
     }
     public void encircle()
     {
-        animador.SetBool("Moving", true);
         if (circleinplace == false)
         {
             GameObject.Find("Ball manager").GetComponent<Ballmanger>().assingball(this.gameObject);
