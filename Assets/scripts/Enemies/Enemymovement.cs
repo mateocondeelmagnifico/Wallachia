@@ -52,10 +52,6 @@ public class Enemymovement : MonoBehaviour
 
         if (playerdetected == true)
         {
-            if ( staggered <= 0)
-            {
-                //animador.SetBool("Moving", true);
-            }
 
             destination = player.transform.position;
         }
@@ -102,6 +98,7 @@ public class Enemymovement : MonoBehaviour
             navegador.isStopped = true;
             animador.SetBool("Moving", false);
             candamage = false;
+            navegador.velocity = new Vector3(0, 0, 0);
         }
         else
         {
