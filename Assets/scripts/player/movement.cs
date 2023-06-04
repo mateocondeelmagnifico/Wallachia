@@ -9,11 +9,11 @@ public class movement : MonoBehaviour
 
     public CharacterController controlador;
 
-    public GameObject[] guns;
-    public Shooting[] gunscripts;
-    public GameObject staminabar;
+    //public GameObject[] guns;
+    //public Shooting[] gunscripts;
+    //public GameObject staminabar;
 
-    Image stamina;
+    //Image stamina;
 
     public Vector3 direction;
     public Vector3 xdirection;
@@ -30,15 +30,15 @@ public class movement : MonoBehaviour
     {
         canmove = true;
         cansprint = 4;
-        gunscripts[0] = guns[0].GetComponent<Shooting>();
-        gunscripts[1] = guns[1].GetComponent<Shooting>();
-        stamina = staminabar.GetComponent<Image>();
+        //gunscripts[0] = guns[0].GetComponent<Shooting>();
+        //gunscripts[1] = guns[1].GetComponent<Shooting>();
+        //stamina = staminabar.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        stamina.fillAmount = cansprint/4;
+        //stamina.fillAmount = cansprint/4;
         Keycheck();
         if (controlador.isGrounded == false)
         {
@@ -48,11 +48,11 @@ public class movement : MonoBehaviour
 
         if (issprinting == true || cansprint < 4)
         {
-            stamina.color = new Color(1, 1, 1, 1);
+            //stamina.color = new Color(1, 1, 1, 1);
         }
         else
         {
-            stamina.color = new Color(1, 1, 1, 0);
+            //stamina.color = new Color(1, 1, 1, 0);
         }
 
         if (cansprint < 4 && issprinting == false)
@@ -60,7 +60,7 @@ public class movement : MonoBehaviour
             cansprint += Time.deltaTime/ 3.5f;
             if (cansprint < 2)
             {
-                speed /= 2;
+                //speed /= 2;
             }
         }
         if (isonhill == true)
@@ -71,7 +71,7 @@ public class movement : MonoBehaviour
     }
     public void Keycheck()
     {
-        speed = 5;
+        speed = 11;
         direction = new Vector3(0, 0, 0);
         xdirection = new Vector3(0, 0, 0);
         zdirection = new Vector3(0, 0, 0);
@@ -81,9 +81,9 @@ public class movement : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift) && cansprint > 0)
             {
                 issprinting = true; 
-                speed *= 1.9f;
+                speed *= 3f;
                 Setrunning(true);
-                cansprint -= Time.deltaTime * 1.3f;
+                //cansprint -= Time.deltaTime * 1.3f;
             }
             if ((Input.GetKeyUp(KeyCode.LeftShift)))
             {
@@ -99,7 +99,7 @@ public class movement : MonoBehaviour
             {
                 //You go back more slowly to discourage retreating
                 zdirection = -transform.forward;
-                speed /= 2;
+                //speed /= 2;
             }
             if (Input.GetKey(KeyCode.D))
             {
@@ -119,13 +119,13 @@ public class movement : MonoBehaviour
     {
       if (istrue == true)
         {
-            gunscripts[0].isrunning = true;
-            gunscripts[1].isrunning = true;
+            // gunscripts[0].isrunning = true;
+            //gunscripts[1].isrunning = true;
         }
-      else
+        else
         {
-            gunscripts[0].isrunning = false;
-            gunscripts[1].isrunning = false;
+            //gunscripts[0].isrunning = false;
+            //gunscripts[1].isrunning = false;
         }
     }
 

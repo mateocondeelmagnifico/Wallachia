@@ -13,7 +13,8 @@ public class Pause : MonoBehaviour
     public GameObject[] exceptions;
     public GameObject controlsmenu;
 
-    //Exception 1 = pistola, Excepcion 2 = rifle, Excepcion 3 = player, Excepcion 4 = camara, Exception 5 = soundmanager
+    //Exception 1 = pistola, Excepcion 2 = rifle, Excepcion 3 = player, Excepcion 4 = camara, Exception 5 = soundmanager,
+    //Exception 6 = game paused menu, Exception 7 = reloading text, Exception 8 = top right images
     void Start()
     {
         
@@ -45,6 +46,7 @@ public class Pause : MonoBehaviour
             }
             else
             {
+                exceptions[7].SetActive(true);
                 controlsmenu.SetActive(false);
                 isoncontrols = false;
             }
@@ -118,6 +120,7 @@ public class Pause : MonoBehaviour
     }
     public void showcontrols()
     {
+        exceptions[7].SetActive(false);
         controlsmenu.SetActive(true);
         isoncontrols = true;
     }

@@ -12,7 +12,7 @@ public class Camara : MonoBehaviour
     public Transform defaultaim;
     public Transform orientation;
 
-    public GameObject aimpoint;
+    //public GameObject aimpoint;
     public GameObject player;
 
     float xrotation;
@@ -46,18 +46,18 @@ public class Camara : MonoBehaviour
         //The gun aims towards the aimpoint gameobject, this script uses a raycast to place the aimpoint gameobject at the end of it
         if (Physics.Raycast(rayo, out hit, 2000,mascara))
         {
-            aimpoint.transform.position = hit.point;
-            player.GetComponent<Attack>().tooclose = false;
+            //aimpoint.transform.position = hit.point;
+            //player.GetComponent<Attack>().tooclose = false;
         }
         else
         {
-            aimpoint.transform.position = defaultaim.position;
+            //aimpoint.transform.position = defaultaim.position;
         }
-        if (Vector3.Distance(transform.position, aimpoint.transform.position) < 2)
-        {
-            //if the enemy is too close then the gun just aims forward, to avoid bugs
-            player.GetComponent<Attack>().tooclose = true;
-            aimpoint.transform.position = defaultaim.position;
-        }
+        //if (Vector3.Distance(transform.position, aimpoint.transform.position) < 2)
+        //{
+        //if the enemy is too close then the gun just aims forward, to avoid bugs
+        // player.GetComponent<Attack>().tooclose = true;
+        //aimpoint.transform.position = defaultaim.position;
     }
 }
+
