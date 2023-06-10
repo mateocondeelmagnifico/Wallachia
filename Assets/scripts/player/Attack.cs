@@ -10,9 +10,11 @@ public class Attack : MonoBehaviour
 
     public Animator animador;
     CharacterController controlador;
+    Sonido sound;
 
     public GameObject chargeimage;
     public GameObject axe;
+    public GameObject Soundmanager;
 
     public bool tooclose;
     public bool canattack;
@@ -27,6 +29,7 @@ public class Attack : MonoBehaviour
     {
         canattack = true;
         controlador = GetComponent<CharacterController>();
+        sound = Soundmanager.GetComponent<Sonido>();
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class Attack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false)
         {
+            sound.playaudio("Sword Swing");
             animador.SetTrigger("Attack");
             attacking = true;
             GetComponent<movement>().canmove = false;

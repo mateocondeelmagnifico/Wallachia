@@ -294,6 +294,7 @@ public class Shooting : MonoBehaviour
         {
             if (silvermode == false && maxammo > 0)
             {
+                sonido.playaudio("Reload");
                 reloadingmath("Iron");
                 Reloadingimage.GetComponent<Text>().enabled = true;
                 reloading = true;
@@ -301,6 +302,7 @@ public class Shooting : MonoBehaviour
             }
             if (silvermode == true && maxsilverammo > 0)
             {
+                sonido.playaudio("Reload");
                 reloadingmath("Silver");
                 Reloadingimage.GetComponent<Text>().enabled = true;
                 reloading = true;

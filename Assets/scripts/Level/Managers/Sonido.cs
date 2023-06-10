@@ -5,46 +5,44 @@ using UnityEngine;
 public class Sonido : MonoBehaviour
 {
     //Soundmanager script, it is called by different objects in the scene
-    AudioSource source;
-    public AudioClip[] clip;
+    AudioSource source1;
+    AudioSource source2;
+    public Soundsclass[] sounds;
+
+    bool lowering;
     void Start()
     {
-        source = GetComponent<AudioSource>();
+        source1 = gameObject.AddComponent<AudioSource>();
+        source2 = gameObject.AddComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+            source2.volume -= Time.deltaTime / 8;
         
     }
     public void playaudio(string type)
     {
-        if (type == "shoot")
+        for (int i = 0; i < sounds.Length; i++)
         {
-            source.volume = 0.9f;
-            source.clip = clip[0];
-            source.Play();
-        }
-        
-        if (type == "dont shoot")
-        {
-            source.volume = 0.3f;
-            source.clip = clip[1];
-            source.Play();
-        }
-
-        if (type == "Pickup")
-        {
-            source.volume = 0.4f;
-            source.clip = clip[2];
-            source.Play();
-        }
-
-        if (type == "Garlic Grenade")
-        {
-            source.volume = 0.8f;
-            source.clip = clip[3];
-            source.Play();
+            if (type == sounds[i].name)
+            {
+                AudioSource source;
+                if (sounds[i].source == 0)
+                {
+                    source = source1;
+                }
+                else
+                {
+                    source = source2;
+                }
+                source.clip = sounds[i].clip;
+                source.volume = sounds[i].volume;
+                source.Play();
+                break;
+            }
         }
     }
 }

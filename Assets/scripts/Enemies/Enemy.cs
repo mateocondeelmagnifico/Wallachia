@@ -192,6 +192,7 @@ public class Enemy : MonoBehaviour
     {
         if (life <= 0)
         {
+            othersript.navegador.velocity = new Vector3(0, 0, 0);
             if (enemytype == "Werewolf")
             {
                 GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;

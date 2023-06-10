@@ -51,6 +51,7 @@ public class Throwinggrenade : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F) && grenadecooldown <= 0 && grenadesleft == true && ispaused == false)
         {
+            sound.playaudio("Throw grenade");
             currentgrenade = GameObject.Instantiate(grenade, transform.position, transform.rotation);
             currentgrenade.GetComponent<grenade>().armas = armas;
             currentgrenade.GetComponent<grenade>().sound = sound;

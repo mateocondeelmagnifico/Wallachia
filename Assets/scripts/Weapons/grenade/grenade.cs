@@ -42,6 +42,10 @@ public class grenade : MonoBehaviour
         {
             sound.playaudio("Garlic Grenade");
         }
+        else
+        {
+            sound.playaudio("Smoke Grenade");
+        }
         
         Destroy(this.gameObject);
     }
