@@ -2650,6 +2650,7 @@ GameObject:
   m_Component:
   - component: {fileID: 135897835}
   - component: {fileID: 135897834}
+  - component: {fileID: 135897836}
   m_Layer: 0
   m_Name: Zombie group 2
   m_TagString: Untagged
@@ -2692,6 +2693,40 @@ Transform:
   m_Father: {fileID: 604140634}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &135897836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135897833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &148313554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9222,6 +9257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488139976}
   - component: {fileID: 488139975}
+  - component: {fileID: 488139978}
   m_Layer: 0
   m_Name: Zombie group 1
   m_TagString: Untagged
@@ -9262,6 +9298,40 @@ Transform:
   m_Father: {fileID: 604140634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &488139978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 488139974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.7
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.7
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.7
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 0.8
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &489830558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12241,6 +12311,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6b0df067d8acef346aae1d839098fcbb, type: 3}
   m_PrefabInstance: {fileID: 636135802}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &641019305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1535601621175180038, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+  m_PrefabInstance: {fileID: 1535601620333305959}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &649400319 stripped
 Transform:
@@ -16274,6 +16349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 853024647}
   - component: {fileID: 853024648}
+  - component: {fileID: 853024649}
   m_Layer: 0
   m_Name: Zombie group 4
   m_TagString: Untagged
@@ -16316,6 +16392,40 @@ MonoBehaviour:
   currentball: 0
   player: {fileID: 919132149497234558}
   hitmarker: {fileID: 23296773}
+--- !u!114 &853024649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853024646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &855681940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19114,6 +19224,7 @@ GameObject:
   m_Component:
   - component: {fileID: 969704458}
   - component: {fileID: 969704457}
+  - component: {fileID: 969704459}
   m_Layer: 0
   m_Name: Zombie group 5
   m_TagString: Untagged
@@ -19159,6 +19270,40 @@ Transform:
   m_Father: {fileID: 604140634}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969704459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969704456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &971339117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20560,6 +20705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1068592145}
   - component: {fileID: 1068592146}
+  - component: {fileID: 1068592147}
   m_Layer: 0
   m_Name: Zombie group 7
   m_TagString: Untagged
@@ -20600,6 +20746,40 @@ MonoBehaviour:
   currentball: 0
   player: {fileID: 919132149497234558}
   hitmarker: {fileID: 23296773}
+--- !u!114 &1068592147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068592144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &1070080268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21975,6 +22155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119911365}
   - component: {fileID: 1119911366}
+  - component: {fileID: 1119911367}
   m_Layer: 0
   m_Name: Zombie group 6
   m_TagString: Untagged
@@ -22015,6 +22196,40 @@ MonoBehaviour:
   currentball: 0
   player: {fileID: 919132149497234558}
   hitmarker: {fileID: 23296773}
+--- !u!114 &1119911367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119911364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1001 &1120164006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23438,6 +23653,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 94950aa7f0f9d274690502dd49b95930, type: 3}
   m_PrefabInstance: {fileID: 1186564803}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1189272853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1535601620637038020, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+  m_PrefabInstance: {fileID: 1535601620333305959}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1189272855 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1535601620637038018, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+  m_PrefabInstance: {fileID: 1535601620333305959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189272853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1198575818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: baa878f50f65b4f48ac29f443ea4111e, type: 3}
@@ -29075,6 +29306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1499966436}
   - component: {fileID: 1499966435}
+  - component: {fileID: 1499966437}
   m_Layer: 0
   m_Name: Werewolf group 2
   m_TagString: Untagged
@@ -29117,6 +29349,40 @@ Transform:
   m_Father: {fileID: 604140634}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1499966437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499966434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: 41a8948cee8dfbc4aabe4d93a7fb463e, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: b0d60105f59a8f343bd93d151d4f29f3, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: 595a16147170bd245bd98fb189a94e04, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: da9daa953c4282b468d89e5f57eadec9, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 07bff6c717e10084a9be462bc6095db8, type: 3}
+  isenemy: 1
 --- !u!1 &1500329217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 6b0df067d8acef346aae1d839098fcbb, type: 3}
@@ -41857,6 +42123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924508609}
   - component: {fileID: 1924508610}
+  - component: {fileID: 1924508611}
   m_Layer: 0
   m_Name: Zombie group 3
   m_TagString: Untagged
@@ -41899,6 +42166,40 @@ MonoBehaviour:
   currentball: 0
   player: {fileID: 919132149497234558}
   hitmarker: {fileID: 23296773}
+--- !u!114 &1924508611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924508608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  isenemy: 1
 --- !u!1 &1925145134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 0a3041dcda597954782f48ac8a97bf33, type: 3}
@@ -42452,6 +42753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1956812028}
   - component: {fileID: 1956812027}
+  - component: {fileID: 1956812029}
   m_Layer: 0
   m_Name: Werewolf group 1
   m_TagString: Untagged
@@ -42493,6 +42795,40 @@ Transform:
   m_Father: {fileID: 604140634}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956812029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956812026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Idle 1
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: 41a8948cee8dfbc4aabe4d93a7fb463e, type: 3}
+  - name: Idle 2
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: b0d60105f59a8f343bd93d151d4f29f3, type: 3}
+  - name: Idle 3
+    volume: 0.6
+    source: 0
+    clip: {fileID: 8300000, guid: 595a16147170bd245bd98fb189a94e04, type: 3}
+  - name: Attack
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: da9daa953c4282b468d89e5f57eadec9, type: 3}
+  - name: Hurt
+    volume: 1
+    source: 1
+    clip: {fileID: 8300000, guid: 07bff6c717e10084a9be462bc6095db8, type: 3}
+  isenemy: 1
 --- !u!1 &1958624304 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: c9db9d90aba03fe468f68c0c7f75c4d2, type: 3}
@@ -47017,6 +47353,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 794949241}
     - target: {fileID: 1950491036438157183, guid: 8f897ca4c5607a94dbf1a73162c41b7b, type: 3}
+      propertyPath: exceptions.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950491036438157183, guid: 8f897ca4c5607a94dbf1a73162c41b7b, type: 3}
       propertyPath: exceptions.Array.data[0]
       value: 
       objectReference: {fileID: 450455639}
@@ -47044,6 +47384,10 @@ PrefabInstance:
       propertyPath: exceptions.Array.data[6]
       value: 
       objectReference: {fileID: 776896213}
+    - target: {fileID: 1950491036438157183, guid: 8f897ca4c5607a94dbf1a73162c41b7b, type: 3}
+      propertyPath: exceptions.Array.data[7]
+      value: 
+      objectReference: {fileID: 641019305}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f897ca4c5607a94dbf1a73162c41b7b, type: 3}
 --- !u!1001 &2201282307602260379
@@ -47260,6 +47604,14 @@ PrefabInstance:
       value: Reload
       objectReference: {fileID: 0}
     - target: {fileID: 6356268569408219413, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
+      propertyPath: sounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ca44b6e511b0d14394c371648e655c9, type: 3}
+    - target: {fileID: 6356268569408219413, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
+      propertyPath: sounds.Array.data[8].name
+      value: Zombie Idle 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356268569408219413, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
       propertyPath: sounds.Array.data[0].volume
       value: 1
       objectReference: {fileID: 0}
@@ -47294,6 +47646,18 @@ PrefabInstance:
     - target: {fileID: 6356268569408219413, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
       propertyPath: sounds.Array.data[7].volume
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356268569408219413, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
+      propertyPath: sounds.Array.data[8].volume
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356268569408219418, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356268569408219418, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6356268569408219419, guid: 9ad00b5865f166840a09202897090dd2, type: 3}
       propertyPath: m_RootOrder
@@ -47408,6 +47772,30 @@ PrefabInstance:
       propertyPath: soundmanager
       value: 
       objectReference: {fileID: 1443873782}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 1189272855}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: staminabar
+      value: 
+      objectReference: {fileID: 1189272853}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 450455639}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 807767927}
+    - target: {fileID: 8511528451480277708, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: gunscripts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8511528451480277710, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: chargeimage
       value: 

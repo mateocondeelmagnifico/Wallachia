@@ -16,15 +16,19 @@ public class Groupmanager : MonoBehaviour
     public GameObject player;
     public GameObject hitmarker;
     Image Hitmarker;
+    Sonido sonido;
 
     //public int currentball;
     void Start()
     {
+        sonido = GetComponent<Sonido>();
         Hitmarker = hitmarker.GetComponent<Image>();
         for (int count = transform.childCount; count > 0; count--)
         {
             transform.GetChild(count - 1).GetComponent<Enemy>().hitmarker = Hitmarker;
+            transform.GetChild(count - 1).GetComponent<Enemy>().sonido = sonido;
             transform.GetChild(count - 1).GetComponent<Enemymovement>().player = player;
+            transform.GetChild(count - 1).GetComponent<Enemymovement>().sonido = sonido;
         }
     }
 

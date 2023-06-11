@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Animator animador;
     public Enemymovement othersript;
     public Image hitmarker;
+    public Sonido sonido;
     public GameObject[] damager;
 
     public string enemytype;
@@ -20,12 +21,13 @@ public class Enemy : MonoBehaviour
     public float stunresistance;
     public float regeneration;
     public float hitmarkertimer;
+    float idletimer;
     float timer;
 
     public bool vulnerable;
     void Start()
     {
-
+        idletimer = 4;
         if (enemytype == "Zombie")
         {
             maxlife = 6;
@@ -83,9 +85,28 @@ public class Enemy : MonoBehaviour
                 life += Time.deltaTime * regeneration;
             }
         }
+
+        //this is for idling sounds
+        if (idletimer > 0)
+        {
+            idletimer -= Time.deltaTime;
+        }
+        else
+        {
+            choserandomsound();
+        }
+    }
+    public void choserandomsound()
+    {
+        string Whichsound;
+        int random = Random.Range(1, 4);
+        Whichsound = random.ToString();
+        sonido.playaudio("Idle " + Whichsound);
+        idletimer = Random.Range(3, 6);
     }
     public void takedamage(float damage, string hitype)
     {
+        sonido.playaudio("Hurt");
         if (life > 0)
         {
             life -= damage;

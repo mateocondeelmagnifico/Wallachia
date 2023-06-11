@@ -11,6 +11,7 @@ public class Enemymovement : MonoBehaviour
 
     public NavMeshAgent navegador;
     public Animator animador;
+    public Sonido sonido;
 
     public GameObject player;
 
@@ -113,6 +114,7 @@ public class Enemymovement : MonoBehaviour
     //These three scripts are called by animation events
     public void Damagestart()
     {
+        sonido.playaudio("Attack");
         candamage = true;
         isdamaging = true;
     }
