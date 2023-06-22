@@ -64,7 +64,7 @@ public class movement : MonoBehaviour
     }
     public void Keycheck()
     {
-        speed = 6;
+        speed = 5;
         direction = new Vector3(0, 0, 0);
         xdirection = new Vector3(0, 0, 0);
         zdirection = new Vector3(0, 0, 0);
@@ -74,17 +74,14 @@ public class movement : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 issprinting = true;
-                if (sprinttimer >= 0.3f)
-                {
-                    speed *= 1.6f;
-                    Setrunning(true);
-                }
+
+               speed *= 1.15f + sprinttimer;
+               Setrunning(true);
             }
 
             if ((Input.GetKeyUp(KeyCode.LeftShift)))
             {
                 issprinting = false;
-             
             }
 
             if (Input.GetKey(KeyCode.W))
