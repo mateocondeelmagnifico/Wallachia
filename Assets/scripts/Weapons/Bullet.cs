@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody cuerporigido;
     public GameObject[] particles;
+    public Transform player;
     GameObject myparticle;
 
     public float timer;
@@ -20,15 +21,6 @@ public class Bullet : MonoBehaviour
     {
         timer = 2.5f;
         cuerporigido = GetComponent<Rigidbody>();
-        if (armas.currentbullet == "Silver")
-        {
-            issilver = true;
-            damage = 0.5f;
-        }
-        else
-        {
-            damage = 1;
-        }
     }
 
     // Update is called once per frame
@@ -83,8 +75,23 @@ public class Bullet : MonoBehaviour
 
     public void hitenemy(bool hashit)
     {
+        if (armas.currentbullet == "Silver")
+        {
+            issilver = true;
+            damage = 1f;
+        }
+        else
+        {
+            damage = 2;
+        }
+
         if (hashit == true)
         {
+            damage -= Vector3.Distance(transform.position, player.position) / 5;
+            if (damage < 0.5f)
+            {
+                damage = 0.5f;
+            }
             myparticle = GameObject.Instantiate(particles[0], transform.position, transform.rotation);
             myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
             if (isriflebullet == true)

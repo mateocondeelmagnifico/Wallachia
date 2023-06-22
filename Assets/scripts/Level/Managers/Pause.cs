@@ -9,7 +9,7 @@ public class Pause : MonoBehaviour
 
     public bool[] istrue;
     public bool ispaused;
-    public bool isoncontrols;
+    public bool isonmenu;
     public GameObject[] exceptions;
     public GameObject controlsmenu;
 
@@ -33,7 +33,7 @@ public class Pause : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isoncontrols == false)
+            if (isonmenu == false)
             {
                 if (ispaused == false)
                 {
@@ -48,7 +48,7 @@ public class Pause : MonoBehaviour
             {
                 exceptions[7].SetActive(true);
                 controlsmenu.SetActive(false);
-                isoncontrols = false;
+                isonmenu = false;
             }
         }
     }
@@ -122,6 +122,6 @@ public class Pause : MonoBehaviour
     {
         exceptions[7].SetActive(false);
         controlsmenu.SetActive(true);
-        isoncontrols = true;
+        isonmenu = true;
     }
 }

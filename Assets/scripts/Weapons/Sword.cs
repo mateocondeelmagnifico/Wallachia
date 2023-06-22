@@ -36,7 +36,7 @@ public class Sword : MonoBehaviour
             {
                 enemigo.takedamage(1.5f, "Light");
                 enemigo.statuseffect("Iron");
-                bloodVFX.GetComponent<ParticleSystem>().Emit(50);
+                bloodVFX.GetComponent<ParticleSystem>().Emit(100);
             }
             else
             {

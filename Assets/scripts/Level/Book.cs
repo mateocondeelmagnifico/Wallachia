@@ -40,6 +40,11 @@ public class Book : MonoBehaviour
             }
          
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && isreading == true)
+        {
+            stopreading();
+        }
     }
 
     private void OnTriggerStay(Collider other)
@@ -61,6 +66,7 @@ public class Book : MonoBehaviour
     private void read(Sprite whatpage)
     {
         image.sprite = whatpage;
+        pausa.isonmenu = true;
         pausa.pause("partial");
         image.enabled = true;
         isreading = true;

@@ -13,7 +13,7 @@ public class movement : MonoBehaviour
     public Shooting[] gunscripts;
     public GameObject staminabar;
 
-    public Image stamina;
+    //public Image stamina;
 
     public Vector3 direction;
     public Vector3 xdirection;
@@ -24,45 +24,43 @@ public class movement : MonoBehaviour
     public bool issprinting;
 
     public float speed;
-    public float cansprint;
+    public float sprinttimer;
     void Start()
     {
         canmove = true;
-        cansprint = 4;
         gunscripts[0] = guns[0].GetComponent<Shooting>();
         gunscripts[1] = guns[1].GetComponent<Shooting>();
-        stamina = staminabar.GetComponent<Image>();
+        //stamina = staminabar.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        stamina.fillAmount = cansprint/4;
+        if (issprinting)
+        {
+            if (sprinttimer < 0.3f)
+            {
+                sprinttimer += Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (sprinttimer > 0)
+            {
+                sprinttimer -= Time.deltaTime;
+            }
+            else
+            {
+                Setrunning(false);
+            }
+        }
+        //stamina.fillAmount = cansprint/4;
         Keycheck();
         if (controlador.isGrounded == false)
         {
             direction.y = -3f;
         }
-
-
-        if (issprinting == true || cansprint < 4)
-        {
-            stamina.color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            stamina.color = new Color(1, 1, 1, 0);
-        }
-
-        if (cansprint < 4 && issprinting == false)
-        {
-            cansprint += Time.deltaTime/ 3.5f;
-            if (cansprint < 2)
-            {
-                speed /= 2;
-            }
-        }
-                controlador.Move(direction * speed * Time.deltaTime);
+        controlador.Move(direction * speed * Time.deltaTime);
     }
     public void Keycheck()
     {
@@ -73,17 +71,20 @@ public class movement : MonoBehaviour
         if (canmove == true)
         {
             //Sprinting
-            if (Input.GetKey(KeyCode.LeftShift) && cansprint > 0)
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                issprinting = true; 
-                speed *= 1.8f;
-                Setrunning(true);
-                cansprint -= Time.deltaTime * 1.3f;
+                issprinting = true;
+                if (sprinttimer >= 0.3f)
+                {
+                    speed *= 1.6f;
+                    Setrunning(true);
+                }
             }
+
             if ((Input.GetKeyUp(KeyCode.LeftShift)))
             {
-                Setrunning(false);
                 issprinting = false;
+             
             }
 
             if (Input.GetKey(KeyCode.W))

@@ -45,22 +45,26 @@ public class weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasrifle == true)
+        if (Time.timeScale > 0)
         {
-            checkrangedchange();
+            if (hasrifle == true)
+            {
+                checkrangedchange();
+            }
+            if (hasaxe == true)
+            {
+                checkmeleechange();
+            }
+            if (hasbullet == true)
+            {
+                checkbulletchange();
+            }
+            if (hasgrenade == true)
+            {
+                checkgrenadechange();
+            }
         }
-        if (hasaxe == true)
-        {
-            checkmeleechange();
-        }
-        if (hasbullet == true)
-        {
-            checkbulletchange();
-        }
-        if (hasgrenade == true)
-        {
-            checkgrenadechange();
-        }
+        
 
         //check if you can shoot
         if (GetComponent<Attack>().attacking == true)

@@ -275,12 +275,14 @@ public class Shooting : MonoBehaviour
             shotcooldown = 2;
             mybullet = GameObject.Instantiate(riflebullet, cannon.position, transform.rotation);
             mybullet.GetComponent<Bullet>().armas = armas;
+            mybullet.GetComponent<Bullet>().player = player.transform;
         }
         else
         {
             shotcooldown = 0.4f;
             mybullet = GameObject.Instantiate(bullet, cannon.position, transform.rotation);
             mybullet.GetComponent<Bullet>().armas = armas;
+            mybullet.GetComponent<Bullet>().player = player.transform;
         }
         shotcooldown2 = 0.45f;
         sonido.playaudio("shoot");

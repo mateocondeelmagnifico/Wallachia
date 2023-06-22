@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
     public Image hitmarker;
     public Sonido sonido;
     public GameObject[] damager;
+    public GameObject particlesystem;
+
+    ParticleSystem particles;
 
     public string enemytype;
 
@@ -27,6 +30,7 @@ public class Enemy : MonoBehaviour
     public bool vulnerable;
     void Start()
     {
+        particles = particlesystem.GetComponent<ParticleSystem>();
         idletimer = 4;
         if (enemytype == "Zombie")
         {
@@ -69,12 +73,17 @@ public class Enemy : MonoBehaviour
         if (enemytype == "Zombie")
         {
             life -= transforming * Time.deltaTime;
+            if (transforming > 0)
+            {
+                particles.Play();
+            }
         }
         if (enemytype == "Werewolf")
         {
             if (transforming > 0.2)
             {
                 regeneration = 0.10f;
+                particles.Emit(100);
             }
             else
             {
