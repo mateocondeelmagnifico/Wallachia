@@ -28,9 +28,10 @@ public class Enemy : MonoBehaviour
     float timer;
 
     public bool vulnerable;
+    bool isplaying;
     void Start()
     {
-        particles = particlesystem.GetComponent<ParticleSystem>();
+        particles = GetComponent<ParticleSystem>();
         idletimer = 4;
         if (enemytype == "Zombie")
         {
@@ -38,7 +39,7 @@ public class Enemy : MonoBehaviour
         }
         if(enemytype == "Werewolf")
         {
-            maxlife = 10;
+            maxlife = 12;
         }
         life = maxlife;
         othersript = GetComponent<Enemymovement>();
@@ -73,9 +74,10 @@ public class Enemy : MonoBehaviour
         if (enemytype == "Zombie")
         {
             life -= transforming * Time.deltaTime;
-            if (transforming > 0)
+            if (transforming > 0 && isplaying == false)
             {
                 particles.Play();
+                isplaying = true;
             }
         }
         if (enemytype == "Werewolf")
@@ -83,7 +85,11 @@ public class Enemy : MonoBehaviour
             if (transforming > 0.2)
             {
                 regeneration = 0.10f;
-                particles.Emit(100);
+                if (isplaying == false)
+                {
+                    particles.Play();
+                    isplaying = true;
+                }
             }
             else
             {
@@ -230,6 +236,7 @@ public class Enemy : MonoBehaviour
             }
             damager[0].SetActive(false);
             damager[1].SetActive(false);
+            particles.Stop();
             GetComponent<BoxCollider>().enabled = false;
             othersript.navegador.isStopped = true;
             othersript.enabled = false;
