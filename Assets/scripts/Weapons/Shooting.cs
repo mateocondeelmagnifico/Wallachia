@@ -52,6 +52,7 @@ public class Shooting : MonoBehaviour
     public int maxsilverammo;
     
     public Vector3 aim;
+    
     void Start()
     {
       armas = player.GetComponent<weapons>();
@@ -175,7 +176,8 @@ public class Shooting : MonoBehaviour
         }
         else
         {
-            transform.LookAt(reloadingpoint.position);
+            //raise up gun
+            transform.LookAt(reloadingpoint);
         }
 
         GameObject.Find("Player").GetComponent<weapons>().isreloading = reloading;

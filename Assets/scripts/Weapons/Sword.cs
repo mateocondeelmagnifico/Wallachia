@@ -8,6 +8,9 @@ public class Sword : MonoBehaviour
 
     public GameObject bloodVFX;
     public GameObject player;
+    public GameObject soundmanager;
+
+    Sonido sound;
 
     public float axedamage; 
 
@@ -18,6 +21,7 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sound = soundmanager.GetComponent<Sonido>();   
         axedamage = 3;
         ataque = player.GetComponent<Attack>();
     }
@@ -31,17 +35,19 @@ public class Sword : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy") && ataque.candamage == true )
         {
+            sound.playaudio("Sword Impact");
             Enemy enemigo = other.GetComponent<Enemy>();
             if (isaxe == false)
             {
-                enemigo.takedamage(1.5f, "Light");
+                //sword deals more damage based on missing health
+                enemigo.takedamage(0.5f + (enemigo.maxlife - enemigo.life)/4, "Light");
                 enemigo.statuseffect("Iron");
                 bloodVFX.GetComponent<ParticleSystem>().Emit(100);
             }
             else
             {
                 enemigo.takedamage(axedamage, "Heavy");
-                enemigo.statuseffect("Silver");
+                enemigo.statuseffect("Iron");
                 bloodVFX.GetComponent<ParticleSystem>().Emit(100);
             }
         

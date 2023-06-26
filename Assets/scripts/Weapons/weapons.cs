@@ -110,6 +110,7 @@ public class weapons : MonoBehaviour
             {
                 currentrangeweapon = 0;
             }
+            sound.playaudio("Weapon Switch");
         }
     }
     public void checkmeleechange()
@@ -127,6 +128,7 @@ public class weapons : MonoBehaviour
             {
                 currentmeleeweapon = 0;
             }
+            sound.playaudio("Weapon Switch");
         }
     }
     public void checkbulletchange()
@@ -143,6 +145,7 @@ public class weapons : MonoBehaviour
                 currentbullet = "Iron";
                 bulleticon.GetComponent<Image>().sprite = bullets[0];
             }
+            sound.playaudio("Weapon Switch");
         }
     }
     public void checkgrenadechange()
@@ -154,6 +157,7 @@ public class weapons : MonoBehaviour
             {
                 currentgrenade = 0;
             }
+            sound.playaudio("Weapon Switch");
         }
     }
     public void playsound()
