@@ -20,6 +20,9 @@ public class Life : MonoBehaviour
     GameObject pistol;
     GameObject gameovermenu;
     GameObject hurtscreen;
+    GameObject reloadingtext;
+    GameObject camera;
+    GameObject reticle;
 
     void Start()
     {
@@ -27,6 +30,9 @@ public class Life : MonoBehaviour
         rifle = getter.gun2;
         pistol = getter.gun1;
         gameovermenu = getter.gameovermenu;
+        reloadingtext = getter.reloadingtext;
+        camera = getter.cam;
+        reticle = getter.reticle;
 
         riflereloaded = true;
         pistolreloaded = true;
@@ -51,9 +57,10 @@ public class Life : MonoBehaviour
         bloodyscreen.color = new Color(1, 1, 1, bloodtimer);
         if (health <= 0)
         {
-            GameObject.Find("Main Camera").GetComponent<Throwinggrenade>().enabled = false;
-            GameObject.Find("Aiming reticle").SetActive(false);
-            GameObject.Find("Main Camera").GetComponent<Camara>().enabled = false;
+            camera.GetComponent<Throwinggrenade>().enabled = false;
+            reticle.SetActive(false);
+            camera.GetComponent<Camara>().enabled = false;
+            reloadingtext.SetActive(false);
             GetComponent<movement>().enabled = false;
             GetComponent<Attack>().enabled = false;
             GetComponent<weapons>().enabled = false;

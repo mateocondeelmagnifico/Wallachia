@@ -30,6 +30,7 @@ public class GameObjectgetter : MonoBehaviour
     public GameObject gameovermenu;
     public GameObject gamepausedmenu;
     public GameObject controlsmenu;
+    public GameObject reticle;
 
     [Header("Camera things")]
     public GameObject cam;

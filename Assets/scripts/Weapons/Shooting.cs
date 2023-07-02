@@ -104,10 +104,10 @@ public class Shooting : MonoBehaviour
         }
         checkgun();
 
+        //recoil
         if (transform.position == gunposition.position && shotcooldown <= 0.3f)
         {
-            isinplace = true;
-            
+            isinplace = true; 
         }
         if (isinplace == false)
         {
@@ -135,46 +135,10 @@ public class Shooting : MonoBehaviour
         }
   
         canreload = false;
-        checkreload();
 
-        reload();
-
-        if(reloadingtimer > 0)
-        {
-            reloadingtimer -= Time.deltaTime;
-        }
-        else
-        {
-            if (reloading == true)
-            {
-                if (silvermode == false)
-                {
-                    if (isrifle == true)
-                    {
-                        ammo = 4;
-                    }
-                    else
-                    {
-                        ammo = 6;
-                    }
-                }
-                else
-                {
-                    if (isrifle == true)
-                    {
-                        silverammo = 4;
-                    }
-                    else
-                    {
-                        silverammo = 6;
-                    }
-                }               
-                reloading = false;
-                missingammo = false;
-                Reloadingimage.GetComponent<Text>().enabled = false;
-            }
-        }
-
+       checkreload();
+       reload();
+       
         if (shotcooldown > 0)
         {
             shotcooldown -= Time.deltaTime;
@@ -185,6 +149,7 @@ public class Shooting : MonoBehaviour
 
         mouseposition += Camera.main.transform.forward * 30;
 
+        //Gun goes up while running
         if (reloading == false && isrunning == false)
         {
            transform.LookAt(aimpoint.transform.position);
@@ -214,8 +179,9 @@ public class Shooting : MonoBehaviour
             transform.LookAt(tempposition);
         }
 
-        GameObject.Find("Player").GetComponent<weapons>().isreloading = reloading;
+        player.GetComponent<weapons>().isreloading = reloading;
 
+        //Light particle effects
         if (lighttimer > 0)
         {
             luz.GetComponent<Light>().enabled = true;
@@ -225,6 +191,7 @@ public class Shooting : MonoBehaviour
         {
             luz.GetComponent<Light>().enabled = false;
         }
+
     }
     public void checkgun()
     {
@@ -274,6 +241,41 @@ public class Shooting : MonoBehaviour
                 {
                     canreload = true;
                 }
+            }
+        }
+        if (reloadingtimer > 0)
+        {
+            reloadingtimer -= Time.deltaTime;
+        }
+        else
+        {
+            if (reloading == true)
+            {
+                if (silvermode == false)
+                {
+                    if (isrifle == true)
+                    {
+                        ammo = 4;
+                    }
+                    else
+                    {
+                        ammo = 6;
+                    }
+                }
+                else
+                {
+                    if (isrifle == true)
+                    {
+                        silverammo = 4;
+                    }
+                    else
+                    {
+                        silverammo = 6;
+                    }
+                }
+                reloading = false;
+                missingammo = false;
+                Reloadingimage.GetComponent<Text>().enabled = false;
             }
         }
     }

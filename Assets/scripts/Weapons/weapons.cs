@@ -37,7 +37,7 @@ public class weapons : MonoBehaviour
         armas[0] = getter.sword;
         armas[1] = getter.axe;
         armasrango[0] = getter.gun1;
-        armasrango[0] = getter.gun2;
+        armasrango[1] = getter.gun2;
         bulleticon = getter.bulleticon;
         soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();
@@ -62,7 +62,7 @@ public class weapons : MonoBehaviour
             {
                 checkmeleechange();
             }
-            if (hasbullet == true)
+            if (hasbullet == true && isreloading == false)
             {
                 checkbulletchange();
             }

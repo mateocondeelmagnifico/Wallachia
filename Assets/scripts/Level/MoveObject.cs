@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveObject : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Sonido sound;
+
     public float xdistance;
     public float ydistance;
     public float zdistance;
@@ -33,6 +35,7 @@ public class MoveObject : MonoBehaviour
 
     public void Move()
     {
+        sound.playaudio("Gate Closing");
         ismoving = true;
         movex = transform.position.x;
         movey = transform.position.y;
