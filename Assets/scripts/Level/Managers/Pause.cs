@@ -10,6 +10,8 @@ public class Pause : MonoBehaviour
     public bool[] istrue;
     public bool ispaused;
     public bool isonmenu;
+
+    public GameObjectgetter getter;
     public GameObject[] exceptions;
     public GameObject controlsmenu;
 
@@ -17,7 +19,16 @@ public class Pause : MonoBehaviour
     //Exception 6 = game paused menu, Exception 7 = reloading text, Exception 8 = top right images
     void Start()
     {
-        
+        exceptions[0] = getter.gun1;
+        exceptions[1] = getter.gun2;
+        exceptions[2] = getter.Player;
+        exceptions[3] = getter.cam;
+        exceptions[4] = getter.Soundmanager;
+        exceptions[5] = getter.gamepausedmenu;
+        exceptions[6] = getter.reloadingtext;
+        exceptions[7] = getter.Toplefticons;
+
+        controlsmenu = getter.controlsmenu;
     }
 
     void Update()

@@ -12,9 +12,10 @@ public class Attack : MonoBehaviour
     CharacterController controlador;
     Sonido sound;
 
-    public GameObject chargeimage;
-    public GameObject axe;
-    public GameObject Soundmanager;
+    public GameObjectgetter getter;
+    GameObject chargeimage;
+    GameObject axe;
+    GameObject Soundmanager;
 
     public bool tooclose;
     public bool canattack;
@@ -27,6 +28,9 @@ public class Attack : MonoBehaviour
     float chargetimer;
     void Start()
     {
+        chargeimage = getter.axecharge;
+        axe = getter.axe;
+        Soundmanager = getter.Soundmanager;
         canattack = true;
         controlador = GetComponent<CharacterController>();
         sound = Soundmanager.GetComponent<Sonido>();

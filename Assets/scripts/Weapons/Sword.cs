@@ -6,9 +6,10 @@ public class Sword : MonoBehaviour
 {
     //This script makes both the sword and the axe do damage and apply status effects on hit
 
+    public GameObjectgetter getter;
     public GameObject bloodVFX;
-    public GameObject player;
-    public GameObject soundmanager;
+    GameObject player;
+    GameObject soundmanager;
 
     Sonido sound;
 
@@ -21,6 +22,8 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = getter.Player;
+        soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();   
         axedamage = 3;
         ataque = player.GetComponent<Attack>();

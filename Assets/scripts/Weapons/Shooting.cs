@@ -10,16 +10,18 @@ public class Shooting : MonoBehaviour
 
     Life vida;
     Sonido sonido;
-    public GameObject player;
+
+    public GameObjectgetter getter;
+    GameObject player;
     public GameObject bullet;
-    public GameObject camara;
-    public GameObject aimpoint;
+    GameObject camara;
+    GameObject aimpoint;
     public GameObject riflebullet;
-    public GameObject Ammocounter;
-    public GameObject Maxammocounter;
-    public GameObject Reloadingimage;
+    GameObject Ammocounter;
+    GameObject Maxammocounter;
+    GameObject Reloadingimage;
     public GameObject particlesobject;
-    public GameObject sound;
+    GameObject sound;
 
     ParticleSystem particles;
     GameObject luz;
@@ -37,6 +39,7 @@ public class Shooting : MonoBehaviour
     bool reloading;
     public bool canreload;
     public bool isrunning;
+    public bool keypressed;
 
     public Transform cannon;
     public Transform gunposition;
@@ -46,15 +49,27 @@ public class Shooting : MonoBehaviour
     public float shotcooldown2;
     float reloadingtimer;
     float lighttimer;
+    float multiplier;
+
     public int ammo;
     public int maxammo;
     public int silverammo;
     public int maxsilverammo;
     
-    public Vector3 aim;
     
+    public Vector3 aim;
+    Vector3 tempposition;
+
     void Start()
     {
+        player = getter.Player;
+        camara = getter.cam;
+        aimpoint = getter.aimpoint;
+        Ammocounter = getter.ammo;
+        Maxammocounter = getter.maxammo;
+        Reloadingimage = getter.reloadingtext;
+        sound = getter.Soundmanager;
+
       armas = player.GetComponent<weapons>();
       sonido = sound.GetComponent<Sonido>();
       vida = player.GetComponent<Life>();
@@ -172,12 +187,31 @@ public class Shooting : MonoBehaviour
 
         if (reloading == false && isrunning == false)
         {
-            transform.LookAt(aimpoint.transform.position);
+           transform.LookAt(aimpoint.transform.position);
+           tempposition = aimpoint.transform.position;
         }
         else
         {
-            //raise up gun
-            transform.LookAt(reloadingpoint);
+            if (keypressed || reloading)
+            {
+                //raise up gun
+                if (multiplier < 1)
+                {
+                    multiplier += Time.deltaTime;
+                }
+
+                tempposition = Vector3.Lerp(tempposition, reloadingpoint.position, multiplier);
+            }
+            else
+            {
+                if (multiplier > 0)
+                {
+                    multiplier -= Time.deltaTime * 5;
+                }
+                tempposition = Vector3.Lerp(tempposition, aimpoint.transform.position, multiplier);
+            }
+            
+            transform.LookAt(tempposition);
         }
 
         GameObject.Find("Player").GetComponent<weapons>().isreloading = reloading;

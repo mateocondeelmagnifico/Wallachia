@@ -9,18 +9,25 @@ public class Life : MonoBehaviour
     public float currenthealth;
     public float bloodtimer;
 
-    public GameObject hurtscreen;
+    
     Image bloodyscreen;
 
     public bool riflereloaded;
     public bool pistolreloaded;
 
-    public GameObject rifle;
-    public GameObject pistol;
-    public GameObject gameovermenu;
+    public GameObjectgetter getter;
+    GameObject rifle;
+    GameObject pistol;
+    GameObject gameovermenu;
+    GameObject hurtscreen;
 
     void Start()
     {
+        hurtscreen = getter.Hurtscreen;
+        rifle = getter.gun2;
+        pistol = getter.gun1;
+        gameovermenu = getter.gameovermenu;
+
         riflereloaded = true;
         pistolreloaded = true;
         bloodyscreen = hurtscreen.GetComponent<Image>();

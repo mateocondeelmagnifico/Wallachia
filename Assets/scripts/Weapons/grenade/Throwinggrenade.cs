@@ -7,10 +7,11 @@ public class Throwinggrenade : MonoBehaviour
 {
     //This script goes in the camera, it instantiates the grenade in the direction you are looking at
 
-    public GameObject player;
+    public GameObjectgetter getter;
+    GameObject player;
     public GameObject grenade;
-    public GameObject text;
-    public GameObject soundmanager;
+    GameObject text;
+    GameObject soundmanager;
     GameObject currentgrenade;
 
     public float grenadecooldown;
@@ -30,6 +31,10 @@ public class Throwinggrenade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = getter.Player;
+        text = getter.grenadecounter;
+        soundmanager = getter.Soundmanager;
+
         armas = player.GetComponent<weapons>();
         texto = text.GetComponent<Text>();
         remaininggarlic = 2;

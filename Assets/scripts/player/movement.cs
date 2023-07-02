@@ -9,11 +9,10 @@ public class movement : MonoBehaviour
 
     public CharacterController controlador;
 
-    public GameObject[] guns;
+    public GameObject Getter;
+    GameObject[] guns;
     public Shooting[] gunscripts;
-    public GameObject staminabar;
 
-    //public Image stamina;
 
     public Vector3 direction;
     public Vector3 xdirection;
@@ -28,9 +27,8 @@ public class movement : MonoBehaviour
     void Start()
     {
         canmove = true;
-        gunscripts[0] = guns[0].GetComponent<Shooting>();
-        gunscripts[1] = guns[1].GetComponent<Shooting>();
-        //stamina = staminabar.GetComponent<Image>();
+        gunscripts[0] = Getter.GetComponent<GameObjectgetter>().gun1.GetComponent<Shooting>();
+        gunscripts[1] = Getter.GetComponent<GameObjectgetter>().gun2.GetComponent<Shooting>();
     }
 
     // Update is called once per frame
@@ -45,6 +43,8 @@ public class movement : MonoBehaviour
         }
         else
         {
+            gunscripts[0].keypressed = false;
+            gunscripts[1].keypressed = false;
             if (sprinttimer > 0)
             {
                 sprinttimer -= Time.deltaTime;
@@ -114,6 +114,9 @@ public class movement : MonoBehaviour
         {
             gunscripts[0].isrunning = true;
             gunscripts[1].isrunning = true;
+            gunscripts[0].keypressed = true;
+            gunscripts[1].keypressed = true;
+
         }
         else
         {

@@ -9,17 +9,22 @@ public class Camara : MonoBehaviour
     public float xsensitivity;
     public float ysensitivity;
 
-    public Transform defaultaim;
-    public Transform orientation;
+    public GameObjectgetter getter;
+    Transform defaultaim;
+    Transform orientation;
 
-    public GameObject aimpoint;
-    public GameObject player;
+    GameObject aimpoint;
+    GameObject player;
 
     float xrotation;
     float yrotation;
 
     void Start()
     {
+        defaultaim = getter.defaultaimpos;
+        orientation = getter.playerorientation;
+        aimpoint = getter.aimpoint;
+        player = getter.Player;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

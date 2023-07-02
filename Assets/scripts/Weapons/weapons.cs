@@ -15,10 +15,11 @@ public class weapons : MonoBehaviour
 
     public string currentbullet;
 
+    public GameObjectgetter getter;
     public GameObject[] armas;
     public GameObject[] armasrango;
-    public GameObject bulleticon;
-    public GameObject soundmanager;
+    GameObject bulleticon;
+    GameObject soundmanager;
     public Animator animador;
     public Sprite[] bullets;
 
@@ -33,6 +34,12 @@ public class weapons : MonoBehaviour
     public bool isattacking;
     void Start()
     {
+        armas[0] = getter.sword;
+        armas[1] = getter.axe;
+        armasrango[0] = getter.gun1;
+        armasrango[0] = getter.gun2;
+        bulleticon = getter.bulleticon;
+        soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();
         currentbullet = "Iron";
         currentmeleeweapon = 0;
