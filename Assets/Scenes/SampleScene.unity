@@ -48818,6 +48818,14 @@ PrefabInstance:
       propertyPath: Soundmanager
       value: 
       objectReference: {fileID: 1443873782}
+    - target: {fileID: 8511528451480277716, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: wait
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511528451480277716, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 919132149497234558}
     - target: {fileID: 8511528451503891709, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: sound
       value: 

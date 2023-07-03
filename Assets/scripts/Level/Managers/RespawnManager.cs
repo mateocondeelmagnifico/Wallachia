@@ -13,6 +13,9 @@ public class RespawnManager : MonoBehaviour
     public bool hasbullets;
     public bool hasrifle;
 
+    public float currentgrenade;
+    public float currentgun;
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -38,5 +41,6 @@ public class RespawnManager : MonoBehaviour
         {
             hasrifle = true;
         }
+
     }
 }

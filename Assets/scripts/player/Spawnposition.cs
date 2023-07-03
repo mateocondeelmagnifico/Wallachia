@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class Spawnposition : MonoBehaviour
 {
+    public GameObject player;
     weapons armas;
-    RespawnManager manager;
+    public RespawnManager manager;
+
+    bool haswaited;
     void Start()
     {
         armas = GetComponent<weapons>();
-
         if (FindObjectOfType<RespawnManager>() != null) 
         {
             manager = FindObjectOfType<RespawnManager>();
-            transform.position = manager.spawnposition;
-            Debug.Log("yes");
-            Debug.Log("manager");
+            player.transform.position = manager.spawnposition;
+
             armas.hasaxe = manager.hasaxe;
             armas.hasrifle = manager.hasrifle;
             armas.hasbullet = manager.hasbullets;
@@ -30,6 +31,6 @@ public class Spawnposition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
