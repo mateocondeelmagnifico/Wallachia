@@ -13,8 +13,9 @@ public class RespawnManager : MonoBehaviour
     public bool hasbullets;
     public bool hasrifle;
 
-    public float currentgrenade;
-    public float currentgun;
+    public int currentgrenade;
+    public int currentgun;
+    public int currentmelee;
 
     void Awake()
     {

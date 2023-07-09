@@ -42,8 +42,6 @@ public class weapons : MonoBehaviour
         soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();
         currentbullet = "Iron";
-        currentmeleeweapon = 0;
-        currentrangeweapon = 0;
 
         //weapon 0 = sword
         //weapon 1 = axe
@@ -170,5 +168,11 @@ public class weapons : MonoBehaviour
     public void playsound()
     {
         sound.playaudio("Pickup");
+    }
+
+    public void SetiInactive()
+    {
+        armas[currentmeleeweapon].SetActive(false);
+        armas[currentrangeweapon].SetActive(false);
     }
 }

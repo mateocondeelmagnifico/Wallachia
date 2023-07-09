@@ -24,8 +24,11 @@ public class Life : MonoBehaviour
     GameObject camera;
     GameObject reticle;
 
+    weapons armas;
+
     void Start()
     {
+        armas = GetComponent<weapons>();
         hurtscreen = getter.Hurtscreen;
         rifle = getter.gun2;
         pistol = getter.gun1;
@@ -57,6 +60,13 @@ public class Life : MonoBehaviour
         bloodyscreen.color = new Color(1, 1, 1, bloodtimer);
         if (health <= 0)
         {
+            //this is so you respawn with the same weapons
+            RespawnManager manager = FindObjectOfType<RespawnManager>();
+            Debug.Log(manager);
+            manager.currentgrenade = armas.currentgrenade;
+            manager.currentgun = armas.currentrangeweapon;
+            manager.currentmelee = armas.currentmeleeweapon;
+
             camera.GetComponent<Throwinggrenade>().enabled = false;
             reticle.SetActive(false);
             camera.GetComponent<Camara>().enabled = false;

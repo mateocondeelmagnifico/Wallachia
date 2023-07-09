@@ -36,24 +36,30 @@ public class Sword : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Enemy") && ataque.candamage == true )
+        if (ataque.candamage == true )
         {
-            sound.playaudio("Sword Impact");
-            Enemy enemigo = other.GetComponent<Enemy>();
-            if (isaxe == false)
+            if (other.gameObject.tag.Equals("Enemy"))
             {
-                //sword deals more damage based on missing health
-                enemigo.takedamage(0.5f + (enemigo.maxlife - enemigo.life)/4, "Light");
-                enemigo.statuseffect("Iron");
-                bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                sound.playaudio("Sword Impact");
+                Enemy enemigo = other.GetComponent<Enemy>();
+                if (isaxe == false)
+                {
+                    //sword deals more damage based on missing health
+                    enemigo.takedamage(0.5f + (enemigo.maxlife - enemigo.life) / 4, "Light");
+                    enemigo.statuseffect("Iron");
+                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                }
+                else
+                {
+                    enemigo.takedamage(axedamage, "Heavy");
+                    enemigo.statuseffect("Iron");
+                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                }
             }
             else
             {
-                enemigo.takedamage(axedamage, "Heavy");
-                enemigo.statuseffect("Iron");
-                bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                sound.playaudio("Sword impact wood");
             }
-        
         }
     }
 }

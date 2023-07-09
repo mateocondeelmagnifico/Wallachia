@@ -21,6 +21,14 @@ public class Spawnposition : MonoBehaviour
             armas.hasrifle = manager.hasrifle;
             armas.hasbullet = manager.hasbullets;
             armas.hasgrenade = manager.hasgrenades;
+
+            armas.currentgrenade = manager.currentgrenade;
+            armas.currentmeleeweapon = manager.currentmelee;
+            armas.currentrangeweapon = manager.currentgun;
+
+            armas.SetiInactive();
+            armas.equippoint();
+            
         }
         else
         {

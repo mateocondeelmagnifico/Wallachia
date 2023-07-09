@@ -15,6 +15,8 @@ public class Pause : MonoBehaviour
     public GameObject[] exceptions;
     public GameObject controlsmenu;
 
+    Sonido sound;
+
     //Exception 1 = pistola, Excepcion 2 = rifle, Excepcion 3 = player, Excepcion 4 = camara, Exception 5 = soundmanager,
     //Exception 6 = game paused menu, Exception 7 = reloading text, Exception 8 = top right images
     void Start()
@@ -28,6 +30,7 @@ public class Pause : MonoBehaviour
         exceptions[6] = getter.reloadingtext;
         exceptions[7] = getter.Toplefticons;
 
+        sound = exceptions[4].GetComponent<Sonido>();
         controlsmenu = getter.controlsmenu;
     }
 
@@ -70,10 +73,11 @@ public class Pause : MonoBehaviour
         exceptions[2].GetComponent<Attack>().ispaused = false;
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
         exceptions[5].SetActive(false);
-        
+        sound.sources[2].volume = 0.4f;
+
         if (istrue[0] == true)
         {
-            exceptions[4].GetComponent<AudioSource>().Play();
+            sound.sources[1].Play();
         }
 
         if (istrue[1] == true)
@@ -92,11 +96,12 @@ public class Pause : MonoBehaviour
         exceptions[1].GetComponent<Shooting>().ispaused = true;
         exceptions[2].GetComponent<Attack>().ispaused = true;
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = true;
+        sound.sources[2].volume = 0.15f;
 
-        if (exceptions[4].GetComponent<AudioSource>().isPlaying == true)
+        if (sound.sources[1].isPlaying == true)
         {
             istrue[0] = true;
-            exceptions[4].GetComponent<AudioSource>().Pause();
+            sound.sources[1].Pause();
         }
         else
         {

@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         }
         if(enemytype == "Werewolf")
         {
-            maxlife = 12;
+            maxlife = 9.5f;
         }
         life = maxlife;
         othersript = GetComponent<Enemymovement>();
@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                regeneration = 0.25f;
+                regeneration = 0.45f;
             }
             if (transforming < 0.4 && life < maxlife && life > 0)
             {

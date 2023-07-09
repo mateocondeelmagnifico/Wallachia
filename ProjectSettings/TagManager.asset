@@ -13,6 +13,7 @@ TagManager:
   - Axe pickup
   - Holy Ground
   - Hill
+  - Building
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Ignore player
   - Ignore Bullets
   - Buildings
-  - 
+  - Sword
   - 
   - 
   - 
