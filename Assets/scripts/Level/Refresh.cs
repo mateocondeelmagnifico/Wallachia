@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Refresh : MonoBehaviour
 {
+    public GameObjectgetter getter;
+
+    Sonido sound;
     RespawnManager spawnmanager;
+    Throwinggrenade grenadescript;
     // Refills HP and Ammo
     void Start()
     {
-        
+        grenadescript = getter.cam.GetComponent<Throwinggrenade>();
+        sound = getter.Soundmanager.GetComponent<Sonido>();
     }
 
     void Update()
@@ -22,8 +27,10 @@ public class Refresh : MonoBehaviour
             collision.GetComponent<Life>().health = 6;
             collision.GetComponent<Life>().riflereloaded = false;
             collision.GetComponent<Life>().pistolreloaded = false;
-            GameObject.Find("Main Camera").GetComponent<Throwinggrenade>().remaininggarlic = 2;
-            GameObject.Find("Main Camera").GetComponent<Throwinggrenade>().remainingsilver = 2;
+            grenadescript.remaininggarlic = 2;
+            grenadescript.remainingsilver = 2;
+
+            sound.playaudio("Checkpoint");
 
             spawnmanager = FindObjectOfType<RespawnManager>();
             spawnmanager.spawnposition = transform.position;
