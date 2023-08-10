@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour
 {
     //Estados de la IA
     // This is for the behaviours of the Zombie (Being alert, wandering, being angry)
-    // It also modifies the zombie's velocity
+    // It also modifies the zombie's velocity and makes him hard to kill at low health
     public Enemymovement movimiento;
+    public Enemy enemigo;
 
     public Transform player;
     public GameObject groupmanager;
+    public Image invincibleOverlay;
     NavMeshAgent navegador;
 
     public float wandertimer;
@@ -20,6 +23,7 @@ public class Zombie : MonoBehaviour
     public bool Wandering;
     public bool alert;
     public bool frenzy;
+    public bool neardeath;
 
     Animator animador;
     void Start()
@@ -36,6 +40,7 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        #region movement
         if (Vector3.Distance(player.position, transform.position) < 8 || movimiento.playerdetected == true)
         {
             alert = true;
@@ -85,6 +90,24 @@ public class Zombie : MonoBehaviour
         {
             wander();
         }
+        #endregion
+
+        #region invulnerability
+        //check if enemy has 25% life remaining
+        if (enemigo.life <= enemigo.maxlife/4)
+        {
+            enemigo.invulnerable = true;
+            if (enemigo.life > 0)
+            {
+                invincibleOverlay.enabled = true;
+            }
+            else
+            {
+                invincibleOverlay.enabled = false;
+            }
+        }
+
+        #endregion
     }
     public void wander()
     {

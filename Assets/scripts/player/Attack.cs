@@ -15,6 +15,7 @@ public class Attack : MonoBehaviour
     public GameObjectgetter getter;
     GameObject chargeimage;
     GameObject axe;
+    GameObject sword;
     GameObject Soundmanager;
 
     public bool tooclose;
@@ -30,6 +31,7 @@ public class Attack : MonoBehaviour
     {
         chargeimage = getter.axecharge;
         axe = getter.axe;
+        sword = getter.sword;
         Soundmanager = getter.Soundmanager;
         canattack = true;
         controlador = GetComponent<CharacterController>();
@@ -44,10 +46,12 @@ public class Attack : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false)
         {
+            sword.GetComponent<Sword>().hasPlayedSound = false;
             sound.playaudio("Sword Swing");
             animador.SetTrigger("Attack");
             attacking = true;
             GetComponent<movement>().canmove = false;
+            
         }
 
         //The axe can be charged, so it needs different code than the sword
@@ -70,6 +74,7 @@ public class Attack : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Mouse1) && chargetimer > 0 && ispaused == false)
         {
+            axe.GetComponent<Sword>().hasPlayedSound = false;
             animador.SetBool("Axestill", false);
             animador.SetTrigger("Loweraxe");
             attacking = true;

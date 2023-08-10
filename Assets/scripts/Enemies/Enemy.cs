@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public Sonido sonido;
     public GameObject[] damager;
     public GameObject particlesystem;
+    public GameObject hitmarkerObject;
 
     ParticleSystem particles;
 
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
     float timer;
 
     public bool vulnerable;
+    public bool invulnerable;
     bool isplaying;
     void Start()
     {
@@ -48,6 +50,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()  
     {
+        #region enable hitmarker
         //this is to enable the hitmarker when you hit an enemy
         if (hitmarker.enabled == false)
         {
@@ -61,6 +64,7 @@ public class Enemy : MonoBehaviour
                 hitmarker.enabled = false;
             }
         }
+        #endregion
 
         //The more an enemy gets hit, the more stunresistance he builds up
         if (stunresistance > 0)
@@ -70,6 +74,7 @@ public class Enemy : MonoBehaviour
 
         checkdead();
 
+        #region applyTransforming
         //this applies the transforming status effect, it affects zombies and werewolves differently
         if (enemytype == "Zombie")
         {
@@ -100,7 +105,9 @@ public class Enemy : MonoBehaviour
                 life += Time.deltaTime * regeneration;
             }
         }
+        #endregion
 
+        #region idilingSounds
         //this is for idling sounds
         if (idletimer > 0)
         {
@@ -110,6 +117,7 @@ public class Enemy : MonoBehaviour
         {
             choserandomsound();
         }
+        #endregion
     }
     public void choserandomsound()
     {
@@ -124,8 +132,17 @@ public class Enemy : MonoBehaviour
         sonido.playaudio("Hurt");
         if (life > 0)
         {
-            life -= damage;
+            //This breaks invulnerability for zombie enemies
+            if (damage >= maxlife/4 && enemytype == "Zombie")
+            {
+                invulnerable = false;
+            }
+            if (invulnerable == false)
+            {
+                life -= damage;
+            }
             stunresistance++;
+
             if (enemytype == "Werewolf" && stunresistance >3 && hitype == "Light")
             { 
                    
@@ -138,9 +155,7 @@ public class Enemy : MonoBehaviour
             othersript.playerdetected = true;
             othersript.angry = true;
 
-            hitmarker.enabled = true;
-            hitmarkertimer = 0.4f;
-
+            SetHitmarker(damage);
             statuseffect(hitype);
             decidestun(hitype);
         }
@@ -150,37 +165,41 @@ public class Enemy : MonoBehaviour
         //Silver, Iron, Garlic and consecrated
 
         //Immune to iron
-        if (type == "Garlic")
+
+        if (invulnerable != true)
         {
-            if (enemytype == "Zombie")
+            if (type == "Garlic")
             {
+                if (enemytype == "Zombie")
                 {
-                    life -= 0.5f;
+                    {
+                        life -= 0.5f;
+                    }
+                }
+                if (enemytype == "Werewolf")
+                {
+                    if (vulnerable == true)
+                    {
+                        life -= 2;
+                    }
                 }
             }
-            if (enemytype == "Werewolf")
+            if (type == "Silver")
             {
-                if (vulnerable == true)
+                transforming += 0.2f;
+                if (enemytype == "Werewolf")
                 {
-                    life -= 2;
+                    decidestun("Heavy");
+                    stunresistance++;
+                    stunresistance++;
                 }
             }
-        }
-        if (type == "Silver")
-        {
-            transforming += 0.2f;
-            if (enemytype == "Werewolf")
+            if (type == "Iron")
             {
-                decidestun("Heavy");
-                stunresistance++;
-                stunresistance++;
-            }
-        }
-        if (type == "Iron")
-        {
-            if (enemytype == "Zombie")
-            {
-                life -= 1f;
+                if (enemytype == "Zombie")
+                {
+                    life -= 1f;
+                }
             }
         }
     }
@@ -242,5 +261,37 @@ public class Enemy : MonoBehaviour
             othersript.enabled = false;
             animador.SetBool("Dead", true);
         }
+    }
+    public void SetHitmarker(float damage)
+    {
+        float sizemultiplier;
+        //this is to check if the attack kills
+        if (damage >= life)
+        {
+            hitmarker.color = new Color(255, 0, 0);
+        }
+        else
+        {
+            hitmarker.color = new Color(255, 255, 255);
+        }
+
+        if(damage > 1.2f)
+        {
+            sizemultiplier = 1.2f;
+        }
+        else
+        {
+            if(damage > 0.8f)
+            {
+                sizemultiplier = 0.9f;
+            }   
+            else
+            {
+                sizemultiplier = 0.6f;
+            }
+        }
+        hitmarkerObject.transform.localScale = new Vector3(1, 1, 1) * sizemultiplier;
+        hitmarker.enabled = true;
+        hitmarkertimer = 0.4f;
     }
 }

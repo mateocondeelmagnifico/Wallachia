@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7243147435140255996}
   - component: {fileID: 905261050147067836}
   - component: {fileID: 8416323676310604295}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rifle bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,8 @@ MonoBehaviour:
   particles:
   - {fileID: 7000053048018266297, guid: cfdf534d34d6e304f954f83841ef7ec7, type: 3}
   - {fileID: 4154909835162166905, guid: 96c506f23b81edd4db7df8c73e80ada1, type: 3}
+  player: {fileID: 0}
   timer: 0
   damage: 0
+  armas: {fileID: 0}
   isriflebullet: 1

@@ -17,6 +17,7 @@ public class Sword : MonoBehaviour
 
     public bool candamage;
     public bool isaxe;
+    public bool hasPlayedSound;
 
     public Attack ataque;
     // Start is called before the first frame update
@@ -40,7 +41,13 @@ public class Sword : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                sound.playaudio("Sword Impact");
+                //this is so the sword only plays the sound of its first impact
+                if (hasPlayedSound == false)
+                {
+                    sound.playaudio("Sword Impact");
+                    hasPlayedSound = true;
+                }
+                
                 Enemy enemigo = other.GetComponent<Enemy>();
                 if (isaxe == false)
                 {
@@ -58,7 +65,18 @@ public class Sword : MonoBehaviour
             }
             else
             {
-                sound.playaudio("Sword impact wood");
+                if (hasPlayedSound == false)
+                {
+                    if (other.gameObject.tag.Equals("Damager"))
+                    {
+                        sound.playaudio("Sword Impact");
+                    }
+                    else
+                    {
+                        sound.playaudio("Sword impact wood");
+                    }
+                    hasPlayedSound = true;
+                }
             }
         }
     }

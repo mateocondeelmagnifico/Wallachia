@@ -48356,6 +48356,22 @@ PrefabInstance:
       propertyPath: m_Text
       value: Right Mouse Button = Melee Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 1535601620343610208, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535601620343610208, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535601620343610208, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535601620343610208, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1535601620637038020, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -49122,15 +49138,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8184658430762186049, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.19
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8184658430762186049, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.22
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 8184658430762186049, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.29
+      value: 1.92
       objectReference: {fileID: 0}
     - target: {fileID: 8184658430762186049, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalRotation.w
@@ -49160,6 +49176,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8510017635049715536, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8511528450750699459, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -49183,6 +49203,10 @@ PrefabInstance:
     - target: {fileID: 8511528450750699459, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511528450750984105, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8511528451130704070, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_Layer

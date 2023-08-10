@@ -25,6 +25,7 @@ public class Groupmanager : MonoBehaviour
         Hitmarker = hitmarker.GetComponent<Image>();
         for (int count = transform.childCount; count > 0; count--)
         {
+            transform.GetChild(count - 1).GetComponent<Enemy>().hitmarkerObject = hitmarker;
             transform.GetChild(count - 1).GetComponent<Enemy>().hitmarker = Hitmarker;
             transform.GetChild(count - 1).GetComponent<Enemy>().sonido = sonido;
             transform.GetChild(count - 1).GetComponent<Enemymovement>().player = player;
