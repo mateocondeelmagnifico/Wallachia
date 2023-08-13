@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Book : MonoBehaviour
 {
     //Mini tutorials and lore entries for the players to read
+    [Header("Put here the thing this book unlocks, use uppercase")]
+    public string whatPowerUp;
 
     public GameObject pausemanager;
     public GameObject noteobject;
@@ -15,6 +17,8 @@ public class Book : MonoBehaviour
     Image image;
 
     Pause pausa;
+    weapons armas;
+
     public bool isnear;
     bool isreading;
 
@@ -37,6 +41,7 @@ public class Book : MonoBehaviour
             else
             {
                 stopreading();
+                GivePowerUp(whatPowerUp);
             }
          
         }
@@ -51,6 +56,7 @@ public class Book : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
+            armas = other.GetComponent<weapons>();
             key.SetActive(true);
             isnear = true;
         }
@@ -76,5 +82,28 @@ public class Book : MonoBehaviour
         image.enabled = false;
         pausa.unpause();
         isreading = false;
+    }
+    public void GivePowerUp(string type)
+    {
+        if (whatPowerUp == "Rifle")
+        {
+            armas.hasrifle = true;
+            armas.playsound();
+        }
+        if (whatPowerUp == "Axe")
+        {
+            armas.hasaxe = true;
+            armas.playsound();
+        }
+        if (whatPowerUp == "Bullet")
+        {
+            armas.hasbullet = true;
+            armas.playsound();
+        }
+        if (whatPowerUp == "Grenade")
+        {
+            armas.hasgrenade = true;
+            armas.playsound();
+        }
     }
 }

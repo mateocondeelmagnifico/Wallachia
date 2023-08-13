@@ -164,7 +164,7 @@ public class Enemy : MonoBehaviour
     {
         //Silver, Iron, Garlic and consecrated
 
-        //Immune to iron
+        //Currently iron does nothing
 
         if (invulnerable != true)
         {
@@ -173,7 +173,7 @@ public class Enemy : MonoBehaviour
                 if (enemytype == "Zombie")
                 {
                     {
-                        life -= 0.5f;
+                        life -= 1f;
                     }
                 }
                 if (enemytype == "Werewolf")
@@ -192,13 +192,6 @@ public class Enemy : MonoBehaviour
                     decidestun("Heavy");
                     stunresistance++;
                     stunresistance++;
-                }
-            }
-            if (type == "Iron")
-            {
-                if (enemytype == "Zombie")
-                {
-                    life -= 1f;
                 }
             }
         }

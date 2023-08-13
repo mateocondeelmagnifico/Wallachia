@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 5573785783660237526}
   - component: {fileID: 8339904960020366587}
   - component: {fileID: 5137067866485642332}
-  - component: {fileID: 4723462021972631800}
-  - component: {fileID: 5342308531694493154}
   m_Layer: 10
   m_Name: Grenade Pickup
   m_TagString: Grenade Pickup
@@ -84,32 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4723462021972631800
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400254402335010126}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.8
-  m_Center: {x: -0.06692457, y: 0, z: 0.03365183}
---- !u!114 &5342308531694493154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400254402335010126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a655b93f5c6020141ab897a4f9164fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickuptype: Grenade
 --- !u!1001 &5507012961966656983
 PrefabInstance:
   m_ObjectHideFlags: 0

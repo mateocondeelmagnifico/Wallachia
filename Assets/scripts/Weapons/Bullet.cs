@@ -87,10 +87,10 @@ public class Bullet : MonoBehaviour
 
         if (hashit == true)
         {
-            damage -= Vector3.Distance(transform.position, player.position) / 5;
-            if (damage < 0.5f)
+            damage -= Vector3.Distance(transform.position, player.position) / 7;
+            if (damage < 0.7f)
             {
-                damage = 0.5f;
+                damage = 0.7f;
             }
             myparticle = GameObject.Instantiate(particles[0], transform.position, transform.rotation);
             myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;

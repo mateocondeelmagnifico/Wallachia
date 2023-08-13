@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7908280381807653326}
   - component: {fileID: 4268060238365702896}
-  - component: {fileID: 5235042747453442729}
   m_Layer: 10
   m_Name: Axe pickup
   m_TagString: Axe pickup
@@ -46,19 +45,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 89.65599, y: 28.6485, z: 17.095003}
   m_Center: {x: 3.8283298, y: -1.0274792, z: 0.7657468}
---- !u!114 &5235042747453442729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7901751878272850014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a655b93f5c6020141ab897a4f9164fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickuptype: Axe
 --- !u!1 &7902182925369648792
 GameObject:
   m_ObjectHideFlags: 0

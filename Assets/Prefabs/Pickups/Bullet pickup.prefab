@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 2644030998820968376}
   - component: {fileID: 2650822036699468134}
   - component: {fileID: 2660844874812814512}
-  - component: {fileID: 2618661561388235908}
-  - component: {fileID: 1968580543886966561}
   m_Layer: 10
   m_Name: Bullet pickup
   m_TagString: Bullet Pickup
@@ -83,29 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2618661561388235908
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2646421096715747548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.3812194, y: 0.2550005, z: 0.3693384}
-  m_Center: {x: 0.03267474, y: 0.0065035704, z: 0.008407307}
---- !u!114 &1968580543886966561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2646421096715747548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a655b93f5c6020141ab897a4f9164fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickuptype: Bullet

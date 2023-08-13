@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8309264841551545293}
   - component: {fileID: 8319187485373107149}
   - component: {fileID: 4832905932099806016}
-  - component: {fileID: 7122806597471396798}
   m_Layer: 10
   m_Name: Rifle pickup
   m_TagString: Rifle pickup
@@ -101,19 +100,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.6355834, y: 2.083544, z: 6.56478}
   m_Center: {x: 0.06323314, y: -0.036916852, z: 0.2246542}
---- !u!114 &7122806597471396798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296012305434137653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a655b93f5c6020141ab897a4f9164fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickuptype: Rifle
 --- !u!1 &8296262778509808885
 GameObject:
   m_ObjectHideFlags: 0
