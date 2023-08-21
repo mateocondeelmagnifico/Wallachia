@@ -75,7 +75,8 @@ public class Bullet : MonoBehaviour
 
     public void hitenemy(bool hashit)
     {
-        if (armas.currentbullet == "Silver")
+        //if the bullet is a silver one
+        if (armas.currentEquip[3] == 1)
         {
             issilver = true;
             damage = 1f;

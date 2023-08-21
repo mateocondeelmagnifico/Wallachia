@@ -25,7 +25,7 @@ public class grenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (armas.currentgrenade == 0)
+        if (armas.currentEquip[2] == 0)
         {
             type[0].SetActive(true);
         }
@@ -37,8 +37,8 @@ public class grenade : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //When it collides with anything the grenade explodeas an instate the explosion that corresponds to the grenade type
-        GameObject.Instantiate(grenadetype[armas.currentgrenade], transform.position, transform.rotation);
-        if (armas.currentgrenade == 1)
+        GameObject.Instantiate(grenadetype[armas.currentEquip[2]], transform.position, transform.rotation);
+        if (armas.currentEquip[2] == 1)
         {
             sound.playaudio("Garlic Grenade");
         }

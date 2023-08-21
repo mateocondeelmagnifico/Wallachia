@@ -63,9 +63,9 @@ public class Life : MonoBehaviour
             //this is so you respawn with the same weapons
             RespawnManager manager = FindObjectOfType<RespawnManager>();
             Debug.Log(manager);
-            manager.currentgrenade = armas.currentgrenade;
-            manager.currentgun = armas.currentrangeweapon;
-            manager.currentmelee = armas.currentmeleeweapon;
+            manager.currentgrenade = armas.currentEquip[2];
+            manager.currentgun = armas.currentEquip[1];
+            manager.currentmelee = armas.currentEquip[0];
 
             camera.GetComponent<Throwinggrenade>().enabled = false;
             reticle.SetActive(false);

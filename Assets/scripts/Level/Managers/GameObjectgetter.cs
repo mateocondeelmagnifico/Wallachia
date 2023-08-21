@@ -15,6 +15,7 @@ public class GameObjectgetter : MonoBehaviour
     [Header("Managers")]
     public GameObject Soundmanager;
     public GameObject Pausemanager;
+    public GameObject MenuManager;
 
     [Header("Canvas")]
     public GameObject Toplefticons;
@@ -30,8 +31,10 @@ public class GameObjectgetter : MonoBehaviour
     public GameObject gameovermenu;
     public GameObject gamepausedmenu;
     public GameObject controlsmenu;
+    public GameObject WeaponWheelMenu;
     public GameObject reticle;
     public DisplayText textDisplay;
+
 
     [Header("Camera things")]
     public GameObject cam;

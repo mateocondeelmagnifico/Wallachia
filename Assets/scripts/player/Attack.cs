@@ -42,7 +42,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         chargeimage.GetComponent<Image>().fillAmount = chargetimer / 1.2f;
-        currentweapon = GetComponent<weapons>().currentmeleeweapon;
+        currentweapon = GetComponent<weapons>().currentEquip[0];
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false)
         {

@@ -45,7 +45,7 @@ public class Throwinggrenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (armas.currentgrenade == 0 && remainingsilver > 0 || armas.currentgrenade == 1 && remaininggarlic > 0)
+        if (armas.currentEquip[2] == 0 && remainingsilver > 0 || armas.currentEquip[2] == 1 && remaininggarlic > 0)
         {
             grenadesleft = true;
         }
@@ -61,7 +61,7 @@ public class Throwinggrenade : MonoBehaviour
             currentgrenade.GetComponent<grenade>().armas = armas;
             currentgrenade.GetComponent<grenade>().sound = sound;
             grenadecooldown = 1;
-            if (armas.currentgrenade == 0)
+            if (armas.currentEquip[2] == 0)
             {
                 remainingsilver--;
             }
@@ -75,7 +75,7 @@ public class Throwinggrenade : MonoBehaviour
             grenadecooldown -= Time.deltaTime;
         }
 
-        if (armas.currentgrenade == 0)
+        if (armas.currentEquip[2] == 0)
         {
             texto.text = remainingsilver.ToString();
         }

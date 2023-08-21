@@ -9,11 +9,12 @@ public class weapons : MonoBehaviour
     //It also keeps track of what weapons you have equipped and which weaponds you have unlocked
     //It also changes the UI Icon of the bullets 
 
-    public int currentmeleeweapon;
-    public int currentrangeweapon;
-    public int currentgrenade;
+    //The temporary weapon is the one that is currently selected in the weapon wheel
 
-    public string currentbullet;
+    public int[] currentEquip;
+    public int[] tempEquip;
+
+    string weapon;
 
     public GameObjectgetter getter;
     public GameObject[] armas;
@@ -41,47 +42,33 @@ public class weapons : MonoBehaviour
         bulleticon = getter.bulleticon;
         soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();
-        currentbullet = "Iron";
 
         //weapon 0 = sword
         //weapon 1 = axe
+
+        currentEquip = new int[4];
+        //0 = melee weapon, 1 = ranged weapon, 2 = grenade, 3 = bullet
+        tempEquip = new int[4];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale > 0)
-        {
-            if (hasrifle == true)
-            {
-                checkrangedchange();
-            }
-            if (hasaxe == true)
-            {
-                checkmeleechange();
-            }
-            if (hasbullet == true && isreloading == false)
-            {
-                checkbulletchange();
-            }
-            if (hasgrenade == true)
-            {
-                checkgrenadechange();
-            }
-        }
-        
+        #region see if you can shoot
 
-        //check if you can shoot
         if (GetComponent<Attack>().attacking == true)
         {
-            armasrango[currentrangeweapon].GetComponent<Shooting>().canshoot = false;
+            armasrango[currentEquip[1]].GetComponent<Shooting>().canshoot = false;
         }
         else
         {
-            armasrango[currentrangeweapon].GetComponent<Shooting>().canshoot = true;
+            armasrango[currentEquip[1]].GetComponent<Shooting>().canshoot = true;
         }
+        #endregion
+
+        #region see if you can melee atack
         //check if you can melee attck
-        if (armasrango[currentrangeweapon].GetComponent<Shooting>().shotcooldown2 > 0)
+        if (armasrango[currentEquip[1]].GetComponent<Shooting>().shotcooldown2 > 0)
         {
             GetComponent<Attack>().canattack = false;
         }
@@ -89,6 +76,18 @@ public class weapons : MonoBehaviour
         {
             GetComponent<Attack>().canattack = true;
         }
+        #endregion
+
+        #region see what bullet icon to display
+        if (currentEquip[3] == 0)
+        {
+            bulleticon.GetComponent<Image>().sprite = bullets[0];
+        }
+        else
+        {
+            bulleticon.GetComponent<Image>().sprite = bullets[1];
+        }
+        #endregion
     }
     public void equipfinished()
     {
@@ -97,82 +96,110 @@ public class weapons : MonoBehaviour
     }
     public void equippoint()
     {
-        armas[currentmeleeweapon].SetActive(true);
-        armasrango[currentrangeweapon].SetActive(true);
+        armas[currentEquip[0]].SetActive(true);
+        armasrango[currentEquip[1]].SetActive(true);
     }
-    public void checkrangedchange()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && equippingweapon == false && isreloading == false)
-        {
-            animador.SetTrigger("Equip");
-            equippingweapon = true;
-
-            armasrango[currentrangeweapon].SetActive(false);
-
-            currentrangeweapon++;
-
-            if (currentrangeweapon >= 2)
-            {
-                currentrangeweapon = 0;
-            }
-            sound.playaudio("Weapon Switch");
-        }
-    }
-    public void checkmeleechange()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha2) && equippingweapon == false && isattacking == false)
-        {
-            animador.SetTrigger("Equip");
-            equippingweapon = true;
-
-            armas[currentmeleeweapon].SetActive(false);
-
-            currentmeleeweapon++;
-
-            if (currentmeleeweapon >= 2)
-            {
-                currentmeleeweapon = 0;
-            }
-            sound.playaudio("Weapon Switch");
-        }
-    }
-    public void checkbulletchange()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (currentbullet == "Iron")
-            {
-                currentbullet = "Silver";
-                bulleticon.GetComponent<Image>().sprite = bullets[1];
-            }
-            else
-            {
-                currentbullet = "Iron";
-                bulleticon.GetComponent<Image>().sprite = bullets[0];
-            }
-            sound.playaudio("Weapon Switch");
-        }
-    }
-    public void checkgrenadechange()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            currentgrenade++;
-            if (currentgrenade > 1)
-            {
-                currentgrenade = 0;
-            }
-            sound.playaudio("Weapon Switch");
-        }
-    }
+   
     public void playsound()
     {
         sound.playaudio("Pickup");
     }
-
     public void SetiInactive()
     {
-        armas[currentmeleeweapon].SetActive(false);
-        armas[currentrangeweapon].SetActive(false);
+        armas[currentEquip[0]].SetActive(false);
+        armas[currentEquip[1]].SetActive(false);
+    }
+    public void ChangeWeapon(string type)
+    {
+        //This code changes the weapons you have equipped
+
+        sound.playaudio("Weapon Switch");
+       
+        if (type == "melee")
+        {
+            //In currentequip is the int that defines the weapon that was previously equipped
+            //In tempvalue is the weapon you want to equip
+            animador.SetTrigger("Equip");
+            equippingweapon = true;
+
+            armas[currentEquip[0]].SetActive(false);
+            armas[tempEquip[0]].SetActive(true);
+        }
+       if (type == "ranged")
+        {
+            animador.SetTrigger("Equip");
+            equippingweapon = true;
+
+            armasrango[currentEquip[1]].SetActive(false);
+            armasrango[tempEquip[1]].SetActive(true);
+        }
+    }
+    public void SetTempWeapon(string type)
+    {
+        //This script is accesed by the weapon wheel
+        //It is used to keep track of which weapon the player is selecting
+
+        if (type == "sword" && isattacking == false)
+        {
+            tempEquip[0] = 0;
+        }
+        if (type == "axe" && isattacking == false)
+        {
+            tempEquip[0] = 1;
+        }
+        if (type == "pistol" && isreloading == false)
+        {
+            tempEquip[1] = 0;
+        }
+        if (type == "rifle" && isreloading == false)
+        {
+            tempEquip[1] = 1;
+        }
+
+        //These two work differently because there's only one icon to press in the weapon wheel
+        if (type == "grenade")
+        {
+            tempEquip[2]++;
+            if (tempEquip[2] >= 2)
+            {
+                tempEquip[2] = 0;
+            }
+        }
+        if (type == "bullet" && isreloading == false)
+        {
+            tempEquip[3]++;
+            if (tempEquip[3] >= 2)
+            {
+                tempEquip[3] = 0;
+            }
+        }
+    }
+    public void checkUnpause()
+    {
+        //Este código se ejecuta desde el menu de pausa
+        for(int i = 0; i < 4; i++)
+        {
+            if (currentEquip[i] != tempEquip[i])
+            { 
+                if(i == 0)
+                {
+                    weapon = "melee";
+                }
+                if(i == 1)
+                {
+                    weapon = "ranged";
+                }
+                if (i == 2)
+                {
+                    weapon = "";
+                }
+                if (i == 3)
+                {
+                    weapon = "";
+                }
+                ChangeWeapon(weapon);
+                currentEquip[i] = tempEquip[i];
+            }
+        }
     }
 }

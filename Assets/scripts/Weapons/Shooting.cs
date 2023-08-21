@@ -94,7 +94,8 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        if (armas.currentbullet == "Silver")
+        //If the bullet is silver
+        if (armas.currentEquip[3] == 1)
         {
             silvermode = true;
         }

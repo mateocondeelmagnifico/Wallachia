@@ -10,12 +10,13 @@ public class Pause : MonoBehaviour
     public bool[] istrue;
     public bool ispaused;
     public bool isonmenu;
+    bool isOnWeaponWheel;
 
     public GameObjectgetter getter;
     public GameObject[] exceptions;
-    public GameObject controlsmenu;
 
     Sonido sound;
+    MenuManager menuManager;
 
     //Exception 1 = pistola, Excepcion 2 = rifle, Excepcion 3 = player, Excepcion 4 = camara, Exception 5 = soundmanager,
     //Exception 6 = game paused menu, Exception 7 = reloading text, Exception 8 = top right images
@@ -26,12 +27,11 @@ public class Pause : MonoBehaviour
         exceptions[2] = getter.Player;
         exceptions[3] = getter.cam;
         exceptions[4] = getter.Soundmanager;
-        exceptions[5] = getter.gamepausedmenu;
-        exceptions[6] = getter.reloadingtext;
-        exceptions[7] = getter.Toplefticons;
+        exceptions[5] = getter.reloadingtext;
+        exceptions[6] = getter.Toplefticons;
 
+        menuManager = getter.MenuManager.GetComponent<MenuManager>();
         sound = exceptions[4].GetComponent<Sonido>();
-        controlsmenu = getter.controlsmenu;
     }
 
     void Update()
@@ -60,9 +60,25 @@ public class Pause : MonoBehaviour
             }
             else
             {
-                exceptions[7].SetActive(true);
-                controlsmenu.SetActive(false);
+                exceptions[6].SetActive(true);
+                menuManager.changemenu("pause");
                 isonmenu = false;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!ispaused)
+            {
+                pause("weapon wheel");
+                isOnWeaponWheel = true;
+            }
+            else
+            {
+                if(isOnWeaponWheel)
+                {
+                    isOnWeaponWheel = false;
+                    unpause();
+                }
             }
         }
     }
@@ -71,8 +87,8 @@ public class Pause : MonoBehaviour
         exceptions[0].GetComponent<Shooting>().ispaused = false;
         exceptions[1].GetComponent<Shooting>().ispaused = false;
         exceptions[2].GetComponent<Attack>().ispaused = false;
+        exceptions[2].GetComponent<weapons>().checkUnpause();
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
-        exceptions[5].SetActive(false);
         sound.sources[2].volume = 0.4f;
 
         if (istrue[0] == true)
@@ -82,15 +98,17 @@ public class Pause : MonoBehaviour
 
         if (istrue[1] == true)
         {
-            exceptions[6].GetComponent<Text>().enabled = true;
+            exceptions[5].GetComponent<Text>().enabled = true;
         }
+
+        menuManager.changemenu("none");
       
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         Time.timeScale = 1;
     }
-    public void pause(string howmuch)
+    public void pause(string whichPause)
     {
         exceptions[0].GetComponent<Shooting>().ispaused = true;
         exceptions[1].GetComponent<Shooting>().ispaused = true;
@@ -108,10 +126,10 @@ public class Pause : MonoBehaviour
             istrue[0] = false;
         }
 
-        if (exceptions[6].GetComponent<Text>().enabled == true) 
+        if (exceptions[5].GetComponent<Text>().enabled == true) 
         {
             istrue[1] = true;
-            exceptions[6].GetComponent<Text>().enabled = false;
+            exceptions[5].GetComponent<Text>().enabled = false;
         }
         else
         {
@@ -120,13 +138,19 @@ public class Pause : MonoBehaviour
         }
 
     
-        if (howmuch == "Full")
+        if (whichPause == "Full")
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-            exceptions[5].SetActive(true);
+            menuManager.changemenu("pause");
         }
-      
+
+        if (whichPause == "weapon wheel")
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+            menuManager.changemenu("weapon wheel");
+        }
 
         Time.timeScale = 0;
     }
@@ -136,8 +160,8 @@ public class Pause : MonoBehaviour
     }
     public void showcontrols()
     {
-        exceptions[7].SetActive(false);
-        controlsmenu.SetActive(true);
+        exceptions[6].SetActive(false);
+        menuManager.changemenu("controls");
         isonmenu = true;
     }
 }

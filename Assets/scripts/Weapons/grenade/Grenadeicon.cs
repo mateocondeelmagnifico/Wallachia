@@ -14,6 +14,6 @@ public class Grenadeicon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Image>().sprite = icons[GameObject.Find("Player").GetComponent<weapons>().currentgrenade];
+        GetComponent<Image>().sprite = icons[GameObject.Find("Player").GetComponent<weapons>().currentEquip[2]];
     }
 }
