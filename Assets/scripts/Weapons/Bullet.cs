@@ -88,7 +88,7 @@ public class Bullet : MonoBehaviour
 
         if (hashit == true)
         {
-            damage -= Vector3.Distance(transform.position, player.position) / 7;
+            damage -= Vector3.Distance(transform.position, player.position) / 9;
             if (damage < 0.7f)
             {
                 damage = 0.7f;

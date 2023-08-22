@@ -9,6 +9,7 @@ public class WeaponWheel : MonoBehaviour
     public weapons armas;
     public Sprite[] grenadeSprites;
     public Sprite[] bulletSprites;
+    public Text[] descriptions;
     void Start()
     {
         icons[2].SetActive(false);
@@ -32,10 +33,12 @@ public class WeaponWheel : MonoBehaviour
         if (armas.hasgrenade)
         {
             icons[4].SetActive(true);
+            descriptions[0].enabled = true;
         }
         if (armas.hasbullet)
         {
             icons[5].SetActive(true);
+            descriptions[1].enabled = true;
         }
         #endregion
 
@@ -43,19 +46,23 @@ public class WeaponWheel : MonoBehaviour
         if (armas.tempEquip[2] == 0)
         {
             icons[4].GetComponent<Image>().sprite = grenadeSprites[0];
+            descriptions[0].text = "Silver Grenades";
         }
         else
         {
             icons[4].GetComponent<Image>().sprite = grenadeSprites[1];
+            descriptions[0].text = "Garlic Grenades";
         }
 
         if (armas.tempEquip[3] == 0)
         {
             icons[5].GetComponent<Image>().sprite = bulletSprites[0];
+            descriptions[1].text = "Normal Bullets";
         }
         else
         {
             icons[5].GetComponent<Image>().sprite = bulletSprites[1];
+            descriptions[1].text = "Silver Bullets";
         }
         #endregion
     }

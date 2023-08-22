@@ -13,7 +13,8 @@ public class Sword : MonoBehaviour
 
     Sonido sound;
 
-    public float axedamage; 
+    public float axedamage;
+    float damage;
 
     public bool candamage;
     public bool isaxe;
@@ -41,26 +42,41 @@ public class Sword : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                //this is so the sword only plays the sound of its first impact
-                if (hasPlayedSound == false)
-                {
-                    sound.playaudio("Sword Impact");
-                    hasPlayedSound = true;
-                }
                 
                 Enemy enemigo = other.GetComponent<Enemy>();
+
                 if (isaxe == false)
                 {
                     //sword deals more damage based on missing health
-                    enemigo.takedamage(0.5f + (enemigo.maxlife - enemigo.life) / 4, "Light");
+                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 4;
+                    
+
+                    enemigo.takedamage(damage, "Light");
                     enemigo.statuseffect("Iron");
                     bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+
+                   
                 }
                 else
                 {
+                    damage = axedamage;
                     enemigo.takedamage(axedamage, "Heavy");
                     enemigo.statuseffect("Iron");
                     bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                }
+                //this is so the sword only plays the sound of its first impact
+                if (hasPlayedSound == false)
+                {
+                    if (damage >= 1f)
+                    {
+                        sound.playaudio("Strong Sword Impact");
+
+                    }
+                    else
+                    {
+                        sound.playaudio("Sword Impact");
+                    }
+                    hasPlayedSound = true;
                 }
             }
             else

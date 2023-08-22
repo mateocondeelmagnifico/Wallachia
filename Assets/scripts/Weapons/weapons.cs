@@ -47,6 +47,7 @@ public class weapons : MonoBehaviour
         //weapon 1 = axe
 
         currentEquip = new int[4];
+        currentEquip[2] = 0;
         //0 = melee weapon, 1 = ranged weapon, 2 = grenade, 3 = bullet
         tempEquip = new int[4];
     }
