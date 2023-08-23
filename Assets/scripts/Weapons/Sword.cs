@@ -67,7 +67,7 @@ public class Sword : MonoBehaviour
                 //this is so the sword only plays the sound of its first impact
                 if (hasPlayedSound == false)
                 {
-                    if (damage >= 1f)
+                    if (other.GetComponent<Enemy>().life - damage <= 0)
                     {
                         sound.playaudio("Strong Sword Impact");
 
@@ -85,7 +85,18 @@ public class Sword : MonoBehaviour
                 {
                     if (other.gameObject.tag.Equals("Damager"))
                     {
-                        sound.playaudio("Sword Impact");
+                        //This is in case the sword collides with the damagers in the enemy's hands
+                        //In this case you get the value of life from the zombie (father) gameobject of the damager
+                        if (other.GetComponent<Damager>().father.GetComponent<Enemy>().life - damage <= 0)
+                        {
+                            sound.playaudio("Strong Sword Impact");
+
+                        }
+                        else
+                        {
+                            sound.playaudio("Sword Impact");
+                        }
+                        hasPlayedSound = true;
                     }
                     else
                     {

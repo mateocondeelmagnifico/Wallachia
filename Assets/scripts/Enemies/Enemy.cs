@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         {
             if (transforming > 0.2)
             {
-                regeneration = 0.10f;
+                regeneration = 0.30f;
                 if (isplaying == false)
                 {
                     particles.Play();
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                regeneration = 0.45f;
+                regeneration = 0.7f;
             }
             if (transforming < 0.4 && life < maxlife && life > 0)
             {

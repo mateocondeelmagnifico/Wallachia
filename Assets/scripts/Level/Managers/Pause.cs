@@ -110,6 +110,7 @@ public class Pause : MonoBehaviour
     }
     public void pause(string whichPause)
     {
+        sound.playaudio("Menu Enter");
         exceptions[0].GetComponent<Shooting>().ispaused = true;
         exceptions[1].GetComponent<Shooting>().ispaused = true;
         exceptions[2].GetComponent<Attack>().ispaused = true;
