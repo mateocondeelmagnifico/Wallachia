@@ -105,5 +105,10 @@ public class Book : MonoBehaviour
             armas.hasgrenade = true;
             armas.playsound();
         }
+        if (whatPowerUp == "Sword")
+        {
+            armas.hassword = true;
+            armas.playsound();
+        }
     }
 }

@@ -28,11 +28,14 @@ public class weapons : MonoBehaviour
 
     public bool equippingweapon;
     public bool isreloading;
+    public bool hassword;
     public bool hasrifle;
     public bool hasaxe;
     public bool hasgrenade;
     public bool hasbullet;
     public bool isattacking;
+
+    bool doonce;
     void Start()
     {
         armas[0] = getter.sword;
@@ -68,7 +71,23 @@ public class weapons : MonoBehaviour
         #endregion
 
         #region see if you can melee atack
-        //check if you can melee attck
+        //This checks if you have unlocked the sword
+        if (!hassword)
+        {
+            armas[0].SetActive(false);
+            GetComponent<Attack>().hasmelee = false;
+        }
+        else
+        {
+            if(!doonce)
+            {
+                armas[0].SetActive(true);
+                GetComponent<Attack>().hasmelee = true;
+                doonce = true;
+            }
+        }
+
+        //check if you can melee attack
         if (armasrango[currentEquip[1]].GetComponent<Shooting>().shotcooldown2 > 0)
         {
             GetComponent<Attack>().canattack = false;

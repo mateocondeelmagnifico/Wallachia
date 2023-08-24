@@ -61,7 +61,7 @@ public class Pause : MonoBehaviour
             else
             {
                 exceptions[6].SetActive(true);
-                menuManager.changemenu("pause");
+                unpause();
                 isonmenu = false;
             }
         }

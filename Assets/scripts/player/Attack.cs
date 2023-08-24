@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
     public bool candamage;
     public bool axeraised;
     public bool ispaused;
+    public bool hasmelee;
 
     public int currentweapon;
     float chargetimer;
@@ -44,7 +45,7 @@ public class Attack : MonoBehaviour
         chargeimage.GetComponent<Image>().fillAmount = chargetimer / 1.2f;
         currentweapon = GetComponent<weapons>().currentEquip[0];
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false && hasmelee)
         {
             sword.GetComponent<Sword>().hasPlayedSound = false;
             sound.playaudio("Sword Swing");
