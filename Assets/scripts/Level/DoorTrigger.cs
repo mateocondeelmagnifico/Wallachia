@@ -6,6 +6,7 @@ public class DoorTrigger : MonoBehaviour
 {
     public GameObject Door;
     MoveObject movement;
+    bool Islocked;
     void Start()
     {
         movement = Door.GetComponent<MoveObject>();
@@ -14,16 +15,16 @@ public class DoorTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (movement.ismoving == false && Islocked)
+        {
+            movement.Move();
+        }
     }
     private void OnTriggerExit(Collider other)
     {
         if(other.tag.Equals("Player"))
         {
-            if (movement.ismoving == false)
-            {
-                movement.Move();
-            }
+            Islocked = true;
         }
     }
 }

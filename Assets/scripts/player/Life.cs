@@ -23,12 +23,14 @@ public class Life : MonoBehaviour
     GameObject reloadingtext;
     GameObject camera;
     GameObject reticle;
+    Sonido soundManager;
 
     weapons armas;
 
     void Start()
     {
         armas = GetComponent<weapons>();
+        soundManager = getter.Soundmanager.GetComponent<Sonido>();
         hurtscreen = getter.Hurtscreen;
         rifle = getter.gun2;
         pistol = getter.gun1;
@@ -51,6 +53,7 @@ public class Life : MonoBehaviour
         if (health < currenthealth)
         {
             bloodtimer = 1;
+            soundManager.playaudio("Player Hit");
             currenthealth = health;
         }
         if (bloodtimer > 0)
@@ -62,7 +65,6 @@ public class Life : MonoBehaviour
         {
             //this is so you respawn with the same weapons
             RespawnManager manager = FindObjectOfType<RespawnManager>();
-            Debug.Log(manager);
             manager.currentgrenade = armas.currentEquip[2];
             manager.currentgun = armas.currentEquip[1];
             manager.currentmelee = armas.currentEquip[0];
@@ -71,6 +73,7 @@ public class Life : MonoBehaviour
             reticle.SetActive(false);
             camera.GetComponent<Camara>().enabled = false;
             reloadingtext.SetActive(false);
+            getter.textDisplay.SetActive(false);
             GetComponent<movement>().enabled = false;
             GetComponent<Attack>().enabled = false;
             GetComponent<weapons>().enabled = false;

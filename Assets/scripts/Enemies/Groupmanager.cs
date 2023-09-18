@@ -27,9 +27,7 @@ public class Groupmanager : MonoBehaviour
         {
             transform.GetChild(count - 1).GetComponent<Enemy>().hitmarkerObject = hitmarker;
             transform.GetChild(count - 1).GetComponent<Enemy>().hitmarker = Hitmarker;
-            transform.GetChild(count - 1).GetComponent<Enemy>().sonido = sonido;
             transform.GetChild(count - 1).GetComponent<Enemymovement>().player = player;
-            transform.GetChild(count - 1).GetComponent<Enemymovement>().sonido = sonido;
         }
     }
 

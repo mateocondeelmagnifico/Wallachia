@@ -33,7 +33,7 @@ public class GameObjectgetter : MonoBehaviour
     public GameObject controlsmenu;
     public GameObject WeaponWheelMenu;
     public GameObject reticle;
-    public DisplayText textDisplay;
+    public GameObject textDisplay;
 
 
     [Header("Camera things")]

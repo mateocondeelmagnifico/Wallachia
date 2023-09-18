@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
-    weapons playerweapons;
+    public weapons playerweapons;
 
     public Vector3 spawnposition;
 
-    public bool hasgrenades;
-    public bool hasaxe;
-    public bool hasbullets;
-    public bool hasrifle;
+    public bool hasGrenades;
+    public bool hasAxe;
+    public bool hasBullets;
+    public bool hasRifle;
+    public bool hasSword;
 
     public int currentgrenade;
     public int currentgun;
@@ -20,28 +22,32 @@ public class RespawnManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        playerweapons = GameObject.FindObjectOfType<weapons>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (playerweapons.hasgrenade)
         {
-            hasgrenades = true;
+            hasGrenades = true;
         }
         if (playerweapons.hasbullet)
         {
-            hasbullets = true;
+            hasBullets = true;
         }
         if (playerweapons.hasaxe)
         {
-            hasaxe = true;
+            hasAxe = true;
         }
         if (playerweapons.hasrifle)
         {
-            hasrifle = true;
+            hasRifle = true;
         }
-
+        if (playerweapons.hassword)
+        {
+            hasSword = true;
+        }
     }
+
 }

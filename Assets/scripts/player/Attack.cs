@@ -60,6 +60,7 @@ public class Attack : MonoBehaviour
         {
             if (axeraised == false)
             {
+                sound.playaudio("Raise Axe");
                 animador.SetTrigger("Raiseaxe");
                 axeraised = true;
             }

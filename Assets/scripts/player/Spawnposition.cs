@@ -9,7 +9,7 @@ public class Spawnposition : MonoBehaviour
     public RespawnManager manager;
 
     bool haswaited;
-    void Start()
+    void Awake()
     {
         armas = GetComponent<weapons>();
         if (FindObjectOfType<RespawnManager>() != null) 
@@ -17,10 +17,11 @@ public class Spawnposition : MonoBehaviour
             manager = FindObjectOfType<RespawnManager>();
             player.transform.position = manager.spawnposition;
 
-            armas.hasaxe = manager.hasaxe;
-            armas.hasrifle = manager.hasrifle;
-            armas.hasbullet = manager.hasbullets;
-            armas.hasgrenade = manager.hasgrenades;
+            armas.hasaxe = manager.hasAxe;
+            armas.hasrifle = manager.hasRifle;
+            armas.hasbullet = manager.hasBullets;
+            armas.hasgrenade = manager.hasGrenades;
+            armas.hassword = manager.hasSword;
             armas.currentEquip[2] = manager.currentgrenade;
             armas.currentEquip[0] = manager.currentmelee;
             armas.currentEquip[1] = manager.currentgun;
@@ -28,10 +29,6 @@ public class Spawnposition : MonoBehaviour
             armas.SetiInactive();
             armas.equippoint();
             
-        }
-        else
-        {
-            Debug.Log("no");
         }
     }
 

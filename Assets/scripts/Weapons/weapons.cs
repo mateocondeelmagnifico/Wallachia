@@ -38,6 +38,10 @@ public class weapons : MonoBehaviour
     bool doonce;
     void Start()
     {
+        if(FindObjectOfType<RespawnManager>())
+        {
+            FindObjectOfType<RespawnManager>().playerweapons = this;
+        }
         armas[0] = getter.sword;
         armas[1] = getter.axe;
         armasrango[0] = getter.gun1;

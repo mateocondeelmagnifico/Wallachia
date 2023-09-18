@@ -11,7 +11,7 @@ public class Enemymovement : MonoBehaviour
 
     public NavMeshAgent navegador;
     public Animator animador;
-    public Sonido sonido;
+    Sonido sonido;
 
     public GameObject player;
 
@@ -34,6 +34,7 @@ public class Enemymovement : MonoBehaviour
     public Vector3 attackposition;
     void Start()
     {
+        sonido = GetComponent<Sonido>();
         destination = this.transform.position;
         animador = GetComponent<Animator>();
         navegador = GetComponent<NavMeshAgent>();

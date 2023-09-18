@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     public Animator animador;
     public Enemymovement othersript;
     public Image hitmarker;
-    public Sonido sonido;
+    Sonido sonido;
     public GameObject[] damager;
     public GameObject particlesystem;
     public GameObject hitmarkerObject;
@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
     bool isplaying;
     void Start()
     {
+        sonido = GetComponent<Sonido>();
         particles = GetComponent<ParticleSystem>();
         idletimer = 4;
         if (enemytype == "Zombie")
@@ -122,10 +123,10 @@ public class Enemy : MonoBehaviour
     public void choserandomsound()
     {
         string Whichsound;
-        int random = Random.Range(1, 4);
+        int random = Random.Range(2, 6);
         Whichsound = random.ToString();
         sonido.playaudio("Idle " + Whichsound);
-        idletimer = Random.Range(3, 6);
+        idletimer = Random.Range(3, 8);
     }
     public void takedamage(float damage, string hitype)
     {
@@ -241,6 +242,7 @@ public class Enemy : MonoBehaviour
         if (life <= 0)
         {
             othersript.navegador.velocity = new Vector3(0, 0, 0);
+            sonido.enabled = false;
             if (enemytype == "Werewolf")
             {
                 GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;

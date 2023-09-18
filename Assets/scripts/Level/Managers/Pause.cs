@@ -29,6 +29,7 @@ public class Pause : MonoBehaviour
         exceptions[4] = getter.Soundmanager;
         exceptions[5] = getter.reloadingtext;
         exceptions[6] = getter.Toplefticons;
+        exceptions[7] = getter.textDisplay;
 
         menuManager = getter.MenuManager.GetComponent<MenuManager>();
         sound = exceptions[4].GetComponent<Sonido>();
@@ -84,12 +85,15 @@ public class Pause : MonoBehaviour
     }
     public void unpause()
     {
+        #region things that are unpaused
         exceptions[0].GetComponent<Shooting>().ispaused = false;
         exceptions[1].GetComponent<Shooting>().ispaused = false;
         exceptions[2].GetComponent<Attack>().ispaused = false;
         exceptions[2].GetComponent<weapons>().checkUnpause();
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
+        exceptions[7].GetComponent<Text>().enabled = true;
         sound.sources[2].volume = 0.4f;
+        #endregion
 
         if (istrue[0] == true)
         {
@@ -101,6 +105,7 @@ public class Pause : MonoBehaviour
             exceptions[5].GetComponent<Text>().enabled = true;
         }
 
+
         menuManager.changemenu("none");
       
         Cursor.lockState = CursorLockMode.Locked;
@@ -110,12 +115,15 @@ public class Pause : MonoBehaviour
     }
     public void pause(string whichPause)
     {
+        #region thigs that are paused
         sound.playaudio("Menu Enter");
         exceptions[0].GetComponent<Shooting>().ispaused = true;
         exceptions[1].GetComponent<Shooting>().ispaused = true;
         exceptions[2].GetComponent<Attack>().ispaused = true;
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = true;
+        exceptions[7].GetComponent<Text>().enabled = false;
         sound.sources[2].volume = 0.15f;
+        #endregion
 
         if (sound.sources[1].isPlaying == true)
         {
@@ -134,10 +142,9 @@ public class Pause : MonoBehaviour
         }
         else
         {
-
             istrue[1] = false;
         }
-
+        
     
         if (whichPause == "Full")
         {

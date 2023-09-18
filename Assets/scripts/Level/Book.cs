@@ -48,6 +48,7 @@ public class Book : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) && isreading == true)
         {
+            GivePowerUp(whatPowerUp);
             stopreading();
         }
     }
