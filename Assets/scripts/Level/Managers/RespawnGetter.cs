@@ -5,7 +5,7 @@ using UnityEngine;
 public class RespawnGetter : MonoBehaviour
 {
     public GameObject respawnmanager;
-    void Start()
+    void Awake()
     {
         if (FindObjectOfType<RespawnManager>() == null)
         {

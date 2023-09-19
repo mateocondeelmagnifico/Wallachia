@@ -1,7 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
@@ -15,6 +15,9 @@ public class RespawnManager : MonoBehaviour
     public bool hasRifle;
     public bool hasSword;
 
+    [HideInInspector]
+    public bool[] lockedDoors;
+
     public int currentgrenade;
     public int currentgun;
     public int currentmelee;
@@ -22,6 +25,7 @@ public class RespawnManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        lockedDoors = new bool[20];
     }
 
     // Update is called once per frame
@@ -48,6 +52,12 @@ public class RespawnManager : MonoBehaviour
         {
             hasSword = true;
         }
+    }
+
+    //This bool is to keep track of which doors should be closed in case of a restart
+    public void RememberDoorState(int whichdoor)
+    {
+        lockedDoors[whichdoor] = true;
     }
 
 }

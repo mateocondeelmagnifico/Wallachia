@@ -5,11 +5,15 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public GameObject Door;
+    public int doorNumber;
     MoveObject movement;
     bool Islocked;
+    RespawnManager resManager;
     void Start()
     {
         movement = Door.GetComponent<MoveObject>();
+        resManager = FindObjectOfType<RespawnManager>();
+        Islocked = resManager.lockedDoors[doorNumber];
     }
 
     // Update is called once per frame
@@ -25,6 +29,7 @@ public class DoorTrigger : MonoBehaviour
         if(other.tag.Equals("Player"))
         {
             Islocked = true;
+            FindObjectOfType<RespawnManager>().RememberDoorState(doorNumber);
         }
     }
 }
