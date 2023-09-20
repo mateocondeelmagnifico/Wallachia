@@ -55,4 +55,9 @@ public class Sonido : MonoBehaviour
             }
         }
     }
+
+    public void debug()
+    {
+        Debug.Log(1);
+    }
 }

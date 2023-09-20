@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     public GameObject Getter;
     GameObject[] guns;
     public Shooting[] gunscripts;
+    Animator animador;
 
 
     public Vector3 direction;
@@ -26,6 +27,7 @@ public class movement : MonoBehaviour
     public float sprinttimer;
     void Start()
     {
+        animador = GetComponent<Animator>();
         canmove = true;
         gunscripts[0] = Getter.GetComponent<GameObjectgetter>().gun1.GetComponent<Shooting>();
         gunscripts[1] = Getter.GetComponent<GameObjectgetter>().gun2.GetComponent<Shooting>();
@@ -54,13 +56,25 @@ public class movement : MonoBehaviour
                 Setrunning(false);
             }
         }
-        //stamina.fillAmount = cansprint/4;
+
         Keycheck();
         if (controlador.isGrounded == false)
         {
             direction.y = -3f;
         }
         controlador.Move(direction * speed * Time.deltaTime);
+
+        #region Walking Animation
+        animador.SetFloat("WalkSpeed", speed / 5);
+        if (controlador.velocity != Vector3.zero)
+        {
+            animador.SetBool("Moving", true);
+        }
+        else
+        {
+            animador.SetBool("Moving", false);
+        }
+        #endregion
     }
     public void Keycheck()
     {
