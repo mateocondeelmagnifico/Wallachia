@@ -4975,6 +4975,14 @@ MonoBehaviour:
     volume: 1
     source: 1
     clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
+  - name: Footstep L
+    volume: 0.2
+    source: 1
+    clip: {fileID: 8300000, guid: 4710cac6fb5a5544b97f0c691c5332f4, type: 3}
+  - name: Footstep R
+    volume: 0.2
+    source: 1
+    clip: {fileID: 8300000, guid: c8d999ba46f7f6f4fae8d3e7ab12b70d, type: 3}
   numberOfSources: 2
   sources:
   - {fileID: 0}

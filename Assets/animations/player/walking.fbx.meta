@@ -60,15 +60,15 @@ ModelImporter:
       curves: []
       events:
       - time: 0.3102949
-        functionName: callSoundManager
-        data: shoot
+        functionName: callFootSteps
+        data: Left
         objectReferenceParameter: {fileID: 11500000, guid: 6d561e7b3220d8342b0d14f974bc2c56, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.8029673
-        functionName: debug
-        data: 
+        functionName: callFootSteps
+        data: Right
         objectReferenceParameter: {fileID: 11500000, guid: 6d561e7b3220d8342b0d14f974bc2c56, type: 3}
         floatParameter: 0
         intParameter: 0

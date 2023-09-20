@@ -58,7 +58,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.304798
+        functionName: playaudio
+        data: Footstep L
+        objectReferenceParameter: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.76007223
+        functionName: playaudio
+        data: Footstep R
+        objectReferenceParameter: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

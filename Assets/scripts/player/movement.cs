@@ -66,7 +66,7 @@ public class movement : MonoBehaviour
 
         #region Walking Animation
         animador.SetFloat("WalkSpeed", speed / 5);
-        if (controlador.velocity != Vector3.zero)
+        if (xdirection != Vector3.zero || zdirection != Vector3.zero)
         {
             animador.SetBool("Moving", true);
         }
