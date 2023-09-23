@@ -38,7 +38,7 @@ public class Sword : MonoBehaviour
             if (other.gameObject.tag.Equals("Enemy"))
             {
                 
-                Enemy enemigo = other.GetComponent<Enemy>();
+                BasicEnemy enemigo = other.GetComponent<BasicEnemy>();
 
                 #region Play Sound
                 //this is so the sword only plays the sound of its first impact

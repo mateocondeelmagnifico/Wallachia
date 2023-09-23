@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Enemy enemigo;
+    BasicEnemy enemigo;
 
     public Rigidbody cuerporigido;
     public GameObject[] particles;
@@ -38,8 +38,7 @@ public class Bullet : MonoBehaviour
        
         if (collision.gameObject.tag.Equals("Enemy"))
         {
-            Debug.Log(collision.gameObject.GetComponent<Enemy>().life);
-            enemigo = collision.gameObject.GetComponent<Enemy>();
+            enemigo = collision.gameObject.GetComponent<BasicEnemy>();
             hitenemy(true);
         }
         else
@@ -118,8 +117,6 @@ public class Bullet : MonoBehaviour
             {
                 enemigo.statuseffect("Iron");
             }
-            Debug.Log(damage);
-            Debug.Log(enemigo.life);
         }
         else
         {

@@ -37,7 +37,7 @@ public class newsilverimpact : MonoBehaviour
     {
         if(other.gameObject.tag.Equals("Enemy") && timer > 0)
         {
-            other.GetComponent<Enemy>().takedamage(0.2f, "Light");
+            other.GetComponent<BasicEnemy>().takedamage(0.2f, "Light");
         }
     }
     private void OnTriggerStay(Collider other)
@@ -47,7 +47,7 @@ public class newsilverimpact : MonoBehaviour
             hurttimer -= Time.deltaTime;
             if (hurttimer <= 0)
             {
-                other.GetComponent<Enemy>().statuseffect("Silver");
+                other.GetComponent<BasicEnemy>().statuseffect("Silver");
                 hurttimer = 0.3f;
             }
         }

@@ -20,11 +20,14 @@ public class Groupmanager : MonoBehaviour
     void Start()
     {
         Hitmarker = hitmarker.GetComponent<Image>();
+        //This is so that all enemies in the stage get this things
         for (int count = transform.childCount; count > 0; count--)
         {
-            transform.GetChild(count - 1).GetComponent<Enemy>().hitmarkerObject = hitmarker;
-            transform.GetChild(count - 1).GetComponent<Enemy>().hitmarker = Hitmarker;
-            transform.GetChild(count - 1).GetComponent<Enemymovement>().player = player;
+            transform.GetChild(count - 1).GetComponent<ZombieEnemy>().hitmarkerObject = hitmarker;
+            transform.GetChild(count - 1).GetComponent<ZombieEnemy>().hitmarker = Hitmarker;
+
+            transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().player = player;
+            transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().groupManager = this;
         }
     }
 

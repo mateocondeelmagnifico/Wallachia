@@ -110,10 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749272778862549000}
   - component: {fileID: 1004103577008193504}
-  - component: {fileID: 196751288918172158}
-  - component: {fileID: 1299218357}
   - component: {fileID: 1299218358}
-  - component: {fileID: 5011030733925581186}
   - component: {fileID: 1629333248267152496}
   - component: {fileID: 4003035578238604503}
   - component: {fileID: 7721590290501106703}
@@ -121,6 +118,8 @@ GameObject:
   - component: {fileID: 4291828035953998960}
   - component: {fileID: 6595629915879882415}
   - component: {fileID: 8320677090202496413}
+  - component: {fileID: 6444972195729236944}
+  - component: {fileID: 3737523496692319632}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Enemy
@@ -165,60 +164,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &196751288918172158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2012be78d27754e91676aaeb263dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animador: {fileID: 1004103577008193504}
-  othersript: {fileID: 0}
-  hitmarker: {fileID: 0}
-  damager:
-  - {fileID: 7174048396189756213}
-  - {fileID: 8147815711679287853}
-  particlesystem: {fileID: 4133762175845957511}
-  hitmarkerObject: {fileID: 0}
-  enemytype: Zombie
-  life: 0
-  maxlife: 0
-  transforming: 0
-  stunresistance: 0
-  regeneration: 0
-  hitmarkertimer: 0
-  vulnerable: 0
-  invulnerable: 0
---- !u!114 &1299218357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13837387e9771044ea71077eb19d4054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navegador: {fileID: 0}
-  animador: {fileID: 0}
-  player: {fileID: 0}
-  playerdetected: 0
-  isattacking: 0
-  angry: 0
-  candamage: 0
-  iswerewolf: 0
-  isinholy: 0
-  staggered: 0
-  attackingrange: 0
-  destination: {x: 0, y: 0, z: 0}
-  attackposition: {x: 0, y: 0, z: 0}
 --- !u!195 &1299218358
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -241,29 +186,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5011030733925581186
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5379cb556a1c98e409d32b7d43f34d34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movimiento: {fileID: 0}
-  enemigo: {fileID: 196751288918172158}
-  player: {fileID: 0}
-  groupmanager: {fileID: 0}
-  invincibleOverlay: {fileID: 5765777397763145760}
-  wandertimer: 0
-  speed: 0
-  Wandering: 0
-  alert: 0
-  frenzy: 0
-  neardeath: 0
 --- !u!54 &1629333248267152496
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5182,6 +5104,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6444972195729236944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85044148226785970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e9f14bac08cf24db239a6e42d15a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animador: {fileID: 0}
+  othersript: {fileID: 0}
+  hitmarker: {fileID: 0}
+  sonido: {fileID: 0}
+  damager:
+  - {fileID: 7174048396189756213}
+  - {fileID: 8147815711679287853}
+  particlesystem: {fileID: 0}
+  hitmarkerObject: {fileID: 0}
+  particles: {fileID: 0}
+  enemytype: 
+  life: 0
+  maxlife: 0
+  transforming: 0
+  stunresistance: 0
+  regeneration: 0
+  hitmarkertimer: 0
+  idletimer: 0
+  vulnerable: 0
+  invulnerable: 0
+  isplaying: 0
+  invincibleOverlay: {fileID: 5765777397763145760}
+--- !u!114 &3737523496692319632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85044148226785970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caa4fa84150f6e84fa601937d49197cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navegador: {fileID: 0}
+  animador: {fileID: 0}
+  groupManager: {fileID: 0}
+  sonido: {fileID: 0}
+  player: {fileID: 0}
+  playerdetected: 0
+  isattacking: 0
+  candamage: 0
+  iswerewolf: 0
+  isinholy: 0
+  staggered: 0
+  speed: 0
+  attackingrange: 0
+  lungespeed: 0
+  destination: {x: 0, y: 0, z: 0}
+  attackposition: {x: 0, y: 0, z: 0}
 --- !u!1 &210062240222110185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7779,6 +7763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
+  myEnemy: {fileID: 6444972195729236944}
 --- !u!1 &7297032704206940170
 GameObject:
   m_ObjectHideFlags: 0
@@ -8301,6 +8286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
+  myEnemy: {fileID: 6444972195729236944}
 --- !u!1 &8149490081076358713
 GameObject:
   m_ObjectHideFlags: 0
@@ -8863,11 +8849,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 11400000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
---- !u!1 &4133762175845957511 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
-  m_PrefabInstance: {fileID: 4133762175846054183}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4133762175845655463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
