@@ -4,47 +4,45 @@ using UnityEngine;
 
 public class TriggerMessage : MonoBehaviour
 {
-    [Header("Type message here")]
+    [Header("Press if you want to use timer, if not end with key press")]
+    public bool usingTimer;
+    public KeyCode whatKey;
+    public float timer;
+
+    [Header("This is for a message")]
     [TextArea]
     public string whatMessage;
 
-    [Header("Select what key you have to press to hide the message")]
-    public KeyCode whatKey;
+    [Header("This is you want it to show an icon")]
+    public Sprite image;
 
-    [Header("Activate timer if you don't want to use keycodes")]
-    public bool useTimer;
-    public float timer;
-    float timerStartValue;
     public DisplayText texto;
 
     bool isEnabled;
 
-    void Start()
-    {
-        timerStartValue = timer;
-    }
 
-    // Update is called once per frame
     void Update()
     {
         //This is to make the text dissapear if you press a key
-        if(Input.GetKeyDown(whatKey) && useTimer == false && isEnabled == true)
+        if(Input.GetKeyDown(whatKey) && isEnabled == true && !usingTimer)
         {
-            texto.HideText();
+            texto.HideTextAndImage();
             isEnabled = false;
         }
 
-        //This makes it dissapear with a timer
-        if (useTimer && isEnabled)
+        //This makes text dissapear after some time
+  
+        if (isEnabled && usingTimer)
         {
-            if(timer >= 0)
+            if (timer >= 0)
             {
                 timer -= Time.deltaTime;
             }
-           else
+            else
             {
-                texto.HideText();
+                texto.HideTextAndImage();
                 isEnabled = false;
+                GetComponent<Collider>().enabled = false;
             }
         }
     }
@@ -52,9 +50,17 @@ public class TriggerMessage : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            texto.ShowText(whatMessage);
+            if (whatMessage != null)
+            {
+                texto.ShowText(whatMessage);
+            }
+            
+            if (image != null)
+            {
+                texto.showImage(image);
+            }
+
             isEnabled = true;
-            timer = timerStartValue;
         }
     }
 }

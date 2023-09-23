@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawnposition : MonoBehaviour
+public class SpawnValues : MonoBehaviour
 {
     public GameObject player;
     weapons armas;

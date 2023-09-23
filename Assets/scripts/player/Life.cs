@@ -24,6 +24,7 @@ public class Life : MonoBehaviour
     GameObject camera;
     GameObject reticle;
     Sonido soundManager;
+    MenuManager menuManager;
 
     weapons armas;
 
@@ -38,6 +39,7 @@ public class Life : MonoBehaviour
         reloadingtext = getter.reloadingtext;
         camera = getter.cam;
         reticle = getter.reticle;
+        menuManager = getter.MenuManager.GetComponent<MenuManager>();
 
         riflereloaded = true;
         pistolreloaded = true;
@@ -47,9 +49,10 @@ public class Life : MonoBehaviour
         currenthealth = health;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //This is for the bloody screen when you get hurt
         if (health < currenthealth)
         {
             bloodtimer = 1;
@@ -61,14 +64,20 @@ public class Life : MonoBehaviour
             bloodtimer -= Time.deltaTime;
         }
         bloodyscreen.color = new Color(1, 1, 1, bloodtimer);
+
+        //This is for when you die
         if (health <= 0)
         {
             //this is so you respawn with the same weapons
+            #region Set Weapons
             RespawnManager manager = FindObjectOfType<RespawnManager>();
             manager.currentgrenade = armas.currentEquip[2];
             manager.currentgun = armas.currentEquip[1];
             manager.currentmelee = armas.currentEquip[0];
+            #endregion
 
+            #region Disable things
+            getter.Pausemanager.SetActive(false);
             camera.GetComponent<Throwinggrenade>().enabled = false;
             reticle.SetActive(false);
             camera.GetComponent<Camara>().enabled = false;
@@ -80,8 +89,9 @@ public class Life : MonoBehaviour
             GetComponent<Restart>().canrestart = true;
             pistol.SetActive(false);
             rifle.SetActive(false);
-            gameovermenu.SetActive(true);
+            menuManager.changemenu("game over");
             this.enabled = false;
+            #endregion
         }
     }
 }

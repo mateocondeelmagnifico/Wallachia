@@ -31,11 +31,6 @@ public class Sword : MonoBehaviour
         ataque = player.GetComponent<Attack>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (ataque.candamage == true )
@@ -45,25 +40,7 @@ public class Sword : MonoBehaviour
                 
                 Enemy enemigo = other.GetComponent<Enemy>();
 
-                if (isaxe == false)
-                {
-                    //sword deals more damage based on missing health
-                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 4;
-                    
-
-                    enemigo.takedamage(damage, "Light");
-                    enemigo.statuseffect("Iron");
-                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
-
-                   
-                }
-                else
-                {
-                    damage = axedamage;
-                    enemigo.takedamage(axedamage, "Heavy");
-                    enemigo.statuseffect("Iron");
-                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
-                }
+                #region Play Sound
                 //this is so the sword only plays the sound of its first impact
                 if (hasPlayedSound == false)
                 {
@@ -78,6 +55,26 @@ public class Sword : MonoBehaviour
                     }
                     hasPlayedSound = true;
                 }
+                #endregion
+
+                #region Apply Damage and Effects
+                if (isaxe == false)
+                {
+                    //sword deals more damage based on missing health
+                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 4;
+              
+                    enemigo.takedamage(damage, "Light");
+                    enemigo.statuseffect("Iron");
+                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                }
+                else
+                {
+                    damage = axedamage;
+                    enemigo.takedamage(axedamage, "Heavy");
+                    enemigo.statuseffect("Iron");
+                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                }
+                #endregion
             }
             else
             {
@@ -102,7 +99,6 @@ public class Sword : MonoBehaviour
                     {
                         sound.playaudio("Sword impact wood");
                     }
-                    hasPlayedSound = true;
                 }
             }
         }

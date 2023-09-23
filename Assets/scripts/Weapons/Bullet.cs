@@ -34,9 +34,11 @@ public class Bullet : MonoBehaviour
         }
     }
     private void OnCollisionEnter(Collision collision)
-    {   
+    {
+       
         if (collision.gameObject.tag.Equals("Enemy"))
         {
+            Debug.Log(collision.gameObject.GetComponent<Enemy>().life);
             enemigo = collision.gameObject.GetComponent<Enemy>();
             hitenemy(true);
         }
@@ -69,8 +71,8 @@ public class Bullet : MonoBehaviour
                 statuseffect = "Iron";
             }
             other.GetComponent<Damager>().dealdamage(damage, stun, statuseffect);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 
     public void hitenemy(bool hashit)
@@ -116,7 +118,8 @@ public class Bullet : MonoBehaviour
             {
                 enemigo.statuseffect("Iron");
             }
-
+            Debug.Log(damage);
+            Debug.Log(enemigo.life);
         }
         else
         {

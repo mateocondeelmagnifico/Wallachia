@@ -31,7 +31,7 @@ public class RespawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        #region Check Which weapons you have unlocked
         if (playerweapons.hasgrenade)
         {
             hasGrenades = true;
@@ -52,6 +52,7 @@ public class RespawnManager : MonoBehaviour
         {
             hasSword = true;
         }
+        #endregion
     }
 
     //This bool is to keep track of which doors should be closed in case of a restart

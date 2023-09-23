@@ -189,4 +189,12 @@ public class Werewolf : MonoBehaviour
             movimiento.playerdetected = true;
         }
     }
+
+    public void returnHome(Vector3 destination)
+    {
+        //This script is so the enemy doesn't stray from their destined location
+        //It is accesed by the groupmanager
+        wandertimer = 4;
+        movimiento.destination = destination;
+    }
 }

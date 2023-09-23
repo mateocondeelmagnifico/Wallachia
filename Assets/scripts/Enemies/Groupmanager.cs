@@ -16,12 +16,9 @@ public class Groupmanager : MonoBehaviour
     public GameObject player;
     public GameObject hitmarker;
     Image Hitmarker;
-    Sonido sonido;
 
-    //public int currentball;
     void Start()
     {
-        sonido = GetComponent<Sonido>();
         Hitmarker = hitmarker.GetComponent<Image>();
         for (int count = transform.childCount; count > 0; count--)
         {
@@ -31,9 +28,21 @@ public class Groupmanager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    //This is to prevent enemies from straying too far
+    private void OnTriggerExit(Collider other)
     {
-       
+        if (other.gameObject.tag.Equals("Enemy"))
+        {
+            GameObject strayEnemy = other.gameObject;
+
+            if(strayEnemy.GetComponent<Zombie>() != null)
+            {
+                strayEnemy.GetComponent<Zombie>().returnHome(transform.position);
+            }
+            if (strayEnemy.GetComponent<Werewolf>() != null)
+            {
+                strayEnemy.GetComponent<Werewolf>().returnHome(transform.position);
+            }
+        }
     }
 }

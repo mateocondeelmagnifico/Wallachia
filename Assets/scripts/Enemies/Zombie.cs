@@ -41,6 +41,7 @@ public class Zombie : MonoBehaviour
     void Update()
     {
         #region movement
+        //Detect player
         if (Vector3.Distance(player.position, transform.position) < 8 || movimiento.playerdetected == true)
         {
             alert = true;
@@ -119,16 +120,21 @@ public class Zombie : MonoBehaviour
                 //move
                 movimiento.destination = new Vector3( transform.position.x + Random.Range(-6, 5), transform.position.y, transform.position.z + Random.Range(-6, 5));
                 wandertimer = Random.Range(3,5);
-                //animador.SetBool("Moving", true);
             }
             else
             {
                 //don't move
                 wandertimer = Random.Range(3, 5);
-                //animador.SetBool("Moving", false);
             }
         }
-       
+    }
+
+    public void returnHome(Vector3 destination)
+    {
+        //This function is meant to return the enemy to the center of the enemygroup when it strays
+        //It is called by the groupmanager
+        wandertimer = 4;
+        movimiento.destination = destination;
     }
   
 }

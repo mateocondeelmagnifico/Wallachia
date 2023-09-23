@@ -25,6 +25,7 @@ public class weapons : MonoBehaviour
     public Sprite[] bullets;
 
     Sonido sound;
+    RespawnManager resManager;
 
     public bool equippingweapon;
     public bool isreloading;
@@ -40,7 +41,8 @@ public class weapons : MonoBehaviour
     {
         if(FindObjectOfType<RespawnManager>())
         {
-            FindObjectOfType<RespawnManager>().playerweapons = this;
+            resManager = FindObjectOfType<RespawnManager>();
+            resManager.playerweapons = this;
         }
         armas[0] = getter.sword;
         armas[1] = getter.axe;
@@ -54,9 +56,17 @@ public class weapons : MonoBehaviour
         //weapon 1 = axe
 
         currentEquip = new int[4];
-        currentEquip[2] = 0;
         //0 = melee weapon, 1 = ranged weapon, 2 = grenade, 3 = bullet
         tempEquip = new int[4];
+
+        currentEquip[0] = resManager.currentmelee;
+        currentEquip[1] = resManager.currentgun;
+        currentEquip[2] = resManager.currentgrenade;
+
+        if (currentEquip[1] == 0)
+        {
+            armasrango[0].SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -83,7 +93,7 @@ public class weapons : MonoBehaviour
         }
         else
         {
-            if(!doonce)
+            if(!doonce && currentEquip[0] == 0)
             {
                 armas[0].SetActive(true);
                 GetComponent<Attack>().hasmelee = true;
@@ -117,6 +127,11 @@ public class weapons : MonoBehaviour
     {
         equippingweapon = false;
         GetComponent<movement>().canmove = true;
+
+        //This is so you respawn with the same weapons
+        resManager.currentmelee = currentEquip[0];
+        resManager.currentgun = currentEquip[1];
+        resManager.currentgrenade = currentEquip[2];
     }
     public void equippoint()
     {
@@ -157,6 +172,7 @@ public class weapons : MonoBehaviour
             armasrango[currentEquip[1]].SetActive(false);
             armasrango[tempEquip[1]].SetActive(true);
         }
+
     }
     public void SetTempWeapon(string type)
     {

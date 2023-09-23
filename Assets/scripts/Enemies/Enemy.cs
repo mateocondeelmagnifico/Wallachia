@@ -133,6 +133,7 @@ public class Enemy : MonoBehaviour
         sonido.playaudio("Hurt");
         if (life > 0)
         {
+            SetHitmarker(damage);
             //This breaks invulnerability for zombie enemies
             if (damage >= maxlife/4 && enemytype == "Zombie")
             {
@@ -156,7 +157,6 @@ public class Enemy : MonoBehaviour
             othersript.playerdetected = true;
             othersript.angry = true;
 
-            SetHitmarker(damage);
             statuseffect(hitype);
             decidestun(hitype);
         }
@@ -243,6 +243,7 @@ public class Enemy : MonoBehaviour
         {
             othersript.navegador.velocity = new Vector3(0, 0, 0);
             sonido.enabled = false;
+            GetComponent<AudioSource>().enabled = false;
             if (enemytype == "Werewolf")
             {
                 GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;
