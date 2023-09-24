@@ -5,17 +5,10 @@ using UnityEngine.AI;
 
 public class ZombieMovement : BasicEnemyMovement
 {
-
-    public override void Start()
+    public override void SetStartValues()
     {
-        sonido = GetComponent<Sonido>();
-        destination = this.transform.position;
-        animador = GetComponent<Animator>();
-        navegador = GetComponent<NavMeshAgent>();
         speed = 2;
         attackingrange = 2;
         lungespeed = 6;
-        
     }
-
 }

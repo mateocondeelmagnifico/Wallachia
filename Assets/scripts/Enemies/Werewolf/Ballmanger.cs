@@ -31,7 +31,7 @@ public class Ballmanger : MonoBehaviour
                 if (balls[chosenball].GetComponent<circlefollow>().istaken == false)
                 {
                     balls[chosenball].SetActive(true);
-                    werewolf.GetComponent<Werewolf>().myball = balls[chosenball];
+                    werewolf.GetComponent<WerewolfMovement>().myBall = balls[chosenball];
                     balls[chosenball].GetComponent<circlefollow>().istaken = true;
                     chosenball = 7;
                     activeballs++;

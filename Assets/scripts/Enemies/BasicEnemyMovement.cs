@@ -19,6 +19,7 @@ public class BasicEnemyMovement : MonoBehaviour
 
     public bool playerdetected;
     public bool isattacking;
+    public bool angry;
     public bool candamage;
     public bool iswerewolf;
     public bool isinholy;
@@ -42,16 +43,7 @@ public class BasicEnemyMovement : MonoBehaviour
         destination = this.transform.position;
         animador = GetComponent<Animator>();
         navegador = GetComponent<NavMeshAgent>();
-        speed = 2;
-        attackingrange = 2;
-        if (iswerewolf == true)
-        {
-            lungespeed = 7;
-        }
-        else
-        {
-            lungespeed = 6;
-        }
+        SetStartValues();
     }
 
     // Update is called once per frame
@@ -80,20 +72,9 @@ public class BasicEnemyMovement : MonoBehaviour
         }
         #endregion
 
-        #region Modify Speed
-        if (alert)
-        {
-            speed = 5;
-        }
-        if (staggered > 0 || isattacking == true)
-        {
-            speed = 3;
-        }
-        if (isinholy == true)
-        {
-            speed /= 2;
-        }
-        #endregion
+        VoidFunction();
+
+        ModifySpeed();
 
         wanderTimer -= Time.deltaTime;
 
@@ -245,5 +226,45 @@ public class BasicEnemyMovement : MonoBehaviour
            groupManager.activated = true;
         }
     }
- 
+
+    public virtual void VoidFunction()
+    {
+        //This function is made for monster who need to access update so that it doesn't have to be overrided
+    }
+
+    public virtual void ModifySpeed()
+    {
+        if (alert)
+        {
+            speed = 5;
+        }
+        if (staggered > 0 || isattacking == true)
+        {
+            speed = 3;
+        }
+        if (isinholy == true)
+        {
+            speed /= 2;
+        }
+    }
+    public virtual void SetStartValues()
+    {
+        speed = 2;
+        attackingrange = 2;
+        if (iswerewolf == true)
+        {
+            lungespeed = 7;
+        }
+        else
+        {
+            lungespeed = 6;
+        }
+    }
+    public void returnHome(Vector3 Destination)
+    {
+        //This script is so the enemy doesn't stray from their destined location
+        //It is accesed by the groupmanager
+        wanderTimer = 4;
+        destination = Destination;
+    }
 }

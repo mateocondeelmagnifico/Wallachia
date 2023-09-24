@@ -83,7 +83,6 @@ public class ZombieEnemy : BasicEnemy
         }
         #endregion
     }
-
     public override void takedamage(float damage, string hitype)
     {
         sonido.playaudio("Hurt");

@@ -11,9 +11,9 @@ public class WerewolfEnemy : BasicEnemy
         sonido = GetComponent<Sonido>();
         particles = GetComponent<ParticleSystem>();
         idletimer = 4;
-        maxlife = 9;
+        maxlife = 7;
         life = maxlife;
-        othersript = GetComponent<BasicEnemyMovement>();
+        othersript = GetComponent<WerewolfMovement>();
     }
 
     // Update is called once per frame
@@ -99,6 +99,7 @@ public class WerewolfEnemy : BasicEnemy
             }
 
             othersript.playerdetected = true;
+            othersript.angry = true;
 
             statuseffect(hitype);
             decidestun(hitype);

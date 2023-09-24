@@ -23,8 +23,8 @@ public class Groupmanager : MonoBehaviour
         //This is so that all enemies in the stage get this things
         for (int count = transform.childCount; count > 0; count--)
         {
-            transform.GetChild(count - 1).GetComponent<ZombieEnemy>().hitmarkerObject = hitmarker;
-            transform.GetChild(count - 1).GetComponent<ZombieEnemy>().hitmarker = Hitmarker;
+            transform.GetChild(count - 1).GetComponent<BasicEnemy>().hitmarkerObject = hitmarker;
+            transform.GetChild(count - 1).GetComponent<BasicEnemy>().hitmarker = Hitmarker;
 
             transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().player = player;
             transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().groupManager = this;
@@ -36,16 +36,7 @@ public class Groupmanager : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy"))
         {
-            GameObject strayEnemy = other.gameObject;
-
-            if(strayEnemy.GetComponent<Zombie>() != null)
-            {
-                strayEnemy.GetComponent<Zombie>().returnHome(transform.position);
-            }
-            if (strayEnemy.GetComponent<Werewolf>() != null)
-            {
-                strayEnemy.GetComponent<Werewolf>().returnHome(transform.position);
-            }
+            other.GetComponent<BasicEnemyMovement>().returnHome(transform.position);
         }
     }
 }

@@ -1222,9 +1222,6 @@ GameObject:
   - component: {fileID: 3548810445194746677}
   - component: {fileID: 3942146321199807521}
   - component: {fileID: 4248648275208049974}
-  - component: {fileID: 1973849476768045477}
-  - component: {fileID: 3277574471972293537}
-  - component: {fileID: -8343251077037433429}
   - component: {fileID: 6191009042697018531}
   - component: {fileID: 2211412263437782628}
   - component: {fileID: 1350414706028288539}
@@ -1232,6 +1229,8 @@ GameObject:
   - component: {fileID: 4843685846569803366}
   - component: {fileID: 82881798222448205}
   - component: {fileID: 5988767596080564636}
+  - component: {fileID: 5270484168725884656}
+  - component: {fileID: 2296635298105328421}
   m_Layer: 8
   m_Name: Werewolf
   m_TagString: Enemy
@@ -1297,81 +1296,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1973849476768045477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212054089237201295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2012be78d27754e91676aaeb263dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animador: {fileID: 4248648275208049974}
-  othersript: {fileID: 3277574471972293537}
-  hitmarker: {fileID: 0}
-  damager:
-  - {fileID: 7311106921974869439}
-  - {fileID: 4258940210950486225}
-  particlesystem: {fileID: 0}
-  hitmarkerObject: {fileID: 0}
-  enemytype: Werewolf
-  life: 0
-  maxlife: 0
-  transforming: 0
-  stunresistance: 0
-  regeneration: 0
-  hitmarkertimer: 0
-  vulnerable: 0
-  invulnerable: 0
---- !u!114 &3277574471972293537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212054089237201295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13837387e9771044ea71077eb19d4054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navegador: {fileID: 3942146321199807521}
-  animador: {fileID: 4248648275208049974}
-  player: {fileID: 0}
-  playerdetected: 0
-  isattacking: 0
-  angry: 0
-  candamage: 0
-  iswerewolf: 1
-  isinholy: 0
-  staggered: 0
-  attackingrange: 0
-  destination: {x: 0, y: 0, z: 0}
-  attackposition: {x: 0, y: 0, z: 0}
---- !u!114 &-8343251077037433429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212054089237201295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d872e971b3615074f977ee6f1f5b4896, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groupmanager: {fileID: 0}
-  myball: {fileID: 0}
-  wandering: 0
-  alert: 0
-  encircling: 0
-  attacking: 0
-  circleinplace: 0
-  wandertimer: 0
-  attacktimer: 0
 --- !u!65 &6191009042697018531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6290,6 +6214,71 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5270484168725884656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212054089237201295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d84e091481ec042aae5c50dde1fd3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animador: {fileID: 0}
+  othersript: {fileID: 0}
+  hitmarker: {fileID: 0}
+  sonido: {fileID: 0}
+  damager:
+  - {fileID: 7311106921974869439}
+  - {fileID: 4258940210950486225}
+  particlesystem: {fileID: 0}
+  hitmarkerObject: {fileID: 0}
+  particles: {fileID: 0}
+  enemytype: 
+  life: 0
+  maxlife: 0
+  transforming: 0
+  stunresistance: 0
+  regeneration: 0
+  hitmarkertimer: 0
+  idletimer: 0
+  vulnerable: 0
+  invulnerable: 0
+  isplaying: 0
+--- !u!114 &2296635298105328421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212054089237201295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657414eb7098ec34589e1c5b0b5cfe79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navegador: {fileID: 0}
+  animador: {fileID: 0}
+  groupManager: {fileID: 0}
+  sonido: {fileID: 0}
+  player: {fileID: 0}
+  playerdetected: 0
+  isattacking: 0
+  angry: 0
+  candamage: 0
+  iswerewolf: 0
+  isinholy: 0
+  staggered: 0
+  speed: 0
+  attackingrange: 0
+  lungespeed: 0
+  destination: {x: 0, y: 0, z: 0}
+  attackposition: {x: 0, y: 0, z: 0}
+  myBall: {fileID: 0}
+  circleInPlace: 0
+  attacking: 0
 --- !u!1 &4258940210950486225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6348,6 +6337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
+  myEnemy: {fileID: 5270484168725884656}
 --- !u!1 &4298386087921420314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7271,6 +7261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
+  myEnemy: {fileID: 5270484168725884656}
 --- !u!1 &7995105855843423341
 GameObject:
   m_ObjectHideFlags: 0
