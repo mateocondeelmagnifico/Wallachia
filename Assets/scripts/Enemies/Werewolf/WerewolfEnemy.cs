@@ -13,6 +13,7 @@ public class WerewolfEnemy : BasicEnemy
         idletimer = 4;
         maxlife = 7;
         life = maxlife;
+        stunresistance = 5;
         othersript = GetComponent<WerewolfMovement>();
     }
 

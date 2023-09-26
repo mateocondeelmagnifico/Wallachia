@@ -31,7 +31,6 @@ public class BasicEnemyMovement : MonoBehaviour
     public float staggered;
     float wanderTimer;
     public float speed;
-    //must be modified from enemy scripts
     public float attackingrange;
     public float lungespeed;
 

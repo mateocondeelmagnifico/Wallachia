@@ -25,7 +25,6 @@ public class BasicEnemy : MonoBehaviour
     public float regeneration;
     public float hitmarkertimer;
     public float idletimer;
-    float timer;
 
     public bool vulnerable;
     public bool invulnerable;
@@ -58,7 +57,7 @@ public class BasicEnemy : MonoBehaviour
         }
         #endregion
 
-        //The more an enemy gets hit, the more stunresistance he builds up
+        //The more an enemy gets hit, the more stunresistance he loses
         if (stunresistance > 0)
         {
             stunresistance -= Time.deltaTime * 0.25f;
@@ -134,7 +133,7 @@ public class BasicEnemy : MonoBehaviour
             {
                 life -= damage;
             }
-            stunresistance++;
+            stunresistance--;
 
             if (enemytype == "Werewolf" && stunresistance > 3 && hitype == "Light")
             {
@@ -181,8 +180,7 @@ public class BasicEnemy : MonoBehaviour
                 if (enemytype == "Werewolf")
                 {
                     decidestun("Heavy");
-                    stunresistance++;
-                    stunresistance++;
+                    stunresistance-= 2;
                 }
             }
         }

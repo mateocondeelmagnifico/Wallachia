@@ -17,6 +17,7 @@ public class ZombieEnemy : BasicEnemy
         idletimer = 4;
         maxlife = 6;
         life = maxlife;
+        stunresistance = 1;
         othersript = GetComponent<BasicEnemyMovement>();
     }
 
@@ -53,9 +54,9 @@ public class ZombieEnemy : BasicEnemy
         }
 
         //The more an enemy gets hit, the more stunresistance he builds up
-        if (stunresistance > 0)
+        if (stunresistance < 1)
         {
-            stunresistance -= Time.deltaTime * 0.25f;
+            stunresistance += Time.deltaTime * 0.05f;
         }
 
         checkdead();
@@ -98,7 +99,7 @@ public class ZombieEnemy : BasicEnemy
             {
                 life -= damage;
             }
-            stunresistance++;
+            stunresistance-= 0.2f;
 
            animador.SetBool("Hurt", true);
            othersript.isattacking = false;
@@ -137,7 +138,7 @@ public class ZombieEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Light")
             {
-                stunamount = 2 - stunresistance;
+                stunamount = 1 - stunresistance;
                 if (stunamount > 0.4f)
                 {
                    othersript.staggered = stunamount;
@@ -146,7 +147,7 @@ public class ZombieEnemy : BasicEnemy
             }
             if (hitype == "Heavy")
             {
-                stunamount = 3 - stunresistance / 2;
+                stunamount = 2 - stunresistance / 2;
                 othersript.staggered = stunamount;
                 
                 othersript.attackposition = transform.position;
