@@ -81,13 +81,16 @@ public class Shooting : MonoBehaviour
       if(isrifle == true)
       {
         ammo = 4;
-        maxammo = 20;
+            silverammo = 4;
+            maxammo = 20;
       }
       else
       {
         ammo = 6;
-        maxammo = 35;
+            silverammo = 6;
+            maxammo = 35;
       }
+        
       maxsilverammo = 6;
        transform.rotation = Quaternion.Euler(90, 0, 0);
     }
