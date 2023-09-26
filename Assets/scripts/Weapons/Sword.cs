@@ -44,7 +44,7 @@ public class Sword : MonoBehaviour
                 //this is so the sword only plays the sound of its first impact
                 if (hasPlayedSound == false)
                 {
-                    if (other.GetComponent<Enemy>().life - damage <= 0)
+                    if (other.GetComponent<BasicEnemy>().life - damage <= 0)
                     {
                         sound.playaudio("Strong Sword Impact");
 

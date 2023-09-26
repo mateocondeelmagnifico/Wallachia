@@ -233,8 +233,8 @@ public class BasicEnemy : MonoBehaviour
         if (life <= 0)
         {
             othersript.navegador.velocity = new Vector3(0, 0, 0);
-            sonido.enabled = false;
             GetComponent<AudioSource>().enabled = false;
+            sonido.enabled = false;
             if (enemytype == "Werewolf")
             {
                 GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;

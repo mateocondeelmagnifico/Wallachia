@@ -31,7 +31,6 @@ public class Sonido : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPlayer)
@@ -54,10 +53,5 @@ public class Sonido : MonoBehaviour
                 break;
             }
         }
-    }
-
-    public void debug()
-    {
-        Debug.Log(1);
     }
 }
