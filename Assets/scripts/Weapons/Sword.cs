@@ -84,7 +84,7 @@ public class Sword : MonoBehaviour
                     {
                         //This is in case the sword collides with the damagers in the enemy's hands
                         //In this case you get the value of life from the zombie (father) gameobject of the damager
-                        if (other.GetComponent<Damager>().father.GetComponent<Enemy>().life - damage <= 0)
+                        if (other.GetComponent<Damager>().father.GetComponent<BasicEnemy>().life - damage <= 0)
                         {
                             sound.playaudio("Strong Sword Impact");
 
