@@ -11,7 +11,7 @@ public class WerewolfEnemy : BasicEnemy
         sonido = GetComponent<Sonido>();
         particles = GetComponent<ParticleSystem>();
         idletimer = 4;
-        maxlife = 7;
+        maxlife = 5;
         life = maxlife;
         stunresistance = 5;
         othersript = GetComponent<WerewolfMovement>();
@@ -98,6 +98,7 @@ public class WerewolfEnemy : BasicEnemy
                 animador.SetBool("Hurt", true);
                 othersript.isattacking = false;
             }
+            life -= damage;
 
             othersript.playerdetected = true;
             othersript.angry = true;

@@ -19,6 +19,7 @@ public class TriggerMessage : MonoBehaviour
     public DisplayText texto;
 
     bool isEnabled;
+    bool hasDisplayed;
 
 
     void Update()
@@ -48,7 +49,7 @@ public class TriggerMessage : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag.Equals("Player") && !hasDisplayed)
         {
             if (whatMessage != null)
             {
@@ -61,6 +62,7 @@ public class TriggerMessage : MonoBehaviour
             }
 
             isEnabled = true;
+            hasDisplayed = true;
         }
     }
 }
