@@ -23,6 +23,10 @@ public class movement : MonoBehaviour
     public bool canmove;
     public bool issprinting;
 
+    public int zInput;
+    public int xInput;
+    public int shiftInput;
+
     public float speed;
     public float sprinttimer;
     void Start()
@@ -78,6 +82,7 @@ public class movement : MonoBehaviour
     }
     public void Keycheck()
     {
+        //Input manager manages the key presses
         speed = 5;
         direction = new Vector3(0, 0, 0);
         xdirection = new Vector3(0, 0, 0);
@@ -85,34 +90,33 @@ public class movement : MonoBehaviour
         if (canmove == true)
         {
             //Sprinting
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (shiftInput == 1)
             {
                 issprinting = true;
 
                speed *= 1.15f + sprinttimer;
                Setrunning(true);
             }
-
-            if ((Input.GetKeyUp(KeyCode.LeftShift)))
+            else
             {
                 issprinting = false;
             }
 
-            if (Input.GetKey(KeyCode.W))
+            if (zInput == 1)
             {
                 zdirection = transform.forward;
             }
-            if (Input.GetKey(KeyCode.S))
+            if (zInput == -1)
             {
                 //You go back more slowly to discourage retreating
                 zdirection = -transform.forward;
                 speed /= 2;
             }
-            if (Input.GetKey(KeyCode.D))
+            if (xInput == 1)
             {
                 xdirection = transform.right;
             }
-            if (Input.GetKey(KeyCode.A))
+            if (xInput == -1)
             {
                 xdirection = -transform.right;
             }
