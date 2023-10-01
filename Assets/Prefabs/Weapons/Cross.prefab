@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5870128827698177351}
   - component: {fileID: 5498128053901240575}
   - component: {fileID: 7114593727913135694}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cross Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,3 +437,4 @@ MonoBehaviour:
   crossStrength: 0
   isActive: 0
   myLight: {fileID: 2070370788447769870}
+  crossPosition: {fileID: 123140113924124466}
