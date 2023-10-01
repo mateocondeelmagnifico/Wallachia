@@ -22,7 +22,7 @@ public class InputManagerPlayer : MonoBehaviour
             crossCooldown -= Time.deltaTime;
         }
         MovementInputs();
-        GrenadeAndCrossInputs();
+        CrossInput();
     }
 
     private void MovementInputs()
@@ -59,19 +59,16 @@ public class InputManagerPlayer : MonoBehaviour
             movimiento.shiftInput = -1;
         }
     }
-    private void GrenadeAndCrossInputs()
+    private void CrossInput()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && crossCooldown <= 0)
+        if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
         {
-            if (cruz.isActive)
-            {
-                cruz.Deactivate();
-            }
-            else
-            {
-                cruz.Activate();
-            }
+            cruz.Activate();
             crossCooldown = 1;
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            cruz.Deactivate();
         }
     }
 }

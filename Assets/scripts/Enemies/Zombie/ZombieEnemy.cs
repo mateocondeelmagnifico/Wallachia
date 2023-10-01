@@ -94,7 +94,9 @@ public class ZombieEnemy : BasicEnemy
     }
     public override void takedamage(float damage, string hitype)
     {
+    
         sonido.playaudio("Hurt");
+
         if (life > 0)
         {
             SetHitmarker(damage);
@@ -108,7 +110,7 @@ public class ZombieEnemy : BasicEnemy
                 life -= damage;
             }
 
-           othersript.isattacking = false;
+            othersript.isattacking = false;
            
             othersript.playerdetected = true;
 
@@ -170,9 +172,9 @@ public class ZombieEnemy : BasicEnemy
             }
             if (hitype == "Weakness" && vulnerableTimer <= 0)
             {
-                stunamount = 4;
+                stunamount = 3;
                 othersript.staggered = stunamount;
-                vulnerableTimer = 6;
+                vulnerableTimer = 3;
                 vulnerable = true;
 
                 animador.SetBool("Hurt", true);
