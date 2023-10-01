@@ -35,11 +35,6 @@ public class WerewolfEnemy : BasicEnemy
         }
         #endregion
 
-        //The more an enemy gets hit, the more stunresistance he builds up
-        if (stunresistance > 0)
-        {
-            stunresistance -= Time.deltaTime * 0.25f;
-        }
 
         checkdead();
 
@@ -90,9 +85,8 @@ public class WerewolfEnemy : BasicEnemy
         {
             SetHitmarker(damage);
 
-            stunresistance++;
 
-            if (stunresistance < 3 && hitype == "Heavy")
+            if (hitype == "Heavy")
             {
                 animador.SetBool("Hurt", true);
                 othersript.isattacking = false;
@@ -119,7 +113,6 @@ public class WerewolfEnemy : BasicEnemy
             {
                 transforming += 0.2f;
                 decidestun("Heavy");
-                stunresistance += 2;
             }
         }
     }
@@ -132,9 +125,8 @@ public class WerewolfEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Heavy")
             {
-                if (stunresistance < 3)
-                {
-                    stunamount = 3 - stunresistance / 2;
+
+                    stunamount = 1.5f;
                     if (stunamount > 0.4f)
                     {
                         othersript.staggered = stunamount;
@@ -142,7 +134,7 @@ public class WerewolfEnemy : BasicEnemy
                     vulnerable = true;
                 }
                 othersript.attackposition = transform.position;
-            }
+            
         }
     }
 }

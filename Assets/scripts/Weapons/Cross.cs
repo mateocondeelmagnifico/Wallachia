@@ -11,14 +11,22 @@ public class Cross : MonoBehaviour
 
     public Light myLight;
 
-    public Transform crossPosition;
+    public GameObject cross;
 
+    private void Start()
+    {
+        Deactivate();
+    }
     private void Update()
     {
-        if (isActive && crossStrength > 0)
+        if (isActive)
         {
             crossStrength -= Time.deltaTime;
             myLight.intensity = crossStrength * 12;
+            if (crossStrength <= 0 )
+            {
+                Deactivate();
+            }
         }
 
         if (!isActive)
@@ -40,22 +48,32 @@ public class Cross : MonoBehaviour
             
             #region Define Raycast Values
             Vector3 enemyPosition = new Vector3(other.transform.position.x, other.transform.position.y + 1, other.transform.position.z);
-            Vector3 direction = enemyPosition - crossPosition.position;
-            Ray rayo = new Ray(crossPosition.position, direction);
+            Vector3 direction = enemyPosition - cross.transform.position;
+            Ray rayo = new Ray(cross.transform.position, direction);
             RaycastHit hit;
             #endregion
 
-            Debug.DrawRay(crossPosition.position, direction);
+            Debug.DrawRay(cross.transform.position, direction);
             
 
             if(Physics.Raycast(rayo, out hit, 2000, 1<< 8 | 1 << 11 | 1<< 0))
             {
                 if (hit.collider.gameObject.tag.Equals("Enemy"))
                 {
-                    //Acess Enemy script
-                    Debug.Log("Enemy hit");
+                    hit.collider.gameObject.GetComponent<BasicEnemy>().statuseffect("Holy");
                 }
             }
         }
+    }
+
+    public void Activate()
+    {
+        cross.GetComponent<MeshRenderer>().enabled = true;
+        isActive = true;
+    }
+    public void Deactivate()
+    {
+        cross.GetComponent<MeshRenderer>().enabled = false;
+        isActive = false;
     }
 }

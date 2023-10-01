@@ -5,15 +5,24 @@ using UnityEngine;
 public class InputManagerPlayer : MonoBehaviour
 {
     movement movimiento;
+    public GameObject crossObj;
+    Cross cruz;
 
+    private float crossCooldown;
     private void Start()
     {
         movimiento = GetComponent<movement>();
+        cruz = crossObj.GetComponentInChildren<Cross>();
     }
 
     void Update()
     {
+        if (crossCooldown >  0)
+        {
+            crossCooldown -= Time.deltaTime;
+        }
         MovementInputs();
+        GrenadeAndCrossInputs();
     }
 
     private void MovementInputs()
@@ -48,6 +57,21 @@ public class InputManagerPlayer : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             movimiento.shiftInput = -1;
+        }
+    }
+    private void GrenadeAndCrossInputs()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && crossCooldown <= 0)
+        {
+            if (cruz.isActive)
+            {
+                cruz.Deactivate();
+            }
+            else
+            {
+                cruz.Activate();
+            }
+            crossCooldown = 1;
         }
     }
 }

@@ -52,11 +52,20 @@ public class ZombieEnemy : BasicEnemy
             }
         }
 
-        //The more an enemy gets hit, the more stunresistance he builds up
-        if (stunresistance > 0)
+        if (vulnerableTimer > 0)
         {
-            stunresistance -= Time.deltaTime * 0.25f;
+            vulnerableTimer -= Time.deltaTime;
         }
+        else
+        {
+            vulnerable = false;
+        }
+        if(damageTimer > 0)
+        {
+            damageTimer -= Time.deltaTime;
+        }
+
+        //The more an enemy gets hit, the more stunresistance he builds up
 
         checkdead();
 
@@ -98,9 +107,7 @@ public class ZombieEnemy : BasicEnemy
             {
                 life -= damage;
             }
-            stunresistance++;
 
-           animador.SetBool("Hurt", true);
            othersript.isattacking = false;
            
             othersript.playerdetected = true;
@@ -127,6 +134,12 @@ public class ZombieEnemy : BasicEnemy
                 transforming += 0.2f;
             }
         }
+
+        if (type == "Holy" && damageTimer <= 0)
+        {
+            takedamage(0.1f, "Weakness");
+            damageTimer = 0.2f;
+        }
     }
 
     public override void decidestun(string hitype)
@@ -137,19 +150,32 @@ public class ZombieEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Light")
             {
-                stunamount = 2 - stunresistance;
+                stunamount = 0.5f;
                 if (stunamount > 0.4f)
                 {
                    othersript.staggered = stunamount;
                    othersript.attackposition = transform.position;
                 }
+
+                animador.SetBool("Hurt", true);
             }
             if (hitype == "Heavy")
             {
-                stunamount = 3 - stunresistance / 2;
+                stunamount = 1.3f;
                 othersript.staggered = stunamount;
                 
                 othersript.attackposition = transform.position;
+
+                animador.SetBool("Hurt", true);
+            }
+            if (hitype == "Weakness" && vulnerableTimer <= 0)
+            {
+                stunamount = 4;
+                othersript.staggered = stunamount;
+                vulnerableTimer = 6;
+                vulnerable = true;
+
+                animador.SetBool("Hurt", true);
             }
         }
     }

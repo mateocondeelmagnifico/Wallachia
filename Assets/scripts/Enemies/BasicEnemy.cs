@@ -21,10 +21,11 @@ public class BasicEnemy : MonoBehaviour
     public float life;
     public float maxlife;
     public float transforming;
-    public float stunresistance;
     public float regeneration;
     public float hitmarkertimer;
     public float idletimer;
+    public float damageTimer;
+    public float vulnerableTimer;
     float timer;
 
     public bool vulnerable;
@@ -59,11 +60,6 @@ public class BasicEnemy : MonoBehaviour
         #endregion
 
         //The more an enemy gets hit, the more stunresistance he builds up
-        if (stunresistance > 0)
-        {
-            stunresistance -= Time.deltaTime * 0.25f;
-        }
-
         checkdead();
 
         #region applyTransforming
@@ -134,9 +130,8 @@ public class BasicEnemy : MonoBehaviour
             {
                 life -= damage;
             }
-            stunresistance++;
 
-            if (enemytype == "Werewolf" && stunresistance > 3 && hitype == "Light")
+            if (enemytype == "Werewolf" && hitype == "Light")
             {
 
             }
@@ -153,7 +148,7 @@ public class BasicEnemy : MonoBehaviour
     }
     public virtual void statuseffect(string type)
     {
-        //Silver, Iron, Garlic and consecrated
+        //Silver, Iron, Garlic and Holy
 
         //Currently iron does nothing
 
@@ -181,8 +176,6 @@ public class BasicEnemy : MonoBehaviour
                 if (enemytype == "Werewolf")
                 {
                     decidestun("Heavy");
-                    stunresistance++;
-                    stunresistance++;
                 }
             }
         }
@@ -197,7 +190,7 @@ public class BasicEnemy : MonoBehaviour
             {
                 if (enemytype == "Zombie")
                 {
-                    stunamount = 2 - stunresistance;
+                    stunamount = 2;
                     if (stunamount > 0.4f)
                     {
                         othersript.staggered = stunamount;
@@ -209,20 +202,19 @@ public class BasicEnemy : MonoBehaviour
             {
                 if (enemytype == "Zombie")
                 {
-                    stunamount = 3 - stunresistance / 2;
+                    stunamount = 3;
                     othersript.staggered = stunamount;
                 }
                 if (enemytype == "Werewolf")
                 {
-                    if (stunresistance < 3)
-                    {
-                        stunamount = 3 - stunresistance / 2;
+
+                        stunamount = 3;
                         if (stunamount > 0.4f)
                         {
                             othersript.staggered = stunamount;
                         }
                         vulnerable = true;
-                    }
+                    
                 }
                 othersript.attackposition = transform.position;
             }
