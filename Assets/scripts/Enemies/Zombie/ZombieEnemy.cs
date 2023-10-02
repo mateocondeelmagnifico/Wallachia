@@ -92,10 +92,13 @@ public class ZombieEnemy : BasicEnemy
         }
         #endregion
     }
-    public override void takedamage(float damage, string hitype)
+    public override void takedamage(float damage, string hitype, bool playSound)
     {
     
-        sonido.playaudio("Hurt");
+        if(playSound)
+        {
+            sonido.playaudio("Hurt");
+        }
 
         if (life > 0)
         {
@@ -139,7 +142,7 @@ public class ZombieEnemy : BasicEnemy
 
         if (type == "Holy" && damageTimer <= 0)
         {
-            takedamage(0.1f, "Weakness");
+            takedamage(0.1f, "Weakness", false);
             damageTimer = 0.2f;
         }
     }
@@ -177,6 +180,7 @@ public class ZombieEnemy : BasicEnemy
                 vulnerableTimer = 3;
                 vulnerable = true;
 
+                sonido.playaudio("Hurt");
                 animador.SetBool("Hurt", true);
             }
         }

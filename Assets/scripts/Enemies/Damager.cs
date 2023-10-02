@@ -24,7 +24,7 @@ public class Damager : MonoBehaviour
     public void dealdamage(float damage, string type, string status)
     {
         //This is for when a bullet collides with the enemy in the arm, it still counts
-        myEnemy.takedamage(damage, type);
+        myEnemy.takedamage(damage, type, true);
         myEnemy.statuseffect(status);
     }
 }

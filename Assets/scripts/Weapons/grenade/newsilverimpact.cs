@@ -37,7 +37,7 @@ public class newsilverimpact : MonoBehaviour
     {
         if(other.gameObject.tag.Equals("Enemy") && timer > 0)
         {
-            other.GetComponent<BasicEnemy>().takedamage(0.2f, "Light");
+            other.GetComponent<BasicEnemy>().takedamage(0.2f, "Light", true);
         }
     }
     private void OnTriggerStay(Collider other)

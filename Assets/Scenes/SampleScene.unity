@@ -20687,6 +20687,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4291828035953998960, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
+      propertyPath: sounds.Array.data[4].source
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5011030733925581186, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
       propertyPath: groupmanager
       value: 
@@ -42409,6 +42413,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4291828035953998960, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
+      propertyPath: sounds.Array.data[4].source
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5011030733925581186, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
       propertyPath: groupmanager
       value: 
@@ -50420,6 +50428,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 749272778862549000, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291828035953998960, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
+      propertyPath: sounds.Array.data[4].source
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5011030733925581186, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}

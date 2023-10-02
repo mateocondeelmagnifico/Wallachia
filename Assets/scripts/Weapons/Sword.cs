@@ -63,14 +63,14 @@ public class Sword : MonoBehaviour
                     //sword deals more damage based on missing health
                     damage = 0.5f + (enemigo.maxlife - enemigo.life) / 4;
               
-                    enemigo.takedamage(damage, "Light");
+                    enemigo.takedamage(damage, "Light", true);
                     enemigo.statuseffect("Iron");
                     bloodVFX.GetComponent<ParticleSystem>().Emit(100);
                 }
                 else
                 {
                     damage = axedamage;
-                    enemigo.takedamage(axedamage, "Heavy");
+                    enemigo.takedamage(axedamage, "Heavy", true);
                     enemigo.statuseffect("Iron");
                     bloodVFX.GetComponent<ParticleSystem>().Emit(100);
                 }

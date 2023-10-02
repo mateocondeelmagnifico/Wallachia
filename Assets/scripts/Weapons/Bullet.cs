@@ -98,11 +98,11 @@ public class Bullet : MonoBehaviour
             myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
             if (isriflebullet == true)
             {
-                enemigo.takedamage(damage * 3.5f, "Heavy");
+                enemigo.takedamage(damage * 3.5f, "Heavy", true);
             }
             else
             {
-                enemigo.takedamage(damage, "Light");
+                enemigo.takedamage(damage, "Light", true);
             }
 
             if (issilver == true)

@@ -21,7 +21,7 @@ public class Life : MonoBehaviour
     GameObject gameovermenu;
     GameObject hurtscreen;
     GameObject reloadingtext;
-    GameObject camera;
+    GameObject camara;
     GameObject reticle;
     Sonido soundManager;
     MenuManager menuManager;
@@ -37,7 +37,7 @@ public class Life : MonoBehaviour
         pistol = getter.gun1;
         gameovermenu = getter.gameovermenu;
         reloadingtext = getter.reloadingtext;
-        camera = getter.cam;
+        camara = getter.cam;
         reticle = getter.reticle;
         menuManager = getter.MenuManager.GetComponent<MenuManager>();
 
@@ -78,9 +78,9 @@ public class Life : MonoBehaviour
 
             #region Disable things
             getter.Pausemanager.SetActive(false);
-            camera.GetComponent<Throwinggrenade>().enabled = false;
+            camara.GetComponent<Throwinggrenade>().enabled = false;
             reticle.SetActive(false);
-            camera.GetComponent<Camara>().enabled = false;
+            camara.GetComponent<Camara>().enabled = false;
             reloadingtext.SetActive(false);
             getter.textDisplay.SetActive(false);
             GetComponent<movement>().enabled = false;

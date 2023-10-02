@@ -26,7 +26,6 @@ public class BasicEnemy : MonoBehaviour
     public float idletimer;
     public float damageTimer;
     public float vulnerableTimer;
-    float timer;
 
     public bool vulnerable;
     public bool invulnerable;
@@ -97,7 +96,7 @@ public class BasicEnemy : MonoBehaviour
 
         #region idilingSounds
         //this is for idling sounds
-        if (idletimer > 0)
+        if (idletimer > 0 && othersript.staggered <= 0)
         {
             idletimer -= Time.deltaTime;
         }
@@ -115,7 +114,7 @@ public class BasicEnemy : MonoBehaviour
         sonido.playaudio("Idle " + Whichsound);
         idletimer = Random.Range(3, 8);
     }
-    public virtual void takedamage(float damage, string hitype)
+    public virtual void takedamage(float damage, string hitype, bool playsound)
     {
         sonido.playaudio("Hurt");
         if (life > 0)
@@ -225,7 +224,6 @@ public class BasicEnemy : MonoBehaviour
         if (life <= 0)
         {
             othersript.navegador.velocity = new Vector3(0, 0, 0);
-            GetComponent<AudioSource>().enabled = false;
             sonido.enabled = false;
             if (enemytype == "Werewolf")
             {

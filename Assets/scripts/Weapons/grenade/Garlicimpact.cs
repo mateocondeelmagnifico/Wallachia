@@ -32,7 +32,7 @@ public class Garlicimpact : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy") && timer > 0)
         {
-            other.GetComponent<BasicEnemy>().takedamage(1.5f, "Light");
+            other.GetComponent<BasicEnemy>().takedamage(1.5f, "Light", true);
             other.gameObject.GetComponent<BasicEnemy>().statuseffect("Garlic");
         }
     }

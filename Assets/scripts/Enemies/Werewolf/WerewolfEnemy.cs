@@ -78,7 +78,7 @@ public class WerewolfEnemy : BasicEnemy
         }
         #endregion
     }
-    public override void takedamage(float damage, string hitype)
+    public override void takedamage(float damage, string hitype, bool playSound)
     {
         sonido.playaudio("Hurt");
         if (life > 0)
