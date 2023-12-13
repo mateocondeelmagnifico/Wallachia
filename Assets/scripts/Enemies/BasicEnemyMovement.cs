@@ -18,7 +18,7 @@ public class BasicEnemyMovement : MonoBehaviour
     public GameObject player;
 
     public bool playerdetected;
-    public bool isattacking;
+    public bool isattacking, attacking;
     public bool angry;
     public bool candamage;
     public bool iswerewolf;

@@ -7,7 +7,6 @@ public class WerewolfMovement : BasicEnemyMovement
     public GameObject myBall;
 
     public bool circleInPlace;
-    public bool attacking;
     bool encircling;
 
     float attackTimer;

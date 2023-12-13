@@ -35,7 +35,6 @@ public class WerewolfEnemy : BasicEnemy
         }
         #endregion
 
-
         checkdead();
 
         #region applyTransforming
@@ -81,10 +80,10 @@ public class WerewolfEnemy : BasicEnemy
     public override void takedamage(float damage, string hitype, bool playSound)
     {
         sonido.playaudio("Hurt");
+        
         if (life > 0)
         {
             SetHitmarker(damage);
-
 
             if (hitype == "Heavy")
             {
@@ -95,6 +94,7 @@ public class WerewolfEnemy : BasicEnemy
 
             othersript.playerdetected = true;
             othersript.angry = true;
+            othersript.attacking = true;
 
             statuseffect(hitype);
             decidestun(hitype);
@@ -125,14 +125,18 @@ public class WerewolfEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Heavy")
             {
-
                     stunamount = 1.5f;
                     if (stunamount > 0.4f)
                     {
                         othersript.staggered = stunamount;
                     }
                     vulnerable = true;
+
+                if (!animador.GetBool("Hurt"))
+                {
+                    animador.SetBool("Hurt", true);
                 }
+            }
                 othersript.attackposition = transform.position;
             
         }

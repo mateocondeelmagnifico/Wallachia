@@ -229,6 +229,7 @@ public class BasicEnemy : MonoBehaviour
             {
                 GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;
                 GetComponent<Werewolf>().myball.SetActive(false);
+                transform.parent.GetComponent<Groupmanager>().isattacking = false;
             }
             damager[0].SetActive(false);
             damager[1].SetActive(false);
