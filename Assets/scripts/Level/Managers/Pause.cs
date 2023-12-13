@@ -30,6 +30,7 @@ public class Pause : MonoBehaviour
         exceptions[5] = getter.reloadingtext;
         exceptions[6] = getter.Toplefticons;
         exceptions[7] = getter.textDisplay;
+        exceptions[8] = getter.reticle;
 
         menuManager = getter.MenuManager.GetComponent<MenuManager>();
         sound = exceptions[4].GetComponent<Sonido>();
@@ -92,6 +93,7 @@ public class Pause : MonoBehaviour
         exceptions[2].GetComponent<weapons>().checkUnpause();
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = false;
         exceptions[7].GetComponent<Text>().enabled = true;
+        exceptions[8].GetComponent<Image>().enabled = true;
         sound.sources[2].volume = 0.4f;
         #endregion
 
@@ -122,6 +124,7 @@ public class Pause : MonoBehaviour
         exceptions[2].GetComponent<Attack>().ispaused = true;
         exceptions[3].GetComponent<Throwinggrenade>().ispaused = true;
         exceptions[7].GetComponent<Text>().enabled = false;
+        exceptions[8].GetComponent<Image>().enabled = false;
         sound.sources[2].volume = 0.15f;
         #endregion
 
