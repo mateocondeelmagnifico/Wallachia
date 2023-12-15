@@ -61,7 +61,7 @@ public class Sword : MonoBehaviour
                 if (isaxe == false)
                 {
                     //sword deals more damage based on missing health
-                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 4;
+                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 2.5f;
               
                     enemigo.takedamage(damage, "Light", true);
                     enemigo.statuseffect("Iron");

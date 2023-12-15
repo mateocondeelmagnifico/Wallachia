@@ -6,8 +6,6 @@ using static UnityEngine.ParticleSystem;
 
 public class ZombieEnemy : BasicEnemy
 {
-    public Image invincibleOverlay;
-
 
     public override void Start()
     {
@@ -42,14 +40,6 @@ public class ZombieEnemy : BasicEnemy
         if (life <= maxlife / 4)
         {
             invulnerable = true;
-            if (life > 0)
-            {
-                invincibleOverlay.enabled = true;
-            }
-            else
-            {
-                invincibleOverlay.enabled = false;
-            }
         }
 
         if (vulnerableTimer > 0)
