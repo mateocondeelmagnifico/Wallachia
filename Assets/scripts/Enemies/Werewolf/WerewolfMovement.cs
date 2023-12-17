@@ -7,6 +7,7 @@ public class WerewolfMovement : BasicEnemyMovement
     public GameObject myBall;
 
     public bool circleInPlace;
+    private bool doOnce;
     bool encircling;
 
     float attackTimer;
@@ -36,6 +37,8 @@ public class WerewolfMovement : BasicEnemyMovement
                 groupManager.isattacking = true;
             }
         }
+
+        Attackcheck();
     }
     public void encircle()
     {
@@ -82,16 +85,24 @@ public class WerewolfMovement : BasicEnemyMovement
     }
     public void Attackcheck()
     {
-        if (groupManager.isattacking == true)
+
+        if (!groupManager.isattacking)
         {
-            if (attacking == false)
+            if (attacking == false && !doOnce)
             {
                 attackTimer = Random.Range(6, 10);
+                doOnce = true;
             }
         }
+        else
+        {
+            doOnce = false;
+        }
+
         if (angry == true)
         {
             attacking = true;
+            groupManager.isattacking = true;
         }
 
         if (attacking == true)

@@ -99,6 +99,11 @@ public class WerewolfEnemy : BasicEnemy
             statuseffect(hitype);
             decidestun(hitype);
         }
+
+        if (life <= 0 && othersript.attacking)
+        {
+            othersript.groupManager.isattacking = false;
+        }
     }
 
     public override void statuseffect(string type)

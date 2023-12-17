@@ -8,14 +8,17 @@ public class SpawnValues : MonoBehaviour
     weapons armas;
     public RespawnManager manager;
 
-    bool haswaited;
     void Awake()
     {
         armas = GetComponent<weapons>();
         if (FindObjectOfType<RespawnManager>() != null) 
         {
             manager = FindObjectOfType<RespawnManager>();
-            player.transform.position = manager.spawnposition;
+
+            if(manager.spawnposition != Vector3.zero)
+            {
+                player.transform.position = manager.spawnposition;
+            }
 
             armas.hasaxe = manager.hasAxe;
             armas.hasrifle = manager.hasRifle;
@@ -30,11 +33,5 @@ public class SpawnValues : MonoBehaviour
             armas.equippoint();
             
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

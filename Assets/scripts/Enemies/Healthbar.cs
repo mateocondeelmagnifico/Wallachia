@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Healthbar : MonoBehaviour
 {
-    public GameObject parent;
+    public GameObject parent, X;
     public Image imagen;
-    private GameObject player;
+    private Transform aimPoint;
 
     private BasicEnemy myenemy;
 
@@ -25,7 +25,7 @@ public class Healthbar : MonoBehaviour
     {
         if(!doOnce)
         {
-            player = parent.GetComponent<BasicEnemyMovement>().player;
+            aimPoint = parent.GetComponent<BasicEnemyMovement>().player.transform.GetChild(2);
             doOnce = true;
         }
 
@@ -34,14 +34,16 @@ public class Healthbar : MonoBehaviour
         imagen.color = new Color(1, colorGradient, colorGradient, 1);
 
         //Look at player
-        transform.LookAt(player.transform.position);
+        transform.LookAt(aimPoint.position);
 
         if(myenemy.life <= 0)
         {
+            X.SetActive(true);
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
                 imagen.enabled = false;
+                Destroy(X);
                 Destroy(this);
             }
         }
