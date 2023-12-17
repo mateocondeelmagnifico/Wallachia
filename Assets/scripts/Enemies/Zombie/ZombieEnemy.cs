@@ -98,9 +98,14 @@ public class ZombieEnemy : BasicEnemy
             {
                 invulnerable = false;
             }
+
             if (invulnerable == false)
             {
                 life -= damage;
+            }
+            else
+            {
+                life -= damage / 2;
             }
 
             othersript.isattacking = false;
