@@ -18,14 +18,7 @@ public class BasicEnemy : MonoBehaviour
 
     public string enemytype;
 
-    public float life;
-    public float maxlife;
-    public float transforming;
-    public float regeneration;
-    public float hitmarkertimer;
-    public float idletimer;
-    public float damageTimer;
-    public float vulnerableTimer;
+    public float life, maxlife, transforming, hitmarkertimer, idletimer, damageTimer, vulnerableTimer, stunResistance, stunTimer,regeneration;
 
     public bool vulnerable;
     public bool invulnerable;

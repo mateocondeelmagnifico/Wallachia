@@ -23,6 +23,7 @@ public class weapons : MonoBehaviour
     GameObject soundmanager;
     public Animator animador;
     public Sprite[] bullets;
+    public Image[] highlights;
 
     Sonido sound;
     RespawnManager resManager;
@@ -240,6 +241,34 @@ public class weapons : MonoBehaviour
                 ChangeWeapon(weapon);
                 currentEquip[i] = tempEquip[i];
             }
+        }
+    }
+
+    public void SetHighlight(string type)
+    {
+        //Esto lo llaman los botones de la weapon wheel
+
+        switch(type)
+        {
+            case "Sword":
+                highlights[2].enabled = true;
+                highlights[3].enabled = false;
+                break;
+
+            case "Axe":
+                highlights[2].enabled = false;
+                highlights[3].enabled = true;
+                break;
+
+            case "Pistol":
+                highlights[0].enabled = true;
+                highlights[1].enabled = false;
+                break;
+
+            case "Rifle":
+                highlights[0].enabled = false;
+                highlights[1].enabled = true;
+                break;
         }
     }
 }

@@ -42,6 +42,7 @@ public class ZombieEnemy : BasicEnemy
             invulnerable = true;
         }
 
+        #region Timers
         if (vulnerableTimer > 0)
         {
             vulnerableTimer -= Time.deltaTime;
@@ -54,6 +55,16 @@ public class ZombieEnemy : BasicEnemy
         {
             damageTimer -= Time.deltaTime;
         }
+
+        if(stunTimer <= 0)
+        {
+            stunResistance = 0;
+        }
+        else
+        {
+            stunTimer -= Time.deltaTime;
+        }
+        #endregion
 
         //The more an enemy gets hit, the more stunresistance he builds up
 
@@ -114,6 +125,7 @@ public class ZombieEnemy : BasicEnemy
 
             statuseffect(hitype);
             decidestun(hitype);
+
         }
     }
 
@@ -150,7 +162,7 @@ public class ZombieEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Light")
             {
-                stunamount = 0.5f;
+                stunamount = 0.5f - stunResistance;
                 if (stunamount > 0.4f)
                 {
                    othersript.staggered = stunamount;
@@ -161,7 +173,7 @@ public class ZombieEnemy : BasicEnemy
             }
             if (hitype == "Heavy")
             {
-                stunamount = 1.3f;
+                stunamount = 1.3f - stunResistance/2;
                 othersript.staggered = stunamount;
                 
                 othersript.attackposition = transform.position;
@@ -179,5 +191,7 @@ public class ZombieEnemy : BasicEnemy
                 animador.SetBool("Hurt", true);
             }
         }
+        stunResistance += 0.15f;
+        stunTimer = 3;
     }
 }

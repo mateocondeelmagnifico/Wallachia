@@ -11,7 +11,7 @@ public class WerewolfEnemy : BasicEnemy
         sonido = GetComponent<Sonido>();
         particles = GetComponent<ParticleSystem>();
         idletimer = 4;
-        maxlife = 5;
+        maxlife = 10;
         life = maxlife;
         othersript = GetComponent<WerewolfMovement>();
     }
@@ -37,6 +37,15 @@ public class WerewolfEnemy : BasicEnemy
 
         checkdead();
 
+        if(stunTimer <= 0)
+        {
+            stunResistance = 0;
+        }
+        else
+        {
+            stunTimer -= Time.deltaTime;
+        }
+
         #region applyTransforming
         //this applies the transforming status effect, it affects zombies and werewolves differently
 
@@ -51,7 +60,7 @@ public class WerewolfEnemy : BasicEnemy
         }
         else
         {
-            regeneration = 0.7f;
+            regeneration = 1f;
         }
         if (transforming < 0.4 && life < maxlife && life > 0)
         {
@@ -130,7 +139,7 @@ public class WerewolfEnemy : BasicEnemy
             //Decide stun duration based on if its a heavy or light attack
             if (hitype == "Heavy")
             {
-                    stunamount = 1.5f;
+                    stunamount = 1.5f - stunResistance;
                     if (stunamount > 0.4f)
                     {
                         othersript.staggered = stunamount;
@@ -145,5 +154,11 @@ public class WerewolfEnemy : BasicEnemy
                 othersript.attackposition = transform.position;
             
         }
+        stunResistance += 0.20f;
+        if (stunResistance > 1)
+        {
+            stunResistance = 1; 
+        }
+        stunTimer = 4;
     }
 }

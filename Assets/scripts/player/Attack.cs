@@ -51,8 +51,6 @@ public class Attack : MonoBehaviour
             sound.playaudio("Sword Swing");
             animador.SetTrigger("Attack");
             attacking = true;
-            GetComponent<movement>().canmove = false;
-            
         }
 
         //The axe can be charged, so it needs different code than the sword
@@ -80,18 +78,10 @@ public class Attack : MonoBehaviour
             animador.SetBool("Axestill", false);
             animador.SetTrigger("Loweraxe");
             attacking = true;
-            GetComponent<movement>().canmove = false;
             axe.GetComponent<Sword>().axedamage += chargetimer * 2;
         }
 
         //esto mueve al jugador p'alante
-        if (candamage == true)
-        {
-            if (tooclose == false)
-            {
-                controlador.Move(transform.forward * 10 * Time.deltaTime);
-            }
-        }
         if (attacking == true || axeraised == true)
         {
             GetComponent<weapons>().isattacking = true;
@@ -105,7 +95,7 @@ public class Attack : MonoBehaviour
     {
         axeraised = false;
         attacking = false;
-        GetComponent<movement>().canmove = true;
+        //GetComponent<movement>().canmove = true;
         chargetimer = 0;
         axe.GetComponent<Sword>().axedamage = 3;
     }

@@ -18,7 +18,7 @@ public class grenade : MonoBehaviour
     {
         //this is so that it doen't drop to your feet when spawned
         cuerporigido = GetComponent<Rigidbody>();
-        cuerporigido.AddForce(transform.forward * 450);
+        cuerporigido.AddForce(transform.forward * 750);
         cuerporigido.AddForce(transform.up * 150);
     }
 

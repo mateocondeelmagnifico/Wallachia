@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
     private bool doOnce;
     private void Start()
     {
-        timer = 4;
+        timer = 12;
     }
 
     private void Update()
