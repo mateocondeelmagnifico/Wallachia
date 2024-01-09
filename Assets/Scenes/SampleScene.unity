@@ -19834,7 +19834,7 @@ PrefabInstance:
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: mypage
       value: 
-      objectReference: {fileID: 21300000, guid: d1592afdae4689d40ac175b608d4d9ca, type: 3}
+      objectReference: {fileID: 21300000, guid: c2562e205bf36c340b82023ba471de0c, type: 3}
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: pickUp
       value: 
