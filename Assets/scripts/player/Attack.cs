@@ -27,7 +27,7 @@ public class Attack : MonoBehaviour
     public bool hasmelee;
 
     public int currentweapon;
-    float chargetimer;
+    private float chargetimer, slowMoTimer;
     void Start()
     {
         chargeimage = getter.axecharge;
@@ -45,6 +45,7 @@ public class Attack : MonoBehaviour
         chargeimage.GetComponent<Image>().fillAmount = chargetimer / 1.2f;
         currentweapon = GetComponent<weapons>().currentEquip[0];
 
+        #region Attack
         if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false && hasmelee)
         {
             sword.GetComponent<Sword>().hasPlayedSound = false;
@@ -80,6 +81,7 @@ public class Attack : MonoBehaviour
             attacking = true;
             axe.GetComponent<Sword>().axedamage += chargetimer * 2;
         }
+        #endregion
 
         //esto mueve al jugador p'alante
         if (attacking == true || axeraised == true)
@@ -90,6 +92,17 @@ public class Attack : MonoBehaviour
         {
             GetComponent<weapons>().isattacking = false;
         }
+
+        #region manage Slow Mo
+        if (slowMoTimer > 0)
+        {
+            slowMoTimer -= Time.deltaTime;
+        }
+        else if(Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
+        #endregion
     }
     public void Attackend()
     {
@@ -109,4 +122,9 @@ public class Attack : MonoBehaviour
         candamage = true;
     }
 
+    public void ActivateSlowMo(float howIntense, float howLong)
+    {
+        Time.timeScale = howIntense;
+        slowMoTimer = howLong;
+    }
 }

@@ -61,7 +61,7 @@ public class Sword : MonoBehaviour
                 if (isaxe == false)
                 {
                     //sword deals more damage based on missing health
-                    damage = 0.5f + (enemigo.maxlife - enemigo.life) / 2.5f;
+                    damage = 1 + (enemigo.maxlife - enemigo.life) / 1.5f;
               
                     enemigo.takedamage(damage, "Light", true);
                     enemigo.statuseffect("Iron");
@@ -72,9 +72,11 @@ public class Sword : MonoBehaviour
                     damage = axedamage;
                     enemigo.takedamage(axedamage, "Heavy", true);
                     enemigo.statuseffect("Iron");
-                    bloodVFX.GetComponent<ParticleSystem>().Emit(100);
+                    bloodVFX.GetComponent<ParticleSystem>().Emit(10000);
                 }
                 #endregion
+
+                if (enemigo.life <= 0) ataque.ActivateSlowMo(0.2f, 0.08f);
             }
             else
             {
@@ -84,7 +86,9 @@ public class Sword : MonoBehaviour
                     {
                         //This is in case the sword collides with the damagers in the enemy's hands
                         //In this case you get the value of life from the zombie (father) gameobject of the damager
-                        if (other.GetComponent<Damager>().father.GetComponent<BasicEnemy>().life - damage <= 0)
+
+                        BasicEnemy enemigo = other.GetComponent<Damager>().father.GetComponent<BasicEnemy>();
+                        if (enemigo.life - damage <= 0)
                         {
                             sound.playaudio("Strong Sword Impact");
 
@@ -94,6 +98,7 @@ public class Sword : MonoBehaviour
                             sound.playaudio("Sword Impact");
                         }
                         hasPlayedSound = true;
+                        if(enemigo.life <= 0) ataque.ActivateSlowMo(0.2f, 0.08f);
                     }
                     else
                     {
