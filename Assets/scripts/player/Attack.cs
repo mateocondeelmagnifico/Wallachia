@@ -18,13 +18,7 @@ public class Attack : MonoBehaviour
     GameObject sword;
     GameObject Soundmanager;
 
-    public bool tooclose;
-    public bool canattack;
-    public bool attacking;
-    public bool candamage;
-    public bool axeraised;
-    public bool ispaused;
-    public bool hasmelee;
+    public bool tooclose, hasmelee, ispaused, axeraised, candamage, attacking, canattack;
 
     public int currentweapon;
     private float chargetimer, slowMoTimer;
@@ -98,7 +92,7 @@ public class Attack : MonoBehaviour
         {
             slowMoTimer -= Time.deltaTime;
         }
-        else if(Time.timeScale != 1)
+        else if(Time.timeScale != 1 && !ispaused)
         {
             Time.timeScale = 1;
         }

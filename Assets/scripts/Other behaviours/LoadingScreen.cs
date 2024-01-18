@@ -8,11 +8,14 @@ public class LoadingScreen : MonoBehaviour
 {
     private float timer;
     [SerializeField] private Image progressBar;
+    [SerializeField] private GameObject button;
+
+    private AsyncOperation operation;
 
     private bool doOnce;
     private void Start()
     {
-        timer = 12;
+        timer = 1;
     }
 
     private void Update()
@@ -34,13 +37,23 @@ public class LoadingScreen : MonoBehaviour
 
     IEnumerator LoadSceneAsync(int sceneId)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
+        operation = SceneManager.LoadSceneAsync(sceneId);
+        operation.allowSceneActivation = false;
+
         while (!operation.isDone)
         {
             float progressValue = Mathf.Clamp01(operation.progress / 0.9f);
             progressBar.fillAmount = progressValue;
 
+            if(operation.progress >= 0.8f)
+                button.SetActive(true);
+
             yield return null;
         }
+    }
+
+    public void SwitchScene()
+    {
+        operation.allowSceneActivation = true;
     }
 }
