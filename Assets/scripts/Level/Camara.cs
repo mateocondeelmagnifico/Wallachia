@@ -13,8 +13,8 @@ public class Camara : MonoBehaviour
     Transform defaultaim;
     Transform orientation;
 
-    GameObject aimpoint;
-    GameObject player;
+    GameObject aimpoint, player;
+    [SerializeField] private GameObject secondCam;
 
     float xrotation;
     float yrotation;
@@ -27,6 +27,7 @@ public class Camara : MonoBehaviour
         player = getter.Player;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        secondCam.SetActive(true);
     }
 
     // Update is called once per frame

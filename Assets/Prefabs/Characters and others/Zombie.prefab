@@ -26,17 +26,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4101791842498437}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.94}
+  m_LocalRotation: {x: 0.00000005502022, y: -0.9988749, z: -0.04742332, w: 0.000000059258642}
+  m_LocalPosition: {x: 0, y: 0, z: 0.024285302}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1330818842350337789}
-  m_Father: {fileID: 749272778862549000}
-  m_RootOrder: 2
+  m_Father: {fileID: 4782075707553270543}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.0342, y: 1.49}
+  m_AnchoredPosition: {x: 0, y: 0.27894306}
   m_SizeDelta: {x: 1.6904, y: 0.6089}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6391138545500241129
@@ -140,7 +140,6 @@ Transform:
   m_Children:
   - {fileID: 5059127138103769244}
   - {fileID: 4564616954587198056}
-  - {fileID: 3362597009941831490}
   - {fileID: 4133762175845655463}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -5682,6 +5681,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2107936376445034471}
+  - {fileID: 3362597009941831490}
   m_Father: {fileID: 5059127138103769244}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7964,7 +7964,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7343820765313529474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.48}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5867732847773992046}
@@ -7973,7 +7973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.37}
+  m_AnchoredPosition: {x: 0, y: -0.21}
   m_SizeDelta: {x: 0.15, y: 0.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1197067850097340457
@@ -8759,7 +8759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e37de961c0fe47b439a8a7c1c1b6213d, type: 3}
       propertyPath: m_LocalPosition.x
