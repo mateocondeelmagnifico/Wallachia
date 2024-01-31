@@ -21,8 +21,20 @@ public class Camara : MonoBehaviour
 
     private Animator animator;
 
-    void Start()
+    public static Camara instance { get; set;}
+
+
+    private void Awake()
     {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
         defaultaim = getter.defaultaimpos;
         orientation = getter.playerorientation;
         aimpoint = getter.aimpoint;
@@ -67,11 +79,11 @@ public class Camara : MonoBehaviour
             player.GetComponent<Attack>().tooclose = true;
             aimpoint.transform.position = defaultaim.position;
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            animator.SetTrigger("Shake");
-        }
+    public void ShakeCam()
+    {
+        animator.SetTrigger("Shake");
     }
 }
 

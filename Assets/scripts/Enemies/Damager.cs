@@ -9,6 +9,13 @@ public class Damager : MonoBehaviour
     public GameObject father;
     public BasicEnemy myEnemy;
 
+    private Camara playerCam;
+
+    private void Start()
+    {
+        playerCam = Camara.instance;
+    }
+
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
@@ -16,6 +23,7 @@ public class Damager : MonoBehaviour
         {
             if (father.GetComponent<BasicEnemyMovement>().candamage == true)
             {
+                playerCam.ShakeCam();
                 other.gameObject.GetComponent<Life>().health--;
                 father.GetComponent<BasicEnemyMovement>().candamage = false;
             }

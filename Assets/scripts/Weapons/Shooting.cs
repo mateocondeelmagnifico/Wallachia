@@ -29,6 +29,7 @@ public class Shooting : MonoBehaviour
 
     Rigidbody cuerporigido;
     weapons armas;
+    private Camara myCam;
 
     public bool isrifle;
     public bool missingammo;
@@ -69,6 +70,7 @@ public class Shooting : MonoBehaviour
         Maxammocounter = getter.maxammo;
         Reloadingimage = getter.reloadingtext;
         sound = getter.Soundmanager;
+        myCam = camara.GetComponent<Camara>();
 
       armas = player.GetComponent<weapons>();
       sonido = sound.GetComponent<Sonido>();
@@ -294,6 +296,8 @@ public class Shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && shotcooldown <= 0 && canshoot == true && reloading == false)
         {
+            myCam.ShakeCam();
+
             if (silvermode == false && ammo > 0)
             {
                 instantiatebullet();

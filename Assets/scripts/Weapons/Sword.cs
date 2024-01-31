@@ -12,6 +12,7 @@ public class Sword : MonoBehaviour
     GameObject soundmanager;
 
     Sonido sound;
+    private Camara myCam;
 
     public float axedamage;
     float damage;
@@ -24,6 +25,7 @@ public class Sword : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myCam = Camara.instance;
         player = getter.Player;
         soundmanager = getter.Soundmanager;
         sound = soundmanager.GetComponent<Sonido>();   
@@ -37,7 +39,8 @@ public class Sword : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                
+                myCam.ShakeCam();
+
                 BasicEnemy enemigo = other.GetComponent<BasicEnemy>();
 
                 #region Play Sound
@@ -86,6 +89,8 @@ public class Sword : MonoBehaviour
                     {
                         //This is in case the sword collides with the damagers in the enemy's hands
                         //In this case you get the value of life from the zombie (father) gameobject of the damager
+
+                        myCam.ShakeCam();
 
                         BasicEnemy enemigo = other.GetComponent<Damager>().father.GetComponent<BasicEnemy>();
                         if (enemigo.life - damage <= 0)
