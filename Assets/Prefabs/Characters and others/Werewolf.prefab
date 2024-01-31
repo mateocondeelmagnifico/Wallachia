@@ -259,7 +259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1830397840267761465}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: X
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1012,7 +1012,7 @@ GameObject:
   - component: {fileID: 7899304739444994622}
   - component: {fileID: 6985415633347744435}
   - component: {fileID: 8666134444890039734}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,7 +1027,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3294232014457792563}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.1827841}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1830397840267761465}
@@ -1036,7 +1036,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.125, y: -2.535}
+  m_AnchoredPosition: {x: -0.12, y: 0}
   m_SizeDelta: {x: 0.25, y: 0.25}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &7899304739444994622
@@ -1289,7 +1289,6 @@ Transform:
   m_Children:
   - {fileID: 7816282171410159800}
   - {fileID: 9038648038537116577}
-  - {fileID: 6006252669716853728}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6278,11 +6277,13 @@ MonoBehaviour:
   life: 0
   maxlife: 0
   transforming: 0
-  regeneration: 0
   hitmarkertimer: 0
   idletimer: 0
   damageTimer: 0
   vulnerableTimer: 0
+  stunResistance: 0
+  stunTimer: 0
+  regeneration: 0
   vulnerable: 0
   invulnerable: 0
   isplaying: 0
@@ -6389,7 +6390,7 @@ GameObject:
   - component: {fileID: 425090566932740192}
   - component: {fileID: 5712880798552553771}
   - component: {fileID: 4990292160021631671}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6403,17 +6404,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4298386087921420314}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.04869952, y: 0.00000005918857, z: 0.000000055095317, w: 0.99881345}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  m_LocalScale: {x: 0.6666667, y: 0.6666666, z: 0.6666666}
   m_Children:
   - {fileID: 5139531683636846025}
-  m_Father: {fileID: 3548810445194746677}
-  m_RootOrder: 2
+  m_Father: {fileID: 2745787453890551002}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.557}
+  m_AnchoredPosition: {x: -0, y: 0.15}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &425090566932740192
@@ -6628,6 +6629,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3720460725267098801}
+  - {fileID: 6006252669716853728}
   m_Father: {fileID: 8721013246703913010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6829,7 +6831,7 @@ GameObject:
   - component: {fileID: 4230822314220067466}
   - component: {fileID: 4574077178373964086}
   - component: {fileID: 2142341765079191307}
-  m_Layer: 5
+  m_Layer: 14
   m_Name: Red Stripe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
