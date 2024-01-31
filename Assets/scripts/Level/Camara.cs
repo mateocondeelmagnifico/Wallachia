@@ -19,6 +19,8 @@ public class Camara : MonoBehaviour
     float xrotation;
     float yrotation;
 
+    private Animator animator;
+
     void Start()
     {
         defaultaim = getter.defaultaimpos;
@@ -27,6 +29,7 @@ public class Camara : MonoBehaviour
         player = getter.Player;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,11 @@ public class Camara : MonoBehaviour
             //if the enemy is too close then the gun just aims forward, to avoid bugs
             player.GetComponent<Attack>().tooclose = true;
             aimpoint.transform.position = defaultaim.position;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            animator.SetTrigger("Shake");
         }
     }
 }
