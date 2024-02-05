@@ -39,7 +39,7 @@ public class Sword : MonoBehaviour
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                myCam.ShakeCam();
+                myCam.ShakeCam(2);
 
                 BasicEnemy enemigo = other.GetComponent<BasicEnemy>();
 
@@ -90,7 +90,7 @@ public class Sword : MonoBehaviour
                         //This is in case the sword collides with the damagers in the enemy's hands
                         //In this case you get the value of life from the zombie (father) gameobject of the damager
 
-                        myCam.ShakeCam();
+                        myCam.ShakeCam(2);
 
                         BasicEnemy enemigo = other.GetComponent<Damager>().father.GetComponent<BasicEnemy>();
                         if (enemigo.life - damage <= 0)

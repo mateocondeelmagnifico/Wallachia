@@ -81,9 +81,16 @@ public class Camara : MonoBehaviour
         }
     }
 
-    public void ShakeCam()
+    public void ShakeCam(int intensity)
     {
-        animator.SetTrigger("Shake");
+        animator.SetInteger("Intensity", intensity);
+    }
+
+    public void ResetShake()
+    {
+        //Lamado por anim events
+
+        animator.SetInteger("Intensity", 0);
     }
 }
 

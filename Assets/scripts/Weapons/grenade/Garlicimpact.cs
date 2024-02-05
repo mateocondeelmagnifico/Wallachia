@@ -11,7 +11,7 @@ public class Garlicimpact : MonoBehaviour
     ParticleSystem particles;
     void Start()
     {
-        Camara.instance.ShakeCam();
+        Camara.instance.ShakeCam(3);
         particles = transform.GetChild(0).GetComponent<ParticleSystem>();
         timer = 0.75f;
     }

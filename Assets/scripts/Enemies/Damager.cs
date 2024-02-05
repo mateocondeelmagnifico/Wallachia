@@ -23,7 +23,7 @@ public class Damager : MonoBehaviour
         {
             if (father.GetComponent<BasicEnemyMovement>().candamage == true)
             {
-                playerCam.ShakeCam();
+                playerCam.ShakeCam(1);
                 other.gameObject.GetComponent<Life>().health--;
                 father.GetComponent<BasicEnemyMovement>().candamage = false;
             }

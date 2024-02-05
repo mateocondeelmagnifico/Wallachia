@@ -296,7 +296,7 @@ public class Shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) && shotcooldown <= 0 && canshoot == true && reloading == false)
         {
-            myCam.ShakeCam();
+            myCam.ShakeCam(2);
 
             if (silvermode == false && ammo > 0)
             {
