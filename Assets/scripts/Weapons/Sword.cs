@@ -22,6 +22,7 @@ public class Sword : MonoBehaviour
     public bool hasPlayedSound;
 
     public Attack ataque;
+    private Scaryness scaryness;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,8 @@ public class Sword : MonoBehaviour
         sound = soundmanager.GetComponent<Sonido>();   
         axedamage = 3;
         ataque = player.GetComponent<Attack>();
+
+        scaryness = player.GetComponent<Scaryness>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +43,7 @@ public class Sword : MonoBehaviour
             if (other.gameObject.tag.Equals("Enemy"))
             {
                 myCam.ShakeCam(2);
+                scaryness.IncreaseScaryness(0.3f);
 
                 BasicEnemy enemigo = other.GetComponent<BasicEnemy>();
 
@@ -91,12 +95,15 @@ public class Sword : MonoBehaviour
                         //In this case you get the value of life from the zombie (father) gameobject of the damager
 
                         myCam.ShakeCam(2);
+                        scaryness.IncreaseScaryness(0.3f);
 
                         BasicEnemy enemigo = other.GetComponent<Damager>().father.GetComponent<BasicEnemy>();
                         if (enemigo.life - damage <= 0)
                         {
                             sound.playaudio("Strong Sword Impact");
 
+                            //Matar a un enemigo con la espada aumenta el miedo
+                            scaryness.IncreaseScaryness(1);
                         }
                         else
                         {
