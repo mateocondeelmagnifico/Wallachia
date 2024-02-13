@@ -216,7 +216,7 @@ public class BasicEnemy : MonoBehaviour
     {
         if (life <= 0)
         {
-            Scaryness.Instance.IncreaseScaryness(1);
+            PlayerMechanics.Scaryness.Instance.IncreaseScaryness(1);
             othersript.navegador.velocity = new Vector3(0, 0, 0);
             sonido.enabled = false;
             if (enemytype == "Werewolf")
@@ -226,7 +226,7 @@ public class BasicEnemy : MonoBehaviour
                 transform.parent.GetComponent<Groupmanager>().isattacking = false;
 
                 //Matar a un hombre lobo produce mas miedo
-                Scaryness.Instance.IncreaseScaryness(0.5f);
+                PlayerMechanics.Scaryness.Instance.IncreaseScaryness(0.5f);
             }
             damager[0].SetActive(false);
             damager[1].SetActive(false);

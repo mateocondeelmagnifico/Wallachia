@@ -22,7 +22,8 @@ public class Sword : MonoBehaviour
     public bool hasPlayedSound;
 
     public Attack ataque;
-    private Scaryness scaryness;
+
+    private PlayerMechanics.Scaryness scaryness;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +34,7 @@ public class Sword : MonoBehaviour
         axedamage = 3;
         ataque = player.GetComponent<Attack>();
 
-        scaryness = player.GetComponent<Scaryness>();
+        scaryness = player.GetComponent<PlayerMechanics.Scaryness>();
     }
 
     private void OnTriggerEnter(Collider other)
