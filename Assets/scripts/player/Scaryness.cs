@@ -26,24 +26,13 @@ namespace PlayerMechanics
                 Destroy(this);
             }
 
-            //myVolume = Camera.main.GetComponent<PostProcessVolume>();
+            myVolume = Camera.main.GetComponent<PostProcessVolume>();
+            grading = myVolume.sharedProfile.GetSetting<ColorGrading>();
 
-            grading = ScriptableObject.CreateInstance<ColorGrading>();
-            grading.enabled.Override(true);
-
-            Color myFilter = new Color(1000, 0, 0);
-            grading.colorFilter.value = myFilter;
-
-            myVolume = PostProcessManager.instance.QuickVolume(0, 10, grading);
-            //myVolume.isGlobal = true;
-            //myVolume.profile = camProfile;
         }
 
         private void Update()
         {
-            Debug.Log(grading.colorFilter.value);
-
-            IncreaseScaryness(0.1f);
 
             //Mantines la furia mientras que estes en combate basicamente
             if (secondaryTimer > 0)
@@ -67,16 +56,7 @@ namespace PlayerMechanics
 
             if (timer > 15) timer = 15;
 
-            //Color myFilter = new Color(255, 255 - (howScary * 51), 255 - (howScary * 51));
-
-            Color myFilter = new Color(1000, 0,0);
-
-            /*
-            if (myVolume.TryGetComponent(out ColorGrading grading))
-            {
-                grading.colorFilter.value = myFilter;
-            }
-            */
+            Color myFilter = new Color(1, 1 - (howScary/5), 1 - (howScary/5));
 
             grading.colorFilter.value = myFilter;
         }
