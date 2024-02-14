@@ -1,4 +1,5 @@
 
+using PlayerMechanics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,17 +9,17 @@ public class BasicEnemy : MonoBehaviour
 
     public Animator animador;
     public BasicEnemyMovement othersript;
-    public Image hitmarker;
+    protected SetUiValues setUIPlayer;
+
     public Sonido sonido;
     public GameObject[] damager;
     public GameObject particlesystem;
-    public GameObject hitmarkerObject;
 
     public ParticleSystem particles;
 
     public string enemytype;
 
-    public float life, maxlife, transforming, hitmarkertimer, idletimer, damageTimer, vulnerableTimer, stunResistance, stunTimer,regeneration;
+    public float life, maxlife, transforming, idletimer, damageTimer, vulnerableTimer, stunResistance, stunTimer,regeneration;
 
     public bool vulnerable;
     public bool invulnerable;
@@ -30,26 +31,12 @@ public class BasicEnemy : MonoBehaviour
         idletimer = 4;
         life = maxlife;
         othersript = GetComponent<BasicEnemyMovement>();
+        setUIPlayer = SetUiValues.Instance;
     }
 
     // Update is called once per frame
     public virtual void Update()
     {
-        #region enable hitmarker
-        //this is to enable the hitmarker when you hit an enemy
-        if (hitmarker.enabled == false)
-        {
-            hitmarkertimer = 0;
-        }
-        if (hitmarkertimer > 0 && hitmarker.enabled == true)
-        {
-            hitmarkertimer -= Time.deltaTime;
-            if (hitmarkertimer <= 0)
-            {
-                hitmarker.enabled = false;
-            }
-        }
-        #endregion
 
         //The more an enemy gets hit, the more stunresistance he builds up
         checkdead();
@@ -235,21 +222,26 @@ public class BasicEnemy : MonoBehaviour
             othersript.navegador.isStopped = true;
             othersript.enabled = false;
             animador.SetBool("Dead", true);
+            this.enabled = false;
         }
     }
     public void SetHitmarker(float damage)
     {
         float sizemultiplier;
-        //this is to check if the attack kills
+        bool doesItKill;
+
+        #region Set color
         if (damage >= life)
         {
-            hitmarker.color = new Color(255, 0, 0);
+            doesItKill = true;
         }
         else
         {
-            hitmarker.color = new Color(255, 255, 255);
+            doesItKill = false;
         }
+        #endregion
 
+        #region Set Size
         if (damage > 1.2f)
         {
             sizemultiplier = 1.2f;
@@ -265,9 +257,9 @@ public class BasicEnemy : MonoBehaviour
                 sizemultiplier = 0.6f;
             }
         }
-        hitmarkerObject.transform.localScale = new Vector3(1, 1, 1) * sizemultiplier;
-        hitmarker.enabled = true;
-        hitmarkertimer = 0.4f;
+        #endregion
+
+        setUIPlayer.SetHitmarker(sizemultiplier, doesItKill);
     }
 
 }

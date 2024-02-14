@@ -23,6 +23,8 @@ public class Shooting : MonoBehaviour
     public GameObject particlesobject;
     GameObject sound;
 
+
+
     ParticleSystem particles;
     GameObject luz;
     GameObject mybullet;
@@ -48,7 +50,7 @@ public class Shooting : MonoBehaviour
 
     float shotcooldown;
     public float shotcooldown2;
-    float reloadingtimer;
+    private float reloadingtimer;
     float lighttimer;
     float multiplier;
 
@@ -94,6 +96,10 @@ public class Shooting : MonoBehaviour
       }
         
       maxsilverammo = 6;
+
+        SetAmmoCounter(0);
+        SetAmmoCounter(1);
+
        transform.rotation = Quaternion.Euler(90, 0, 0);
     }
 
@@ -122,17 +128,6 @@ public class Shooting : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, gunposition.position, 3 * Time.deltaTime);
                 cuerporigido.velocity = new Vector3(0, 0, 0);
             }
-        }
-
-        if (silvermode == false)
-        {
-            Ammocounter.GetComponent<Text>().text = ammo.ToString();
-            Maxammocounter.GetComponent<Text>().text = maxammo.ToString();
-        }
-        else
-        {
-            Ammocounter.GetComponent<Text>().text = silverammo.ToString();
-            Maxammocounter.GetComponent<Text>().text = maxsilverammo.ToString();
         }
 
         if (ispaused == false && isrunning == false)
@@ -197,7 +192,6 @@ public class Shooting : MonoBehaviour
         {
             luz.GetComponent<Light>().enabled = false;
         }
-
     }
     public void checkgun()
     {
@@ -313,6 +307,8 @@ public class Shooting : MonoBehaviour
                 lighttimer = 0.1f;
             }
         }
+
+       SetAmmoCounter(0);
     }
     public void instantiatebullet()
     {
@@ -356,6 +352,8 @@ public class Shooting : MonoBehaviour
                 reloading = true;
                 reloadingtimer = 4;
             }
+
+            SetAmmoCounter(1);
         }
     }
     public void reloadingmath(string type)
@@ -427,4 +425,18 @@ public class Shooting : MonoBehaviour
             }
         }
     }
+    private void SetAmmoCounter(int type)
+    {
+        if (silvermode == false)
+        {
+            if(type == 0) Ammocounter.GetComponent<Text>().text = ammo.ToString();
+            if (type == 1) Maxammocounter.GetComponent<Text>().text = maxammo.ToString();
+        }
+        else
+        {
+            if (type == 0) Ammocounter.GetComponent<Text>().text = silverammo.ToString();
+            if (type == 0) Maxammocounter.GetComponent<Text>().text = maxsilverammo.ToString();
+        }
+    }
+   
 }

@@ -569,6 +569,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1535601620343610210, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
   m_PrefabInstance: {fileID: 1535601620333305959}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &23296774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1535601620343610208, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+  m_PrefabInstance: {fileID: 1535601620333305959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23296773}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &23608881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3334,7 +3345,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!4 &135897835
 Transform:
   m_ObjectHideFlags: 0
@@ -10704,7 +10714,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!4 &488139976
 Transform:
   m_ObjectHideFlags: 0
@@ -18441,7 +18450,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!135 &853024649
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21773,7 +21781,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!4 &969704458
 Transform:
   m_ObjectHideFlags: 0
@@ -23867,7 +23874,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!135 &1068592147
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25485,7 +25491,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!135 &1119911367
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32867,7 +32872,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!1001 &1432232390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35171,7 +35175,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!4 &1499966436
 Transform:
   m_ObjectHideFlags: 0
@@ -46813,7 +46816,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-21858
+  m_Name: pb_Mesh-21170
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49756,7 +49759,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!135 &1924508611
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -50713,7 +50715,6 @@ MonoBehaviour:
   isattacking: 0
   currentball: 0
   player: {fileID: 919132149497234558}
-  hitmarker: {fileID: 23296773}
 --- !u!4 &1956812028
 Transform:
   m_ObjectHideFlags: 0
@@ -56199,6 +56200,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sound: {fileID: 1443873783}
+--- !u!114 &919132149497234572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149497234558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566b3afc622492340808abae4a06a7a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitmarker: {fileID: 23296774}
 --- !u!1001 &1535601620333305959
 PrefabInstance:
   m_ObjectHideFlags: 0

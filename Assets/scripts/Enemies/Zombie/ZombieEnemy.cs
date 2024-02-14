@@ -1,3 +1,4 @@
+using PlayerMechanics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,26 +17,12 @@ public class ZombieEnemy : BasicEnemy
         maxlife = 6;
         life = maxlife;
         othersript = GetComponent<BasicEnemyMovement>();
+        setUIPlayer = SetUiValues.Instance;
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        #region enable hitmarker
-        //this is to enable the hitmarker when you hit an enemy
-        if (hitmarker.enabled == false)
-        {
-            hitmarkertimer = 0;
-        }
-        if (hitmarkertimer > 0 && hitmarker.enabled == true)
-        {
-            hitmarkertimer -= Time.deltaTime;
-            if (hitmarkertimer <= 0)
-            {
-                hitmarker.enabled = false;
-            }
-        }
-        #endregion
 
         if (life <= maxlife / 4)
         {

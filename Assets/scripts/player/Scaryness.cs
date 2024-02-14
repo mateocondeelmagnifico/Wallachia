@@ -29,34 +29,43 @@ namespace PlayerMechanics
             myVolume = Camera.main.GetComponent<PostProcessVolume>();
             grading = myVolume.sharedProfile.GetSetting<ColorGrading>();
 
+            IncreaseScaryness(0);
         }
 
         private void Update()
         {
-
             //Mantines la furia mientras que estes en combate basicamente
-            if (secondaryTimer > 0)
-            {
-                secondaryTimer -= Time.deltaTime;
-            }
-            else
+            if (timer > 0)
             {
                 timer -= Time.deltaTime;
+            }
+            else if (howScary > 0) 
+            {
+                secondaryTimer -= Time.deltaTime;
+                if(secondaryTimer <= 0)
+                {
+                    IncreaseScaryness(-0.1f);
+                    secondaryTimer = 0.5f;
+                }
             }
         }
 
         public void IncreaseScaryness(float howMuch)
         {
+            //Debug.Log(howMuch);
             howScary += howMuch;
+
+            if (howScary < 0) howScary = 0;
             if (howScary > 5) howScary = 5;
 
             secondaryTimer = 3;
 
-            timer += howMuch * 2;
+            timer += howMuch * 3;
 
+            if (timer < 0) timer = 0;
             if (timer > 15) timer = 15;
 
-            Color myFilter = new Color(1, 1 - (howScary/5), 1 - (howScary/5));
+            Color myFilter = new Color(1 + howScary, 1 - (howScary/5), 1 - (howScary/5));
 
             grading.colorFilter.value = myFilter;
         }

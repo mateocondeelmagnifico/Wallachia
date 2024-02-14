@@ -14,18 +14,12 @@ public class Groupmanager : MonoBehaviour
     public int currentball;
 
     public GameObject player;
-    public GameObject hitmarker;
-    Image Hitmarker;
 
     void Start()
     {
-        Hitmarker = hitmarker.GetComponent<Image>();
         //This is so that all enemies in the stage get this things
         for (int count = transform.childCount; count > 0; count--)
         {
-            transform.GetChild(count - 1).GetComponent<BasicEnemy>().hitmarkerObject = hitmarker;
-            transform.GetChild(count - 1).GetComponent<BasicEnemy>().hitmarker = Hitmarker;
-
             transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().player = player;
             transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().groupManager = this;
         }
