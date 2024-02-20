@@ -1,43 +1,45 @@
-
 using UnityEngine;
 
-public class AnimEvents : MonoBehaviour
+namespace PlayerMechanics
 {
-    // This script is only to call soundmanager for the player footsteps
-    public Sonido sound;
-    int leftCounter = 1;
-    int rightCounter = 1;
-
-    public void callSoundManager(string whatSound)
+    public class AnimEvents : MonoBehaviour
     {
-        sound.playaudio(whatSound);
-    }
+        // This script is only to call soundmanager for the player footsteps
+        public Sonido sound;
+        int leftCounter = 1;
+        int rightCounter = 1;
 
-    public void callFootSteps(string whatFootstep)
-    {
-        //This code calls different footstep sounds so that it doesnt sound monotone
-        if(whatFootstep == "Left")
+        public void callSoundManager(string whatSound)
         {
-            callSoundManager("Footstep L" + leftCounter.ToString());
-            if (leftCounter < 2)
-            {
-                leftCounter++;
-            }
-            else
-            {
-                leftCounter = 1;
-            }
+            sound.playaudio(whatSound);
         }
-        else
+
+        public void callFootSteps(string whatFootstep)
         {
-            callSoundManager("Footstep R" + leftCounter.ToString());
-            if (rightCounter < 2)
+            //This code calls different footstep sounds so that it doesnt sound monotone
+            if (whatFootstep == "Left")
             {
-                rightCounter++;
+                callSoundManager("Footstep L" + leftCounter.ToString());
+                if (leftCounter < 2)
+                {
+                    leftCounter++;
+                }
+                else
+                {
+                    leftCounter = 1;
+                }
             }
             else
             {
-                rightCounter = 1;
+                callSoundManager("Footstep R" + leftCounter.ToString());
+                if (rightCounter < 2)
+                {
+                    rightCounter++;
+                }
+                else
+                {
+                    rightCounter = 1;
+                }
             }
         }
     }

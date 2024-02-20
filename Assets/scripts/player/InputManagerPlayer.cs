@@ -2,73 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManagerPlayer : MonoBehaviour
+namespace PlayerMechanics
 {
-    movement movimiento;
-    public GameObject crossObj;
-    Cross cruz;
-
-    private float crossCooldown;
-    private void Start()
+    public class InputManagerPlayer : MonoBehaviour
     {
-        movimiento = GetComponent<movement>();
-        cruz = crossObj.GetComponentInChildren<Cross>();
-    }
+        movement movimiento;
+        public GameObject crossObj;
+        Cross cruz;
 
-    void Update()
-    {
-        if (crossCooldown >  0)
+        private float crossCooldown;
+        private void Start()
         {
-            crossCooldown -= Time.deltaTime;
-        }
-        MovementInputs();
-        CrossInput();
-    }
-
-    private void MovementInputs()
-    {
-        movimiento.zInput = 0;
-        movimiento.xInput = 0;
-        if (Input.GetKey(KeyCode.W))
-        {
-            movimiento.zInput = 1;
+            movimiento = GetComponent<movement>();
+            cruz = crossObj.GetComponentInChildren<Cross>();
         }
 
-        if (Input.GetKey(KeyCode.S))
+        void Update()
         {
-            movimiento.zInput = -1;
+            if (crossCooldown > 0)
+            {
+                crossCooldown -= Time.deltaTime;
+            }
+            MovementInputs();
+            CrossInput();
         }
 
-        if (Input.GetKey(KeyCode.D))
+        private void MovementInputs()
         {
-            movimiento.xInput = 1;
-        }
+            movimiento.zInput = 0;
+            movimiento.xInput = 0;
+            if (Input.GetKey(KeyCode.W))
+            {
+                movimiento.zInput = 1;
+            }
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            movimiento.xInput = -1;
-        }
+            if (Input.GetKey(KeyCode.S))
+            {
+                movimiento.zInput = -1;
+            }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            movimiento.shiftInput = 1;
-        }
+            if (Input.GetKey(KeyCode.D))
+            {
+                movimiento.xInput = 1;
+            }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            movimiento.shiftInput = -1;
+            if (Input.GetKey(KeyCode.A))
+            {
+                movimiento.xInput = -1;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                movimiento.shiftInput = 1;
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                movimiento.shiftInput = -1;
+            }
         }
-    }
-    private void CrossInput()
-    {
-        if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
+        private void CrossInput()
         {
-            cruz.Activate();
-            crossCooldown = 1;
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            cruz.Deactivate();
+            if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
+            {
+                cruz.Activate();
+                crossCooldown = 1;
+            }
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                cruz.Deactivate();
+            }
         }
     }
 }

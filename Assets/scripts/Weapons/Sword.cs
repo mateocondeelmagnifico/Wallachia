@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerMechanics;
 
 public class Sword : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class Sword : MonoBehaviour
 
     public Attack ataque;
 
-    private PlayerMechanics.Scaryness scaryness;
+    private Scaryness scaryness;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,7 @@ public class Sword : MonoBehaviour
         axedamage = 3;
         ataque = player.GetComponent<Attack>();
 
-        scaryness = player.GetComponent<PlayerMechanics.Scaryness>();
+        scaryness = player.GetComponent<Scaryness>();
     }
 
     private void OnTriggerEnter(Collider other)
