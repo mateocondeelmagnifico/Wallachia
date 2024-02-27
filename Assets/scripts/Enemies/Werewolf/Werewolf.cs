@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using EnemyMechanics;
 
 public class Werewolf : MonoBehaviour
 {

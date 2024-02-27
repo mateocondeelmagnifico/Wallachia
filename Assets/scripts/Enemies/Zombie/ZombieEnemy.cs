@@ -1,184 +1,184 @@
 using PlayerMechanics;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.ParticleSystem;
 
-public class ZombieEnemy : BasicEnemy
+
+namespace EnemyMechanics
 {
-
-    public override void Start()
-    {
-        animador = GetComponent<Animator>();
-        sonido = GetComponent<Sonido>();
-        particles = GetComponent<ParticleSystem>();
-        idletimer = 4;
-        maxlife = 6;
-        life = maxlife;
-        othersript = GetComponent<BasicEnemyMovement>();
-        setUIPlayer = SetUiValues.Instance;
-    }
-
-    // Update is called once per frame
-    public override void Update()
+    public class ZombieEnemy : BasicEnemy
     {
 
-        if (life <= maxlife / 4)
+        public override void Start()
         {
-            invulnerable = true;
+            animador = GetComponent<Animator>();
+            sonido = GetComponent<Sonido>();
+            particles = GetComponent<ParticleSystem>();
+            idletimer = 4;
+            maxlife = 6;
+            life = maxlife;
+            othersript = GetComponent<BasicEnemyMovement>();
+            setUIPlayer = SetUiValues.Instance;
         }
 
-        #region Timers
-        if (vulnerableTimer > 0)
+        // Update is called once per frame
+        public override void Update()
         {
-            vulnerableTimer -= Time.deltaTime;
-        }
-        else
-        {
-            vulnerable = false;
-        }
-        if(damageTimer > 0)
-        {
-            damageTimer -= Time.deltaTime;
-        }
 
-        if(stunTimer <= 0)
-        {
-            stunResistance = 0;
-        }
-        else
-        {
-            stunTimer -= Time.deltaTime;
-        }
-        #endregion
-
-        //The more an enemy gets hit, the more stunresistance he builds up
-
-        checkdead();
-
-        #region applyTransforming
-        //this applies the transforming status effect, it affects zombies and werewolves differently
-     
-        life -= transforming * Time.deltaTime;
-        if (transforming > 0 && isplaying == false)
-        {
-          particles.Play();
-          isplaying = true;
-        }
-        #endregion
-
-        #region idilingSounds
-        //this is for idling sounds
-        if (idletimer > 0)
-        {
-            idletimer -= Time.deltaTime;
-        }
-        else
-        {
-            choserandomsound();
-        }
-        #endregion
-    }
-    public override void takedamage(float damage, string hitype, bool playSound)
-    {
-    
-        if(playSound)
-        {
-            sonido.playaudio("Hurt");
-        }
-
-        if (life > 0)
-        {
-            SetHitmarker(damage);
-            //This breaks invulnerability for zombie enemies
-            if (damage >= maxlife / 4)
+            if (life <= maxlife / 4)
             {
-                invulnerable = false;
+                invulnerable = true;
             }
 
-            if (invulnerable == false)
+            #region Timers
+            if (vulnerableTimer > 0)
             {
-                life -= damage;
+                vulnerableTimer -= Time.deltaTime;
             }
             else
             {
-                life -= damage / 2;
+                vulnerable = false;
+            }
+            if (damageTimer > 0)
+            {
+                damageTimer -= Time.deltaTime;
             }
 
-            othersript.isattacking = false;
-           
-            othersript.playerdetected = true;
-
-            statuseffect(hitype);
-            decidestun(hitype);
-
-        }
-    }
-
-    public override void statuseffect(string type)
-    {
-        //Silver, Iron, Garlic and consecrated
-
-        //Currently iron does nothing
-
-        if (invulnerable != true)
-        {
-            if (type == "Garlic")
+            if (stunTimer <= 0)
             {
-                life -= 3f;
+                stunResistance = 0;
             }
-            if (type == "Silver")
+            else
             {
-                transforming += 0.2f;
+                stunTimer -= Time.deltaTime;
             }
-        }
+            #endregion
 
-        if (type == "Holy" && damageTimer <= 0)
-        {
-            takedamage(0.1f, "Weakness", false);
-            damageTimer = 0.2f;
-        }
-    }
+            //The more an enemy gets hit, the more stunresistance he builds up
 
-    public override void decidestun(string hitype)
-    {
-        float stunamount;
-        if (life > 0)
-        {
-            //Decide stun duration based on if its a heavy or light attack
-            if (hitype == "Light")
+            checkdead();
+
+            #region applyTransforming
+            //this applies the transforming status effect, it affects zombies and werewolves differently
+
+            life -= transforming * Time.deltaTime;
+            if (transforming > 0 && isplaying == false)
             {
-                stunamount = 0.5f - stunResistance;
-                if (stunamount > 0.4f)
+                particles.Play();
+                isplaying = true;
+            }
+            #endregion
+
+            #region idilingSounds
+            //this is for idling sounds
+            if (idletimer > 0)
+            {
+                idletimer -= Time.deltaTime;
+            }
+            else
+            {
+                choserandomsound();
+            }
+            #endregion
+        }
+        public override void takedamage(float damage, string hitype, bool playSound)
+        {
+
+            if (playSound)
+            {
+                sonido.playaudio("Hurt");
+            }
+
+            if (life > 0)
+            {
+                SetHitmarker(damage);
+                //This breaks invulnerability for zombie enemies
+                if (damage >= maxlife / 4)
                 {
-                   othersript.staggered = stunamount;
-                   othersript.attackposition = transform.position;
+                    invulnerable = false;
                 }
 
-                animador.SetBool("Hurt", true);
-            }
-            if (hitype == "Heavy")
-            {
-                stunamount = 1.3f - stunResistance/2;
-                othersript.staggered = stunamount;
-                
-                othersript.attackposition = transform.position;
+                if (invulnerable == false)
+                {
+                    life -= damage;
+                }
+                else
+                {
+                    life -= damage / 2;
+                }
 
-                animador.SetBool("Hurt", true);
-            }
-            if (hitype == "Weakness" && vulnerableTimer <= 0)
-            {
-                stunamount = 3;
-                othersript.staggered = stunamount;
-                vulnerableTimer = 3;
-                vulnerable = true;
+                othersript.isattacking = false;
 
-                sonido.playaudio("Hurt");
-                animador.SetBool("Hurt", true);
+                othersript.playerdetected = true;
+
+                statuseffect(hitype);
+                decidestun(hitype);
+
             }
         }
-        stunResistance += 0.15f;
-        stunTimer = 3;
+
+        public override void statuseffect(string type)
+        {
+            //Silver, Iron, Garlic and consecrated
+
+            //Currently iron does nothing
+
+            if (invulnerable != true)
+            {
+                if (type == "Garlic")
+                {
+                    life -= 3f;
+                }
+                if (type == "Silver")
+                {
+                    transforming += 0.2f;
+                }
+            }
+
+            if (type == "Holy" && damageTimer <= 0)
+            {
+                takedamage(0.1f, "Weakness", false);
+                damageTimer = 0.2f;
+            }
+        }
+
+        public override void decidestun(string hitype)
+        {
+            float stunamount;
+            if (life > 0)
+            {
+                //Decide stun duration based on if its a heavy or light attack
+                if (hitype == "Light")
+                {
+                    stunamount = 0.5f - stunResistance;
+                    if (stunamount > 0.4f)
+                    {
+                        othersript.staggered = stunamount;
+                        othersript.attackposition = transform.position;
+                    }
+
+                    animador.SetBool("Hurt", true);
+                }
+                if (hitype == "Heavy")
+                {
+                    stunamount = 1.3f - stunResistance / 2;
+                    othersript.staggered = stunamount;
+
+                    othersript.attackposition = transform.position;
+
+                    animador.SetBool("Hurt", true);
+                }
+                if (hitype == "Weakness" && vulnerableTimer <= 0)
+                {
+                    stunamount = 3;
+                    othersript.staggered = stunamount;
+                    vulnerableTimer = 3;
+                    vulnerable = true;
+
+                    sonido.playaudio("Hurt");
+                    animador.SetBool("Hurt", true);
+                }
+            }
+            stunResistance += 0.15f;
+            stunTimer = 3;
+        }
     }
 }

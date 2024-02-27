@@ -1,7 +1,5 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using WeaponMechanics;
 
 public class RespawnManager : MonoBehaviour
 {

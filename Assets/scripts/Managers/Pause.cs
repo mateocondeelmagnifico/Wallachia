@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PlayerMechanics;
+using WeaponMechanics;
 
 public class Pause : MonoBehaviour
 {

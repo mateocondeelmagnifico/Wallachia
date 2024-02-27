@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using EnemyMechanics;
 
 public class Zombie : MonoBehaviour
 {

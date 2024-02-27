@@ -1,38 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using PlayerMechanics;
 
-public class Damager : MonoBehaviour
+namespace EnemyMechanics
 {
-    //This goes in the arms of the enemies, it deals damage to the player if it collides with the enemy arm when attacking
-
-    public GameObject father;
-    public BasicEnemy myEnemy;
-
-    private Camara playerCam;
-
-    private void Start()
+    public class Damager : MonoBehaviour
     {
-        playerCam = Camara.instance;
-    }
+        //This goes in the arms of the enemies, it deals damage to the player if it collides with the enemy arm when attacking
 
-    // Update is called once per frame
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag.Equals("Player"))
+        public GameObject father;
+        public BasicEnemy myEnemy;
+
+        private Camara playerCam;
+
+        private void Start()
         {
-            if (father.GetComponent<BasicEnemyMovement>().candamage == true)
+            playerCam = Camara.instance;
+        }
+
+        // Update is called once per frame
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag.Equals("Player"))
             {
-                playerCam.ShakeCam(1);
-                other.gameObject.GetComponent<Life>().health--;
-                father.GetComponent<BasicEnemyMovement>().candamage = false;
+                if (father.GetComponent<BasicEnemyMovement>().candamage == true)
+                {
+                    playerCam.ShakeCam(1);
+                    other.gameObject.GetComponent<Life>().health--;
+                    father.GetComponent<BasicEnemyMovement>().candamage = false;
+                }
             }
         }
-    }
-    public void dealdamage(float damage, string type, string status)
-    {
-        //This is for when a bullet collides with the enemy in the arm, it still counts
-        myEnemy.takedamage(damage, type, true);
-        myEnemy.statuseffect(status);
+        public void dealdamage(float damage, string type, string status)
+        {
+            //This is for when a bullet collides with the enemy in the arm, it still counts
+            myEnemy.takedamage(damage, type, true);
+            myEnemy.statuseffect(status);
+        }
     }
 }

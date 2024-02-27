@@ -46816,7 +46816,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-21170
+  m_Name: pb_Mesh-22564
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57868,7 +57868,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6215199472035501840, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
 --- !u!1 &8511528451774131078 stripped
 GameObject:

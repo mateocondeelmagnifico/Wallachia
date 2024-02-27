@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EnemyMechanics;
 
 public class Enemy : MonoBehaviour
 {

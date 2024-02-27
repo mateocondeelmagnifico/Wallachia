@@ -3,85 +3,88 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Throwinggrenade : MonoBehaviour
+namespace WeaponMechanics
 {
-    //This script goes in the camera, it instantiates the grenade in the direction you are looking at
-
-    public GameObjectgetter getter;
-    GameObject player;
-    public GameObject grenade;
-    GameObject text;
-    GameObject soundmanager;
-    GameObject currentgrenade;
-
-    public float grenadecooldown;
-
-    public int remaininggarlic;
-    public int remainingsilver;
-
-    public Text texto;
-
-    Sonido sound;
-
-    public bool grenadesleft;
-    public bool ispaused;
-
-    weapons armas;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Throwinggrenade : MonoBehaviour
     {
-        player = getter.Player;
-        text = getter.grenadecounter;
-        soundmanager = getter.Soundmanager;
+        //This script goes in the camera, it instantiates the grenade in the direction you are looking at
 
-        armas = player.GetComponent<weapons>();
-        texto = text.GetComponent<Text>();
-        remaininggarlic = 2;
-        remainingsilver = 2;
-        sound = soundmanager.GetComponent<Sonido>();
-    }
+        public GameObjectgetter getter;
+        GameObject player;
+        public GameObject grenade;
+        GameObject text;
+        GameObject soundmanager;
+        GameObject currentgrenade;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (armas.currentEquip[2] == 0 && remainingsilver > 0 || armas.currentEquip[2] == 1 && remaininggarlic > 0)
+        public float grenadecooldown;
+
+        public int remaininggarlic;
+        public int remainingsilver;
+
+        public Text texto;
+
+        Sonido sound;
+
+        public bool grenadesleft;
+        public bool ispaused;
+
+        weapons armas;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            grenadesleft = true;
-        }
-        else
-        {
-            grenadesleft = false;
+            player = getter.Player;
+            text = getter.grenadecounter;
+            soundmanager = getter.Soundmanager;
+
+            armas = player.GetComponent<weapons>();
+            texto = text.GetComponent<Text>();
+            remaininggarlic = 2;
+            remainingsilver = 2;
+            sound = soundmanager.GetComponent<Sonido>();
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && grenadecooldown <= 0 && grenadesleft == true && ispaused == false)
+        // Update is called once per frame
+        void Update()
         {
-            sound.playaudio("Throw grenade");
-            currentgrenade = GameObject.Instantiate(grenade, transform.position, transform.rotation);
-            currentgrenade.GetComponent<grenade>().armas = armas;
-            currentgrenade.GetComponent<grenade>().sound = sound;
-            grenadecooldown = 1;
-            if (armas.currentEquip[2] == 0)
+            if (armas.currentEquip[2] == 0 && remainingsilver > 0 || armas.currentEquip[2] == 1 && remaininggarlic > 0)
             {
-                remainingsilver--;
+                grenadesleft = true;
             }
             else
             {
-                remaininggarlic--;
+                grenadesleft = false;
             }
-        }
-        if (grenadecooldown > 0)
-        {
-            grenadecooldown -= Time.deltaTime;
-        }
 
-        if (armas.currentEquip[2] == 0)
-        {
-            texto.text = remainingsilver.ToString();
-        }
-        else
-        {
-            texto.text = remaininggarlic.ToString();
+            if (Input.GetKeyDown(KeyCode.F) && grenadecooldown <= 0 && grenadesleft == true && ispaused == false)
+            {
+                sound.playaudio("Throw grenade");
+                currentgrenade = GameObject.Instantiate(grenade, transform.position, transform.rotation);
+                currentgrenade.GetComponent<grenade>().armas = armas;
+                currentgrenade.GetComponent<grenade>().sound = sound;
+                grenadecooldown = 1;
+                if (armas.currentEquip[2] == 0)
+                {
+                    remainingsilver--;
+                }
+                else
+                {
+                    remaininggarlic--;
+                }
+            }
+            if (grenadecooldown > 0)
+            {
+                grenadecooldown -= Time.deltaTime;
+            }
+
+            if (armas.currentEquip[2] == 0)
+            {
+                texto.text = remainingsilver.ToString();
+            }
+            else
+            {
+                texto.text = remaininggarlic.ToString();
+            }
         }
     }
 }

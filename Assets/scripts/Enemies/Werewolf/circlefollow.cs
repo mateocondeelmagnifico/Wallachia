@@ -1,22 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class circlefollow : MonoBehaviour
+namespace EnemyMechanics
 {
-    //The script in each ball, this makes them rotate around the player
-    Transform player;
-    public bool istaken;
-    public float speed;
-    void Start()
+    public class circlefollow : MonoBehaviour
     {
-        speed = 15;
-        player = GameObject.Find("Player").transform;
-    }
+        //The script in each ball, this makes them rotate around the player
+        Transform player;
+        public bool istaken;
+        public float speed;
+        void Start()
+        {
+            speed = 15;
+            player = GameObject.Find("Player").transform;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.RotateAround(player.position, Vector3.up, speed * Time.deltaTime);
+        // Update is called once per frame
+        void Update()
+        {
+            transform.RotateAround(player.position, Vector3.up, speed * Time.deltaTime);
+        }
     }
 }

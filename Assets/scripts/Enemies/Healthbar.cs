@@ -3,48 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Healthbar : MonoBehaviour
+namespace EnemyMechanics
 {
-    public GameObject parent, X;
-    public Image imagen;
-    private Transform aimPoint;
-
-    private BasicEnemy myenemy;
-
-    private bool doOnce;
-
-    private float timer;
-    void Start()
+    public class Healthbar : MonoBehaviour
     {
-        imagen = GetComponent<Image>();
-        myenemy = parent.GetComponent<BasicEnemy>();
-        timer = 0.75f;
-    }
-    
-    void Update()
-    {
-        if(!doOnce)
+        public GameObject parent, X;
+        public Image imagen;
+        private Transform aimPoint;
+
+        private BasicEnemy myenemy;
+
+        private bool doOnce;
+
+        private float timer;
+        void Start()
         {
-            aimPoint = parent.GetComponent<BasicEnemyMovement>().player.transform.GetChild(2);
-            doOnce = true;
+            imagen = GetComponent<Image>();
+            myenemy = parent.GetComponent<BasicEnemy>();
+            timer = 0.75f;
         }
 
-        //Change the color of the sprite
-        float colorGradient = (myenemy.life / myenemy.maxlife);
-        imagen.color = new Color(1, colorGradient, colorGradient, 1);
-
-        //Look at player
-        transform.LookAt(aimPoint.position);
-
-        if(myenemy.life <= 0)
+        void Update()
         {
-            X.SetActive(true);
-            timer -= Time.deltaTime;
-            if(timer <= 0)
+            if (!doOnce)
             {
-                imagen.enabled = false;
-                Destroy(X);
-                Destroy(this);
+                aimPoint = parent.GetComponent<BasicEnemyMovement>().player.transform.GetChild(2);
+                doOnce = true;
+            }
+
+            //Change the color of the sprite
+            float colorGradient = (myenemy.life / myenemy.maxlife);
+            imagen.color = new Color(1, colorGradient, colorGradient, 1);
+
+            //Look at player
+            transform.LookAt(aimPoint.position);
+
+            if (myenemy.life <= 0)
+            {
+                X.SetActive(true);
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    imagen.enabled = false;
+                    Destroy(X);
+                    Destroy(this);
+                }
             }
         }
     }
