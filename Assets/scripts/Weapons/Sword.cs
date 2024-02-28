@@ -1,5 +1,6 @@
 using UnityEngine;
 using PlayerMechanics;
+using EnemyMechanics;
 
 namespace WeaponMechanics
 {
