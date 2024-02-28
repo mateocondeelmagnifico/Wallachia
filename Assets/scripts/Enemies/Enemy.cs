@@ -10,11 +10,11 @@ namespace EnemyMechanics
         //THis Script controls the life and status effects of the enemy, it goes on all enemies
 
         protected Animator animador;
-        protected BasicEnemyMovement othersript;
         protected SetUiValues setUIPlayer;
+        public Groupmanager groupManager;
 
         protected Sonido sonido;
-        protected GameObject[] damager;
+        public GameObject[] damager;
         protected GameObject particlesystem;
         public GameObject player;
 
@@ -25,28 +25,33 @@ namespace EnemyMechanics
         #region Life variables
         protected string enemytype;
 
-        protected float life, maxlife, idletimer, damageTimer, stunResistance, stunTimer, regeneration, dmgResistance, minStunAmount;
+        public float life, maxLife, regeneration;
+        protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, minStunAmount;
 
         protected bool invulnerable, isplaying;
         #endregion
 
         #region Movement and Attacking variables
-        public bool angry, playerdetected;
-        protected bool candamage, isattacking;
+        public bool angry, playerDetected, slowCondition, canDamage;
+        protected bool isattacking;
         private bool isdamaging, hasreached, isinplace;
 
-        protected float staggered;
+        protected float staggered, wanderTimer;
         //must be modified from enemy scripts
-        protected float attackingrange, lungeSpeed;
+        public float attackingrange, lungeSpeed, speed;
 
         private Vector3 destination, attackposition;
         #endregion
 
+        private void Start()
+        {
+            SetStartVariables();
+        }
         private void Update()
         {
             #region idilingSounds
             //this is for idling sounds
-            if (idletimer > 0 && othersript.staggered <= 0)
+            if (idletimer > 0 && staggered <= 0)
             {
                 idletimer -= Time.deltaTime;
             }
@@ -59,9 +64,16 @@ namespace EnemyMechanics
             ApplyRegeneration();
 
             #region Movement
-            if (playerdetected == true)
+
+            ModifySpeed();
+
+            if (playerDetected == true)
             {
                 destination = player.transform.position;
+            }
+            else
+            {
+                Wander();
             }
 
             if (navegador.velocity != Vector3.zero)
@@ -81,15 +93,32 @@ namespace EnemyMechanics
             CheckStun();
             CheckAttack();
             #endregion
+
+            #region Damage and stun timer
+            if (damageTimer > 0)
+            {
+                damageTimer -= Time.deltaTime;
+            }
+
+            if (stunTimer <= 0)
+            {
+                stunResistance = 0;
+            }
+            else
+            {
+                stunTimer -= Time.deltaTime;
+            }
+            #endregion
         }
+
         #region Protected voids
         protected void SetStartVariables()
         {
             sonido = GetComponent<Sonido>();
             particles = GetComponent<ParticleSystem>();
+            animador = GetComponent<Animator>();
             idletimer = 4;
-            life = maxlife;
-            othersript = GetComponent<BasicEnemyMovement>();
+            life = maxLife;
             setUIPlayer = SetUiValues.Instance;
             destination = this.transform.position;
             navegador = GetComponent<NavMeshAgent>();
@@ -105,7 +134,7 @@ namespace EnemyMechanics
         protected void ChangeLife(float damage)
         {
             SetHitmarker(damage - dmgResistance);
-            othersript.playerdetected = true;
+            playerDetected = true;
             life -= (damage - dmgResistance);
 
             #region CheckDead
@@ -113,14 +142,14 @@ namespace EnemyMechanics
             {
                 DyingEffects();
                 PlayerMechanics.Scaryness.Instance.IncreaseScaryness(1);
-                othersript.navegador.velocity = new Vector3(0, 0, 0);
+                navegador.velocity = new Vector3(0, 0, 0);
                 sonido.enabled = false;
                 damager[0].SetActive(false);
                 damager[1].SetActive(false);
                 particles.Stop();
                 GetComponent<BoxCollider>().enabled = false;
-                othersript.navegador.isStopped = true;
-                othersript.enabled = false;
+                navegador.isStopped = true;
+                enabled = false;
                 animador.SetBool("Dead", true);
                 this.enabled = false;
             }
@@ -166,17 +195,30 @@ namespace EnemyMechanics
         {
             if(stunamount > minStunAmount)
             {
-                othersript.staggered = stunamount - stunResistance;
-                othersript.attackposition = transform.position;
+                staggered = stunamount - stunResistance;
+                attackposition = transform.position;
                 stunResistance += 0.5f;
+                animador.SetBool("Hurt", true);
             }
         }
         private void ApplyRegeneration()
         {
-            life -= regeneration * Time.deltaTime;
+            if (life < maxLife) life -= regeneration * Time.deltaTime;
         }
         private void CheckDistance()
         {
+            //Detect player
+            if (Vector3.Distance(player.transform.position, transform.position) < 8)
+            {
+                playerDetected = true;
+                groupManager.activated = true;
+
+                if (speed < 6)
+                {
+                    speed += Time.deltaTime;
+                }
+            }
+
             //If the player is too close, it attacks
             if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && staggered <= 0)
             {
@@ -184,6 +226,21 @@ namespace EnemyMechanics
                 animador.SetTrigger("Attack");
                 navegador.isStopped = true;
                 isattacking = true;
+            }
+        }
+        public virtual void ModifySpeed()
+        {
+            if (playerDetected)
+            {
+                speed = 5;
+            }
+            if (staggered > 0 || isattacking == true)
+            {
+                speed = 3;
+            }
+            if (slowCondition == true)
+            {
+                speed /= 2;
             }
         }
         private void CheckStun()
@@ -194,7 +251,7 @@ namespace EnemyMechanics
                 staggered -= Time.deltaTime;
                 navegador.isStopped = true;
                 animador.SetBool("Moving", false);
-                candamage = false;
+                canDamage = false;
                 navegador.velocity = new Vector3(0, 0, 0);
             }
             else
@@ -211,7 +268,7 @@ namespace EnemyMechanics
             if (isattacking == true)
             {
                 transform.LookAt(player.transform.position);
-                if (candamage == false && isdamaging == true)
+                if (canDamage == false && isdamaging == true)
                 {
                     navegador.velocity = new Vector3(0, 0, 0);
                 }
@@ -219,14 +276,15 @@ namespace EnemyMechanics
                 if (isinplace == false)
                 {
                     transform.position = attackposition;
-                    if (candamage == true)
+                    if (canDamage == true)
                     {
                         isinplace = true;
                     }
                 }
             }
 
-            if (candamage == true)
+
+            if (canDamage == true)
             {
                 if (Vector3.Distance(transform.position, player.transform.position) > 1 && staggered <= 0)
                 {
@@ -245,12 +303,37 @@ namespace EnemyMechanics
                 }
             }
         }
+        void Wander()
+        {
+            if (wanderTimer <= 0)
+            {
+                int decidestomove = Random.Range(0, 6);
+                if (decidestomove >= 3)
+                {
+                    //move
+                    destination = new Vector3(transform.position.x + Random.Range(-6, 5), transform.position.y, transform.position.z + Random.Range(-6, 5));
+                    wanderTimer = Random.Range(3, 5);
+                }
+                else
+                {
+                    //don't move
+                    wanderTimer = Random.Range(3, 5);
+                }
+            }
+        }
+        public void returnHome(Vector3 Destination)
+        {
+            //This script is so the enemy doesn't stray from their destined location
+            //It is accesed by the groupmanager
+            wanderTimer = 4;
+            destination = Destination;
+        }
 
         //These three scripts are called by animation events
         public void Damagestart()
         {
             sonido.playaudio("Attack");
-            candamage = true;
+            canDamage = true;
             isdamaging = true;
         }
         public void Endattack()
@@ -260,14 +343,14 @@ namespace EnemyMechanics
         }
         public void Enddamage()
         {
-            candamage = false;
+            canDamage = false;
             isdamaging = false;
         }
         #endregion
 
         #region Virtual Voids
         public virtual void TakeDamage(float damage, string hitype, bool playsound) { }
-        protected virtual void StatusEffect(string type) { }
+        public virtual void StatusEffect(string type) { }
         protected virtual void DyingEffects() { }
         #endregion
     }

@@ -19,8 +19,8 @@ namespace EnemyMechanics
             //This is so that all enemies in the stage get this things
             for (int count = transform.childCount; count > 0; count--)
             {
-                transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().player = player;
-                transform.GetChild(count - 1).GetComponent<BasicEnemyMovement>().groupManager = this;
+                transform.GetChild(count - 1).GetComponent<Enemy>().player = player;
+                transform.GetChild(count - 1).GetComponent<Enemy>().groupManager = this;
             }
         }
 
@@ -29,7 +29,7 @@ namespace EnemyMechanics
         {
             if (other.gameObject.tag.Equals("Enemy"))
             {
-                other.GetComponent<BasicEnemyMovement>().returnHome(transform.position);
+                other.GetComponent<Enemy>().returnHome(transform.position);
             }
         }
     }

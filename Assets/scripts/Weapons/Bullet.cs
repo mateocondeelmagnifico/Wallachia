@@ -5,7 +5,7 @@ namespace WeaponMechanics
 {
     public class Bullet : MonoBehaviour
     {
-        BasicEnemy enemigo;
+        private Enemy enemigo;
 
         public Rigidbody cuerporigido;
         public GameObject[] particles;
@@ -39,7 +39,7 @@ namespace WeaponMechanics
 
             if (collision.gameObject.tag.Equals("Enemy"))
             {
-                enemigo = collision.gameObject.GetComponent<BasicEnemy>();
+                enemigo = collision.gameObject.GetComponent<Enemy>();
                 hitenemy(true);
             }
             else
@@ -99,24 +99,24 @@ namespace WeaponMechanics
                 myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
                 if (isriflebullet == true)
                 {
-                    enemigo.takedamage(damage * 3.5f, "Heavy", true);
+                    enemigo.TakeDamage(damage * 3.5f, "Heavy", true);
                 }
                 else
                 {
-                    enemigo.takedamage(damage, "Light", true);
+                    enemigo.TakeDamage(damage, "Light", true);
                 }
 
                 if (issilver == true)
                 {
-                    enemigo.statuseffect("Silver");
+                    enemigo.StatusEffect("Silver");
                     if (isriflebullet == true)
                     {
-                        enemigo.statuseffect("Silver");
+                        enemigo.StatusEffect("Silver");
                     }
                 }
                 else
                 {
-                    enemigo.statuseffect("Iron");
+                    enemigo.StatusEffect("Iron");
                 }
             }
             else

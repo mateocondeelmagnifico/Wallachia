@@ -11,7 +11,7 @@ namespace EnemyMechanics
         public Image imagen;
         private Transform aimPoint;
 
-        private BasicEnemy myenemy;
+        private Enemy myenemy;
 
         private bool doOnce;
 
@@ -19,7 +19,7 @@ namespace EnemyMechanics
         void Start()
         {
             imagen = GetComponent<Image>();
-            myenemy = parent.GetComponent<BasicEnemy>();
+            myenemy = parent.GetComponent<Enemy>();
             timer = 0.75f;
         }
 
@@ -27,12 +27,12 @@ namespace EnemyMechanics
         {
             if (!doOnce)
             {
-                aimPoint = parent.GetComponent<BasicEnemyMovement>().player.transform.GetChild(2);
+                aimPoint = parent.GetComponent<Enemy>().player.transform.GetChild(2);
                 doOnce = true;
             }
 
             //Change the color of the sprite
-            float colorGradient = (myenemy.life / myenemy.maxlife);
+            float colorGradient = (myenemy.life / myenemy.maxLife);
             imagen.color = new Color(1, colorGradient, colorGradient, 1);
 
             //Look at player

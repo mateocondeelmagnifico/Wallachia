@@ -118,8 +118,7 @@ GameObject:
   - component: {fileID: 4291828035953998960}
   - component: {fileID: 6595629915879882415}
   - component: {fileID: 8320677090202496413}
-  - component: {fileID: 6444972195729236944}
-  - component: {fileID: 3737523496692319632}
+  - component: {fileID: 6905772140766602321}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Enemy
@@ -5103,7 +5102,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6444972195729236944
+--- !u!114 &6905772140766602321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5112,63 +5111,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 85044148226785970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7e9f14bac08cf24db239a6e42d15a7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c16a5824d4a18847a6921a0f841371f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animador: {fileID: 0}
-  othersript: {fileID: 0}
-  hitmarker: {fileID: 0}
-  sonido: {fileID: 0}
+  groupManager: {fileID: 0}
   damager:
   - {fileID: 7174048396189756213}
   - {fileID: 8147815711679287853}
-  particlesystem: {fileID: 0}
-  hitmarkerObject: {fileID: 0}
-  particles: {fileID: 0}
-  enemytype: 
-  life: 0
-  maxlife: 0
-  transforming: 0
-  hitmarkertimer: 0
-  idletimer: 0
-  damageTimer: 0
-  vulnerableTimer: 0
-  stunResistance: 0
-  stunTimer: 0
-  regeneration: 0
-  vulnerable: 0
-  invulnerable: 0
-  isplaying: 0
---- !u!114 &3737523496692319632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caa4fa84150f6e84fa601937d49197cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navegador: {fileID: 0}
-  animador: {fileID: 0}
-  groupManager: {fileID: 0}
-  sonido: {fileID: 0}
   player: {fileID: 0}
-  playerdetected: 0
-  isattacking: 0
-  attacking: 0
+  maxLife: 6
+  regeneration: 0
   angry: 0
-  candamage: 0
-  iswerewolf: 0
-  isinholy: 0
-  staggered: 0
-  speed: 0
-  attackingrange: 0
-  lungespeed: 0
-  destination: {x: 0, y: 0, z: 0}
-  attackposition: {x: 0, y: 0, z: 0}
+  playerDetected: 0
+  slowCondition: 0
+  attackingrange: 2
+  lungeSpeed: 6
+  speed: 2
 --- !u!1 &210062240222110185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7877,7 +7835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
-  myEnemy: {fileID: 6444972195729236944}
+  myEnemy: {fileID: 0}
 --- !u!1 &7297032704206940170
 GameObject:
   m_ObjectHideFlags: 0
@@ -8402,7 +8360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
-  myEnemy: {fileID: 6444972195729236944}
+  myEnemy: {fileID: 0}
 --- !u!1 &8191392578474910055
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,13 +8,14 @@ namespace EnemyMechanics
         //This goes in the arms of the enemies, it deals damage to the player if it collides with the enemy arm when attacking
 
         public GameObject father;
-        public BasicEnemy myEnemy;
+        public Enemy myEnemy;
 
         private Camara playerCam;
 
         private void Start()
         {
             playerCam = Camara.instance;
+            myEnemy = father.GetComponent<Enemy>();
         }
 
         // Update is called once per frame
@@ -22,19 +23,19 @@ namespace EnemyMechanics
         {
             if (other.gameObject.tag.Equals("Player"))
             {
-                if (father.GetComponent<BasicEnemyMovement>().candamage == true)
+                if (myEnemy.canDamage == true)
                 {
                     playerCam.ShakeCam(1);
                     other.gameObject.GetComponent<Life>().health--;
-                    father.GetComponent<BasicEnemyMovement>().candamage = false;
+                    myEnemy.canDamage = false;
                 }
             }
         }
         public void dealdamage(float damage, string type, string status)
         {
             //This is for when a bullet collides with the enemy in the arm, it still counts
-            myEnemy.takedamage(damage, type, true);
-            myEnemy.statuseffect(status);
+            myEnemy.TakeDamage(damage, type, true);
+            myEnemy.StatusEffect(status);
         }
     }
 }

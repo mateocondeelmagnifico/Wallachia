@@ -1267,8 +1267,7 @@ GameObject:
   - component: {fileID: 4843685846569803366}
   - component: {fileID: 82881798222448205}
   - component: {fileID: 5988767596080564636}
-  - component: {fileID: 5270484168725884656}
-  - component: {fileID: 2296635298105328421}
+  - component: {fileID: 7943501112708753021}
   m_Layer: 8
   m_Name: Werewolf
   m_TagString: Enemy
@@ -6251,7 +6250,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5270484168725884656
+--- !u!114 &7943501112708753021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6260,65 +6259,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4212054089237201295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52d84e091481ec042aae5c50dde1fd3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9770c7c0479fc9c4b85a6383d9cc3802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animador: {fileID: 0}
-  othersript: {fileID: 0}
-  hitmarker: {fileID: 0}
-  sonido: {fileID: 0}
+  groupManager: {fileID: 0}
   damager:
   - {fileID: 7311106921974869439}
   - {fileID: 4258940210950486225}
-  particlesystem: {fileID: 0}
-  hitmarkerObject: {fileID: 0}
-  particles: {fileID: 0}
-  enemytype: 
-  life: 0
-  maxlife: 0
-  transforming: 0
-  hitmarkertimer: 0
-  idletimer: 0
-  damageTimer: 0
-  vulnerableTimer: 0
-  stunResistance: 0
-  stunTimer: 0
-  regeneration: 0
-  vulnerable: 0
-  invulnerable: 0
-  isplaying: 0
---- !u!114 &2296635298105328421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212054089237201295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657414eb7098ec34589e1c5b0b5cfe79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  navegador: {fileID: 0}
-  animador: {fileID: 0}
-  groupManager: {fileID: 0}
-  sonido: {fileID: 0}
   player: {fileID: 0}
-  playerdetected: 0
-  isattacking: 0
-  attacking: 0
+  maxLife: 1
+  regeneration: 0
   angry: 0
-  candamage: 0
-  iswerewolf: 0
-  isinholy: 0
-  staggered: 0
-  speed: 0
+  playerDetected: 0
+  slowCondition: 0
   attackingrange: 0
-  lungespeed: 0
-  destination: {x: 0, y: 0, z: 0}
-  attackposition: {x: 0, y: 0, z: 0}
-  myBall: {fileID: 0}
-  circleInPlace: 0
+  lungeSpeed: 0
+  speed: 0
 --- !u!1 &4258940210950486225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6377,7 +6333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
-  myEnemy: {fileID: 5270484168725884656}
+  myEnemy: {fileID: 0}
 --- !u!1 &4298386087921420314
 GameObject:
   m_ObjectHideFlags: 0
@@ -7377,7 +7333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
-  myEnemy: {fileID: 5270484168725884656}
+  myEnemy: {fileID: 0}
 --- !u!1 &7995105855843423341
 GameObject:
   m_ObjectHideFlags: 0
