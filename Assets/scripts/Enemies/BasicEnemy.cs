@@ -37,7 +37,6 @@ namespace EnemyMechanics
         // Update is called once per frame
         public virtual void Update()
         {
-
             //The more an enemy gets hit, the more stunresistance he builds up
             checkdead();
 
@@ -208,8 +207,8 @@ namespace EnemyMechanics
                 sonido.enabled = false;
                 if (enemytype == "Werewolf")
                 {
-                    GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;
-                    GetComponent<Werewolf>().myball.SetActive(false);
+                    //GetComponent<Werewolf>().myball.GetComponent<circlefollow>().istaken = false;
+                    //GetComponent<Werewolf>().myball.SetActive(false);
                     transform.parent.GetComponent<Groupmanager>().isattacking = false;
 
                     //Matar a un hombre lobo produce mas miedo

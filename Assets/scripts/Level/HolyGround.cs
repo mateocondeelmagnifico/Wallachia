@@ -9,15 +9,7 @@ public class HolyGround : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Enemy") && other.name != "Damage collider left" && other.name != "Damage collider right")
         {
-            other.GetComponent<BasicEnemy>().transforming += Time.deltaTime/3;
-            other.GetComponent<BasicEnemyMovement>().isinholy = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Enemy") && other.name != "Damage collider left" && other.name != "Damage collider right")
-        {
-            other.GetComponent<BasicEnemyMovement>().isinholy = false;
+            other.GetComponent<BasicEnemy>().regeneration -= Time.deltaTime/3;
         }
     }
 }

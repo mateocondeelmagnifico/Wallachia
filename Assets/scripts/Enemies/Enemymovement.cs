@@ -51,10 +51,8 @@ public class Enemymovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (playerdetected == true)
         {
-
             destination = player.transform.position;
         }
 
