@@ -5,6 +5,7 @@ using EnemyMechanics;
 
 public class Zombie : Enemy
 {
+    private bool isPlaying;
     public override void TakeDamage(float damage, string hitType, bool playSound)
     {
         if (playSound)
@@ -26,6 +27,10 @@ public class Zombie : Enemy
         if (hitType == "Heavy")
         {
             stun = 1.5f;
+        }
+        if(hitType == "Weakness")
+        {
+            stun = 2;
         }
         #endregion
 
@@ -51,6 +56,14 @@ public class Zombie : Enemy
         {
             TakeDamage(0.1f, "Weakness", false);
             damageTimer = 0.2f;
+        }
+    }
+    protected override void EmptyUpdate()
+    {
+        if (regeneration < 0 && isplaying == false)
+        {
+            particles.Play();
+            isplaying = true;
         }
     }
 }

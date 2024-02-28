@@ -85,7 +85,7 @@ namespace EnemyMechanics
                 animador.SetBool("Moving", false);
             }
 
-            navegador.SetDestination(destination);
+            if(navegador.isActiveAndEnabled) navegador.SetDestination(destination);
             #endregion
 
             #region Attacking
@@ -109,6 +109,8 @@ namespace EnemyMechanics
                 stunTimer -= Time.deltaTime;
             }
             #endregion
+
+            EmptyUpdate();
         }
 
         #region Protected voids
@@ -133,24 +135,30 @@ namespace EnemyMechanics
         }
         protected void ChangeLife(float damage)
         {
-            SetHitmarker(damage - dmgResistance);
-            playerDetected = true;
+            if (damage > 0)
+            {
+                SetHitmarker(damage - dmgResistance);
+                playerDetected = true;
+                Scaryness.Instance.IncreaseScaryness(damage/4);
+            }
             life -= (damage - dmgResistance);
 
             #region CheckDead
             if (life <= 0)
             {
                 DyingEffects();
-                PlayerMechanics.Scaryness.Instance.IncreaseScaryness(1);
-                navegador.velocity = new Vector3(0, 0, 0);
+                Scaryness.Instance.IncreaseScaryness(1);
+                destination = transform.position;
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 sonido.enabled = false;
                 damager[0].SetActive(false);
                 damager[1].SetActive(false);
                 particles.Stop();
                 GetComponent<BoxCollider>().enabled = false;
-                navegador.isStopped = true;
                 enabled = false;
                 animador.SetBool("Dead", true);
+                navegador.enabled = false;
                 this.enabled = false;
             }
             #endregion
@@ -203,7 +211,7 @@ namespace EnemyMechanics
         }
         private void ApplyRegeneration()
         {
-            if (life < maxLife) life -= regeneration * Time.deltaTime;
+            if (life <= maxLife) ChangeLife(-regeneration * Time.deltaTime);
         }
         private void CheckDistance()
         {
@@ -227,6 +235,12 @@ namespace EnemyMechanics
                 navegador.isStopped = true;
                 isattacking = true;
             }
+
+            //warn other enemies
+            if(playerDetected && !groupManager.activated)
+            {
+                groupManager.InformEnemies();
+            }
         }
         public virtual void ModifySpeed()
         {
@@ -242,6 +256,8 @@ namespace EnemyMechanics
             {
                 speed /= 2;
             }
+
+            navegador.speed = speed;
         }
         private void CheckStun()
         {
@@ -257,7 +273,7 @@ namespace EnemyMechanics
             else
             {
                 animador.SetBool("Hurt", false);
-                if (isattacking == false)
+                if (isattacking == false && navegador.isActiveAndEnabled)
                 {
                     navegador.isStopped = false;
                 }
@@ -305,6 +321,8 @@ namespace EnemyMechanics
         }
         void Wander()
         {
+            wanderTimer -= Time.deltaTime;
+
             if (wanderTimer <= 0)
             {
                 int decidestomove = Random.Range(0, 6);
@@ -352,6 +370,7 @@ namespace EnemyMechanics
         public virtual void TakeDamage(float damage, string hitype, bool playsound) { }
         public virtual void StatusEffect(string type) { }
         protected virtual void DyingEffects() { }
+        protected virtual void EmptyUpdate() { }
         #endregion
     }
 }

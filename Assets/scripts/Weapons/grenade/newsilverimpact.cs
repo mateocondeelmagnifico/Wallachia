@@ -40,7 +40,7 @@ namespace WeaponMechanics
         {
             if (other.gameObject.tag.Equals("Enemy") && timer > 0)
             {
-                other.GetComponent<BasicEnemy>().takedamage(0.2f, "Light", true);
+                other.GetComponent<Enemy>().TakeDamage(0.2f, "Light", true);
             }
         }
         private void OnTriggerStay(Collider other)
@@ -50,7 +50,7 @@ namespace WeaponMechanics
                 hurttimer -= Time.deltaTime;
                 if (hurttimer <= 0)
                 {
-                    other.GetComponent<BasicEnemy>().statuseffect("Silver");
+                    other.GetComponent<Enemy>().StatusEffect("Silver");
                     hurttimer = 0.3f;
                 }
             }

@@ -48,13 +48,13 @@ namespace WeaponMechanics
                     myCam.ShakeCam(2);
                     scaryness.IncreaseScaryness(0.3f);
 
-                    BasicEnemy enemigo = other.GetComponent<BasicEnemy>();
+                    Enemy enemigo = other.GetComponent<Enemy>();
 
                     #region Play Sound
                     //this is so the sword only plays the sound of its first impact
                     if (hasPlayedSound == false)
                     {
-                        if (other.GetComponent<BasicEnemy>().life - damage <= 0)
+                        if (enemigo.life - damage <= 0)
                         {
                             sound.playaudio("Strong Sword Impact");
 
@@ -71,17 +71,17 @@ namespace WeaponMechanics
                     if (isaxe == false)
                     {
                         //sword deals more damage based on missing health
-                        damage = 1 + (enemigo.maxlife - enemigo.life) / 1.5f;
+                        damage = 1 + (enemigo.maxLife - enemigo.life) / 1.5f;
 
-                        enemigo.takedamage(damage, "Light", true);
-                        enemigo.statuseffect("Iron");
+                        enemigo.TakeDamage(damage, "Light", true);
+                        enemigo.StatusEffect("Iron");
                         bloodVFX.GetComponent<ParticleSystem>().Emit(100);
                     }
                     else
                     {
                         damage = axedamage;
-                        enemigo.takedamage(axedamage, "Heavy", true);
-                        enemigo.statuseffect("Iron");
+                        enemigo.TakeDamage(axedamage, "Heavy", true);
+                        enemigo.StatusEffect("Iron");
                         bloodVFX.GetComponent<ParticleSystem>().Emit(10000);
                     }
                     #endregion
@@ -100,7 +100,7 @@ namespace WeaponMechanics
                             myCam.ShakeCam(2);
                             scaryness.IncreaseScaryness(0.3f);
 
-                            BasicEnemy enemigo = other.GetComponent<Damager>().father.GetComponent<BasicEnemy>();
+                            Enemy enemigo = other.GetComponent<Damager>().father.GetComponent<Enemy>();
                             if (enemigo.life - damage <= 0)
                             {
                                 sound.playaudio("Strong Sword Impact");

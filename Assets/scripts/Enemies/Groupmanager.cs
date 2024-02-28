@@ -32,5 +32,15 @@ namespace EnemyMechanics
                 other.GetComponent<Enemy>().returnHome(transform.position);
             }
         }
+
+        public void InformEnemies()
+        {
+            activated = true;
+
+            for(int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).GetComponent<Enemy>().playerDetected = true;
+            }
+        }
     }
 }

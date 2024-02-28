@@ -63,7 +63,7 @@ namespace WeaponMechanics
                 {
                     if (hit.collider.gameObject.tag.Equals("Enemy"))
                     {
-                        hit.collider.gameObject.GetComponent<BasicEnemy>().statuseffect("Holy");
+                        hit.collider.gameObject.GetComponent<Enemy>().StatusEffect("Holy");
                     }
                 }
             }
