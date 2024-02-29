@@ -52,7 +52,8 @@ namespace PlayerMechanics
 
         public void IncreaseScaryness(float howMuch)
         {
-            //Debug.Log(howMuch);
+            //Big hits are more scary
+            if (howMuch < 0.8f) howMuch = howMuch/2;
             howScary += howMuch;
 
             if (howScary < 0) howScary = 0;

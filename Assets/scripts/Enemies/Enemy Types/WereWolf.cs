@@ -39,8 +39,8 @@ public class WereWolf : Enemy
 
         if (type == "Silver")
         {
-            regeneration -= 0.6f;
-            DecideStun(2);
+            if(regeneration > -1.7f) regeneration -= 0.6f;
+            DecideStun(1.4f);
         }
     }
 

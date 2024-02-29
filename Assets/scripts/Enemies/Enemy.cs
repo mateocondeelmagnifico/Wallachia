@@ -246,7 +246,6 @@ namespace EnemyMechanics
             if(playerDetected && !groupManager.activated)
             {
                 groupManager.InformEnemies();
-                Debug.Log(1);
             }
         }
         public virtual void ModifySpeed()
@@ -272,7 +271,7 @@ namespace EnemyMechanics
             {
                 //transform.position = attackposition;
                 staggered -= Time.deltaTime;
-                navegador.isStopped = true;
+                if(navegador.enabled) navegador.isStopped = true;
                 animador.SetBool("Moving", false);
                 canDamage = false;
                 navegador.velocity = new Vector3(0, 0, 0);
