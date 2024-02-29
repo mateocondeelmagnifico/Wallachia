@@ -8,7 +8,7 @@ namespace EnemyMechanics
     public class Healthbar : MonoBehaviour
     {
         public GameObject parent, X;
-        public Image imagen;
+        public SpriteRenderer imagen;
         private Transform aimPoint;
 
         private Enemy myenemy;
@@ -18,7 +18,7 @@ namespace EnemyMechanics
         private float timer;
         void Start()
         {
-            imagen = GetComponent<Image>();
+            imagen = GetComponent<SpriteRenderer>();
             myenemy = parent.GetComponent<Enemy>();
             timer = 0.75f;
         }

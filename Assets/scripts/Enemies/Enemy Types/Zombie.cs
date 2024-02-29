@@ -65,5 +65,16 @@ public class Zombie : Enemy
             particles.Play();
             isplaying = true;
         }
+
+        if(scaryness.howScary > 1.5f)
+        {
+            speed /= 4;
+            //moverse para atrás
+            if (scaryness.howScary > 2.5f)
+            {
+                destination = -(player.transform.position - transform.position) * 2;
+                transform.LookAt(player.transform.position);
+            }
+        }
     }
 }

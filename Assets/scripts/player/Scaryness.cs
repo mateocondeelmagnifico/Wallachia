@@ -8,7 +8,8 @@ namespace PlayerMechanics
         //Esto controla el miedo que le tienen los enemigos al jugador
         public static Scaryness Instance { get; private set; }
 
-        private float howScary, timer, secondaryTimer;
+        public float howScary;
+        private float timer, secondaryTimer;
 
         private PostProcessVolume myVolume;
         private ColorGrading grading;
@@ -29,6 +30,7 @@ namespace PlayerMechanics
             myVolume = Camera.main.GetComponent<PostProcessVolume>();
             grading = myVolume.sharedProfile.GetSetting<ColorGrading>();
 
+            //This is to reset the color of the screen
             IncreaseScaryness(0);
         }
 

@@ -71,7 +71,7 @@ namespace WeaponMechanics
                     if (isaxe == false)
                     {
                         //sword deals more damage based on missing health
-                        damage = 1 + (enemigo.maxLife - enemigo.life) / 1.5f;
+                        damage = (1 + (enemigo.maxLife - enemigo.life) / 1.5f) + (scaryness.howScary / 8);
 
                         enemigo.TakeDamage(damage, "Light", true);
                         enemigo.StatusEffect("Iron");
@@ -80,7 +80,7 @@ namespace WeaponMechanics
                     else
                     {
                         damage = axedamage;
-                        enemigo.TakeDamage(axedamage, "Heavy", true);
+                        enemigo.TakeDamage(axedamage + (scaryness.howScary / 8), "Heavy", true);
                         enemigo.StatusEffect("Iron");
                         bloodVFX.GetComponent<ParticleSystem>().Emit(10000);
                     }

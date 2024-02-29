@@ -40,13 +40,12 @@ public class WereWolf : Enemy
         if (type == "Silver")
         {
             if(regeneration > -1.7f) regeneration -= 0.6f;
-            DecideStun(1.4f);
+            DecideStun(1f);
         }
     }
 
     protected override void EmptyUpdate()
     {
-
         if(playerDetected && !angry && Vector3.Distance(player.transform.position, transform.position) < 17)
         {
             playerPointer.forward = player.transform.position - transform.position;
