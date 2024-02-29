@@ -11,12 +11,13 @@ namespace EnemyMechanics
 
         protected Animator animador;
         protected SetUiValues setUIPlayer;
-        public Groupmanager groupManager;
+        [HideInInspector] public Groupmanager groupManager;
+        protected Scaryness scaryness;
 
         protected Sonido sonido;
         public GameObject[] damager;
         protected GameObject particlesystem;
-        public GameObject player;
+        [HideInInspector] public GameObject player;
 
         protected ParticleSystem particles;
 
@@ -25,8 +26,8 @@ namespace EnemyMechanics
         #region Life variables
         protected string enemytype;
 
-        public float life, maxLife, regeneration;
-        protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, minStunAmount;
+        public float life, maxLife, regeneration, minStunAmount;
+        protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance;
 
         protected bool invulnerable, isplaying;
         #endregion
@@ -40,7 +41,8 @@ namespace EnemyMechanics
         //must be modified from enemy scripts
         public float attackingrange, lungeSpeed, speed;
 
-        private Vector3 destination, attackposition;
+        [HideInInspector] public Vector3 destination;
+        private Vector3 attackposition;
         #endregion
 
         private void Start()
@@ -63,7 +65,7 @@ namespace EnemyMechanics
 
             ApplyRegeneration();
 
-            #region Movement
+            #region Movement and empty Update
 
             ModifySpeed();
 
@@ -85,7 +87,9 @@ namespace EnemyMechanics
                 animador.SetBool("Moving", false);
             }
 
-            if(navegador.isActiveAndEnabled) navegador.SetDestination(destination);
+            EmptyUpdate();
+
+            if (navegador.isActiveAndEnabled) navegador.SetDestination(destination);
             #endregion
 
             #region Attacking
@@ -109,8 +113,7 @@ namespace EnemyMechanics
                 stunTimer -= Time.deltaTime;
             }
             #endregion
-
-            EmptyUpdate();
+            
         }
 
         #region Protected voids
@@ -124,6 +127,7 @@ namespace EnemyMechanics
             setUIPlayer = SetUiValues.Instance;
             destination = this.transform.position;
             navegador = GetComponent<NavMeshAgent>();
+            scaryness = Scaryness.Instance;
         }
         protected void ChoseRandomSound()
         {
@@ -139,7 +143,8 @@ namespace EnemyMechanics
             {
                 SetHitmarker(damage - dmgResistance);
                 playerDetected = true;
-                Scaryness.Instance.IncreaseScaryness(damage/4);
+                angry = true;
+                scaryness.IncreaseScaryness(damage/5);
             }
             life -= (damage - dmgResistance);
 
@@ -147,7 +152,7 @@ namespace EnemyMechanics
             if (life <= 0)
             {
                 DyingEffects();
-                Scaryness.Instance.IncreaseScaryness(1);
+                scaryness.IncreaseScaryness(0.6f);
                 destination = transform.position;
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -219,7 +224,7 @@ namespace EnemyMechanics
             if (Vector3.Distance(player.transform.position, transform.position) < 8)
             {
                 playerDetected = true;
-                groupManager.activated = true;
+                groupManager.InformEnemies();
 
                 if (speed < 6)
                 {
@@ -232,6 +237,7 @@ namespace EnemyMechanics
             {
                 attackposition = transform.position;
                 animador.SetTrigger("Attack");
+                angry = true;
                 navegador.isStopped = true;
                 isattacking = true;
             }
@@ -240,6 +246,7 @@ namespace EnemyMechanics
             if(playerDetected && !groupManager.activated)
             {
                 groupManager.InformEnemies();
+                Debug.Log(1);
             }
         }
         public virtual void ModifySpeed()

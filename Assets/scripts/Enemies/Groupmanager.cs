@@ -24,6 +24,54 @@ namespace EnemyMechanics
             }
         }
 
+        private void Update()
+        {
+            //Only for werewolves
+            if(enemytype == "Werewolf" && activated)
+            {
+                bool atacking = false;
+                bool destroySelf = true;
+
+                for(int i = 0; i < transform.childCount; i++)
+                {
+                    //Check if there are werewolves attacking
+                    if(transform.GetChild(i).GetComponent<WereWolf>().enabled)
+                    {
+                        if(transform.GetChild(i).GetComponent<WereWolf>().angry) atacking = true;
+                    }
+                }
+
+                if (!atacking)
+                {
+                    for (int i = 0; i < transform.childCount; i++)
+                    {
+                        //Send werewolf to attack
+
+                        if (transform.GetChild(i).GetComponent<WereWolf>().enabled && !atacking)
+                        {
+                            transform.GetChild(i).GetComponent<WereWolf>().angry = true;
+                            atacking = true;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    //Check if there are any living werewolves
+
+                    if (transform.GetChild(i).GetComponent<WereWolf>().enabled)
+                    {
+                        destroySelf = false;
+                    }
+                }
+
+                if (destroySelf)
+                {
+                    Destroy(this);
+                }
+            }
+        }
+
         //This is to prevent enemies from straying too far
         private void OnTriggerExit(Collider other)
         {

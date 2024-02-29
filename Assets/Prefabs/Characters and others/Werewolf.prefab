@@ -1267,7 +1267,7 @@ GameObject:
   - component: {fileID: 4843685846569803366}
   - component: {fileID: 82881798222448205}
   - component: {fileID: 5988767596080564636}
-  - component: {fileID: 7943501112708753021}
+  - component: {fileID: 4999637239357496458}
   m_Layer: 8
   m_Name: Werewolf
   m_TagString: Enemy
@@ -1288,6 +1288,7 @@ Transform:
   m_Children:
   - {fileID: 7816282171410159800}
   - {fileID: 9038648038537116577}
+  - {fileID: 508031929593307483}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6250,7 +6251,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7943501112708753021
+--- !u!114 &4999637239357496458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6259,7 +6260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4212054089237201295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9770c7c0479fc9c4b85a6383d9cc3802, type: 3}
+  m_Script: {fileID: 11500000, guid: 36a3a42b3e01c38408c478e0d1e32e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groupManager: {fileID: 0}
@@ -6267,14 +6268,19 @@ MonoBehaviour:
   - {fileID: 7311106921974869439}
   - {fileID: 4258940210950486225}
   player: {fileID: 0}
-  maxLife: 1
-  regeneration: 0
+  life: 0
+  maxLife: 10
+  regeneration: 2
+  minStunAmount: 0.5
   angry: 0
   playerDetected: 0
   slowCondition: 0
-  attackingrange: 0
-  lungeSpeed: 0
-  speed: 0
+  canDamage: 0
+  attackingrange: 3
+  lungeSpeed: 8
+  speed: 6
+  destination: {x: 0, y: 0, z: 0}
+  playerPointer: {fileID: 508031929593307483}
 --- !u!1 &4258940210950486225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7334,6 +7340,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
   myEnemy: {fileID: 0}
+--- !u!1 &7459937591955972913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508031929593307483}
+  m_Layer: 8
+  m_Name: Player Pointer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508031929593307483
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459937591955972913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3548810445194746677}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7995105855843423341
 GameObject:
   m_ObjectHideFlags: 0
