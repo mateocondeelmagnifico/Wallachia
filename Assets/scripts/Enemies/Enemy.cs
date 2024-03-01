@@ -153,6 +153,7 @@ namespace EnemyMechanics
             {
                 DyingEffects();
                 scaryness.IncreaseScaryness(0.6f);
+                setUIPlayer.UpdateEnemyCounter();
                 destination = transform.position;
                 GetComponent<Rigidbody>().velocity = Vector3.zero;
                 GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;

@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 namespace PlayerMechanics
 { 
-public class SetUiValues : MonoBehaviour
-{
-    public static SetUiValues Instance {  get; private set; }
+    public class SetUiValues : MonoBehaviour
+    {
+        public static SetUiValues Instance {  get; private set; }
 
-    [SerializeField] private Image hitmarker;
-    private float hitmarkerTimer;
+        [SerializeField] private Image hitmarker;
+        [SerializeField] private Text enemyCounter;
+
+        private float hitmarkerTimer, enemiesLeft;
         private void Awake()
         {
             if(Instance == null)
@@ -19,21 +21,24 @@ public class SetUiValues : MonoBehaviour
             {
                 Destroy(this);
             }
+
+            enemiesLeft = 24;
+            UpdateEnemyCounter();
         }
 
-    void Update()
-    {
-        if(hitmarkerTimer > 0)
+        void Update()
         {
-            hitmarkerTimer -=Time.deltaTime;
+            if(hitmarkerTimer > 0)
+            {
+                hitmarkerTimer -=Time.deltaTime;
+            }
+            else if(hitmarker.enabled)
+            {
+                hitmarker.enabled = false;
+            }
         }
-        else if(hitmarker.enabled)
-        {
-            hitmarker.enabled = false;
-        }
-    }
-
-    public void SetHitmarker(float damage, bool kills)
+    
+        public void SetHitmarker(float damage, bool kills)
     {
 
         if (kills)
@@ -50,5 +55,10 @@ public class SetUiValues : MonoBehaviour
         hitmarker.enabled = true;
         hitmarkerTimer = 0.4f;
     }
-}
+        public void UpdateEnemyCounter()
+        {
+            enemiesLeft -= 1;
+            enemyCounter.text = enemiesLeft.ToString();
+        }
+    }
 }
