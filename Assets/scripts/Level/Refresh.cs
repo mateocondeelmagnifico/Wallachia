@@ -24,7 +24,7 @@ public class Refresh : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Player"))
         {
-            collision.GetComponent<Life>().health = 6;
+            collision.GetComponent<Life>().ChangeLife(6);
             collision.GetComponent<Life>().riflereloaded = false;
             collision.GetComponent<Life>().pistolreloaded = false;
             grenadescript.remaininggarlic = 2;

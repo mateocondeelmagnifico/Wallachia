@@ -26,7 +26,7 @@ namespace EnemyMechanics
                 if (myEnemy.canDamage == true)
                 {
                     playerCam.ShakeCam(1);
-                    other.gameObject.GetComponent<Life>().health--;
+                    other.gameObject.GetComponent<Life>().ChangeLife(-1);
                     myEnemy.canDamage = false;
                 }
             }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using WeaponMechanics;
+using static UnityEngine.PlayerLoop.PreUpdate;
 
 namespace PlayerMechanics
 {
@@ -8,10 +9,6 @@ namespace PlayerMechanics
     {
         public float health;
         public float currenthealth;
-        public float bloodtimer;
-
-
-        Image bloodyscreen;
 
         public bool riflereloaded;
         public bool pistolreloaded;
@@ -19,13 +16,12 @@ namespace PlayerMechanics
         public GameObjectgetter getter;
         GameObject rifle;
         GameObject pistol;
-        GameObject gameovermenu;
-        GameObject hurtscreen;
         GameObject reloadingtext;
         GameObject camara;
         GameObject reticle;
         Sonido soundManager;
         MenuManager menuManager;
+        private SetUiValues uiUpdater;
 
         weapons armas;
 
@@ -33,38 +29,28 @@ namespace PlayerMechanics
         {
             armas = GetComponent<weapons>();
             soundManager = getter.Soundmanager.GetComponent<Sonido>();
-            hurtscreen = getter.Hurtscreen;
             rifle = getter.gun2;
             pistol = getter.gun1;
-            gameovermenu = getter.gameovermenu;
             reloadingtext = getter.reloadingtext;
             camara = getter.cam;
             reticle = getter.reticle;
             menuManager = getter.MenuManager.GetComponent<MenuManager>();
+            uiUpdater = GetComponent<SetUiValues>();
 
             riflereloaded = true;
             pistolreloaded = true;
-            bloodyscreen = hurtscreen.GetComponent<Image>();
-            bloodyscreen.color = new Color(1, 1, 1, 0);
+            
             health = 6;
             currenthealth = health;
         }
 
-
-        void Update()
+        public void ChangeLife(float amount)
         {
-            //This is for the bloody screen when you get hurt
-            if (health < currenthealth)
-            {
-                bloodtimer = 1;
-                soundManager.playaudio("Player Hit");
-                currenthealth = health;
-            }
-            if (bloodtimer > 0)
-            {
-                bloodtimer -= Time.deltaTime;
-            }
-            bloodyscreen.color = new Color(1, 1, 1, bloodtimer);
+
+            if(amount < 0) soundManager.playaudio("Player Hit");
+            health += amount;
+            if(health > 6) health = 6;
+            uiUpdater.UpdateBloodyScreen(amount);
 
             //This is for when you die
             if (health <= 0)

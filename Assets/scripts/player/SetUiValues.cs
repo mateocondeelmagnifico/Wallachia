@@ -7,10 +7,10 @@ namespace PlayerMechanics
     {
         public static SetUiValues Instance {  get; private set; }
 
-        [SerializeField] private Image hitmarker;
+        [SerializeField] private Image hitmarker, bloodyScreen;
         [SerializeField] private TMPro.TextMeshProUGUI enemyCounter;
 
-        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2;
+        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer, hurtValue;
         private void Awake()
         {
             if(Instance == null)
@@ -24,6 +24,7 @@ namespace PlayerMechanics
 
             enemiesLeft = 23;
             enemyCounter.text = enemiesLeft.ToString();
+            bloodyScreen.color = new Color(1, 1, 1, 0);
         }
 
         void Update()
@@ -51,6 +52,14 @@ namespace PlayerMechanics
                 enemyCounter.fontSize -= Time.deltaTime * 250;
             }
             #endregion
+
+            #region Bloodyscreen Timer
+            if (bloodTimer > 0)
+            {
+                bloodTimer -= Time.deltaTime;
+                bloodyScreen.color = new Color(1, 1, 1, bloodTimer + hurtValue);
+            }
+            #endregion
         }
 
         public void SetHitmarker(float damage, bool kills)
@@ -76,6 +85,11 @@ namespace PlayerMechanics
             enemyCounter.text = enemiesLeft.ToString();
             enemiesTimer = 0.15f;
             enemiesTimer2 = 0.3f;
+        }
+        public void UpdateBloodyScreen(float damage)
+        {
+            hurtValue -= damage/6;
+            bloodTimer = 0.2f + Mathf.Abs(damage);
         }
     }
 }
