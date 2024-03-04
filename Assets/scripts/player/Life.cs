@@ -48,7 +48,6 @@ namespace PlayerMechanics
 
         public void ChangeLife(float amount)
         {
-
             if (amount < 0)
             {
                 soundManager.playaudio("Player Hit");

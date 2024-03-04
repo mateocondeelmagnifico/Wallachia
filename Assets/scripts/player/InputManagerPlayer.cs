@@ -8,12 +8,14 @@ namespace PlayerMechanics
         movement movimiento;
         public GameObject crossObj;
         Cross cruz;
+        private HeartMechanics heartScript;
 
         private float crossCooldown;
         private void Start()
         {
             movimiento = GetComponent<movement>();
             cruz = crossObj.GetComponentInChildren<Cross>();
+            heartScript = GetComponent<HeartMechanics>();
         }
 
         void Update()
@@ -23,7 +25,7 @@ namespace PlayerMechanics
                 crossCooldown -= Time.deltaTime;
             }
             MovementInputs();
-            CrossInput();
+            OtherInputs();
         }
 
         private void MovementInputs()
@@ -60,7 +62,7 @@ namespace PlayerMechanics
                 movimiento.shiftInput = -1;
             }
         }
-        private void CrossInput()
+        private void OtherInputs()
         {
             if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
             {
@@ -70,6 +72,11 @@ namespace PlayerMechanics
             if (Input.GetKeyUp(KeyCode.Q))
             {
                 cruz.Deactivate();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                heartScript.TryConsumeHeart();
             }
         }
     }

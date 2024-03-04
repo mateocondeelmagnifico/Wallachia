@@ -39,14 +39,15 @@ namespace WeaponMechanics
 
         public bool isrifle;
         public bool missingammo;
-        public bool canshoot;
+        public  bool canshoot;
         public bool isinplace;
         public bool silvermode;
         public bool ispaused;
-        bool reloading;
+        public bool reloading;
         public bool canreload;
         public bool isrunning;
         public bool keypressed;
+        public bool isInAnim;
 
         public Transform cannon;
         public Transform gunposition;
@@ -135,7 +136,7 @@ namespace WeaponMechanics
                 }
             }
 
-            if (ispaused == false && isrunning == false)
+            if (ispaused == false && isrunning == false && !isInAnim)
             {
                 shoot();
             }
@@ -143,7 +144,7 @@ namespace WeaponMechanics
             canreload = false;
 
             checkreload();
-            reload();
+            if (!isInAnim)reload();
 
             if (shotcooldown > 0)
             {

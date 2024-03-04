@@ -89,6 +89,7 @@ namespace PlayerMechanics
         public void UpdateBloodyScreen(float damage)
         {
             hurtValue -= damage /6;
+            if(hurtValue < 0) hurtValue = 0;
 
             float time = 0.3f + Mathf.Abs(damage / 6);
             if (time < 0.6f) time = 0.6f;
