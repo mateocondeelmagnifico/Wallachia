@@ -25,6 +25,7 @@ namespace WeaponMechanics
         GameObject Reloadingimage;
         public GameObject particlesobject;
         GameObject sound;
+        private Image reloadingCircle;
 
 
 
@@ -73,7 +74,8 @@ namespace WeaponMechanics
             aimpoint = getter.aimpoint;
             Ammocounter = getter.ammo;
             Maxammocounter = getter.maxammo;
-            Reloadingimage = getter.reloadingtext;
+            Reloadingimage = getter.reloadingImage;
+            reloadingCircle = Reloadingimage.GetComponent<Image>();
             sound = getter.Soundmanager;
             myCam = camara.GetComponent<Camara>();
 
@@ -249,6 +251,7 @@ namespace WeaponMechanics
             if (reloadingtimer > 0)
             {
                 reloadingtimer -= Time.deltaTime;
+                reloadingCircle.fillAmount = 1 - reloadingtimer/4;
             }
             else
             {
@@ -278,7 +281,7 @@ namespace WeaponMechanics
                     }
                     reloading = false;
                     missingammo = false;
-                    Reloadingimage.GetComponent<Text>().enabled = false;
+                    reloadingCircle.fillAmount = 0;
                 }
             }
         }
@@ -343,7 +346,6 @@ namespace WeaponMechanics
                 {
                     sonido.playaudio("Reload");
                     reloadingmath("Iron");
-                    Reloadingimage.GetComponent<Text>().enabled = true;
                     reloading = true;
                     reloadingtimer = 4;
                 }
@@ -351,7 +353,6 @@ namespace WeaponMechanics
                 {
                     sonido.playaudio("Reload");
                     reloadingmath("Silver");
-                    Reloadingimage.GetComponent<Text>().enabled = true;
                     reloading = true;
                     reloadingtimer = 4;
                 }

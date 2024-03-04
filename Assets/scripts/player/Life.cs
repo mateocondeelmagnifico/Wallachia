@@ -32,7 +32,7 @@ namespace PlayerMechanics
             soundManager = getter.Soundmanager.GetComponent<Sonido>();
             rifle = getter.gun2;
             pistol = getter.gun1;
-            reloadingtext = getter.reloadingtext;
+            reloadingtext = getter.reloadingImage;
             camara = getter.cam;
             reticle = getter.reticle;
             menuManager = getter.MenuManager.GetComponent<MenuManager>();

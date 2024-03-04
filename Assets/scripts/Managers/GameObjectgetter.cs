@@ -21,7 +21,7 @@ public class GameObjectgetter : MonoBehaviour
     public GameObject Toplefticons;
     public GameObject Healthbar;
     public GameObject Hurtscreen;
-    public GameObject reloadingtext;
+    public GameObject reloadingImage;
     public GameObject axecharge;
     public GameObject hitmarker;
     public GameObject grenadecounter;

@@ -27,7 +27,7 @@ public class Pause : MonoBehaviour
         exceptions[2] = getter.Player;
         exceptions[3] = getter.cam;
         exceptions[4] = getter.Soundmanager;
-        exceptions[5] = getter.reloadingtext;
+        exceptions[5] = getter.reloadingImage;
         exceptions[6] = getter.Toplefticons;
         exceptions[7] = getter.textDisplay;
         exceptions[8] = getter.reticle;
@@ -104,7 +104,7 @@ public class Pause : MonoBehaviour
 
         if (istrue[1] == true)
         {
-            exceptions[5].GetComponent<Text>().enabled = true;
+            exceptions[5].GetComponent<Image>().enabled = true;
         }
 
 
@@ -138,10 +138,10 @@ public class Pause : MonoBehaviour
             istrue[0] = false;
         }
 
-        if (exceptions[5].GetComponent<Text>().enabled == true) 
+        if (exceptions[5].GetComponent<Image>().enabled == true) 
         {
             istrue[1] = true;
-            exceptions[5].GetComponent<Text>().enabled = false;
+            exceptions[5].GetComponent<Image>().enabled = false;
         }
         else
         {
