@@ -5,7 +5,6 @@ using EnemyMechanics;
 
 public class Zombie : Enemy
 {
-    private bool isPlaying;
     public override void TakeDamage(float damage, string hitType, bool playSound)
     {
         if (playSound)
@@ -66,15 +65,31 @@ public class Zombie : Enemy
             isplaying = true;
         }
 
-        if(scaryness.howScary > 1.5f)
+        if (scaryness.howScary > 1.5f)
         {
-            speed /= 4;
             //moverse para atrás
             if (scaryness.howScary > 2.5f)
             {
-                destination = -(player.transform.position - transform.position) * 2;
                 transform.LookAt(player.transform.position);
+
+                if (Vector3.Distance(player.transform.position, transform.position) < 15)
+                {
+                    Vector3 direction = transform.position -player.transform.position;
+                    destination = transform.position + (direction.normalized * 2);
+                }
+                else
+                {
+                    destination = transform.position;
+                    navegador.isStopped = true;
+                }
             }
         }
+    }
+
+    protected override void SpeedChanges()
+    {
+        if (scaryness.howScary > 1.5f) speed /= 2;
+        
+        if (scaryness.howScary > 2.5f) speed /= 2;
     }
 }

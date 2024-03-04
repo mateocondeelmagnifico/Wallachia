@@ -264,6 +264,8 @@ namespace EnemyMechanics
                 speed /= 2;
             }
 
+            SpeedChanges();
+
             navegador.speed = speed;
         }
         private void CheckStun()
@@ -378,6 +380,7 @@ namespace EnemyMechanics
         public virtual void StatusEffect(string type) { }
         protected virtual void DyingEffects() { }
         protected virtual void EmptyUpdate() { }
+        protected virtual void SpeedChanges() { }
         #endregion
     }
 }

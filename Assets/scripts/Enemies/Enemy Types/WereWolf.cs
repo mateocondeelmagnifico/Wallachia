@@ -52,6 +52,8 @@ public class WereWolf : Enemy
 
             destination = transform.position + (playerPointer.right.normalized * 2);
         }
+
+        if (scaryness.howScary > 2) speed /= 3;
     }
 
     protected override void DyingEffects()
