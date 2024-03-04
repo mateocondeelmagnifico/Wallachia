@@ -46532,7 +46532,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-20874
+  m_Name: pb_Mesh-20880
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50381,6 +50381,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d92e0ac1113706d41a42d11e2c7a27d3, type: 3}
       propertyPath: m_Name
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d92e0ac1113706d41a42d11e2c7a27d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92e0ac1113706d41a42d11e2c7a27d3, type: 3}
