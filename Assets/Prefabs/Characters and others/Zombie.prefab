@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 1004103577008193504}
   - component: {fileID: 1299218358}
   - component: {fileID: 1629333248267152496}
-  - component: {fileID: 4003035578238604503}
   - component: {fileID: 7721590290501106703}
   - component: {fileID: 1200790334722458938}
   - component: {fileID: 4291828035953998960}
   - component: {fileID: 6595629915879882415}
   - component: {fileID: 8320677090202496413}
   - component: {fileID: 6905772140766602321}
+  - component: {fileID: 8884250554121802961}
   m_Layer: 8
   m_Name: Zombie
   m_TagString: Enemy
@@ -100,19 +100,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!65 &4003035578238604503
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.1025572, z: 1}
-  m_Center: {x: -0, y: 1.0864418, z: -0}
 --- !u!199 &7721590290501106703
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5031,6 +5018,20 @@ MonoBehaviour:
   lungeSpeed: 6
   speed: 2
   destination: {x: 0, y: 0, z: 0}
+--- !u!64 &8884250554121802961
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85044148226785970}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -145594051209164800, guid: fcbf0542242eec94db575c23100719d5, type: 3}
 --- !u!1 &210062240222110185
 GameObject:
   m_ObjectHideFlags: 0
@@ -7664,6 +7665,7 @@ GameObject:
   - component: {fileID: 5226686512777477366}
   - component: {fileID: 7729103735392834811}
   - component: {fileID: 2010497311082786209}
+  - component: {fileID: 8465681086955646254}
   m_Layer: 8
   m_Name: Damage collider left
   m_TagString: Damager
@@ -7696,8 +7698,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.55712426, y: 1.7317008, z: 0.37835255}
-  m_Center: {x: 0.0436528, y: 0.43288907, z: -0.07491047}
+  m_Size: {x: 0.55712426, y: 1.5975153, z: 0.37835255}
+  m_Center: {x: 0.0436528, y: 0.49998182, z: -0.074910454}
 --- !u!114 &2010497311082786209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7712,6 +7714,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
   myEnemy: {fileID: 0}
+--- !u!114 &8465681086955646254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7174048396189756213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 6905772140766602321}
+  extraDamage: 0
 --- !u!1 &7297032704206940170
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,9 +7921,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6631939026875959947}
+  - component: {fileID: 5736459254670269348}
+  - component: {fileID: 7674603979859818423}
   m_Layer: 8
   m_Name: mixamorig:Head
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7929,6 +7947,33 @@ Transform:
   m_Father: {fileID: 6305953540855391217}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5736459254670269348
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685414196112718983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.53949094, y: 0.5629572, z: 0.71634525}
+  m_Center: {x: -0.012833118, y: 0.061180897, z: 0.03800387}
+--- !u!114 &7674603979859818423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685414196112718983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 6905772140766602321}
+  extraDamage: 0.7
 --- !u!1 &7772966363989760579
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,6 +8141,7 @@ GameObject:
   - component: {fileID: 3130038804817583071}
   - component: {fileID: 8213397173958496734}
   - component: {fileID: 3614621374163638916}
+  - component: {fileID: 3250011629122332661}
   m_Layer: 8
   m_Name: Damage collider right
   m_TagString: Damager
@@ -8128,8 +8174,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30447036, y: 1.5567229, z: 0.32274333}
-  m_Center: {x: 0.029354468, y: 0.23700461, z: -0.037327483}
+  m_Size: {x: 0.30447036, y: 1.3759166, z: 0.32274333}
+  m_Center: {x: 0.029354462, y: 0.1466014, z: -0.037327487}
 --- !u!114 &3614621374163638916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8144,6 +8190,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
   myEnemy: {fileID: 0}
+--- !u!114 &3250011629122332661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147815711679287853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 6905772140766602321}
+  extraDamage: 0
 --- !u!1 &8191392578474910055
 GameObject:
   m_ObjectHideFlags: 0

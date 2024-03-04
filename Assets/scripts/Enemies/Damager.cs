@@ -9,7 +9,6 @@ namespace EnemyMechanics
 
         public GameObject father;
         public Enemy myEnemy;
-
         private Camara playerCam;
 
         private void Start()
@@ -25,17 +24,11 @@ namespace EnemyMechanics
             {
                 if (myEnemy.canDamage == true)
                 {
-                    playerCam.ShakeCam(1);
                     other.gameObject.GetComponent<Life>().ChangeLife(-1);
                     myEnemy.canDamage = false;
                 }
             }
         }
-        public void dealdamage(float damage, string type, string status)
-        {
-            //This is for when a bullet collides with the enemy in the arm, it still counts
-            myEnemy.TakeDamage(damage, type, true);
-            myEnemy.StatusEffect(status);
-        }
+      
     }
 }

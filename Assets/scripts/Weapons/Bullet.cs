@@ -50,7 +50,7 @@ namespace WeaponMechanics
         }
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag.Equals("Damager"))
+            if (other.gameObject.tag.Equals("Damager") || other.gameObject.tag.Equals("Hitbox"))
             {
                 string stun;
                 string statuseffect;
@@ -70,7 +70,7 @@ namespace WeaponMechanics
                 {
                     statuseffect = "Iron";
                 }
-                other.GetComponent<Damager>().dealdamage(damage, stun, statuseffect);
+                other.GetComponent<Hitbox>().DealDamage(damage, stun, statuseffect);
                 Destroy(this.gameObject);
             }
         }

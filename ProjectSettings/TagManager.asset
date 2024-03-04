@@ -15,6 +15,7 @@ TagManager:
   - Hill
   - Building
   - Enemy Group
+  - Hitbox
   layers:
   - Default
   - TransparentFX

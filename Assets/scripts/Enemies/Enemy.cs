@@ -161,7 +161,7 @@ namespace EnemyMechanics
                 damager[0].SetActive(false);
                 damager[1].SetActive(false);
                 particles.Stop();
-                GetComponent<BoxCollider>().enabled = false;
+                GetComponent<MeshCollider>().enabled = false;
                 enabled = false;
                 animador.SetBool("Dead", true);
                 navegador.enabled = false;

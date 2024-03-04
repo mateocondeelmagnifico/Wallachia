@@ -22,6 +22,7 @@ namespace PlayerMechanics
         Sonido soundManager;
         MenuManager menuManager;
         private SetUiValues uiUpdater;
+        private Camara myCam;
 
         weapons armas;
 
@@ -36,6 +37,7 @@ namespace PlayerMechanics
             reticle = getter.reticle;
             menuManager = getter.MenuManager.GetComponent<MenuManager>();
             uiUpdater = GetComponent<SetUiValues>();
+            myCam = camara.GetComponent<Camara>();
 
             riflereloaded = true;
             pistolreloaded = true;
@@ -47,7 +49,11 @@ namespace PlayerMechanics
         public void ChangeLife(float amount)
         {
 
-            if(amount < 0) soundManager.playaudio("Player Hit");
+            if (amount < 0)
+            {
+                soundManager.playaudio("Player Hit");
+                myCam.ShakeCam(-(Mathf.RoundToInt(amount)));
+            }
             health += amount;
             if(health > 6) health = 6;
             uiUpdater.UpdateBloodyScreen(amount);

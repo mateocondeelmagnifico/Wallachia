@@ -92,7 +92,7 @@ namespace WeaponMechanics
                 {
                     if (hasPlayedSound == false)
                     {
-                        if (other.gameObject.tag.Equals("Damager"))
+                        if (other.gameObject.tag.Equals("Damager") || other.gameObject.tag.Equals("Hitbox"))
                         {
                             //This is in case the sword collides with the damagers in the enemy's hands
                             //In this case you get the value of life from the zombie (father) gameobject of the damager
@@ -100,7 +100,7 @@ namespace WeaponMechanics
                             myCam.ShakeCam(2);
                             scaryness.IncreaseScaryness(0.3f);
 
-                            Enemy enemigo = other.GetComponent<Damager>().father.GetComponent<Enemy>();
+                            Enemy enemigo = other.GetComponent<Hitbox>().myEnemy;
                             if (enemigo.life - damage <= 0)
                             {
                                 sound.playaudio("Strong Sword Impact");

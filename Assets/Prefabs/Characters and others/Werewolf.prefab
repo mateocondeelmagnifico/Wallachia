@@ -1313,7 +1313,6 @@ GameObject:
   - component: {fileID: 3548810445194746677}
   - component: {fileID: 3942146321199807521}
   - component: {fileID: 4248648275208049974}
-  - component: {fileID: 6191009042697018531}
   - component: {fileID: 2211412263437782628}
   - component: {fileID: 1350414706028288539}
   - component: {fileID: 8854858439171728183}
@@ -1321,6 +1320,7 @@ GameObject:
   - component: {fileID: 82881798222448205}
   - component: {fileID: 5988767596080564636}
   - component: {fileID: 4999637239357496458}
+  - component: {fileID: 8771768270516548756}
   m_Layer: 8
   m_Name: Werewolf
   m_TagString: Enemy
@@ -1386,19 +1386,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &6191009042697018531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4212054089237201295}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.7794134, y: 2, z: 0.75097466}
-  m_Center: {x: -0.018214783, y: 1.0094726, z: 0.019323032}
 --- !u!54 &2211412263437782628
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6334,6 +6321,20 @@ MonoBehaviour:
   speed: 6
   destination: {x: 0, y: 0, z: 0}
   playerPointer: {fileID: 508031929593307483}
+--- !u!64 &8771768270516548756
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4212054089237201295}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8602427817694332075, guid: 44f86c57d3d06b44495850da3d18008d, type: 3}
 --- !u!1 &4258940210950486225
 GameObject:
   m_ObjectHideFlags: 0
@@ -6345,6 +6346,7 @@ GameObject:
   - component: {fileID: 9121965705858049314}
   - component: {fileID: 8370772475994946151}
   - component: {fileID: 6591661208900745025}
+  - component: {fileID: 6524875634657533885}
   m_Layer: 8
   m_Name: Right hand collider
   m_TagString: Damager
@@ -6377,8 +6379,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.033268, y: 0.6795073, z: 0.8032135}
-  m_Center: {x: -0.05993842, y: -0.03996369, z: -0.0997191}
+  m_Size: {x: 1.928462, y: 0.5887945, z: 0.61669695}
+  m_Center: {x: -0.0075354557, y: 0.0053927014, z: -0.006460861}
 --- !u!114 &6591661208900745025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6393,6 +6395,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
   myEnemy: {fileID: 0}
+--- !u!114 &6524875634657533885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4258940210950486225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 4999637239357496458}
+  extraDamage: 0
 --- !u!1 &4508376259886985136
 GameObject:
   m_ObjectHideFlags: 0
@@ -6712,9 +6728,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7445429553524263350}
+  - component: {fileID: 1062895539444210042}
+  - component: {fileID: 5756368134723620005}
   m_Layer: 8
   m_Name: mixamorig:Head
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6735,6 +6753,33 @@ Transform:
   m_Father: {fileID: 7843340386976325836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062895539444210042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904791602470420410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 0}
+  extraDamage: 0.7
+--- !u!65 &5756368134723620005
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904791602470420410}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5891396, y: 0.49250874, z: 0.8529533}
+  m_Center: {x: -0.008475284, y: 0.085792065, z: -0.0735234}
 --- !u!1 &5996305769230707106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7170,6 +7215,7 @@ GameObject:
   - component: {fileID: 6879020599174976921}
   - component: {fileID: 532063311399737925}
   - component: {fileID: 9161868601846376752}
+  - component: {fileID: 5140840600661712612}
   m_Layer: 8
   m_Name: Left hand collider
   m_TagString: Damager
@@ -7202,8 +7248,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.964603, y: 0.8420594, z: 0.7173155}
-  m_Center: {x: 0.1638972, y: -0.12908937, z: -0.116667636}
+  m_Size: {x: 1.8063769, y: 0.6426816, z: 0.5060142}
+  m_Center: {x: 0.08478425, y: -0.029400473, z: -0.01101695}
 --- !u!114 &9161868601846376752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7218,6 +7264,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
   myEnemy: {fileID: 0}
+--- !u!114 &5140840600661712612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311106921974869439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEnemy: {fileID: 4999637239357496458}
+  extraDamage: 0
 --- !u!1 &7459937591955972913
 GameObject:
   m_ObjectHideFlags: 0
