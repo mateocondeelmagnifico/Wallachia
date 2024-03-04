@@ -8,9 +8,9 @@ namespace PlayerMechanics
         public static SetUiValues Instance {  get; private set; }
 
         [SerializeField] private Image hitmarker;
-        [SerializeField] private Text enemyCounter;
+        [SerializeField] private TMPro.TextMeshProUGUI enemyCounter;
 
-        private float hitmarkerTimer, enemiesLeft;
+        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2;
         private void Awake()
         {
             if(Instance == null)
@@ -22,13 +22,14 @@ namespace PlayerMechanics
                 Destroy(this);
             }
 
-            enemiesLeft = 24;
-            UpdateEnemyCounter();
+            enemiesLeft = 23;
+            enemyCounter.text = enemiesLeft.ToString();
         }
 
         void Update()
         {
-            if(hitmarkerTimer > 0)
+            #region Hitmarker timer
+            if (hitmarkerTimer > 0)
             {
                 hitmarkerTimer -=Time.deltaTime;
             }
@@ -36,8 +37,22 @@ namespace PlayerMechanics
             {
                 hitmarker.enabled = false;
             }
+            #endregion
+
+            #region Enemies left Timer
+            if (enemiesTimer > 0)
+            {
+                enemiesTimer -= Time.deltaTime;
+                enemyCounter.fontSize += Time.deltaTime * 500;
+            }
+            else if(enemiesTimer2 > 0)
+            {
+                enemiesTimer2 -= Time.deltaTime;
+                enemyCounter.fontSize -= Time.deltaTime * 250;
+            }
+            #endregion
         }
-    
+
         public void SetHitmarker(float damage, bool kills)
     {
 
@@ -59,6 +74,8 @@ namespace PlayerMechanics
         {
             enemiesLeft -= 1;
             enemyCounter.text = enemiesLeft.ToString();
+            enemiesTimer = 0.15f;
+            enemiesTimer2 = 0.3f;
         }
     }
 }
