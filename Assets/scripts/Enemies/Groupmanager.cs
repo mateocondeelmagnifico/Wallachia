@@ -49,8 +49,7 @@ namespace EnemyMechanics
 
                         if (transform.GetChild(i).GetComponent<WereWolf>().enabled && !atacking)
                         {
-                            transform.GetChild(i).GetComponent<WereWolf>().angry = true;
-                            atacking = true;
+                            transform.GetChild(i).GetComponent<WereWolf>().SendToPlayer();
                         }
                     }
                 }

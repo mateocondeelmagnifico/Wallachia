@@ -6,6 +6,8 @@ using EnemyMechanics;
 public class WereWolf : Enemy
 {
     public Transform playerPointer;
+    private float timer;
+    private bool isScared;
     public override void TakeDamage(float damage, string hitType, bool playSound)
     {
         if (playSound)
@@ -53,11 +55,38 @@ public class WereWolf : Enemy
             destination = transform.position + (playerPointer.right.normalized * 2);
         }
 
-        if (scaryness.howScary > 2) speed /= 3;
+        #region Check Scared
+        if (scaryness.howScary > 1.5f) speed /= 3;
+
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if (isScared)
+        {
+            isScared = false;
+            isattacking = true;
+            angry = true;
+        }
+        #endregion
     }
 
     protected override void DyingEffects()
     {
         scaryness.IncreaseScaryness(0.5f);
+    }
+
+    public void SendToPlayer()
+    {
+        if(scaryness.howScary < 2.5f)
+        {
+            isattacking = true;
+            angry = true;
+        }
+        else
+        {
+            timer = 2;
+            isScared = true;
+        }
     }
 }
