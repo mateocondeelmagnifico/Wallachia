@@ -3,6 +3,7 @@ using WeaponMechanics;
 
 public class RespawnManager : MonoBehaviour
 {
+    public static RespawnManager instance;
     public weapons playerweapons;
 
     public Vector3 spawnposition;
@@ -22,6 +23,9 @@ public class RespawnManager : MonoBehaviour
 
     void Awake()
     {
+        if(instance == null) instance = this;
+        else Destroy(this.gameObject);
+
         DontDestroyOnLoad(this.gameObject);
         lockedDoors = new bool[20];
     }

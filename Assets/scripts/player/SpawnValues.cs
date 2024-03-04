@@ -12,9 +12,9 @@ namespace PlayerMechanics
         void Awake()
         {
             armas = GetComponent<weapons>();
-            if (FindObjectOfType<RespawnManager>() != null)
+            if (RespawnManager.instance != null)
             {
-                manager = FindObjectOfType<RespawnManager>();
+                manager = RespawnManager.instance;
 
                 if (manager.spawnposition != Vector3.zero)
                 {
