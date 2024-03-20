@@ -36,8 +36,8 @@ namespace WeaponMechanics
         {
             if (other.gameObject.tag.Equals("Enemy") && timer > 0)
             {
-                other.GetComponent<BasicEnemy>().takedamage(1.5f, "Light", true);
-                other.gameObject.GetComponent<BasicEnemy>().statuseffect("Garlic");
+                other.GetComponent<Enemy>().TakeDamage(1.5f, "Light", true);
+                other.gameObject.GetComponent<Enemy>().StatusEffect("Garlic");
             }
         }
     }

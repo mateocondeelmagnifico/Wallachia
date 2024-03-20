@@ -6394,7 +6394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
-  myEnemy: {fileID: 0}
+  myEnemy: {fileID: 4999637239357496458}
 --- !u!114 &6524875634657533885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6765,7 +6765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b114f189d21bd549ad5ca8321b13755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 0}
+  myEnemy: {fileID: 4999637239357496458}
   extraDamage: 0.7
 --- !u!65 &5756368134723620005
 BoxCollider:
@@ -7263,7 +7263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
-  myEnemy: {fileID: 0}
+  myEnemy: {fileID: 4999637239357496458}
 --- !u!114 &5140840600661712612
 MonoBehaviour:
   m_ObjectHideFlags: 0
