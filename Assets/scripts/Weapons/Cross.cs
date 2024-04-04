@@ -9,12 +9,15 @@ namespace WeaponMechanics
     {
         //This script is in the cross collider
         public float crossStrength;
+        private float crossTimer;
 
         public bool isActive;
 
         public Light myLight;
+        public MeshRenderer crossRenderer;
 
         public GameObject cross;
+
 
         private void Start()
         {
@@ -24,9 +27,20 @@ namespace WeaponMechanics
         {
             if (isActive)
             {
-                crossStrength -= Time.deltaTime;
+                crossTimer -= Time.deltaTime;
+
+                if(crossTimer < 1)
+                {
+                    crossStrength += Time.deltaTime * 10;
+                }
+                else
+                {
+                    crossStrength += Time.deltaTime;
+                }
+
                 myLight.intensity = crossStrength * 12;
-                if (crossStrength <= 0)
+
+                if (crossTimer <= 0)
                 {
                     Deactivate();
                 }
@@ -34,19 +48,16 @@ namespace WeaponMechanics
 
             if (!isActive)
             {
-                if (crossStrength < 3)
-                {
-                    crossStrength += Time.deltaTime;
-                }
-                myLight.intensity = 0;
+                if (myLight.intensity > 0) myLight.intensity -= Time.deltaTime * 160;
+                else crossRenderer.enabled = false;
             }
-
-
         }
 
         private void OnTriggerStay(Collider other)
         {
-            if (other.gameObject.tag.Equals("Enemy") && isActive)
+            if (!isActive) return;
+
+            if (other.gameObject.tag.Equals("Enemy"))
             {
 
                 #region Define Raycast Values
@@ -71,12 +82,13 @@ namespace WeaponMechanics
 
         public void Activate()
         {
-            cross.GetComponent<MeshRenderer>().enabled = true;
+            crossRenderer.enabled = true;
             isActive = true;
+            crossStrength = 1;           
+            crossTimer = 2;
         }
         public void Deactivate()
         {
-            cross.GetComponent<MeshRenderer>().enabled = false;
             isActive = false;
         }
     }

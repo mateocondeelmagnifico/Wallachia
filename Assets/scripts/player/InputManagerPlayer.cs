@@ -65,8 +65,9 @@ namespace PlayerMechanics
             if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
             {
                 cruz.Activate();
-                crossCooldown = 1;
+                crossCooldown = 9;
             }
+
             if (Input.GetKeyUp(KeyCode.Q))
             {
                 cruz.Deactivate();

@@ -3375,6 +3375,11 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 11.65
   m_Center: {x: 0, y: 0, z: 5.63}
+--- !u!23 &136276477 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7397703206101661248, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+  m_PrefabInstance: {fileID: 8511528451774131077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &142226278 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8510850188762092262, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
@@ -46109,7 +46114,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-20890
+  m_Name: pb_Mesh-20834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -54998,7 +55003,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6618
+  m_Name: pb_Mesh-5376
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -57082,6 +57087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 405479916526654940, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: crossRenderer
+      value: 
+      objectReference: {fileID: 136276477}
     - target: {fileID: 1673695494780953368, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -57098,6 +57107,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1773090998}
+    - target: {fileID: 7397703206099724416, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8184658430762186049, guid: 335b70f6f4911274388e55ab93887f82, type: 3}
       propertyPath: m_RootOrder
       value: 0
