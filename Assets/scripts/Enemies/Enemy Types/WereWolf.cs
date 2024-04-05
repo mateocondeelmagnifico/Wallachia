@@ -25,7 +25,7 @@ public class WereWolf : Enemy
 
         if (hitType == "Heavy")
         {
-            stun = 0.8f;
+            stun = damage/8 - 0.2f;
         }
         #endregion
 
