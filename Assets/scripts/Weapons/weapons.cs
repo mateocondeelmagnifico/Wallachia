@@ -71,6 +71,8 @@ namespace WeaponMechanics
             {
                 armasrango[0].SetActive(true);
             }
+
+            highlights[2].enabled = false;
         }
 
         // Update is called once per frame
@@ -129,6 +131,7 @@ namespace WeaponMechanics
         }
         public void equipfinished()
         {
+
             equippingweapon = false;
             GetComponent<movement>().canmove = true;
 

@@ -11,16 +11,20 @@ public class WeaponWheel : MonoBehaviour
     public Text[] descriptions;
     void Start()
     {
-        icons[2].SetActive(false);
-        icons[3].SetActive(false);
-        icons[4].SetActive(false);
-        icons[5].SetActive(false);
+        //Desactivar iconos
+
+        for(int i = 0; i < 6; i++)
+        {
+            if(i != 1)
+            icons[i].SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         #region Check what you have unlocked
+        if (armas.hassword) icons[0].SetActive(true);
         if (armas.hasaxe)
         {
             icons[2].SetActive(true);
