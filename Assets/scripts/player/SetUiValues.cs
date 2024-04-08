@@ -44,9 +44,10 @@ namespace PlayerMechanics
             if (enemiesTimer > 0)
             {
                 enemiesTimer -= Time.deltaTime;
-                enemyCounter.fontSize += Time.deltaTime * 500;
+                
+                if(enemyCounter.fontSize < 200)enemyCounter.fontSize += Time.deltaTime * 500;
             }
-            else if(enemiesTimer2 > 0)
+            else if(enemiesTimer2 > 0 || enemyCounter.fontSize > 70)
             {
                 enemiesTimer2 -= Time.deltaTime;
                 enemyCounter.fontSize -= Time.deltaTime * 250;
@@ -63,22 +64,22 @@ namespace PlayerMechanics
         }
 
         public void SetHitmarker(float damage, bool kills)
-    {
-
-        if (kills)
-        {
-            hitmarker.color = new Color(255, 0, 0);
-        }
-        else
         {
 
-            hitmarker.color = new Color(255, 255, 255);
-        }
+            if (kills)
+            {
+                hitmarker.color = new Color(255, 0, 0);
+            }
+            else
+            {
 
-        hitmarker.transform.localScale = new Vector3(1, 1, 1) * damage;
-        hitmarker.enabled = true;
-        hitmarkerTimer = 0.4f;
-    }
+                hitmarker.color = new Color(255, 255, 255);
+            }
+
+            hitmarker.transform.localScale = new Vector3(1, 1, 1) * damage;
+            hitmarker.enabled = true;
+            hitmarkerTimer = 0.4f;
+        }
         public void UpdateEnemyCounter()
         {
             enemiesLeft -= 1;
