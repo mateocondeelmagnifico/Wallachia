@@ -21,11 +21,11 @@ public class Zombie : Enemy
         float stun = 0;
         if(hitType == "Light")
         {
-            stun = 1;
+            stun = 0.25f + damage/8;
         }
         if (hitType == "Heavy")
         {
-            stun = 1.5f;
+            stun = 0.5f + damage / 6;
         }
         if(hitType == "Weakness")
         {
