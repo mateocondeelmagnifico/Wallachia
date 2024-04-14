@@ -9,11 +9,9 @@ namespace EnemyMechanics
 
         public GameObject father;
         public Enemy myEnemy;
-        private Camara playerCam;
-
+        [SerializeField] private float extraDmage;
         private void Start()
         {
-            playerCam = Camara.instance;
             myEnemy = father.GetComponent<Enemy>();
         }
 
@@ -24,7 +22,7 @@ namespace EnemyMechanics
             {
                 if (myEnemy.canDamage == true)
                 {
-                    other.gameObject.GetComponent<Life>().ChangeLife(-1);
+                    other.gameObject.GetComponent<Life>().ChangeLife(-1 - extraDmage);
                     myEnemy.canDamage = false;
                 }
             }

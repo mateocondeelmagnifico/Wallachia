@@ -10,7 +10,8 @@ namespace PlayerMechanics
         [SerializeField] private Image hitmarker, bloodyScreen;
         [SerializeField] private TMPro.TextMeshProUGUI enemyCounter;
 
-        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer, hurtValue;
+        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer;
+        [SerializeField] private float hurtValue;
         private void Awake()
         {
             if(Instance == null)
@@ -58,7 +59,7 @@ namespace PlayerMechanics
             if (bloodTimer > 0)
             {
                 bloodTimer -= Time.deltaTime;
-                bloodyScreen.color = new Color(1, 1, 1, bloodTimer + hurtValue);
+                bloodyScreen.color = new Color(1, 1, 1, bloodTimer + hurtValue/ 6);
             }
             #endregion
         }
@@ -89,7 +90,7 @@ namespace PlayerMechanics
         }
         public void UpdateBloodyScreen(float damage)
         {
-            hurtValue -= damage /6;
+            hurtValue -= damage;
 
             float time = 0.3f + Mathf.Abs(damage / 6);
             if (time < 0.6f) time = 0.6f;

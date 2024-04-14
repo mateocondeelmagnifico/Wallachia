@@ -48,6 +48,8 @@ namespace PlayerMechanics
 
         public void ChangeLife(float amount)
         {
+            float Amount = amount;
+            if (health + amount > 6) Amount = 6 - health;
 
             if (amount < 0)
             {
@@ -56,7 +58,8 @@ namespace PlayerMechanics
             }
             health += amount;
             if(health > 6) health = 6;
-            uiUpdater.UpdateBloodyScreen(amount);
+
+            uiUpdater.UpdateBloodyScreen(Amount);
 
             //This is for when you die
             if (health <= 0)

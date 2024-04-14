@@ -6395,6 +6395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
   myEnemy: {fileID: 4999637239357496458}
+  extraDmage: 1
 --- !u!114 &6524875634657533885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7264,6 +7265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 4212054089237201295}
   myEnemy: {fileID: 4999637239357496458}
+  extraDmage: 1
 --- !u!114 &5140840600661712612
 MonoBehaviour:
   m_ObjectHideFlags: 0

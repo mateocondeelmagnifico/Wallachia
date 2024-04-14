@@ -10,7 +10,7 @@ namespace EnemyMechanics
         public string enemytype;
         public bool activated;
         public bool isattacking;
-        public int currentball;
+        //public int currentball;
 
         public GameObject player;
 
