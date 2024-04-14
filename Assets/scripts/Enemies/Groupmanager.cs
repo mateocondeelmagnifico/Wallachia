@@ -49,7 +49,7 @@ namespace EnemyMechanics
 
                         if (transform.GetChild(i).GetComponent<WereWolf>().enabled && !atacking)
                         {
-                            transform.GetChild(i).GetComponent<WereWolf>().SendToPlayer();
+                            //transform.GetChild(i).GetComponent<WereWolf>().SendToPlayer();
                         }
                     }
                 }
@@ -88,6 +88,11 @@ namespace EnemyMechanics
             {
                 transform.GetChild(i).GetComponent<Enemy>().playerDetected = true;
             }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Player")) player = other.gameObject;
         }
     }
 }

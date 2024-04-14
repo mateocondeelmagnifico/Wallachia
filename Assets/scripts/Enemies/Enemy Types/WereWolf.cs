@@ -51,7 +51,6 @@ public class WereWolf : Enemy
         if(playerDetected && !angry && Vector3.Distance(player.transform.position, transform.position) < 17)
         {
             //Surround player
-            Debug.Log(1);
             playerPointer.forward = player.transform.position - transform.position;
 
             destination = transform.position + (playerPointer.right.normalized * 2);
