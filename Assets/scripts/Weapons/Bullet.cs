@@ -12,8 +12,8 @@ namespace WeaponMechanics
         public Transform player;
         GameObject myparticle;
 
-        public float timer;
-        public float damage;
+        public float timer, damage;
+        private int myType;
 
         public weapons armas;
         public bool isriflebullet;
@@ -53,7 +53,7 @@ namespace WeaponMechanics
             if (other.gameObject.tag.Equals("Damager") || other.gameObject.tag.Equals("Hitbox"))
             {
                 string stun;
-                string statuseffect;
+                string statuseffect = "";
                 if (isriflebullet == true)
                 {
                     stun = "Heavy";
@@ -62,14 +62,20 @@ namespace WeaponMechanics
                 {
                     stun = "Light";
                 }
-                if (issilver == true)
+
+                switch(myType)
                 {
-                    statuseffect = "Silver";
+                    case 0:
+                        statuseffect = "Iron";
+                        break;
+                    case 1:
+                        statuseffect = "Silver";
+                        break;
+                    case 2:
+                        statuseffect = "Holy";
+                        break;
                 }
-                else
-                {
-                    statuseffect = "Iron";
-                }
+
                 other.GetComponent<Hitbox>().DealDamage(damage, stun, statuseffect);
                 Destroy(this.gameObject);
             }
@@ -106,24 +112,38 @@ namespace WeaponMechanics
                     enemigo.TakeDamage(damage, "Light", true);
                 }
 
-                if (issilver == true)
+                string status = "";
+
+                switch (myType)
                 {
-                    enemigo.StatusEffect("Silver");
-                    if (isriflebullet == true)
-                    {
-                        enemigo.StatusEffect("Silver");
-                    }
+                    case 0:
+                        status = "Iron";
+                        break;
+                    case 1:
+                        status = "Silver";
+                        break;
+                    case 2:
+                        status = "Holy";
+                        break;
                 }
-                else
+
+                enemigo.StatusEffect(status);
+                if (isriflebullet == true)
                 {
-                    enemigo.StatusEffect("Iron");
+                   enemigo.StatusEffect(status);
                 }
+
             }
             else
             {
                 myparticle = GameObject.Instantiate(particles[1], transform.position, transform.rotation);
                 myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
             }
+        }
+
+        public void GiveType(int type)
+        {
+            myType = type;
         }
     }
 }

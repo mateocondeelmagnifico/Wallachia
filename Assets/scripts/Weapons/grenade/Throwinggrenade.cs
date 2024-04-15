@@ -58,6 +58,8 @@ namespace WeaponMechanics
 
             if (Input.GetKeyDown(KeyCode.F) && grenadecooldown <= 0 && grenadesleft == true && ispaused == false)
             {
+                return;
+
                 sound.playaudio("Throw grenade");
                 currentgrenade = GameObject.Instantiate(grenade, transform.position, transform.rotation);
                 currentgrenade.GetComponent<grenade>().armas = armas;

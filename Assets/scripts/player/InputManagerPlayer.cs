@@ -8,12 +8,14 @@ namespace PlayerMechanics
         movement movimiento;
         public GameObject crossObj;
         Cross cruz;
+        private weapons weaponsScript;
 
         private float crossCooldown;
         private void Start()
         {
             movimiento = GetComponent<movement>();
             cruz = crossObj.GetComponentInChildren<Cross>();
+            weaponsScript = GetComponent<weapons>();
         }
 
         void Update()
@@ -24,6 +26,7 @@ namespace PlayerMechanics
             }
             MovementInputs();
             CrossInput();
+            OtherInputs();
         }
 
         private void MovementInputs()
@@ -62,15 +65,23 @@ namespace PlayerMechanics
         }
         private void CrossInput()
         {
-            if (Input.GetKey(KeyCode.Q) && crossCooldown <= 0)
+            if (Input.GetKey(KeyCode.F) && crossCooldown <= 0)
             {
                 cruz.Activate();
                 crossCooldown = 9;
             }
 
-            if (Input.GetKeyUp(KeyCode.Q))
+            if (Input.GetKeyUp(KeyCode.F))
             {
                 cruz.Deactivate();
+            }
+        }
+
+        private void OtherInputs()
+        {
+            if(Input.GetKeyDown(KeyCode.Q))
+            {
+                weaponsScript.ChangeBullet();
             }
         }
     }

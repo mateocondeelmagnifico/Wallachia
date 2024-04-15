@@ -27,8 +27,6 @@ namespace WeaponMechanics
         GameObject sound;
         private Image reloadingCircle;
 
-
-
         ParticleSystem particles;
         GameObject luz;
         GameObject mybullet;
@@ -41,7 +39,7 @@ namespace WeaponMechanics
         public bool missingammo;
         public bool canshoot;
         public bool isinplace;
-        public bool silvermode;
+        //public bool silvermode;
         public bool ispaused;
         bool reloading;
         public bool canreload;
@@ -58,11 +56,7 @@ namespace WeaponMechanics
         float lighttimer;
         float multiplier;
 
-        public int ammo;
-        public int maxammo;
-        public int silverammo;
-        public int maxsilverammo;
-
+        public int ammo, maxammo, silverammo, maxsilverammo, bulletType;
 
         public Vector3 aim;
         Vector3 tempposition;
@@ -110,15 +104,6 @@ namespace WeaponMechanics
 
         void Update()
         {
-            //If the bullet is silver
-            if (armas.currentEquip[3] == 1)
-            {
-                silvermode = true;
-            }
-            else
-            {
-                silvermode = false;
-            }
             checkgun();
 
             //recoil
@@ -225,27 +210,14 @@ namespace WeaponMechanics
         {
             if (reloading == false && canshoot == true)
             {
-                if (silvermode == false)
+                if (isrifle == true && ammo < 4)
                 {
-                    if (isrifle == true && ammo < 4)
-                    {
                         canreload = true;
-                    }
-                    if (isrifle == false && ammo < 6)
-                    {
-                        canreload = true;
-                    }
                 }
-                else
+
+                if (isrifle == false && ammo < 6)
                 {
-                    if (isrifle == true && silverammo < 4)
-                    {
-                        canreload = true;
-                    }
-                    if (isrifle == false && silverammo < 6)
-                    {
-                        canreload = true;
-                    }
+                   canreload = true;
                 }
             }
             if (reloadingtimer > 0)
@@ -257,28 +229,16 @@ namespace WeaponMechanics
             {
                 if (reloading == true)
                 {
-                    if (silvermode == false)
+
+                    if (isrifle == true)
                     {
-                        if (isrifle == true)
-                        {
-                            ammo = 4;
-                        }
-                        else
-                        {
-                            ammo = 6;
-                        }
+                       ammo = 4;
                     }
                     else
                     {
-                        if (isrifle == true)
-                        {
-                            silverammo = 4;
-                        }
-                        else
-                        {
-                            silverammo = 6;
-                        }
+                       ammo = 6;
                     }
+
                     reloading = false;
                     missingammo = false;
                     reloadingCircle.fillAmount = 0;
@@ -289,49 +249,40 @@ namespace WeaponMechanics
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && reloading == false && canshoot == true)
             {
-                if (silvermode == false && ammo <= 0 || silvermode == true && silverammo <= 0)
+                if (ammo <= 0)
                 {
                     sonido.playaudio("dont shoot");
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0) && shotcooldown <= 0 && canshoot == true && reloading == false)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && shotcooldown <= 0 && canshoot == true && reloading == false && ammo > 0)
             {
                 myCam.ShakeCam(2);
-
-                if (silvermode == false && ammo > 0)
-                {
-                    instantiatebullet();
-                    ammo--;
-                    particles.Emit(10);
-                    lighttimer = 0.1f;
-                }
-                if (silvermode == true && silverammo > 0)
-                {
-                    instantiatebullet();
-                    silverammo--;
-                    particles.Emit(10);
-                    lighttimer = 0.1f;
-                }
+                instantiatebullet();
+                ammo--;
+                particles.Emit(10);
+                lighttimer = 0.1f;
             }
 
             SetAmmoCounter(0);
         }
         public void instantiatebullet()
         {
-            if (isrifle == true)
+            if (isrifle)
             {
-                shotcooldown = 2;
                 mybullet = GameObject.Instantiate(riflebullet, cannon.position, transform.rotation);
-                mybullet.GetComponent<Bullet>().armas = armas;
-                mybullet.GetComponent<Bullet>().player = player.transform;
+                shotcooldown = 2;
             }
             else
             {
                 shotcooldown = 0.4f;
                 mybullet = GameObject.Instantiate(bullet, cannon.position, transform.rotation);
-                mybullet.GetComponent<Bullet>().armas = armas;
-                mybullet.GetComponent<Bullet>().player = player.transform;
             }
+
+            Bullet bulletScript = mybullet.GetComponent<Bullet>();
+            bulletScript.armas = armas;
+            bulletScript.player = player.transform;
+            bulletScript.GiveType(bulletType);
+            
             shotcooldown2 = 0.45f;
             sonido.playaudio("shoot");
             missingammo = true;
@@ -342,17 +293,10 @@ namespace WeaponMechanics
         {
             if (Input.GetKeyDown(KeyCode.R) && canreload == true)
             {
-                if (silvermode == false && maxammo > 0)
+                if (maxammo > 0)
                 {
                     sonido.playaudio("Reload");
                     reloadingmath("Iron");
-                    reloading = true;
-                    reloadingtimer = 4;
-                }
-                if (silvermode == true && maxsilverammo > 0)
-                {
-                    sonido.playaudio("Reload");
-                    reloadingmath("Silver");
                     reloading = true;
                     reloadingtimer = 4;
                 }
@@ -431,16 +375,8 @@ namespace WeaponMechanics
         }
         private void SetAmmoCounter(int type)
         {
-            if (silvermode == false)
-            {
-                if (type == 0) Ammocounter.GetComponent<Text>().text = ammo.ToString();
-                if (type == 1) Maxammocounter.GetComponent<Text>().text = maxammo.ToString();
-            }
-            else
-            {
-                if (type == 0) Ammocounter.GetComponent<Text>().text = silverammo.ToString();
-                if (type == 0) Maxammocounter.GetComponent<Text>().text = maxsilverammo.ToString();
-            }
+            if (type == 0) Ammocounter.GetComponent<Text>().text = ammo.ToString();
+            if (type == 1) Maxammocounter.GetComponent<Text>().text = maxammo.ToString();
         }
 
     }

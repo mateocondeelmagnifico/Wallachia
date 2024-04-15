@@ -22,7 +22,7 @@ namespace WeaponMechanics
         public GameObjectgetter getter;
         public GameObject[] armas;
         public GameObject[] armasrango;
-        GameObject bulleticon;
+        private Image bulleticon;
         GameObject soundmanager;
         public Animator animador;
         public Sprite[] bullets;
@@ -31,16 +31,13 @@ namespace WeaponMechanics
         Sonido sound;
         RespawnManager resManager;
 
-        public bool equippingweapon;
-        public bool isreloading;
-        public bool hassword;
-        public bool hasrifle;
-        public bool hasaxe;
-        public bool hasgrenade;
-        public bool hasbullet;
-        public bool isattacking;
+        public bool equippingweapon, isreloading, hassword, hasrifle, hasaxe, hasgrenade, hasbullet, isattacking;
 
         bool doonce;
+
+        public enum bulletTypes { iron, silver, sacred}
+        private bulletTypes currentBullet;
+
         void Start()
         {
             if (FindObjectOfType<RespawnManager>())
@@ -52,7 +49,7 @@ namespace WeaponMechanics
             armas[1] = getter.axe;
             armasrango[0] = getter.gun1;
             armasrango[1] = getter.gun2;
-            bulleticon = getter.bulleticon;
+            bulleticon = getter.bulleticon.GetComponent<Image>();
             soundmanager = getter.Soundmanager;
             sound = soundmanager.GetComponent<Sonido>();
 
@@ -73,6 +70,8 @@ namespace WeaponMechanics
             }
 
             highlights[2].enabled = false;
+            currentBullet = bulletTypes.iron;
+            bulleticon.sprite = bullets[0];
         }
 
         // Update is called once per frame
@@ -118,20 +117,9 @@ namespace WeaponMechanics
             }
             #endregion
 
-            #region see what bullet icon to display
-            if (currentEquip[3] == 0)
-            {
-                bulleticon.GetComponent<Image>().sprite = bullets[0];
-            }
-            else
-            {
-                bulleticon.GetComponent<Image>().sprite = bullets[1];
-            }
-            #endregion
         }
         public void equipfinished()
         {
-
             equippingweapon = false;
             GetComponent<movement>().canmove = true;
 
@@ -139,6 +127,7 @@ namespace WeaponMechanics
             resManager.currentmelee = currentEquip[0];
             resManager.currentgun = currentEquip[1];
             resManager.currentgrenade = currentEquip[2];
+            armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = currentBullet.GetHashCode();
         }
         public void equippoint()
         {
@@ -249,7 +238,6 @@ namespace WeaponMechanics
                 }
             }
         }
-
         public void SetHighlight(string type)
         {
             //Esto lo llaman los botones de la weapon wheel
@@ -276,6 +264,31 @@ namespace WeaponMechanics
                     highlights[1].enabled = true;
                     break;
             }
+        }
+        public void ChangeBullet()
+        {
+            int myType = 0;
+
+           switch(currentBullet)
+            {
+                case bulletTypes.iron:
+                    currentBullet = bulletTypes.silver;
+                    myType = 1;
+                    break;
+
+                case bulletTypes.silver:
+                    currentBullet = bulletTypes.sacred;
+                    myType = 2;
+                    break;
+
+                case bulletTypes.sacred:
+                    currentBullet = bulletTypes.iron;
+                    myType = 0;
+                    break;
+            }
+
+            bulleticon.sprite = bullets[myType];
+            armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = myType;
         }
     }
 }
