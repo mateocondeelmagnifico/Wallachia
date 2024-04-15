@@ -74,7 +74,7 @@ namespace PlayerMechanics
                 animador.SetBool("Axestill", false);
                 animador.SetTrigger("Loweraxe");
                 attacking = true;
-                axe.GetComponent<Sword>().axedamage += chargetimer * 2;
+                axe.GetComponent<Sword>().axedamage += chargetimer * 2.7f;
             }
             #endregion
 
@@ -105,7 +105,7 @@ namespace PlayerMechanics
             attacking = false;
             //GetComponent<movement>().canmove = true;
             chargetimer = 0;
-            axe.GetComponent<Sword>().axedamage = 3;
+            axe.GetComponent<Sword>().axedamage = 2;
         }
         public void Damageend()
         {

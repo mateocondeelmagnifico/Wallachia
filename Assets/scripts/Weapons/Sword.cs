@@ -33,7 +33,7 @@ namespace WeaponMechanics
             player = getter.Player;
             soundmanager = getter.Soundmanager;
             sound = soundmanager.GetComponent<Sonido>();
-            axedamage = 3;
+            axedamage = 2;
             ataque = player.GetComponent<Attack>();
 
             scaryness = player.GetComponent<Scaryness>();
