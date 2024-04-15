@@ -23,7 +23,7 @@ namespace PlayerMechanics
 
                 armas.hasaxe = manager.hasAxe;
                 armas.hasrifle = manager.hasRifle;
-                armas.hasbullet = manager.hasBullets;
+                armas.hasBullet = manager.hasBullets;
                 armas.hasgrenade = manager.hasGrenades;
                 armas.hassword = manager.hasSword;
                 armas.currentEquip[2] = manager.currentgrenade;

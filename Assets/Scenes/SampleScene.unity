@@ -27370,7 +27370,7 @@ PrefabInstance:
       objectReference: {fileID: 1963885566}
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: whatPowerUp
-      value: Bullet
+      value: Bullets
       objectReference: {fileID: 0}
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: pausemanager
@@ -30714,7 +30714,7 @@ PrefabInstance:
       objectReference: {fileID: 1963885566}
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: whatPowerUp
-      value: Grenade
+      value: Cross
       objectReference: {fileID: 0}
     - target: {fileID: 2054673428604494579, guid: 1ebebc5d6d8b2394d91b2167d1d31d95, type: 3}
       propertyPath: pausemanager
@@ -49558,7 +49558,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-55816
+  m_Name: pb_Mesh-20808
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -55675,6 +55675,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 247464039, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 247464043, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -55826,6 +55830,10 @@ PrefabInstance:
     - target: {fileID: 1578364646, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
       propertyPath: m_RootOrder
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953158494, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1953158498, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

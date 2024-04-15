@@ -33,16 +33,6 @@ public class WeaponWheel : MonoBehaviour
         {
             icons[3].SetActive(true);
         }
-        if (armas.hasgrenade)
-        {
-            icons[4].SetActive(true);
-            descriptions[0].enabled = true;
-        }
-        if (armas.hasbullet)
-        {
-            icons[5].SetActive(true);
-            descriptions[1].enabled = true;
-        }
         #endregion
 
         #region Bullet and grenade changes

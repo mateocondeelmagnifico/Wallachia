@@ -30,10 +30,9 @@ namespace WeaponMechanics
 
         Sonido sound;
         RespawnManager resManager;
+        private InputManagerPlayer inputmanager;
 
-        public bool equippingweapon, isreloading, hassword, hasrifle, hasaxe, hasgrenade, hasbullet, isattacking;
-
-        bool doonce;
+        public bool equippingweapon, isreloading, hassword, hasBullet, hasCross,hasrifle, hasaxe, hasgrenade, isattacking;
 
         public enum bulletTypes { iron, silver, sacred}
         private bulletTypes currentBullet;
@@ -52,6 +51,7 @@ namespace WeaponMechanics
             bulleticon = getter.bulleticon.GetComponent<Image>();
             soundmanager = getter.Soundmanager;
             sound = soundmanager.GetComponent<Sonido>();
+            inputmanager = GetComponent<InputManagerPlayer>();
 
             //weapon 0 = sword
             //weapon 1 = axe
@@ -72,6 +72,12 @@ namespace WeaponMechanics
             highlights[2].enabled = false;
             currentBullet = bulletTypes.iron;
             bulleticon.sprite = bullets[0];
+            armas[0].SetActive(false);
+            GetComponent<Attack>().hasmelee = false;
+
+            if (hasBullet) UnlockWeapon("Bullets");
+            if (hassword) UnlockWeapon("Sword");
+            if (hasCross) UnlockWeapon("Cross");
         }
 
         // Update is called once per frame
@@ -89,22 +95,7 @@ namespace WeaponMechanics
             }
             #endregion
 
-            #region see if you can melee atack
-            //This checks if you have unlocked the sword
-            if (!hassword)
-            {
-                armas[0].SetActive(false);
-                GetComponent<Attack>().hasmelee = false;
-            }
-            else
-            {
-                if (!doonce && currentEquip[0] == 0)
-                {
-                    armas[0].SetActive(true);
-                    GetComponent<Attack>().hasmelee = true;
-                    doonce = true;
-                }
-            }
+            #region see if you can melee atack       
 
             //check if you can melee attack
             if (armasrango[currentEquip[1]].GetComponent<Shooting>().shotcooldown2 > 0)
@@ -289,6 +280,36 @@ namespace WeaponMechanics
 
             bulleticon.sprite = bullets[myType];
             armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = myType;
+        }
+
+        public void UnlockWeapon(string whichOne)
+        {
+            switch(whichOne)
+            {
+                case "Cross":
+                    inputmanager.hasCross = true;
+                    hasCross = true;
+                    break;
+
+                case "Sword":
+                    armas[0].SetActive(true);
+                    GetComponent<Attack>().hasmelee = true;
+                    hassword = true;
+                    break;
+
+                case "Axe":
+                    hasaxe = true;
+                    break;
+
+                case "Rifle":
+                    hasrifle = true;
+                    break;
+
+                case "Bullets":
+                    inputmanager.hasBullets = true;
+                    hasBullet = true;
+                    break;
+            }
         }
     }
 }

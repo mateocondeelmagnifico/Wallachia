@@ -34,7 +34,6 @@ public class Pickup : MonoBehaviour
             }
             if (pickuptype == "Bullet")
             {
-                collision.gameObject.GetComponent<weapons>().hasbullet = true;
                 collision.gameObject.GetComponent<weapons>().playsound();
                 Destroy(this.gameObject);
             }

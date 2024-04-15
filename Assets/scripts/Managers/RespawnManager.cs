@@ -38,7 +38,7 @@ public class RespawnManager : MonoBehaviour
         {
             hasGrenades = true;
         }
-        if (playerweapons.hasbullet)
+        if (playerweapons.hasBullet)
         {
             hasBullets = true;
         }

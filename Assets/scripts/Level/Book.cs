@@ -43,15 +43,15 @@ public class Book : MonoBehaviour
             }
             else
             {
-                stopreading();
-                GivePowerUp(whatPowerUp);
+                armas.playsound();
+                armas.UnlockWeapon(whatPowerUp);
             }
-         
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && isreading == true)
         {
-            GivePowerUp(whatPowerUp);
+            armas.playsound();
+            armas.UnlockWeapon(whatPowerUp);
             stopreading();
         }
 
@@ -88,35 +88,6 @@ public class Book : MonoBehaviour
         image.enabled = false;
         pausa.unpause();
         isreading = false;
-    }
-    public void GivePowerUp(string type)
-    {
-        if (whatPowerUp == "Rifle" && !weaponUnlocked)
-        {
-            armas.hasrifle = true;
-            armas.playsound();
-        }
-        if (whatPowerUp == "Axe" && !weaponUnlocked)
-        {
-            armas.hasaxe = true;
-            armas.playsound();
-        }
-        if (whatPowerUp == "Bullet" && !weaponUnlocked)
-        {
-            armas.hasbullet = true;
-            armas.playsound();
-        }
-        if (whatPowerUp == "Grenade" && !weaponUnlocked)
-        {
-            armas.hasgrenade = true;
-            armas.playsound();
-            
-        }
-        if (whatPowerUp == "Sword")
-        {
-            armas.hassword = true;
-            armas.playsound();
-        }
     }
     public void CheckUnlock(string whatUnlock)
     {

@@ -8,6 +8,7 @@ public class DoorTrigger : MonoBehaviour
     public int doorNumber;
     MoveObject movement;
     bool Islocked;
+    public bool isAutomatic;
     RespawnManager resManager;
     void Start()
     {
