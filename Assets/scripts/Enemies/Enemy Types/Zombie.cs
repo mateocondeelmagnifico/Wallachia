@@ -53,7 +53,7 @@ public class Zombie : Enemy
 
         if (type == "Holy" && damageTimer <= 0)
         {
-            TakeDamage(0.1f, "Weakness", false);
+            TakeDamage(0.7f, "Weakness", false);
             damageTimer = 0.2f;
         }
     }

@@ -9,6 +9,7 @@ namespace PlayerMechanics
         public GameObject crossObj;
         Cross cruz;
         private weapons weaponsScript;
+        private SetUiValues uiScript;
 
         private float crossCooldown;
 
@@ -18,6 +19,7 @@ namespace PlayerMechanics
             movimiento = GetComponent<movement>();
             cruz = crossObj.GetComponentInChildren<Cross>();
             weaponsScript = GetComponent<weapons>();
+            uiScript = GetComponent<SetUiValues>();
         }
 
         void Update()
@@ -25,6 +27,7 @@ namespace PlayerMechanics
             if (crossCooldown > 0)
             {
                 crossCooldown -= Time.deltaTime;
+                uiScript.SetCrossCooldown(crossCooldown);
             }
             MovementInputs();
             CrossInput();

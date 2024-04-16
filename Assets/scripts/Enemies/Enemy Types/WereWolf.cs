@@ -44,6 +44,11 @@ public class WereWolf : Enemy
             if(regeneration > -1.7f) regeneration -= 0.6f;
             DecideStun(1f);
         }
+
+        if (type == "Garlic")
+        {
+            life -= 0.1f;
+        }
     }
 
     protected override void EmptyUpdate()

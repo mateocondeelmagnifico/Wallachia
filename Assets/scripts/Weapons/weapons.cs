@@ -31,6 +31,7 @@ namespace WeaponMechanics
         Sonido sound;
         RespawnManager resManager;
         private InputManagerPlayer inputmanager;
+        private SetUiValues uiScript;
 
         public bool equippingweapon, isreloading, hassword, hasBullet, hasCross,hasrifle, hasaxe, hasgrenade, isattacking;
 
@@ -52,7 +53,7 @@ namespace WeaponMechanics
             soundmanager = getter.Soundmanager;
             sound = soundmanager.GetComponent<Sonido>();
             inputmanager = GetComponent<InputManagerPlayer>();
-
+            uiScript = GetComponent<SetUiValues>();
             //weapon 0 = sword
             //weapon 1 = axe
 
@@ -259,29 +260,33 @@ namespace WeaponMechanics
         public void ChangeBullet()
         {
             int myType = 0;
+            string name = "";
 
            switch(currentBullet)
             {
                 case bulletTypes.iron:
                     currentBullet = bulletTypes.silver;
                     myType = 1;
+                    name = "Silver";
                     break;
 
                 case bulletTypes.silver:
                     currentBullet = bulletTypes.sacred;
                     myType = 2;
+                    name = "Sacred";
                     break;
 
                 case bulletTypes.sacred:
                     currentBullet = bulletTypes.iron;
                     myType = 0;
+                    name = "Iron";
                     break;
             }
 
             bulleticon.sprite = bullets[myType];
             armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = myType;
+            uiScript.SetBulletName(name);
         }
-
         public void UnlockWeapon(string whichOne)
         {
             switch(whichOne)
@@ -289,6 +294,7 @@ namespace WeaponMechanics
                 case "Cross":
                     inputmanager.hasCross = true;
                     hasCross = true;
+                    uiScript.crossImage.gameObject.SetActive(true);
                     break;
 
                 case "Sword":
@@ -310,6 +316,7 @@ namespace WeaponMechanics
                     hasBullet = true;
                     break;
             }
+
         }
     }
 }

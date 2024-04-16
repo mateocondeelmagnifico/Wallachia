@@ -67,9 +67,6 @@ namespace WeaponMechanics
                 RaycastHit hit;
                 #endregion
 
-                Debug.DrawRay(cross.transform.position, direction);
-
-
                 if (Physics.Raycast(rayo, out hit, 2000, 1 << 8 | 1 << 11 | 1 << 0))
                 {
                     if (hit.collider.gameObject.tag.Equals("Enemy"))

@@ -8,10 +8,12 @@ namespace PlayerMechanics
         public static SetUiValues Instance {  get; private set; }
 
         [SerializeField] private Image hitmarker, bloodyScreen;
-        [SerializeField] private TMPro.TextMeshProUGUI enemyCounter;
+        public Image crossImage;
+        [SerializeField] private TMPro.TextMeshProUGUI enemyCounter, bulletName;
 
-        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer;
+        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer, texTimer, opacityTimer;
         [SerializeField] private float hurtValue;
+
         private void Awake()
         {
             if(Instance == null)
@@ -62,6 +64,18 @@ namespace PlayerMechanics
                 bloodyScreen.color = new Color(1, 1, 1, bloodTimer + hurtValue/ 6);
             }
             #endregion
+
+            #region Bullet name timer
+            if(texTimer > 0)
+            {
+                texTimer -= Time.deltaTime;
+                if (opacityTimer < 1 && texTimer > 0.5f) opacityTimer += Time.deltaTime * 2;
+
+                if (opacityTimer > 0 && texTimer < 0.5f) opacityTimer -= Time.deltaTime * 2.5f;
+
+                bulletName.color = new Color(1, 1, 1, opacityTimer);
+            }
+            #endregion
         }
 
         public void SetHitmarker(float damage, bool kills)
@@ -96,6 +110,20 @@ namespace PlayerMechanics
             if (time < 0.6f) time = 0.6f;
 
             bloodTimer = time;
+        }
+        public void SetBulletName(string name)
+        {
+            texTimer = 1.5f;
+            bulletName.text = name;
+            opacityTimer = 0;
+        }
+
+        public void SetCrossCooldown(float amount)
+        {
+            crossImage.fillAmount = 1 - amount/9;
+
+            if(crossImage.fillAmount >= 1) crossImage.color = new Color(1,1,1,1);
+            else crossImage.color = new Color(1, 1, 1, 0.3f);
         }
     }
 }

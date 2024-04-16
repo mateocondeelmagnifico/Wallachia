@@ -45,6 +45,8 @@ public class Book : MonoBehaviour
             {
                 armas.playsound();
                 armas.UnlockWeapon(whatPowerUp);
+                stopreading();
+                Destroy(pickUp);
             }
         }
 
@@ -53,9 +55,9 @@ public class Book : MonoBehaviour
             armas.playsound();
             armas.UnlockWeapon(whatPowerUp);
             stopreading();
+            Destroy(pickUp);
         }
 
-        CheckUnlock(whatPowerUp);
     }
 
     private void OnTriggerStay(Collider other)
@@ -89,63 +91,5 @@ public class Book : MonoBehaviour
         pausa.unpause();
         isreading = false;
     }
-    public void CheckUnlock(string whatUnlock)
-    {
-        if (whatUnlock == "Rifle")
-        {
-            if (!respawnmanager.hasRifle)
-            {
-                weaponUnlocked = false;
-            }
-            else
-            {
-                pickUp.SetActive(false);
-            }
-        }
-        if (whatUnlock == "Axe")
-        {
-            if (!respawnmanager.hasAxe)
-            {
-                weaponUnlocked = false;
-            }
-            else
-            {
-                pickUp.SetActive(false);
-            }
-        }
-        if (whatUnlock == "Bullet")
-        {
-            if (!respawnmanager.hasBullets)
-            
-                {
-                    weaponUnlocked = false;
-                }
-            else
-                {
-                    pickUp.SetActive(false);
-                }
-            }
-        if (whatUnlock == "Grenade")
-        {
-            if (!respawnmanager.hasGrenades)
-            {
-                weaponUnlocked = false;
-            }
-            else
-            {
-                pickUp.SetActive(false);
-            }
-        }
-        if (whatUnlock == "Sword")
-        {
-            if (!respawnmanager.hasSword)
-            {
-                weaponUnlocked = false;
-            }
-            else
-            {
-                pickUp.SetActive(false);
-            }
-        }
-    }
+    
 }
