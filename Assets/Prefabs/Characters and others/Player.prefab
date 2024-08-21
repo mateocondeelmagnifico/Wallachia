@@ -3019,6 +3019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animador: {fileID: 8511528451480277711}
   getter: {fileID: 0}
+  currentSword: {fileID: 0}
   tooclose: 0
   hasmelee: 0
   ispaused: 0
@@ -3039,15 +3040,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30125d2c58dc60f4f84f76d4894070e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentEquip: 
-  tempEquip: 
   getter: {fileID: 0}
-  armas:
+  armasMelee:
   - {fileID: 8510850188762092262}
   - {fileID: 8511528451130704070}
-  armasrango:
+  armasRango:
   - {fileID: 8511528450750984105}
   - {fileID: 8510017635049715536}
+  leftEquip: {fileID: 0}
+  rightEquip: {fileID: 0}
+  tempEquipLeft: 
+  tempRightEquip: 
+  tempGrenade: 
   animador: {fileID: 8511528451480277711}
   bullets:
   - {fileID: 21300000, guid: 3ffa36cc748c82e49ba478d7135fd91b, type: 3}
@@ -3056,11 +3060,13 @@ MonoBehaviour:
   equippingweapon: 0
   isreloading: 0
   hassword: 0
+  hasBullet: 0
+  hasCross: 0
   hasrifle: 0
   hasaxe: 0
   hasgrenade: 0
-  hasbullet: 0
   isattacking: 0
+  currentBullet: 0
 --- !u!114 &8511528451480277704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3075,7 +3081,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   currenthealth: 0
-  bloodtimer: 0
   riflereloaded: 0
   pistolreloaded: 0
   getter: {fileID: 0}
@@ -3119,6 +3124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossObj: {fileID: 7397703206099724416}
+  hasCross: 0
+  hasBullets: 0
 --- !u!1001 &7429972471880375186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4706,11 +4713,9 @@ MonoBehaviour:
   bullet: {fileID: 64086437826646264, guid: 067f3f80dcbfd7a4c9ea955f55eb87d2, type: 3}
   riflebullet: {fileID: 0}
   particlesobject: {fileID: 8511528451995036487}
-  isrifle: 0
   missingammo: 0
   canshoot: 0
   isinplace: 0
-  silvermode: 0
   ispaused: 0
   canreload: 0
   isrunning: 0
@@ -4719,10 +4724,12 @@ MonoBehaviour:
   gunposition: {fileID: 8511528451639857922}
   reloadingpoint: {fileID: 8511528451237685730}
   shotcooldown2: 0
+  recoil: 0.3
+  damage: 1
   ammo: 0
-  maxammo: 0
-  silverammo: 0
-  maxsilverammo: 0
+  clipAmmo: 6
+  maxammo: 35
+  bulletType: 0
   aim: {x: 0, y: 0, z: 0}
 --- !u!1001 &8511528451503891696
 PrefabInstance:
@@ -4863,11 +4870,9 @@ MonoBehaviour:
   bullet: {fileID: 64086437826646264, guid: 067f3f80dcbfd7a4c9ea955f55eb87d2, type: 3}
   riflebullet: {fileID: 7235726665903860900, guid: 0536bff199bd28e4bbb468fe708dd85a, type: 3}
   particlesobject: {fileID: 8511528450522729047}
-  isrifle: 1
   missingammo: 0
   canshoot: 0
   isinplace: 0
-  silvermode: 0
   ispaused: 0
   canreload: 0
   isrunning: 0
@@ -4876,10 +4881,12 @@ MonoBehaviour:
   gunposition: {fileID: 8511528451639857922}
   reloadingpoint: {fileID: 8511528451237685730}
   shotcooldown2: 0
+  recoil: 1.8
+  damage: 2
   ammo: 0
-  maxammo: 0
-  silverammo: 0
-  maxsilverammo: 0
+  clipAmmo: 4
+  maxammo: 20
+  bulletType: 0
   aim: {x: 0, y: 0, z: 0}
 --- !u!1001 &8511528451707738437
 PrefabInstance:

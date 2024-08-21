@@ -26,9 +26,9 @@ namespace PlayerMechanics
                 armas.hasBullet = manager.hasBullets;
                 armas.hasgrenade = manager.hasGrenades;
                 armas.hassword = manager.hasSword;
-                armas.currentEquip[2] = manager.currentgrenade;
-                armas.currentEquip[0] = manager.currentmelee;
-                armas.currentEquip[1] = manager.currentgun;
+                armas.tempGrenade = manager.currentgrenade;
+                armas.tempRightEquip = manager.currentmelee;
+                armas.tempEquipLeft = manager.currentgun;
 
                 armas.SetiInactive();
                 armas.equippoint();

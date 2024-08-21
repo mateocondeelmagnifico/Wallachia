@@ -19,12 +19,9 @@ namespace WeaponMechanics
         public GameObject bullet;
         GameObject camara;
         GameObject aimpoint;
-        public GameObject riflebullet;
-        GameObject Ammocounter;
-        GameObject Maxammocounter;
-        GameObject Reloadingimage;
-        public GameObject particlesobject;
-        GameObject sound;
+        public GameObject riflebullet, particlesobject;
+        GameObject Ammocounter, Maxammocounter, Reloadingimage, sound;
+
         private Image reloadingCircle;
 
         ParticleSystem particles;
@@ -32,14 +29,11 @@ namespace WeaponMechanics
         GameObject mybullet;
 
         Rigidbody cuerporigido;
-        weapons armas;
         private Camara myCam;
 
-        public bool isrifle;
         public bool missingammo;
         public bool canshoot;
         public bool isinplace;
-        //public bool silvermode;
         public bool ispaused;
         bool reloading;
         public bool canreload;
@@ -50,13 +44,13 @@ namespace WeaponMechanics
         public Transform gunposition;
         public Transform reloadingpoint;
 
-        float shotcooldown;
-        public float shotcooldown2;
+        public float shotcooldown;
+        public float shotcooldown2, recoil, damage;
         private float reloadingtimer;
         float lighttimer;
         float multiplier;
 
-        public int ammo, maxammo, silverammo, maxsilverammo, bulletType;
+        public int ammo, clipAmmo, maxammo, bulletType;
 
         public Vector3 aim;
         Vector3 tempposition;
@@ -73,7 +67,6 @@ namespace WeaponMechanics
             sound = getter.Soundmanager;
             myCam = camara.GetComponent<Camara>();
 
-            armas = player.GetComponent<weapons>();
             sonido = sound.GetComponent<Sonido>();
             vida = player.GetComponent<Life>();
             canshoot = true;
@@ -81,20 +74,7 @@ namespace WeaponMechanics
             particles = particlesobject.GetComponent<ParticleSystem>();
             luz = particles.transform.GetChild(1).gameObject;
 
-            if (isrifle == true)
-            {
-                ammo = 4;
-                silverammo = 4;
-                maxammo = 20;
-            }
-            else
-            {
-                ammo = 6;
-                silverammo = 6;
-                maxammo = 35;
-            }
-
-            maxsilverammo = 6;
+            ammo = clipAmmo;
 
             SetAmmoCounter(0);
             SetAmmoCounter(1);
@@ -106,19 +86,21 @@ namespace WeaponMechanics
         {
             checkgun();
 
-            //recoil
-            if (transform.position == gunposition.position && shotcooldown <= 0.3f)
+            //recoil 
+
+            /*
+            if (shotcooldown2 <= 0.3f && !isinplace)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, gunposition.position, 3 * Time.deltaTime);
+                cuerporigido.velocity = new Vector3(0, 0, 0);
+            }
+            
+
+            if (transform.position == gunposition.position && shotcooldown2 <= 0.5f)
             {
                 isinplace = true;
             }
-            if (isinplace == false)
-            {
-                if (isrifle == false && shotcooldown <= 0.3f || isrifle == true && shotcooldown <= 1.8f)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, gunposition.position, 3 * Time.deltaTime);
-                    cuerporigido.velocity = new Vector3(0, 0, 0);
-                }
-            }
+            */
 
             if (ispaused == false && isrunning == false)
             {
@@ -185,13 +167,12 @@ namespace WeaponMechanics
         }
         public void checkgun()
         {
-            if (isrifle == true)
+            if (clipAmmo == 4)
             {
                 if (vida.riflereloaded == false)
                 {
                     maxammo = 20;
                     ammo = 4;
-                    maxsilverammo = 7;
                     vida.riflereloaded = true;
                 }
             }
@@ -201,7 +182,6 @@ namespace WeaponMechanics
                 {
                     maxammo = 35;
                     ammo = 6;
-                    maxsilverammo = 7;
                     vida.pistolreloaded = true;
                 }
             }
@@ -210,39 +190,24 @@ namespace WeaponMechanics
         {
             if (reloading == false && canshoot == true)
             {
-                if (isrifle == true && ammo < 4)
+                if(ammo < clipAmmo)
                 {
-                        canreload = true;
-                }
-
-                if (isrifle == false && ammo < 6)
-                {
-                   canreload = true;
+                    canreload = true;
                 }
             }
+
             if (reloadingtimer > 0)
             {
                 reloadingtimer -= Time.deltaTime;
                 reloadingCircle.fillAmount = 1 - reloadingtimer/4;
             }
-            else
+            else if (reloading == true)
             {
-                if (reloading == true)
-                {
-
-                    if (isrifle == true)
-                    {
-                       ammo = 4;
-                    }
-                    else
-                    {
-                       ammo = 6;
-                    }
-
-                    reloading = false;
-                    missingammo = false;
-                    reloadingCircle.fillAmount = 0;
-                }
+                ammo = clipAmmo;
+                reloading = false;
+                missingammo = false;
+                reloadingCircle.fillAmount = 0;
+                SetAmmoCounter(0);
             }
         }
         public void shoot()
@@ -261,33 +226,23 @@ namespace WeaponMechanics
                 ammo--;
                 particles.Emit(10);
                 lighttimer = 0.1f;
+                shotcooldown = recoil;
             }
 
             SetAmmoCounter(0);
         }
         public void instantiatebullet()
         {
-            if (isrifle)
-            {
-                mybullet = GameObject.Instantiate(riflebullet, cannon.position, transform.rotation);
-                shotcooldown = 2;
-            }
-            else
-            {
-                shotcooldown = 0.4f;
-                mybullet = GameObject.Instantiate(bullet, cannon.position, transform.rotation);
-            }
 
-            Bullet bulletScript = mybullet.GetComponent<Bullet>();
-            bulletScript.armas = armas;
-            bulletScript.player = player.transform;
-            bulletScript.GiveType(bulletType);
-            
+           mybullet = GameObject.Instantiate(bullet, cannon.position, transform.rotation);
+           mybullet.GetComponent<Bullet>().damage = damage;
+           mybullet.GetComponent<Bullet>().myType = bulletType;
+
             shotcooldown2 = 0.45f;
             sonido.playaudio("shoot");
             missingammo = true;
-            isinplace = false;
-            cuerporigido.AddForce(transform.forward.normalized * -200);
+            //isinplace = false;
+            //cuerporigido.AddForce(transform.forward.normalized * -200);
         }
         public void reload()
         {
@@ -306,72 +261,19 @@ namespace WeaponMechanics
         }
         public void reloadingmath(string type)
         {
-            if (type == "Silver")
-            {
-                if (isrifle == true)
-                {
-                    if (maxsilverammo >= 4)
+
+                    if (maxammo >= clipAmmo)
                     {
-                        maxsilverammo -= 4 - silverammo;
+                        maxammo -= clipAmmo - ammo;
                     }
                     else
                     {
-                        while (silverammo < 4 && maxsilverammo > 0)
-                        {
-                            maxsilverammo--;
-                            silverammo++;
-                        }
-                    }
-                }
-                else
-                {
-                    if (maxsilverammo >= 6)
-                    {
-                        maxsilverammo -= 6 - silverammo;
-                    }
-                    else
-                    {
-                        while (silverammo < 6 && maxsilverammo > 0)
-                        {
-                            maxsilverammo--;
-                            silverammo++;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (isrifle == true)
-                {
-                    if (maxammo >= 4)
-                    {
-                        maxammo -= 4 - ammo;
-                    }
-                    else
-                    {
-                        while (ammo < 4 && maxammo > 0)
+                        while (ammo < clipAmmo && maxammo > 0)
                         {
                             maxammo--;
                             ammo++;
                         }
                     }
-                }
-                else
-                {
-                    if (maxammo >= 6)
-                    {
-                        maxammo -= 6 - ammo;
-                    }
-                    else
-                    {
-                        while (ammo < 6 && maxammo > 0)
-                        {
-                            maxammo--;
-                            ammo++;
-                        }
-                    }
-                }
-            }
         }
         private void SetAmmoCounter(int type)
         {

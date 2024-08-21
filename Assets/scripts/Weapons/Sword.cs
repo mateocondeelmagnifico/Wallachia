@@ -16,11 +16,11 @@ namespace WeaponMechanics
         Sonido sound;
         private Camara myCam;
 
-        public float axedamage;
-        float damage;
+        public float axedamage, damage;
 
-        public bool candamage;
-        public bool isaxe;
+        public string stunType;
+
+        public bool candamage, isAxe;
         public bool hasPlayedSound;
 
         public Attack ataque;
@@ -68,7 +68,7 @@ namespace WeaponMechanics
                     #endregion
 
                     #region Apply Damage and Effects
-                    if (isaxe == false)
+                    if (isAxe == false)
                     {
                         //sword deals more damage based on missing health
                         damage = (1 + (enemigo.maxLife - enemigo.life) / 1.5f) + (scaryness.howScary / 8);

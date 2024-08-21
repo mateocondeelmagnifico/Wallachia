@@ -17,9 +17,7 @@ public class RespawnManager : MonoBehaviour
     [HideInInspector]
     public bool[] lockedDoors;
 
-    public int currentgrenade;
-    public int currentgun;
-    public int currentmelee;
+    public string currentgun, currentmelee, currentgrenade;
 
     void Awake()
     {

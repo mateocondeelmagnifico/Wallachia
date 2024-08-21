@@ -10,47 +10,48 @@ namespace PlayerMechanics
         //It's in charge of attacktimers, UI and animations basically
 
         public Animator animador;
-        CharacterController controlador;
         Sonido sound;
+        private weapons myWeapons;
 
         public GameObjectgetter getter;
-        GameObject chargeimage;
+        private Image chargeimage;
+        public Sword currentSword;
         GameObject axe;
         GameObject sword;
         GameObject Soundmanager;
 
         public bool tooclose, hasmelee, ispaused, axeraised, candamage, attacking, canattack;
 
-        public int currentweapon;
+        public string currentweapon;
         private float chargetimer, slowMoTimer;
         void Start()
         {
-            chargeimage = getter.axecharge;
+            chargeimage = getter.axecharge.GetComponent<Image>();
             axe = getter.axe;
             sword = getter.sword;
             Soundmanager = getter.Soundmanager;
             canattack = true;
-            controlador = GetComponent<CharacterController>();
             sound = Soundmanager.GetComponent<Sonido>();
+            myWeapons = GetComponent<weapons>();
+            chargeimage.fillAmount = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
-            chargeimage.GetComponent<Image>().fillAmount = chargetimer / 1.2f;
-            currentweapon = GetComponent<weapons>().currentEquip[0];
+            if (chargetimer > 0) chargeimage.fillAmount = chargetimer / 1.2f;
 
             #region Attack
-            if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 0 && ispaused == false && hasmelee)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == "sword" && ispaused == false && hasmelee)
             {
-                sword.GetComponent<Sword>().hasPlayedSound = false;
+                currentSword.hasPlayedSound = false;
                 sound.playaudio("Sword Swing");
                 animador.SetTrigger("Attack");
                 attacking = true;
             }
 
             //The axe can be charged, so it needs different code than the sword
-            if (Input.GetKey(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == 1 && ispaused == false)
+            if (Input.GetKey(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == "axe" && ispaused == false)
             {
                 if (axeraised == false)
                 {
@@ -70,22 +71,22 @@ namespace PlayerMechanics
             }
             if (Input.GetKeyUp(KeyCode.Mouse1) && chargetimer > 0 && ispaused == false)
             {
-                axe.GetComponent<Sword>().hasPlayedSound = false;
+                currentSword.hasPlayedSound = false;
                 animador.SetBool("Axestill", false);
                 animador.SetTrigger("Loweraxe");
                 attacking = true;
-                axe.GetComponent<Sword>().axedamage += chargetimer * 2.7f;
+                currentSword.axedamage += chargetimer * 2.7f;
             }
             #endregion
 
             //esto mueve al jugador p'alante
             if (attacking == true || axeraised == true)
             {
-                GetComponent<weapons>().isattacking = true;
+                myWeapons.isattacking = true;
             }
             else
             {
-                GetComponent<weapons>().isattacking = false;
+                myWeapons.isattacking = false;
             }
 
             #region manage Slow Mo
@@ -105,7 +106,7 @@ namespace PlayerMechanics
             attacking = false;
             //GetComponent<movement>().canmove = true;
             chargetimer = 0;
-            axe.GetComponent<Sword>().axedamage = 2;
+            currentSword.axedamage = 2;
         }
         public void Damageend()
         {

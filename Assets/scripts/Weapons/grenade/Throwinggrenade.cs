@@ -47,6 +47,7 @@ namespace WeaponMechanics
         // Update is called once per frame
         void Update()
         {
+            /*
             if (armas.currentEquip[2] == 0 && remainingsilver > 0 || armas.currentEquip[2] == 1 && remaininggarlic > 0)
             {
                 grenadesleft = true;
@@ -87,6 +88,8 @@ namespace WeaponMechanics
             {
                 texto.text = remaininggarlic.ToString();
             }
+            */
         }
+            
     }
 }

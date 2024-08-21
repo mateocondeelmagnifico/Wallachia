@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PlayerMechanics;
@@ -14,14 +12,14 @@ namespace WeaponMechanics
 
         //The temporary weapon is the one that is currently selected in the weapon wheel
 
-        public int[] currentEquip;
-        public int[] tempEquip;
-
-        string weapon;
+        //public int[] currentEquip;
+        //public int[] tempEquip;
 
         public GameObjectgetter getter;
-        public GameObject[] armas;
-        public GameObject[] armasrango;
+        public GameObject[] armasMelee;
+        public GameObject[] armasRango;
+        public GameObject leftEquip, rightEquip;
+        public string tempEquipLeft, tempRightEquip, tempGrenade;
         private Image bulleticon;
         GameObject soundmanager;
         public Animator animador;
@@ -30,13 +28,15 @@ namespace WeaponMechanics
 
         Sonido sound;
         RespawnManager resManager;
+        private Attack attackScript;
+        private Shooting shootingScript;
         private InputManagerPlayer inputmanager;
         private SetUiValues uiScript;
 
         public bool equippingweapon, isreloading, hassword, hasBullet, hasCross,hasrifle, hasaxe, hasgrenade, isattacking;
 
         public enum bulletTypes { iron, silver, sacred}
-        private bulletTypes currentBullet;
+        public bulletTypes currentBullet;
 
         void Start()
         {
@@ -45,36 +45,26 @@ namespace WeaponMechanics
                 resManager = FindObjectOfType<RespawnManager>();
                 resManager.playerweapons = this;
             }
-            armas[0] = getter.sword;
-            armas[1] = getter.axe;
-            armasrango[0] = getter.gun1;
-            armasrango[1] = getter.gun2;
             bulleticon = getter.bulleticon.GetComponent<Image>();
             soundmanager = getter.Soundmanager;
             sound = soundmanager.GetComponent<Sonido>();
             inputmanager = GetComponent<InputManagerPlayer>();
             uiScript = GetComponent<SetUiValues>();
-            //weapon 0 = sword
-            //weapon 1 = axe
+            attackScript = GetComponent<Attack>();
 
-            currentEquip = new int[4];
-            //0 = melee weapon, 1 = ranged weapon, 2 = grenade, 3 = bullet
-            tempEquip = new int[4];
+            if(resManager.currentmelee != "")tempRightEquip = resManager.currentmelee;
+            if (resManager.currentgun != "") tempEquipLeft = resManager.currentgun;
+            else tempEquipLeft = "pistol";
+            //currentEquip[2] = resManager.currentgrenade;
 
-            currentEquip[0] = resManager.currentmelee;
-            currentEquip[1] = resManager.currentgun;
-            currentEquip[2] = resManager.currentgrenade;
-
-            if (currentEquip[1] == 0)
-            {
-                armasrango[0].SetActive(true);
-            }
+            ChangeWeapon(tempRightEquip);
+            ChangeWeapon(tempEquipLeft);
 
             highlights[2].enabled = false;
             currentBullet = bulletTypes.iron;
             bulleticon.sprite = bullets[0];
-            armas[0].SetActive(false);
-            GetComponent<Attack>().hasmelee = false;
+            armasMelee[0].SetActive(false);
+            attackScript.hasmelee = false;
 
             if (hasBullet) UnlockWeapon("Bullets");
             if (hassword) UnlockWeapon("Sword");
@@ -86,26 +76,26 @@ namespace WeaponMechanics
         {
             #region see if you can shoot
 
-            if (GetComponent<Attack>().attacking == true)
+            if (attackScript.attacking == true)
             {
-                armasrango[currentEquip[1]].GetComponent<Shooting>().canshoot = false;
+                shootingScript.canshoot = false;
             }
             else
             {
-                armasrango[currentEquip[1]].GetComponent<Shooting>().canshoot = true;
+                shootingScript.canshoot = true;
             }
             #endregion
 
             #region see if you can melee atack       
 
             //check if you can melee attack
-            if (armasrango[currentEquip[1]].GetComponent<Shooting>().shotcooldown2 > 0)
+            if (shootingScript.shotcooldown2 > 0)
             {
-                GetComponent<Attack>().canattack = false;
+                attackScript.canattack = false;
             }
             else
             {
-                GetComponent<Attack>().canattack = true;
+                attackScript.canattack = true;
             }
             #endregion
 
@@ -116,15 +106,15 @@ namespace WeaponMechanics
             GetComponent<movement>().canmove = true;
 
             //This is so you respawn with the same weapons
-            resManager.currentmelee = currentEquip[0];
-            resManager.currentgun = currentEquip[1];
-            resManager.currentgrenade = currentEquip[2];
-            armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = currentBullet.GetHashCode();
+            if(rightEquip!= null) resManager.currentmelee = rightEquip.name;
+            resManager.currentgun = leftEquip.name;
+            resManager.currentgrenade = tempGrenade;
+            shootingScript.bulletType = currentBullet.GetHashCode();
         }
         public void equippoint()
         {
-            armas[currentEquip[0]].SetActive(true);
-            armasrango[currentEquip[1]].SetActive(true);
+            if(rightEquip != null) rightEquip.SetActive(true);
+            leftEquip.SetActive(true);
         }
 
         public void playsound()
@@ -133,32 +123,37 @@ namespace WeaponMechanics
         }
         public void SetiInactive()
         {
-            armas[currentEquip[0]].SetActive(false);
-            armas[currentEquip[1]].SetActive(false);
+            armasMelee[0].SetActive(false);
+            armasMelee[0].SetActive(false);
         }
         public void ChangeWeapon(string type)
         {
             //This code changes the weapons you have equipped
 
-            sound.playaudio("Weapon Switch");
-
-            if (type == "melee")
+            if (type == "sword" || type == "axe")
             {
                 //In currentequip is the int that defines the weapon that was previously equipped
                 //In tempvalue is the weapon you want to equip
+                sound.playaudio("Weapon Switch");
                 animador.SetTrigger("Equip");
                 equippingweapon = true;
 
-                armas[currentEquip[0]].SetActive(false);
-                armas[tempEquip[0]].SetActive(true);
+                if (rightEquip != null) rightEquip.SetActive(false);
+                if (tempRightEquip == "sword") rightEquip = armasMelee[0];
+                else rightEquip = armasMelee[1];
+                attackScript.currentweapon = rightEquip.name;
+                attackScript.currentSword = rightEquip.GetComponent<Sword>();
             }
-            if (type == "ranged")
+            if (type == "pistol" || type == "rifle")
             {
+                sound.playaudio("Weapon Switch");
                 animador.SetTrigger("Equip");
                 equippingweapon = true;
 
-                armasrango[currentEquip[1]].SetActive(false);
-                armasrango[tempEquip[1]].SetActive(true);
+                if(leftEquip != null) leftEquip.SetActive(false);
+                if (tempEquipLeft == "pistol") leftEquip = armasRango[0];
+                else leftEquip = armasRango[1];
+                shootingScript = leftEquip.GetComponent<Shooting>();
             }
 
         }
@@ -167,24 +162,18 @@ namespace WeaponMechanics
             //This script is accesed by the weapon wheel
             //It is used to keep track of which weapon the player is selecting
 
-            if (type == "sword" && isattacking == false)
+            if (type == "sword" || type == "axe")
             {
-                tempEquip[0] = 0;
+                tempRightEquip = type;
             }
-            if (type == "axe" && isattacking == false)
+
+            if (type == "pistol" || type == "rifle")
             {
-                tempEquip[0] = 1;
-            }
-            if (type == "pistol" && isreloading == false)
-            {
-                tempEquip[1] = 0;
-            }
-            if (type == "rifle" && isreloading == false)
-            {
-                tempEquip[1] = 1;
+                tempEquipLeft = type;
             }
 
             //These two work differently because there's only one icon to press in the weapon wheel
+            /*
             if (type == "grenade")
             {
                 tempEquip[2]++;
@@ -193,41 +182,21 @@ namespace WeaponMechanics
                     tempEquip[2] = 0;
                 }
             }
-            if (type == "bullet" && isreloading == false)
-            {
-                tempEquip[3]++;
-                if (tempEquip[3] >= 2)
-                {
-                    tempEquip[3] = 0;
-                }
-            }
+            */
         }
         public void checkUnpause()
         {
             //Este código se ejecuta desde el menu de pausa
-            for (int i = 0; i < 4; i++)
+
+            if(rightEquip == null) ChangeWeapon(tempRightEquip);
+            else if (rightEquip.name != tempRightEquip)
             {
-                if (currentEquip[i] != tempEquip[i])
-                {
-                    if (i == 0)
-                    {
-                        weapon = "melee";
-                    }
-                    if (i == 1)
-                    {
-                        weapon = "ranged";
-                    }
-                    if (i == 2)
-                    {
-                        weapon = "";
-                    }
-                    if (i == 3)
-                    {
-                        weapon = "";
-                    }
-                    ChangeWeapon(weapon);
-                    currentEquip[i] = tempEquip[i];
-                }
+                ChangeWeapon(tempRightEquip);
+            }
+
+            if (leftEquip.name != tempEquipLeft)
+            {
+                ChangeWeapon(tempEquipLeft);
             }
         }
         public void SetHighlight(string type)
@@ -284,7 +253,7 @@ namespace WeaponMechanics
             }
 
             bulleticon.sprite = bullets[myType];
-            armasrango[currentEquip[1]].GetComponent<Shooting>().bulletType = myType;
+            shootingScript.bulletType = myType;
             uiScript.SetBulletName(name);
         }
         public void UnlockWeapon(string whichOne)
@@ -298,8 +267,9 @@ namespace WeaponMechanics
                     break;
 
                 case "Sword":
-                    armas[0].SetActive(true);
-                    GetComponent<Attack>().hasmelee = true;
+                    tempRightEquip = "sword";
+                    ChangeWeapon("sword");
+                    attackScript.hasmelee = true;
                     hassword = true;
                     break;
 

@@ -67,9 +67,9 @@ namespace PlayerMechanics
                 //this is so you respawn with the same weapons
                 #region Set Weapons
                 RespawnManager manager = FindObjectOfType<RespawnManager>();
-                manager.currentgrenade = armas.currentEquip[2];
-                manager.currentgun = armas.currentEquip[1];
-                manager.currentmelee = armas.currentEquip[0];
+                manager.currentgrenade = armas.tempGrenade;
+                manager.currentgun = armas.leftEquip.name;
+                manager.currentmelee = armas.rightEquip.name;
                 #endregion
 
                 #region Disable things

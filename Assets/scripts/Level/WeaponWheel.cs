@@ -36,6 +36,7 @@ public class WeaponWheel : MonoBehaviour
         #endregion
 
         #region Bullet and grenade changes
+        /*
         if (armas.tempEquip[2] == 0)
         {
             icons[4].GetComponent<Image>().sprite = grenadeSprites[0];
@@ -46,8 +47,9 @@ public class WeaponWheel : MonoBehaviour
             icons[4].GetComponent<Image>().sprite = grenadeSprites[1];
             descriptions[0].text = "Garlic Grenades";
         }
+        */
 
-        if (armas.tempEquip[3] == 0)
+        if (armas.currentBullet == weapons.bulletTypes.iron)
         {
             icons[5].GetComponent<Image>().sprite = bulletSprites[0];
             descriptions[1].text = "Normal Bullets";

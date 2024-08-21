@@ -9,19 +9,25 @@ namespace WeaponMechanics
 
         public Rigidbody cuerporigido;
         public GameObject[] particles;
-        public Transform player;
+        private Vector3 startingPos;
         GameObject myparticle;
 
         public float timer, damage;
-        private int myType;
+        public int myType;
 
-        public weapons armas;
         public bool isriflebullet;
-        bool issilver;
+
+        public Bullet(float myDamage, int bulletType)
+        {
+            damage = myDamage;
+            myType = bulletType;
+        }
+
         void Start()
         {
             timer = 2.5f;
             cuerporigido = GetComponent<Rigidbody>();
+            startingPos = transform.position;
         }
 
         // Update is called once per frame
@@ -84,19 +90,10 @@ namespace WeaponMechanics
         public void hitenemy(bool hashit)
         {
             //if the bullet is a silver one
-            if (armas.currentEquip[3] == 1)
-            {
-                issilver = true;
-                damage = 1f;
-            }
-            else
-            {
-                damage = 2;
-            }
 
             if (hashit == true)
             {
-                damage -= Vector3.Distance(transform.position, player.position) / 9;
+                damage -= Vector3.Distance(transform.position, startingPos) / 9;
                 if (damage < 0.7f)
                 {
                     damage = 0.7f;
@@ -139,11 +136,6 @@ namespace WeaponMechanics
                 myparticle = GameObject.Instantiate(particles[1], transform.position, transform.rotation);
                 myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
             }
-        }
-
-        public void GiveType(int type)
-        {
-            myType = type;
         }
     }
 }
