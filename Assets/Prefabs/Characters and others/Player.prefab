@@ -2296,8 +2296,10 @@ MonoBehaviour:
   getter: {fileID: 0}
   bloodVFX: {fileID: 1673695494780953368}
   axedamage: 0
+  damage: 0
+  stunType: 
   candamage: 0
-  isaxe: 1
+  isAxe: 0
   hasPlayedSound: 0
   ataque: {fileID: 0}
 --- !u!1 &8511528451219443328
@@ -4723,6 +4725,7 @@ MonoBehaviour:
   cannon: {fileID: 8511528450043662590}
   gunposition: {fileID: 8511528451639857922}
   reloadingpoint: {fileID: 8511528451237685730}
+  shotcooldown: 0.3
   shotcooldown2: 0
   recoil: 0.3
   damage: 1
@@ -4880,6 +4883,7 @@ MonoBehaviour:
   cannon: {fileID: 8511528451624442094}
   gunposition: {fileID: 8511528451639857922}
   reloadingpoint: {fileID: 8511528451237685730}
+  shotcooldown: 1
   shotcooldown2: 0
   recoil: 1.8
   damage: 2
@@ -5465,8 +5469,10 @@ MonoBehaviour:
   getter: {fileID: 0}
   bloodVFX: {fileID: 1673695494317642908}
   axedamage: 0
+  damage: 0
+  stunType: 
   candamage: 0
-  isaxe: 0
+  isAxe: 0
   hasPlayedSound: 0
   ataque: {fileID: 0}
 --- !u!1001 &8511528451931208741

@@ -378,12 +378,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d63add3dff351f4598df7d7528713d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyPrompt: {fileID: 2982033781155172571}
   whatPowerUp: 
   pausemanager: {fileID: 0}
   noteobject: {fileID: 0}
   key: {fileID: 2982033781155172571}
+  pickUp: {fileID: 0}
   mypage: {fileID: 21300000, guid: 9356117f7717c0c4cab65b00e0638c08, type: 3}
-  isnear: 0
 --- !u!54 &5948177852772217517
 Rigidbody:
   m_ObjectHideFlags: 0

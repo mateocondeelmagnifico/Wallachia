@@ -69,7 +69,7 @@ namespace PlayerMechanics
                 RespawnManager manager = FindObjectOfType<RespawnManager>();
                 manager.currentgrenade = armas.tempGrenade;
                 manager.currentgun = armas.leftEquip.name;
-                manager.currentmelee = armas.rightEquip.name;
+                if(armas.rightEquip != null) manager.currentmelee = armas.rightEquip.name;
                 #endregion
 
                 #region Disable things

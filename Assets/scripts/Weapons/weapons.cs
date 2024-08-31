@@ -40,9 +40,9 @@ namespace WeaponMechanics
 
         void Start()
         {
-            if (FindObjectOfType<RespawnManager>())
+            if (RespawnManager.instance != null)
             {
-                resManager = FindObjectOfType<RespawnManager>();
+                resManager = RespawnManager.instance;
                 resManager.playerweapons = this;
             }
             bulleticon = getter.bulleticon.GetComponent<Image>();
@@ -52,26 +52,28 @@ namespace WeaponMechanics
             uiScript = GetComponent<SetUiValues>();
             attackScript = GetComponent<Attack>();
 
-            if(resManager.currentmelee != "")tempRightEquip = resManager.currentmelee;
+            #region Get unlocked weapons
+            attackScript.hasmelee = false;
+            if (resManager.unlockedThings.Contains("Bullets")) UnlockWeapon("Bullets");
+            if (resManager.unlockedThings.Contains("Sword")) UnlockWeapon("Sword");
+            if (resManager.unlockedThings.Contains("Cross")) UnlockWeapon("Cross");
+
+            if (resManager.currentmelee != "")tempRightEquip = resManager.currentmelee;
             if (resManager.currentgun != "") tempEquipLeft = resManager.currentgun;
             else tempEquipLeft = "pistol";
             //currentEquip[2] = resManager.currentgrenade;
 
             ChangeWeapon(tempRightEquip);
             ChangeWeapon(tempEquipLeft);
+            #endregion
 
             highlights[2].enabled = false;
             currentBullet = bulletTypes.iron;
             bulleticon.sprite = bullets[0];
             armasMelee[0].SetActive(false);
-            attackScript.hasmelee = false;
-
-            if (hasBullet) UnlockWeapon("Bullets");
-            if (hassword) UnlockWeapon("Sword");
-            if (hasCross) UnlockWeapon("Cross");
+           
         }
 
-        // Update is called once per frame
         void Update()
         {
             #region see if you can shoot
@@ -114,7 +116,7 @@ namespace WeaponMechanics
         public void equippoint()
         {
             if(rightEquip != null) rightEquip.SetActive(true);
-            leftEquip.SetActive(true);
+            if(leftEquip != null) leftEquip.SetActive(true);
         }
 
         public void playsound()
@@ -264,29 +266,33 @@ namespace WeaponMechanics
                     inputmanager.hasCross = true;
                     hasCross = true;
                     uiScript.crossImage.gameObject.SetActive(true);
+                    resManager.unlockedThings.Add(whichOne);
                     break;
 
                 case "Sword":
                     tempRightEquip = "sword";
-                    ChangeWeapon("sword");
                     attackScript.hasmelee = true;
                     hassword = true;
+                    ChangeWeapon("sword");
+                    resManager.unlockedThings.Add(whichOne);
                     break;
 
                 case "Axe":
                     hasaxe = true;
+                    resManager.unlockedThings.Add(whichOne);
                     break;
 
                 case "Rifle":
                     hasrifle = true;
+                    resManager.unlockedThings.Add(whichOne);
                     break;
 
                 case "Bullets":
                     inputmanager.hasBullets = true;
                     hasBullet = true;
+                    resManager.unlockedThings.Add(whichOne);
                     break;
             }
-
         }
     }
 }

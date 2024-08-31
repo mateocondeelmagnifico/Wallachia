@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using WeaponMechanics;
 
-public class Book : MonoBehaviour
+public class Book : LevelInteractable
 {
     //Mini tutorials and lore entries for the players to read
     [Header("Put here the thing this book unlocks, use uppercase")]
@@ -17,39 +17,43 @@ public class Book : MonoBehaviour
     Image image;
 
     Pause pausa;
-    RespawnManager respawnmanager;
     weapons armas;
 
-    public bool isnear;
     bool isreading;
-    bool weaponUnlocked;
 
     // Start is called before the first frame update
     void Start()
     {
         image = noteobject.GetComponent<Image>();
-        pausa = pausemanager.GetComponent<Pause>(); 
-        respawnmanager = FindObjectOfType<RespawnManager>();
+        pausa = pausemanager.GetComponent<Pause>();
+        RespawnManager resManager = RespawnManager.instance;
+        switch(whatPowerUp)
+        {
+            case "Sword":
+                if (resManager.hasSword) Deactivate(pickUp);
+                break;
+
+            case "Cross":
+                //if (resManager.hasCross) Deactivate(pickUp);
+                break;
+
+            case "Axe":
+                if (resManager.hasAxe) Deactivate(pickUp);
+                break;
+
+            case "Rifle":
+                if (resManager.hasRifle) Deactivate(pickUp);
+                break;
+
+            case "Bullets":
+                if (resManager.hasBullets) Deactivate(pickUp);
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isnear == true)
-        {
-            if (isreading == false)
-            {
-                read(mypage);
-            }
-            else
-            {
-                armas.playsound();
-                armas.UnlockWeapon(whatPowerUp);
-                stopreading();
-                Destroy(pickUp);
-            }
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape) && isreading == true)
         {
             armas.playsound();
@@ -58,24 +62,7 @@ public class Book : MonoBehaviour
             Destroy(pickUp);
         }
 
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            armas = other.GetComponent<weapons>();
-            key.SetActive(true);
-            isnear = true;
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag.Equals("Player"))
-        {
-            isnear = false;
-            key.SetActive(false);
-        }
+        KeyCheck();
     }
     private void read(Sprite whatpage)
     {
@@ -92,4 +79,21 @@ public class Book : MonoBehaviour
         isreading = false;
     }
     
+    public override void Interact(GameObject player)
+    {
+
+        armas = player.GetComponent<weapons>();
+
+        if (isreading == false)
+        {
+            read(mypage);
+        }
+        else
+        {
+            armas.playsound();
+            armas.UnlockWeapon(whatPowerUp);
+            stopreading();
+            Deactivate(pickUp);
+        }
+    }
 }

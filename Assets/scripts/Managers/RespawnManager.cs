@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using WeaponMechanics;
 
@@ -8,11 +9,8 @@ public class RespawnManager : MonoBehaviour
 
     public Vector3 spawnposition;
 
-    public bool hasGrenades;
-    public bool hasAxe;
-    public bool hasBullets;
-    public bool hasRifle;
-    public bool hasSword;
+    public bool hasGrenades, hasAxe, hasBullets, hasRifle, hasSword;
+    public List<string> unlockedThings = new List<string>();
 
     [HideInInspector]
     public bool[] lockedDoors;
