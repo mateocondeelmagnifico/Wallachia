@@ -3203,6 +3203,10 @@ PrefabInstance:
       propertyPath: cross
       value: 
       objectReference: {fileID: 7397703206099724416}
+    - target: {fileID: 7114593727913135694, guid: 64e9a59db1bf0b142825363b7a88b998, type: 3}
+      propertyPath: attackScript
+      value: 
+      objectReference: {fileID: 8511528451480277710}
     - target: {fileID: 9084583739939143985, guid: 64e9a59db1bf0b142825363b7a88b998, type: 3}
       propertyPath: m_Mesh
       value: 

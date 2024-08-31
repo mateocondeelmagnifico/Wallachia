@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EnemyMechanics;
+using PlayerMechanics;
 
 namespace WeaponMechanics
 {
@@ -17,6 +18,7 @@ namespace WeaponMechanics
         public MeshRenderer crossRenderer;
 
         public GameObject cross;
+        [SerializeField] private Attack attackScript;
 
 
         private void Start()
@@ -28,6 +30,7 @@ namespace WeaponMechanics
             if (isActive)
             {
                 crossTimer -= Time.deltaTime;
+                attackScript.canattack = false;
 
                 if(crossTimer < 1)
                 {
