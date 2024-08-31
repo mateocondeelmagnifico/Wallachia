@@ -9,7 +9,6 @@ public class RespawnManager : MonoBehaviour
 
     public Vector3 spawnposition;
 
-    public bool hasGrenades, hasAxe, hasBullets, hasRifle, hasSword;
     public List<string> unlockedThings = new List<string>();
 
     [HideInInspector]
@@ -24,33 +23,6 @@ public class RespawnManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
         lockedDoors = new bool[20];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        #region Check Which weapons you have unlocked
-        if (playerweapons.hasgrenade)
-        {
-            hasGrenades = true;
-        }
-        if (playerweapons.hasBullet)
-        {
-            hasBullets = true;
-        }
-        if (playerweapons.hasaxe)
-        {
-            hasAxe = true;
-        }
-        if (playerweapons.hasrifle)
-        {
-            hasRifle = true;
-        }
-        if (playerweapons.hassword)
-        {
-            hasSword = true;
-        }
-        #endregion
     }
 
     //This bool is to keep track of which doors should be closed in case of a restart

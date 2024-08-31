@@ -21,15 +21,6 @@ namespace PlayerMechanics
                     player.transform.position = manager.spawnposition;
                 }
 
-                armas.hasaxe = manager.hasAxe;
-                armas.hasrifle = manager.hasRifle;
-                armas.hasBullet = manager.hasBullets;
-                armas.hasgrenade = manager.hasGrenades;
-                armas.hassword = manager.hasSword;
-                armas.tempGrenade = manager.currentgrenade;
-                armas.tempRightEquip = manager.currentmelee;
-                armas.tempEquipLeft = manager.currentgun;
-
                 armas.SetiInactive();
                 armas.equippoint();
 

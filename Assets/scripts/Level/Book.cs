@@ -27,28 +27,7 @@ public class Book : LevelInteractable
         image = noteobject.GetComponent<Image>();
         pausa = pausemanager.GetComponent<Pause>();
         RespawnManager resManager = RespawnManager.instance;
-        switch(whatPowerUp)
-        {
-            case "Sword":
-                if (resManager.hasSword) Deactivate(pickUp);
-                break;
-
-            case "Cross":
-                //if (resManager.hasCross) Deactivate(pickUp);
-                break;
-
-            case "Axe":
-                if (resManager.hasAxe) Deactivate(pickUp);
-                break;
-
-            case "Rifle":
-                if (resManager.hasRifle) Deactivate(pickUp);
-                break;
-
-            case "Bullets":
-                if (resManager.hasBullets) Deactivate(pickUp);
-                break;
-        }
+        if (resManager.unlockedThings.Contains(whatPowerUp)) Deactivate(pickUp);
     }
 
     // Update is called once per frame
