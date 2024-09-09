@@ -5010,6 +5010,8 @@ MonoBehaviour:
   maxLife: 6
   regeneration: 0
   minStunAmount: 0
+  staggerNeeded: 1
+  isStaggered: 0
   angry: 0
   playerDetected: 0
   slowCondition: 0
@@ -7714,6 +7716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
   myEnemy: {fileID: 0}
+  extraDmage: 0
 --- !u!114 &8465681086955646254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8190,6 +8193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   father: {fileID: 85044148226785970}
   myEnemy: {fileID: 0}
+  extraDmage: 0
 --- !u!114 &3250011629122332661
 MonoBehaviour:
   m_ObjectHideFlags: 0

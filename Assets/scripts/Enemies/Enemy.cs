@@ -29,6 +29,7 @@ namespace EnemyMechanics
         protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, stagger;
 
         protected bool invulnerable, isplaying;
+        public bool isStaggered;
         #endregion
 
         #region Movement and Attacking variables
@@ -212,7 +213,7 @@ namespace EnemyMechanics
             {
                 staggered = stunamount - stunResistance;
                 attackposition = transform.position;
-                stunResistance += 0.5f;
+                //stunResistance += 0.2f;
                 animador.SetInteger("Stun", 1);
             }
         }
@@ -250,7 +251,12 @@ namespace EnemyMechanics
                 groupManager.InformEnemies();
             }
         }
-        private void GetStagger() { }
+        private void GetStagger() 
+        {
+            animador.SetInteger("Stun", 2);
+            isStaggered = true;
+            stunTimer = 3;
+        }
         public virtual void ModifySpeed()
         {
             if (playerDetected)
