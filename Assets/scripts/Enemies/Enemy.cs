@@ -79,11 +79,11 @@ namespace EnemyMechanics
 
             if (navegador.velocity != Vector3.zero)
             {
-                animador.SetBool("Moving", true);
+                animador.SetFloat("Speed", 1);
             }
             else
             {
-                animador.SetBool("Moving", false);
+                animador.SetFloat("Speed", 0);
             }
 
             EmptyUpdate();
@@ -213,7 +213,7 @@ namespace EnemyMechanics
                 staggered = stunamount - stunResistance;
                 attackposition = transform.position;
                 stunResistance += 0.5f;
-                animador.SetBool("Hurt", true);
+                animador.SetInteger("Stun", 1);
             }
         }
         private void ApplyRegeneration()
@@ -277,13 +277,13 @@ namespace EnemyMechanics
                 //transform.position = attackposition;
                 staggered -= Time.deltaTime;
                 if(navegador.enabled) navegador.isStopped = true;
-                animador.SetBool("Moving", false);
+                animador.SetFloat("Speed", 0);
                 canDamage = false;
                 navegador.velocity = new Vector3(0, 0, 0);
             }
             else
             {
-                animador.SetBool("Hurt", false);
+                animador.SetInteger("Stun", 0);
                 if (isattacking == false && navegador.isActiveAndEnabled)
                 {
                     navegador.isStopped = false;
