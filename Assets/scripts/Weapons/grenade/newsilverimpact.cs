@@ -40,7 +40,7 @@ namespace WeaponMechanics
         {
             if (other.gameObject.tag.Equals("Enemy") && timer > 0)
             {
-                other.GetComponent<Enemy>().TakeDamage(0.2f, "Light", true);
+                other.GetComponent<Enemy>().TakeDamage(0.2f, "Light", true, 1);
             }
         }
         private void OnTriggerStay(Collider other)

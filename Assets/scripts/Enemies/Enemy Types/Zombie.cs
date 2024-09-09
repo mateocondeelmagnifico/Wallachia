@@ -5,8 +5,10 @@ using EnemyMechanics;
 
 public class Zombie : Enemy
 {
-    public override void TakeDamage(float damage, string hitType, bool playSound)
+    public override void TakeDamage(float damage, string hitType, bool playSound, float staggerAmount)
     {
+        stagger += staggerAmount;
+
         if (playSound)
         {
             sonido.playaudio("Hurt");
@@ -53,7 +55,7 @@ public class Zombie : Enemy
 
         if (type == "Holy" && damageTimer <= 0)
         {
-            TakeDamage(0.7f, "Weakness", false);
+            TakeDamage(0.7f, "Weakness", false, 1);
             damageTimer = 0.2f;
         }
     }
@@ -88,8 +90,12 @@ public class Zombie : Enemy
 
     protected override void SpeedChanges()
     {
+        //Baja la velocidad si tiene miedo o por el efecto de la plata
+
         if (scaryness.howScary > 1.5f) speed /= 2;
         
         if (scaryness.howScary > 2.5f) speed /= 2;
+
+        if (regeneration <0) speed -= Mathf.Abs(Mathf.Clamp(regeneration,0.1f,1));
     }
 }

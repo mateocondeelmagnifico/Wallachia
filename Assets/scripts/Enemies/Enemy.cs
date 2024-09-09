@@ -25,8 +25,8 @@ namespace EnemyMechanics
         #region Life variables
         protected string enemytype;
 
-        public float life, maxLife, regeneration, minStunAmount;
-        protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance;
+        public float life, maxLife, regeneration, minStunAmount, staggerNeeded;
+        protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, stagger;
 
         protected bool invulnerable, isplaying;
         #endregion
@@ -147,6 +147,8 @@ namespace EnemyMechanics
             }
             life -= (damage - dmgResistance);
 
+            if (stagger >= staggerNeeded) GetStagger();
+
             #region CheckDead
             if (life <= 0)
             {
@@ -248,6 +250,7 @@ namespace EnemyMechanics
                 groupManager.InformEnemies();
             }
         }
+        private void GetStagger() { }
         public virtual void ModifySpeed()
         {
             if (playerDetected)
@@ -375,7 +378,7 @@ namespace EnemyMechanics
         #endregion
 
         #region Virtual Voids
-        public virtual void TakeDamage(float damage, string hitype, bool playsound) { }
+        public virtual void TakeDamage(float damage, string hitype, bool playsound, float staggerAmount) { }
         public virtual void StatusEffect(string type) { }
         protected virtual void DyingEffects() { }
         protected virtual void EmptyUpdate() { }

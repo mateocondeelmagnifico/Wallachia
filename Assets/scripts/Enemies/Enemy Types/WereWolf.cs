@@ -8,8 +8,10 @@ public class WereWolf : Enemy
     public Transform playerPointer;
     private float timer;
     private bool isScared;
-    public override void TakeDamage(float damage, string hitType, bool playSound)
+    public override void TakeDamage(float damage, string hitType, bool playSound, float staggerAmount)
     {
+        stagger += staggerAmount;
+
         if (playSound)
         {
             sonido.playaudio("Hurt");
@@ -41,13 +43,9 @@ public class WereWolf : Enemy
 
         if (type == "Silver")
         {
+            stagger += 1;
             if(regeneration > -1.7f) regeneration -= 0.6f;
             DecideStun(1f);
-        }
-
-        if (type == "Garlic")
-        {
-            life -= 0.1f;
         }
     }
 
@@ -94,5 +92,12 @@ public class WereWolf : Enemy
             timer = 2;
             isScared = true;
         }
+    }
+
+    protected override void SpeedChanges()
+    {
+        //Baja la velocidad con la plata
+
+        if (regeneration < 1.4f) speed -= Mathf.Abs(Mathf.Clamp(regeneration, 0.1f,1));
     }
 }

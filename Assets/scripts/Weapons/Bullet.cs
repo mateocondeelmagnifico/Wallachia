@@ -82,7 +82,7 @@ namespace WeaponMechanics
                         break;
                 }
 
-                other.GetComponent<Hitbox>().DealDamage(damage, stun, statuseffect);
+                other.GetComponent<Hitbox>().DealDamage(damage, stun, statuseffect, Mathf.Clamp(damage, 1, 2));
                 Destroy(this.gameObject);
             }
         }
@@ -102,11 +102,11 @@ namespace WeaponMechanics
                 myparticle.GetComponent<BloodVFX>().orientation = -transform.forward;
                 if (isriflebullet == true)
                 {
-                    enemigo.TakeDamage(damage * 3.5f, "Heavy", true);
+                    enemigo.TakeDamage(damage * 3.5f, "Heavy", true, Mathf.Clamp(damage, 1,2));
                 }
                 else
                 {
-                    enemigo.TakeDamage(damage, "Light", true);
+                    enemigo.TakeDamage(damage, "Light", true, Mathf.Clamp(damage, 0, 1));
                 }
 
                 string status = "";

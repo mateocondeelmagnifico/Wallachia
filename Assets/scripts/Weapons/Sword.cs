@@ -73,14 +73,14 @@ namespace WeaponMechanics
                         //sword deals more damage based on missing health
                         damage = (1 + (enemigo.maxLife - enemigo.life) / 1.5f) + (scaryness.howScary / 8);
 
-                        enemigo.TakeDamage(damage, "Light", true);
+                        enemigo.TakeDamage(damage, "Light", true, 4);
                         enemigo.StatusEffect("Iron");
                         bloodVFX.GetComponent<ParticleSystem>().Emit(100);
                     }
                     else
                     {
                         damage = axedamage;
-                        enemigo.TakeDamage(axedamage + (scaryness.howScary / 8), "Heavy", true);
+                        enemigo.TakeDamage(axedamage + (scaryness.howScary / 8), "Heavy", true, Mathf.Clamp (axedamage, 2, 3));
                         enemigo.StatusEffect("Iron");
                         bloodVFX.GetComponent<ParticleSystem>().Emit(10000);
                     }
