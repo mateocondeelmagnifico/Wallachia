@@ -26577,7 +26577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488c38d83681a58409e59cbbda43355d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getter: {fileID: 858249143}
+  keyPrompt: {fileID: 0}
 --- !u!54 &906980338
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33573,6 +33573,7 @@ Transform:
   - {fileID: 858249142}
   - {fileID: 1670728519}
   - {fileID: 2134174114}
+  - {fileID: 1721409893}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55698,6 +55699,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6b0df067d8acef346aae1d839098fcbb, type: 3}
   m_PrefabInstance: {fileID: 1721004661}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1721409892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1721409893}
+  - component: {fileID: 1721409894}
+  m_Layer: 0
+  m_Name: Respawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1721409893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721409892}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -276.3074, y: -379.2433, z: 603.3926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1146763307}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1721409894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721409892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d94b3dd17ea1234a958ef258c91bc70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerweapons: {fileID: 0}
+  spawnposition: {x: 0, y: 0, z: 0}
+  unlockedThings: []
+  lockedDoors: 
+  currentgun: 
+  currentmelee: 
+  currentgrenade: 
 --- !u!1001 &1721799124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67334,50 +67385,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6b0df067d8acef346aae1d839098fcbb, type: 3}
---- !u!1 &2101149310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2101149312}
-  - component: {fileID: 2101149311}
-  m_Layer: 0
-  m_Name: Respawngetter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2101149311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101149310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b63503b48980724f8931bfed57b377a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnmanager: {fileID: 2616203656911972350, guid: f1426d5274eb81842b6e4fa2c01f7280, type: 3}
---- !u!4 &2101149312
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101149310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 694.4167, y: 340.8592, z: -115.98488}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2103733823
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class Sonido : MonoBehaviour
 {
     //Soundmanager script, it is called by different objects in the scene
 
+    public static Sonido instance { get; private set; }
+
     public Soundsclass[] sounds;
     public int numberOfSources;
 
@@ -18,16 +20,25 @@ public class Sonido : MonoBehaviour
     public bool isPlayer;
 
     bool lowering;
-    void Start()
-    {
-        for(int i= 0; i < numberOfSources; i++)
-        {
-            sources[i] = GetComponents<AudioSource>()[i];
-        }
 
-        if(isPlayer)
+    private void Awake()
+    {
+        if(instance == null)
         {
-            playaudio("Ambient Music");
+            instance = this;
+            for (int i = 0; i < numberOfSources; i++)
+            {
+                sources[i] = GetComponents<AudioSource>()[i];
+            }
+
+            if (isPlayer)
+            {
+                playaudio("Ambient Music");
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
