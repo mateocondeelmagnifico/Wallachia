@@ -29,7 +29,9 @@ namespace EnemyMechanics
         protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, stagger;
 
         protected bool invulnerable, isplaying;
-        public bool isStaggered;
+
+        //Awaiting must be turned on from the scene
+        public bool isStaggered, awaiting;
         #endregion
 
         #region Movement and Attacking variables
@@ -51,69 +53,71 @@ namespace EnemyMechanics
         }
         private void Update()
         {
-            #region idilingSounds
-            //this is for idling sounds
-            if (idletimer > 0 && stagger <= 0)
-            {
-                idletimer -= Time.deltaTime;
-            }
-            else
-            {
-                ChoseRandomSound();
-            }
-            #endregion
-
             ApplyRegeneration();
 
-            #region Movement and empty Update
-
-            ModifySpeed();
-
-            if (playerDetected == true)
+            if (!awaiting)
             {
-                destination = player.transform.position;
-            }
-            else
-            {
-                Wander();
-            }
+                #region idilingSounds
+                //this is for idling sounds
+                if (idletimer > 0 && stagger <= 0)
+                {
+                    idletimer -= Time.deltaTime;
+                }
+                else
+                {
+                    ChoseRandomSound();
+                }
+                #endregion
 
-            if (navegador.velocity != Vector3.zero)
-            {
-                animador.SetFloat("Speed", 1);
-            }
-            else
-            {
-                animador.SetFloat("Speed", 0);
-            }
+                #region Movement and empty Update
 
-            EmptyUpdate();
+                ModifySpeed();
 
-            if (navegador.isActiveAndEnabled) navegador.SetDestination(destination);
-            #endregion
+                if (playerDetected == true)
+                {
+                    destination = player.transform.position;
+                }
+                else
+                {
+                    Wander();
+                }
 
-            #region Attacking
-            CheckDistance();
-            CheckStun();
-            CheckAttack();
-            #endregion
+                if (navegador.velocity != Vector3.zero)
+                {
+                    animador.SetFloat("Speed", 1);
+                }
+                else
+                {
+                    animador.SetFloat("Speed", 0);
+                }
 
-            #region Damage and stun timer
-            if (damageTimer > 0)
-            {
-                damageTimer -= Time.deltaTime;
+                EmptyUpdate();
+
+                if (navegador.isActiveAndEnabled) navegador.SetDestination(destination);
+                #endregion
+
+                #region Attacking
+                CheckDistance();
+                CheckStun();
+                CheckAttack();
+                #endregion
+
+                #region Damage and stun timer
+                if (damageTimer > 0)
+                {
+                    damageTimer -= Time.deltaTime;
+                }
+
+                if (stunTimer <= 0)
+                {
+                    stunResistance = 0;
+                }
+                else
+                {
+                    stunTimer -= Time.deltaTime;
+                }
+                #endregion
             }
-
-            if (stunTimer <= 0)
-            {
-                stunResistance = 0;
-            }
-            else
-            {
-                stunTimer -= Time.deltaTime;
-            }
-            #endregion
-            
         }
 
         #region Protected voids
@@ -137,10 +141,11 @@ namespace EnemyMechanics
             sonido.playaudio("Idle " + Whichsound);
             idletimer = Random.Range(3, 8);
         }
-        protected void ChangeLife(float damage)
+        protected async void ChangeLife(float damage)
         {
             if (damage > 0)
             {
+                awaiting = false;
                 SetHitmarker(damage - dmgResistance);
                 playerDetected = true;
                 angry = true;

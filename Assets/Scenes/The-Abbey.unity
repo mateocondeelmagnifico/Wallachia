@@ -17189,6 +17189,24 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6b0df067d8acef346aae1d839098fcbb, type: 3}
+--- !u!1 &629007381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4212054089237201295, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
+  m_PrefabInstance: {fileID: 1927299469}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &629007392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629007381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cbb1bb4520f9b4291e4bfc6c722576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 50
 --- !u!1001 &629525167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29670,11 +29688,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548810445194746677, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.200865
+      value: 17.200865
       objectReference: {fileID: 0}
     - target: {fileID: 3548810445194746677, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.9174194
+      value: -7.917433
       objectReference: {fileID: 0}
     - target: {fileID: 3548810445194746677, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29711,6 +29729,10 @@ PrefabInstance:
     - target: {fileID: 4212054089237201295, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_Name
       value: Werewolf (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999637239357496458, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
+      propertyPath: awaiting
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
@@ -43262,6 +43284,10 @@ PrefabInstance:
       propertyPath: groupmanager
       value: 
       objectReference: {fileID: 1924508608}
+    - target: {fileID: 6905772140766602321, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
+      propertyPath: awaiting
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
 --- !u!4 &1451411973 stripped
@@ -57397,6 +57423,24 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.725, z: -0.004}
   m_TimeToStationary: 0.5
+--- !u!1 &1780376627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4212054089237201295, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
+  m_PrefabInstance: {fileID: 1016166703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1780376638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780376627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cbb1bb4520f9b4291e4bfc6c722576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 50
 --- !u!1001 &1781344896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57557,6 +57601,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1535601620773548076, guid: 27af771c16a85554ba08705042a5d85b, type: 3}
   m_PrefabInstance: {fileID: 1535601620333305959}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1792858818 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 85044148226785970, guid: fde8409dbf3be894f8c66f85c1022dfb, type: 3}
+  m_PrefabInstance: {fileID: 1451411972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1792858829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792858818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7cbb1bb4520f9b4291e4bfc6c722576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 3
 --- !u!1 &1794435067
 GameObject:
   m_ObjectHideFlags: 0
@@ -61533,7 +61595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3548810445194746677, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2008648
+      value: 18.200865
       objectReference: {fileID: 0}
     - target: {fileID: 3548810445194746677, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -61574,6 +61636,10 @@ PrefabInstance:
     - target: {fileID: 4212054089237201295, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_Name
       value: Werewolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999637239357496458, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
+      propertyPath: awaiting
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7816282171410159800, guid: 5a4878e7aecec3f42b7042fc051e24a8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70319,6 +70385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 604140634}
     m_Modifications:
+    - target: {fileID: 1751004330905484730, guid: 6cb4381d6be4b5041a6ca0a9d37571b9, type: 3}
+      propertyPath: awaiting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2018310676599800683, guid: 6cb4381d6be4b5041a6ca0a9d37571b9, type: 3}
       propertyPath: m_Color.a
       value: 1
