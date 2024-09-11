@@ -25,7 +25,7 @@ namespace EnemyMechanics
         #region Life variables
         protected string enemytype;
 
-        public float life, maxLife, regeneration, minStunAmount, staggerNeeded;
+        public float life, maxLife, regeneration, minStunAmount, staggerNeeded, stun;
         protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, stagger;
 
         protected bool invulnerable, isplaying;
@@ -37,7 +37,7 @@ namespace EnemyMechanics
         protected bool isattacking;
         private bool isdamaging, hasreached, isinplace;
 
-        protected float staggered, wanderTimer;
+        protected float wanderTimer;
         //must be modified from enemy scripts
         public float attackingrange, lungeSpeed, speed;
 
@@ -53,7 +53,7 @@ namespace EnemyMechanics
         {
             #region idilingSounds
             //this is for idling sounds
-            if (idletimer > 0 && staggered <= 0)
+            if (idletimer > 0 && stagger <= 0)
             {
                 idletimer -= Time.deltaTime;
             }
@@ -148,8 +148,6 @@ namespace EnemyMechanics
             }
             life -= (damage - dmgResistance);
 
-            if (stagger >= staggerNeeded) GetStagger();
-
             #region CheckDead
             if (life <= 0)
             {
@@ -211,10 +209,13 @@ namespace EnemyMechanics
         {
             if(stunamount > minStunAmount)
             {
-                staggered = stunamount - stunResistance;
+                stagger = stunamount;
+                stun = stunamount;
                 attackposition = transform.position;
                 //stunResistance += 0.2f;
-                animador.SetInteger("Stun", 1);
+
+                if(stagger < staggerNeeded) animador.SetInteger("Stun", 1);
+                else GetStagger();
             }
         }
         private void ApplyRegeneration()
@@ -236,10 +237,10 @@ namespace EnemyMechanics
             }
 
             //If the player is too close, it attacks
-            if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && staggered <= 0)
+            if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && stagger <= 0)
             {
                 attackposition = transform.position;
-                animador.SetTrigger("Attack");
+                animador.SetBool("Attacking", true);
                 angry = true;
                 navegador.isStopped = true;
                 isattacking = true;
@@ -256,6 +257,8 @@ namespace EnemyMechanics
             animador.SetInteger("Stun", 2);
             isStaggered = true;
             stunTimer = 3;
+            stagger = 3;
+            CheckStun();
         }
         public virtual void ModifySpeed()
         {
@@ -263,7 +266,7 @@ namespace EnemyMechanics
             {
                 speed = 5;
             }
-            if (staggered > 0 || isattacking == true)
+            if (stagger > 0 || isattacking == true)
             {
                 speed = 3;
             }
@@ -278,10 +281,10 @@ namespace EnemyMechanics
         }
         private void CheckStun()
         {
-            if (staggered > 0)
+            if (stagger > 0)
             {
                 //transform.position = attackposition;
-                staggered -= Time.deltaTime;
+                stagger -= Time.deltaTime;
                 if(navegador.enabled) navegador.isStopped = true;
                 animador.SetFloat("Speed", 0);
                 canDamage = false;
@@ -319,7 +322,7 @@ namespace EnemyMechanics
 
             if (canDamage == true)
             {
-                if (Vector3.Distance(transform.position, player.transform.position) > 1 && staggered <= 0)
+                if (Vector3.Distance(transform.position, player.transform.position) > 1 && stagger <= 0)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, player.transform.position, lungeSpeed * Time.deltaTime);
                     hasreached = false;
@@ -373,6 +376,7 @@ namespace EnemyMechanics
         }
         public void Endattack()
         {
+            animador.SetBool("Attacking", false);
             isattacking = false;
             isinplace = false;
         }

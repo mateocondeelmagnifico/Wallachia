@@ -5010,7 +5010,8 @@ MonoBehaviour:
   maxLife: 6
   regeneration: 0
   minStunAmount: 0
-  staggerNeeded: 1
+  staggerNeeded: 10
+  stun: 0
   isStaggered: 0
   angry: 0
   playerDetected: 0
