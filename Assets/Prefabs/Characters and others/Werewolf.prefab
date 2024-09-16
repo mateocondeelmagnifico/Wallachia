@@ -6268,6 +6268,7 @@ MonoBehaviour:
   stun: 0
   isStaggered: 0
   awaiting: 0
+  lifeDisplay: {fileID: 2479521631439456344}
   angry: 0
   playerDetected: 0
   slowCondition: 0

@@ -33,6 +33,8 @@ namespace EnemyMechanics
 
         //Awaiting must be turned on from the scene
         public bool isStaggered, awaiting;
+
+        [SerializeField] private GameObject lifeDisplay;
         #endregion
 
         #region Movement and Attacking variables
@@ -121,6 +123,29 @@ namespace EnemyMechanics
                 else
                 {
                     stunTimer -= Time.deltaTime;
+                }
+                #endregion
+
+                #region Display Health
+                //When the player gets close display health
+                if(playerDetected)
+                {
+                    #region Raycast
+                    RaycastHit hit;
+                    LayerMask mask = LayerMask.GetMask("Player");
+                    mask += LayerMask.GetMask("Default");
+                    Vector3 offset = new Vector3(0,1,0);
+                    Physics.Raycast(transform.position + offset, player.transform.position - transform.position, out hit, 200, mask);
+                    #endregion
+
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        lifeDisplay.SetActive(true);
+                    }
+                    else
+                    {
+                        lifeDisplay.SetActive(false);
+                    }
                 }
                 #endregion
             }
