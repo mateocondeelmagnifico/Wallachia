@@ -160,7 +160,7 @@ namespace EnemyMechanics
             life -= (damage - dmgResistance);
 
             #region CheckDead
-            if (life <= 0) Die();
+            if (life <= 0) Die(0);
             #endregion
         }
         protected void SetHitmarker(float damage)
@@ -360,11 +360,12 @@ namespace EnemyMechanics
             wanderTimer = 4;
             destination = Destination;
         }
-        public void Die()
+        public void Die(int type)
         {
+            //Type 0 is normal death, 1 is for death on respwan
             DyingEffects();
             groupManager.EnemyDead();
-            scaryness.IncreaseScaryness(0.6f);
+            if(type == 0)scaryness.IncreaseScaryness(0.6f);
             setUIPlayer.UpdateEnemyCounter();
             destination = transform.position;
             GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -374,8 +375,8 @@ namespace EnemyMechanics
             damager[1].SetActive(false);
             particles.Stop();
             GetComponent<MeshCollider>().enabled = false;
-            enabled = false;
             animador.SetBool("Dead", true);
+            if (type == 1) animador.SetFloat("Death Speed", 1);
             navegador.enabled = false;
             this.enabled = false;
         }
