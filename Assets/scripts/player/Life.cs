@@ -53,7 +53,7 @@ namespace PlayerMechanics
 
             if (amount < 0)
             {
-                soundManager.playaudio("Player Hit");
+                soundManager.playaudio("Player Hit", null);
                 myCam.ShakeCam(-(Mathf.RoundToInt(amount)));
             }
             health += amount;

@@ -11,7 +11,8 @@ namespace PlayerMechanics
         public Image crossImage;
         [SerializeField] private TMPro.TextMeshProUGUI enemyCounter, bulletName;
 
-        private float hitmarkerTimer, enemiesLeft, enemiesTimer, enemiesTimer2, bloodTimer, texTimer, opacityTimer;
+        public float enemiesLeft;
+        private float hitmarkerTimer, enemiesTimer, enemiesTimer2, bloodTimer, texTimer, opacityTimer;
         [SerializeField] private float hurtValue;
 
         private void Awake()

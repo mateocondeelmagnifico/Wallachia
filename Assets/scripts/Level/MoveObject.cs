@@ -18,10 +18,6 @@ public class MoveObject : MonoBehaviour
 
     public bool ismoving;
     bool isinplace;
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -35,7 +31,7 @@ public class MoveObject : MonoBehaviour
 
     public void Move()
     {
-        sound.playaudio("Gate Closing");
+        sound.playaudio("Gate Closing", null);
         ismoving = true;
         movex = transform.position.x;
         movey = transform.position.y;

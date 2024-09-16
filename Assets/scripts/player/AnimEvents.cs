@@ -11,7 +11,7 @@ namespace PlayerMechanics
 
         public void callSoundManager(string whatSound)
         {
-            sound.playaudio(whatSound);
+            sound.playaudio(whatSound, null);
         }
 
         public void callFootSteps(string whatFootstep)

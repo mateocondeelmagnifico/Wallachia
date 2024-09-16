@@ -1,3 +1,4 @@
+using PlayerMechanics;
 using UnityEngine;
 
 namespace EnemyMechanics
@@ -10,7 +11,7 @@ namespace EnemyMechanics
         public string enemytype;
         public bool activated;
         public bool isattacking;
-        //public int currentball;
+        private int remainingEnemies;
 
         public GameObject player;
 
@@ -19,8 +20,26 @@ namespace EnemyMechanics
             //This is so that all enemies in the stage get this things
             for (int count = transform.childCount; count > 0; count--)
             {
-                transform.GetChild(count - 1).GetComponent<Enemy>().player = player;
-                transform.GetChild(count - 1).GetComponent<Enemy>().groupManager = this;
+                    transform.GetChild(count - 1).GetComponent<Enemy>().player = player;
+                    transform.GetChild(count - 1).GetComponent<Enemy>().groupManager = this;
+            }
+
+             remainingEnemies = transform.childCount;
+
+            //Self destruct if player has defeated it before
+            if (RespawnManager.instance.defeatedEnemies.Contains(this.gameObject.name))
+            {
+                //Done in two steps because the function already rests an enemy
+                //SetUiValues.Instance.enemiesLeft -= (transform.childCount - 1);
+                //SetUiValues.Instance.UpdateEnemyCounter();
+
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    GameObject selectedEnemy = transform.GetChild(i).gameObject;
+                    selectedEnemy.GetComponent<Animator>().SetBool("Dead", true);
+                    selectedEnemy.GetComponent<Animator>().enabled = false;
+                    selectedEnemy.GetComponent<Enemy>().Die();
+                }
             }
         }
 
@@ -93,6 +112,18 @@ namespace EnemyMechanics
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Player")) player = other.gameObject;
+        }
+
+        public void EnemyDead()
+        {
+            //Check if enemy group is dead
+            remainingEnemies--;
+
+            if(remainingEnemies <= 0)
+            {
+                RespawnManager.instance.defeatedEnemies.Add(this.gameObject.name);
+                Destroy(this);
+            }
         }
     }
 }

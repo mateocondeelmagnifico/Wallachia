@@ -126,7 +126,7 @@ namespace EnemyMechanics
         //These three scripts are called by animation events
         public void Damagestart()
         {
-            sonido.playaudio("Attack");
+            sonido.playaudio("Attack", null);
             candamage = true;
             isdamaging = true;
         }

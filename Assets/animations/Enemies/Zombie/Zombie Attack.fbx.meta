@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -59,24 +59,24 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.72241986
-        functionName: Endattack
-        data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 13837387e9771044ea71077eb19d4054, type: 3}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.35088918
+      - time: 0.29166666
         functionName: Damagestart
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 13837387e9771044ea71077eb19d4054, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 9770c7c0479fc9c4b85a6383d9cc3802, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.4848158
+      - time: 0.49702382
         functionName: Enddamage
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: 13837387e9771044ea71077eb19d4054, type: 3}
+        objectReferenceParameter: {fileID: 11500000, guid: 9770c7c0479fc9c4b85a6383d9cc3802, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9695789
+        functionName: Endattack
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 9770c7c0479fc9c4b85a6383d9cc3802, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

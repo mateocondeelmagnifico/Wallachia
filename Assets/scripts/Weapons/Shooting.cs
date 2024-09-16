@@ -216,7 +216,7 @@ namespace WeaponMechanics
             {
                 if (ammo <= 0)
                 {
-                    sonido.playaudio("dont shoot");
+                    sonido.playaudio("dont shoot", null);
                 }
             }
             if (Input.GetKeyDown(KeyCode.Mouse0) && shotcooldown <= 0 && canshoot == true && reloading == false && ammo > 0)
@@ -239,7 +239,7 @@ namespace WeaponMechanics
            mybullet.GetComponent<Bullet>().myType = bulletType;
 
             shotcooldown2 = 0.45f;
-            sonido.playaudio("shoot");
+            sonido.playaudio("shoot", null);
             missingammo = true;
             //isinplace = false;
             //cuerporigido.AddForce(transform.forward.normalized * -200);
@@ -250,7 +250,7 @@ namespace WeaponMechanics
             {
                 if (maxammo > 0)
                 {
-                    sonido.playaudio("Reload");
+                    sonido.playaudio("Reload", null);
                     reloadingmath("Iron");
                     reloading = true;
                     reloadingtimer = 4;

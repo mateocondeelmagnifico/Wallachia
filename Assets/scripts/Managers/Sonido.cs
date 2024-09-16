@@ -17,8 +17,6 @@ public class Sonido : MonoBehaviour
 
     AudioSource currentsource;
 
-    public bool isPlayer;
-
     bool lowering;
 
     private void Awake()
@@ -31,10 +29,7 @@ public class Sonido : MonoBehaviour
                 sources[i] = GetComponents<AudioSource>()[i];
             }
 
-            if (isPlayer)
-            {
-                playaudio("Ambient Music");
-            }
+            playaudio("Ambient Music", null);
         }
         else
         {
@@ -44,19 +39,19 @@ public class Sonido : MonoBehaviour
 
     void Update()
     {
-        if (isPlayer)
-        {
-            sources[1].volume -= Time.deltaTime / 8;
-        }
+        //This source decreasses in volume over time
+        if (sources[1].volume > 0)   sources[1].volume -= Time.deltaTime / 8;
     }
-    public void playaudio(string type)
+    public void playaudio(string type, AudioSource source)
     {
         for (int i = 0; i < sounds.Length; i++)
         {
             if (type == sounds[i].name)
             {
+                //Play sound with local sources or others
 
-                currentsource = sources[sounds[i].source];
+                if(source == null) currentsource = sources[sounds[i].source];
+                else currentsource = source;
 
                 currentsource.clip = sounds[i].clip;
                 currentsource.volume = sounds[i].volume;

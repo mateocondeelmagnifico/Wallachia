@@ -121,7 +121,7 @@ namespace WeaponMechanics
 
         public void playsound()
         {
-            sound.playaudio("Pickup");
+            sound.playaudio("Pickup", null);
         }
         public void SetiInactive()
         {
@@ -136,7 +136,7 @@ namespace WeaponMechanics
             {
                 //In currentequip is the int that defines the weapon that was previously equipped
                 //In tempvalue is the weapon you want to equip
-                sound.playaudio("Weapon Switch");
+                sound.playaudio("Weapon Switch", null);
                 animador.SetTrigger("Equip");
                 equippingweapon = true;
 
@@ -148,7 +148,7 @@ namespace WeaponMechanics
             }
             if (type == "pistol" || type == "rifle")
             {
-                sound.playaudio("Weapon Switch");
+                sound.playaudio("Weapon Switch", null);
                 animador.SetTrigger("Equip");
                 equippingweapon = true;
 

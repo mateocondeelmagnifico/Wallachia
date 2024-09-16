@@ -56,12 +56,12 @@ namespace WeaponMechanics
                     {
                         if (enemigo.life - damage <= 0)
                         {
-                            sound.playaudio("Strong Sword Impact");
+                            sound.playaudio("Strong Sword Impact", null);
 
                         }
                         else
                         {
-                            sound.playaudio("Sword Impact");
+                            sound.playaudio("Sword Impact", null);
                         }
                         hasPlayedSound = true;
                     }
@@ -103,21 +103,21 @@ namespace WeaponMechanics
                             Enemy enemigo = other.GetComponent<Hitbox>().myEnemy;
                             if (enemigo.life - damage <= 0)
                             {
-                                sound.playaudio("Strong Sword Impact");
+                                sound.playaudio("Strong Sword Impact", null);
 
                                 //Matar a un enemigo con la espada aumenta el miedo
                                 scaryness.IncreaseScaryness(1);
                             }
                             else
                             {
-                                sound.playaudio("Sword Impact");
+                                sound.playaudio("Sword Impact", null);
                             }
                             hasPlayedSound = true;
                             if (enemigo.life <= 0) ataque.ActivateSlowMo(0.2f, 0.08f);
                         }
                         else
                         {
-                            sound.playaudio("Sword impact wood");
+                            sound.playaudio("Sword impact wood", null);
                         }
                     }
                 }

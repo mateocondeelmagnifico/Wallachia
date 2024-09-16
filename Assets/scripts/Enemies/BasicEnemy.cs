@@ -90,12 +90,12 @@ namespace EnemyMechanics
             string Whichsound;
             int random = Random.Range(2, 6);
             Whichsound = random.ToString();
-            sonido.playaudio("Idle " + Whichsound);
+            sonido.playaudio("Idle " + Whichsound, null);
             idletimer = Random.Range(3, 8);
         }
         public virtual void takedamage(float damage, string hitype, bool playsound)
         {
-            sonido.playaudio("Hurt");
+            sonido.playaudio("Hurt", null);
             if (life > 0)
             {
                 SetHitmarker(damage);

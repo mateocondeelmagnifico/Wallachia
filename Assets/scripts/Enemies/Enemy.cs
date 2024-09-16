@@ -14,6 +14,7 @@ namespace EnemyMechanics
         protected Scaryness scaryness;
 
         protected Sonido sonido;
+        protected AudioSource[] sources = new AudioSource[2];
         public GameObject[] damager;
         protected GameObject particlesystem;
         [HideInInspector] public GameObject player;
@@ -23,7 +24,7 @@ namespace EnemyMechanics
         protected NavMeshAgent navegador;
 
         #region Life variables
-        protected string enemytype;
+        public string enemytype;
 
         public float life, maxLife, regeneration, minStunAmount, staggerNeeded, stun;
         protected float idletimer, damageTimer, stunResistance, stunTimer, dmgResistance, stagger;
@@ -49,6 +50,11 @@ namespace EnemyMechanics
 
         private void Start()
         {
+            for (int i = 0; i < 2; i++)
+            {
+                sources[i] = GetComponents<AudioSource>()[i];
+            }
+
             SetStartVariables();
         }
         private void Update()
@@ -123,7 +129,7 @@ namespace EnemyMechanics
         #region Protected voids
         protected void SetStartVariables()
         {
-            sonido = GetComponent<Sonido>();
+            sonido = Sonido.instance;
             particles = GetComponent<ParticleSystem>();
             animador = GetComponent<Animator>();
             idletimer = 4;
@@ -138,10 +144,10 @@ namespace EnemyMechanics
             string Whichsound;
             int random = Random.Range(2, 6);
             Whichsound = random.ToString();
-            sonido.playaudio("Idle " + Whichsound);
+            sonido.playaudio(enemytype + " Idle " + Whichsound, sources[0]);
             idletimer = Random.Range(3, 8);
         }
-        protected async void ChangeLife(float damage)
+        protected void ChangeLife(float damage)
         {
             if (damage > 0)
             {
@@ -154,24 +160,7 @@ namespace EnemyMechanics
             life -= (damage - dmgResistance);
 
             #region CheckDead
-            if (life <= 0)
-            {
-                DyingEffects();
-                scaryness.IncreaseScaryness(0.6f);
-                setUIPlayer.UpdateEnemyCounter();
-                destination = transform.position;
-                GetComponent<Rigidbody>().velocity = Vector3.zero;
-                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                sonido.enabled = false;
-                damager[0].SetActive(false);
-                damager[1].SetActive(false);
-                particles.Stop();
-                GetComponent<MeshCollider>().enabled = false;
-                enabled = false;
-                animador.SetBool("Dead", true);
-                navegador.enabled = false;
-                this.enabled = false;
-            }
+            if (life <= 0) Die();
             #endregion
         }
         protected void SetHitmarker(float damage)
@@ -242,7 +231,7 @@ namespace EnemyMechanics
             }
 
             //If the player is too close, it attacks
-            if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && stagger <= 0)
+            if (Vector3.Distance(player.transform.position, transform.position) < attackingrange && isattacking == false && stagger <= 0 && canDamage == false)
             {
                 attackposition = transform.position;
                 animador.SetBool("Attacking", true);
@@ -371,11 +360,30 @@ namespace EnemyMechanics
             wanderTimer = 4;
             destination = Destination;
         }
+        public void Die()
+        {
+            DyingEffects();
+            groupManager.EnemyDead();
+            scaryness.IncreaseScaryness(0.6f);
+            setUIPlayer.UpdateEnemyCounter();
+            destination = transform.position;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            sonido.enabled = false;
+            damager[0].SetActive(false);
+            damager[1].SetActive(false);
+            particles.Stop();
+            GetComponent<MeshCollider>().enabled = false;
+            enabled = false;
+            animador.SetBool("Dead", true);
+            navegador.enabled = false;
+            this.enabled = false;
+        }
 
         //These three scripts are called by animation events
         public void Damagestart()
         {
-            sonido.playaudio("Attack");
+            sonido.playaudio(enemytype + " Attack", sources[0]);
             canDamage = true;
             isdamaging = true;
         }
@@ -389,6 +397,12 @@ namespace EnemyMechanics
         {
             canDamage = false;
             isdamaging = false;
+        }
+
+        public void CallSoundManager(string soundname, int wantedSource)
+        {
+            //Needed for anim events basically
+            sonido.playaudio(enemytype + " " + soundname, sources[wantedSource]);
         }
         #endregion
 

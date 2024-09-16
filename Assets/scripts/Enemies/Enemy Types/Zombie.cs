@@ -11,7 +11,7 @@ public class Zombie : Enemy
 
         if (playSound)
         {
-            sonido.playaudio("Hurt");
+            sonido.playaudio(enemytype + "Hurt", sources[1]);
         }
 
         isattacking = false;

@@ -45,7 +45,7 @@ namespace PlayerMechanics
             if (Input.GetKeyDown(KeyCode.Mouse1) && attacking == false && canattack == true && currentweapon == "sword" && ispaused == false && hasmelee)
             {
                 currentSword.hasPlayedSound = false;
-                sound.playaudio("Sword Swing");
+                sound.playaudio("Sword Swing", null);
                 animador.SetTrigger("Attack");
                 attacking = true;
             }
@@ -55,7 +55,7 @@ namespace PlayerMechanics
             {
                 if (axeraised == false)
                 {
-                    sound.playaudio("Raise Axe");
+                    sound.playaudio("Raise Axe", null);
                     animador.SetTrigger("Raiseaxe");
                     axeraised = true;
                 }

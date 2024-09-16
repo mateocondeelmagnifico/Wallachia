@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1629333248267152496}
   - component: {fileID: 7721590290501106703}
   - component: {fileID: 1200790334722458938}
-  - component: {fileID: 4291828035953998960}
   - component: {fileID: 6595629915879882415}
   - component: {fileID: 8320677090202496413}
   - component: {fileID: 6905772140766602321}
@@ -4749,54 +4748,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &4291828035953998960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85044148226785970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2c1d4e8b27483d40b17695491f100f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Idle 1
-    volume: 1
-    source: 0
-    clip: {fileID: 8300000, guid: a3826f699994ba541b5587d82854753a, type: 3}
-  - name: Idle 2
-    volume: 1
-    source: 0
-    clip: {fileID: 8300000, guid: ddfaec729f062b5438e2e3d33baa3dd6, type: 3}
-  - name: Idle 3
-    volume: 1
-    source: 0
-    clip: {fileID: 8300000, guid: e919630ad76425c4a9265d8824522eda, type: 3}
-  - name: Attack
-    volume: 1
-    source: 1
-    clip: {fileID: 8300000, guid: 0acde87d08f61f0419132fe3badef748, type: 3}
-  - name: Hurt
-    volume: 1
-    source: 0
-    clip: {fileID: 8300000, guid: e557ec37d5bb0e945bd9b9fc1e3a10f2, type: 3}
-  - name: Footstep L
-    volume: 0.2
-    source: 1
-    clip: {fileID: 8300000, guid: 4710cac6fb5a5544b97f0c691c5332f4, type: 3}
-  - name: Footstep R
-    volume: 0.2
-    source: 1
-    clip: {fileID: 8300000, guid: c8d999ba46f7f6f4fae8d3e7ab12b70d, type: 3}
-  numberOfSources: 2
-  sources:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  isPlayer: 0
 --- !u!82 &6595629915879882415
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5006,6 +4957,7 @@ MonoBehaviour:
   - {fileID: 7174048396189756213}
   - {fileID: 8147815711679287853}
   player: {fileID: 0}
+  enemytype: Zombie
   life: 0
   maxLife: 6
   regeneration: 0
@@ -5013,6 +4965,7 @@ MonoBehaviour:
   staggerNeeded: 10
   stun: 0
   isStaggered: 0
+  awaiting: 0
   angry: 0
   playerDetected: 0
   slowCondition: 0

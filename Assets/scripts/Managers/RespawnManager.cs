@@ -16,6 +16,9 @@ public class RespawnManager : MonoBehaviour
 
     public string currentgun, currentmelee, currentgrenade;
 
+    //Enemy groups that have been defeated are then updated by the groupmanager life script
+    public List<string> defeatedEnemies = new List<string>(); 
+
     void Awake()
     {
         if(instance == null) instance = this;

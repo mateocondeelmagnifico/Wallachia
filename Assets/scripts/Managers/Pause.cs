@@ -118,7 +118,7 @@ public class Pause : MonoBehaviour
     public void pause(string whichPause)
     {
         #region thigs that are paused
-        sound.playaudio("Menu Enter");
+        sound.playaudio("Menu Enter", null);
         exceptions[0].GetComponent<Shooting>().ispaused = true;
         exceptions[1].GetComponent<Shooting>().ispaused = true;
         exceptions[2].GetComponent<Attack>().ispaused = true;
