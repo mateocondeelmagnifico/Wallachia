@@ -2196,7 +2196,7 @@ GameObject:
   - component: {fileID: 8511528451130704064}
   - component: {fileID: 8511528451130704065}
   - component: {fileID: 8511528451130704066}
-  - component: {fileID: 8511528451130704077}
+  - component: {fileID: 2560328320793994002}
   m_Layer: 6
   m_Name: Axe
   m_TagString: Untagged
@@ -2281,7 +2281,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 95.66238, y: 33.823185, z: 5.714008}
   m_Center: {x: 8.003359, y: -6.1682825, z: -0.11713056}
---- !u!114 &8511528451130704077
+--- !u!114 &2560328320793994002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2290,16 +2290,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8511528451130704070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6248c0c7ac0a5c5499b1f6f14f2ba092, type: 3}
+  m_Script: {fileID: 11500000, guid: c58f906df2b98f84ea95df2941ce2189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   getter: {fileID: 0}
   bloodVFX: {fileID: 1673695494780953368}
-  axedamage: 0
-  damage: 0
+  player: {fileID: 8853636882904133627}
+  damage: 2
   stunType: 
   candamage: 0
-  isAxe: 0
   hasPlayedSound: 0
   ataque: {fileID: 0}
 --- !u!1 &8511528451219443328
@@ -5458,7 +5457,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.66661906, y: 0.13720809, z: 2.9574435}
   m_Center: {x: -0.00005245164, y: -0.00000016092004, z: 0.9020231}
---- !u!114 &8511528451780175104
+--- !u!114 &6444993753034972099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5467,16 +5466,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8510850188762092262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6248c0c7ac0a5c5499b1f6f14f2ba092, type: 3}
+  m_Script: {fileID: 11500000, guid: e7e56b36202d08842b4504c65e11f06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   getter: {fileID: 0}
   bloodVFX: {fileID: 1673695494317642908}
-  axedamage: 0
-  damage: 0
+  player: {fileID: 8853636882904133627}
+  damage: 1
   stunType: 
   candamage: 0
-  isAxe: 0
   hasPlayedSound: 0
   ataque: {fileID: 0}
 --- !u!1001 &8511528451931208741

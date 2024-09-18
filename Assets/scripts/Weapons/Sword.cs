@@ -1,6 +1,7 @@
 using UnityEngine;
 using PlayerMechanics;
 using EnemyMechanics;
+using System.Runtime.CompilerServices;
 
 namespace WeaponMechanics
 {
@@ -8,32 +9,27 @@ namespace WeaponMechanics
     {
         //This script makes both the sword and the axe do damage and apply status effects on hit
 
-        public GameObjectgetter getter;
         public GameObject bloodVFX;
-        GameObject player;
-        GameObject soundmanager;
+        [SerializeField] private GameObject player;
 
-        Sonido sound;
-        private Camara myCam;
+        private Sonido sound;
+        protected Camara myCam;
 
-        public float axedamage, damage;
+        public float damage;
 
         public string stunType;
 
-        public bool candamage, isAxe;
+        public bool candamage;
         public bool hasPlayedSound;
 
         public Attack ataque;
 
-        private Scaryness scaryness;
+        protected Scaryness scaryness;
         // Start is called before the first frame update
         void Start()
         {
             myCam = Camara.instance;
-            player = getter.Player;
-            soundmanager = getter.Soundmanager;
-            sound = soundmanager.GetComponent<Sonido>();
-            axedamage = 2;
+            sound = Sonido.instance;
             ataque = player.GetComponent<Attack>();
 
             scaryness = player.GetComponent<Scaryness>();
@@ -44,11 +40,11 @@ namespace WeaponMechanics
             if (ataque.candamage == true)
             {
                 if (other.gameObject.tag.Equals("Enemy"))
-                {
-                    myCam.ShakeCam(2);
+                {     
                     scaryness.IncreaseScaryness(0.3f);
 
                     Enemy enemigo = other.GetComponent<Enemy>();
+                    DealDamage(enemigo);
 
                     #region Play Sound
                     //this is so the sword only plays the sound of its first impact
@@ -64,25 +60,6 @@ namespace WeaponMechanics
                             sound.playaudio("Sword Impact", null);
                         }
                         hasPlayedSound = true;
-                    }
-                    #endregion
-
-                    #region Apply Damage and Effects
-                    if (isAxe == false)
-                    {
-                        //sword deals more damage based on missing health
-                        damage = (1 + (enemigo.maxLife - enemigo.life) / 1.5f) + (scaryness.howScary / 8);
-
-                        enemigo.TakeDamage(damage, "Light", true, 4);
-                        enemigo.StatusEffect("Iron");
-                        bloodVFX.GetComponent<ParticleSystem>().Emit(100);
-                    }
-                    else
-                    {
-                        damage = axedamage;
-                        enemigo.TakeDamage(axedamage + (scaryness.howScary / 8), "Heavy", true, Mathf.Clamp (axedamage, 2, 3));
-                        enemigo.StatusEffect("Iron");
-                        bloodVFX.GetComponent<ParticleSystem>().Emit(10000);
                     }
                     #endregion
 
@@ -123,5 +100,7 @@ namespace WeaponMechanics
                 }
             }
         }
+
+        protected virtual void DealDamage(Enemy enemigo) { }
     }
 }

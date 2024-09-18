@@ -75,7 +75,7 @@ namespace PlayerMechanics
                 animador.SetBool("Axestill", false);
                 animador.SetTrigger("Loweraxe");
                 attacking = true;
-                currentSword.axedamage += chargetimer * 2.7f;
+                currentSword.damage += chargetimer * 2.7f;
             }
             #endregion
 
@@ -106,7 +106,7 @@ namespace PlayerMechanics
             attacking = false;
             //GetComponent<movement>().canmove = true;
             chargetimer = 0;
-            currentSword.axedamage = 2;
+            currentSword.damage = 2;
         }
         public void Damageend()
         {
