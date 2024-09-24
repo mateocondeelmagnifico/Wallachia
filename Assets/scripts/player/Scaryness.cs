@@ -8,8 +8,8 @@ namespace PlayerMechanics
         //Esto controla el miedo que le tienen los enemigos al jugador
         public static Scaryness Instance { get; private set; }
 
-        public float howScary;
-        private float timer, secondaryTimer;
+        public float howScary, timer;
+        private float secondaryTimer;
 
         private PostProcessVolume myVolume;
         private ColorGrading grading;
@@ -36,7 +36,7 @@ namespace PlayerMechanics
 
         private void Update()
         {
-            //Mantines la furia mientras que estes en combate basicamente
+            //You lose fury if you aren't in combat
             if (timer > 0)
             {
                 timer -= Time.deltaTime;

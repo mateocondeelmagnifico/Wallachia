@@ -4,14 +4,32 @@ using WeaponMechanics;
 
 public class PlayerSword : Sword
 {
-    private float damageTimer;
+    [SerializeField] private Light[] myLight;
+    public float damageTimer;
+    private float[] myIntesities;
+
+    private void Start()
+    {
+        myIntesities = new float[myLight.Length];
+
+        for(int i = 0; i < myLight.Length; i++)
+        {
+            myIntesities[i] = myLight[i].intensity;
+        }
+    }
 
     private void Update()
     {
         //Sword charges passively
-        if(damageTimer < 4 && !candamage)
+        if (damageTimer < 4)
         {
-            damageTimer += damageTimer;
+            damageTimer += Time.deltaTime;
+        }
+
+        //Since each light has different max intensities this code is neccesary
+        for (int i = 0; i < myLight.Length; i++)
+        {
+            myLight[i].intensity = damageTimer * myIntesities[i] / 4;
         }
     }
 
@@ -33,5 +51,10 @@ public class PlayerSword : Sword
 
         if(damageTimer < 4) myCam.ShakeCam(1);
         else myCam.ShakeCam(2);
+
+        for (int i = 0; i < myLight.Length; i++)
+        {
+            myLight[i].intensity = 0;
+        }
     }
 }

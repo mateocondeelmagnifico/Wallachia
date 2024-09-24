@@ -16,6 +16,7 @@ TagManager:
   - Building
   - Enemy Group
   - Hitbox
+  - Weapon
   layers:
   - Default
   - TransparentFX

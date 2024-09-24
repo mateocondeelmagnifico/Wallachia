@@ -11,6 +11,11 @@ public class LevelInteractable : MonoBehaviour
     private GameObject player;
     private bool canInteract;
 
+    private void Update()
+    {
+        KeyCheck();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         

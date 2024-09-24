@@ -26,7 +26,8 @@ namespace WeaponMechanics
 
         protected Scaryness scaryness;
         // Start is called before the first frame update
-        void Start()
+
+        private void OnEnable()
         {
             myCam = Camara.instance;
             sound = Sonido.instance;

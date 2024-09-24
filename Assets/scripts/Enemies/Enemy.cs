@@ -138,7 +138,7 @@ namespace EnemyMechanics
                     Physics.Raycast(transform.position + offset, player.transform.position - transform.position, out hit, 200, mask);
                     #endregion
 
-                    if (hit.collider.CompareTag("Player"))
+                    if (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Weapon"))
                     {
                         lifeDisplay.SetActive(true);
                     }

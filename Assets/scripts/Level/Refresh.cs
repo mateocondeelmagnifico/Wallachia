@@ -16,11 +16,6 @@ public class Refresh : LevelInteractable
         sound = Sonido.instance;
     }
 
-    private void Update()
-    {
-        KeyCheck();
-    }
-
     public override void Interact(GameObject player)
     {
 
