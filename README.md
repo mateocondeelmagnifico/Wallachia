@@ -1,6 +1,6 @@
 # Wallachia
  Van Hellsing game
  
- Este proyecto lo hice para la universidad por mi cuenta, aun sigo trabajando en el.
- Parte de el codigo de este proyecto fue hecho teniendo en cuenta que este seria una pequeña demo
- Por lo tanto algunos scripts son algo mas complicados de lo que deberian ser o estan poco optimizados
+This game started as a game for my university, i alone have worked on the code and i currently am still working on it.
+I started coding it when my knowledge of unity and C# was much lesser, so a lot of scripts are not as structtured or optimized as i can make them.
+I hope you like it.
