@@ -11,21 +11,21 @@ public class LevelInteractable : MonoBehaviour
     private GameObject player;
     private bool canInteract;
 
-    private void Update()
+    protected virtual void Update()
     {
-        KeyCheck();
+        Keycheck();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        
         if (other.CompareTag("Player"))
         {
             if (player == null) player = other.gameObject;
             keyPrompt.SetActive(true);
             canInteract = true;
-        } 
+        }
     }
+
     public virtual void Interact(GameObject player) { }
 
     private void OnTriggerExit(Collider other)
@@ -47,11 +47,9 @@ public class LevelInteractable : MonoBehaviour
         Destroy(this);
     }
 
-    public void KeyCheck()
+    public void Keycheck()
     {
-        //Esto se mete en el update de los hijos
-
-        if (canInteract && Input.GetKeyDown(KeyCode.E))
+        if(canInteract && Input.GetKeyDown(KeyCode.E))
         {
             Interact(player);
         }

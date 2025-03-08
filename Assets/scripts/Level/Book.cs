@@ -31,7 +31,7 @@ public class Book : LevelInteractable
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isreading == true)
         {
@@ -41,7 +41,7 @@ public class Book : LevelInteractable
             Destroy(pickUp);
         }
 
-        KeyCheck();
+        Keycheck();
     }
     private void read(Sprite whatpage)
     {
